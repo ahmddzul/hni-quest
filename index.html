@@ -5,9 +5,9 @@
 <style>
 /* Layout: one phone-width app column (max 480px) with a bottom tab bar; the journey map is a winding level path. */
 :root{
-  --bg:#F3F7F1; --surface:#FFFFFF; --surface-2:#F5F8F3; --ink:#12291F; --muted:#66786E; --line:#E3EBE0; --shadow:0 1px 2px rgba(18,41,31,.05),0 6px 20px rgba(18,41,31,.06); --cb:transparent;
-  --brand:#0A8C4B; --brand-ink:#FFFFFF; --brand-soft:#DDF2E3; --lime:#8CC51A; --sun:#F5A70F; --sun-soft:#FFF1D0;
-  --coral:#F2554A; --coral-soft:#FFE3E0; --sky:#2C7BE5; --night:#0E2A1E;
+  --bg:#F3F7F1; --surface:#FFFFFF; --surface-2:#F5F8F3; --ink:#12291F; --muted:#56685E; --line:#E3EBE0; --shadow:0 1px 2px rgba(18,41,31,.05),0 6px 20px rgba(18,41,31,.06); --cb:transparent;
+  --brand:#087A41; --brand-ink:#FFFFFF; --brand-soft:#DDF2E3; --lime:#8CC51A; --sun:#F5A70F; --sun-soft:#FFF1D0;
+  --coral:#F2554A; --coral-soft:#FFE3E0; --sun-text:#8F5500; --coral-text:#C2392F; --focus:#145A32; --sky:#2C7BE5; --night:#0E2A1E;
   --display:"Unbounded","Arial Black",system-ui,sans-serif;
   --body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --r:18px;
@@ -16,15 +16,15 @@
   --shadow:none; --cb:#21362B;
   --bg:#0A1712; --surface:#12241B; --surface-2:#0F1E17; --ink:#E6F2EA; --muted:#93A99C; --line:#22392D;
   --brand:#27B86E; --brand-ink:#04150C; --brand-soft:#173826; --lime:#A9E03A; --sun:#FFC24A; --sun-soft:#3A2E12;
-  --coral:#FF7065; --coral-soft:#3D1D1A; --sky:#5B9CF0; --night:#04110B; color-scheme:dark }
+  --coral:#FF7065; --coral-soft:#3D1D1A; --sun-text:#FFC24A; --coral-text:#FF8A80; --focus:#A9E03A; --sky:#5B9CF0; --night:#04110B; color-scheme:dark }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
 button,input,select,textarea{font:inherit;color:inherit}
-button{cursor:pointer}
-:focus-visible{outline:3px solid var(--lime);outline-offset:2px;border-radius:8px}
+button,select,summary,label[for],a[href]{cursor:pointer}button:disabled,select:disabled{cursor:not-allowed}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:8px}
 .app{max-width:480px;margin:0 auto;min-height:100%;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 calc(96px + env(safe-area-inset-bottom,0px))}
 h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
 h1{font-size:1.5rem;font-weight:800;letter-spacing:-.01em}
@@ -51,7 +51,7 @@ p{margin:0}
 .logo b{color:var(--brand)}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-weight:700;font-size:.82rem;white-space:nowrap}
 .chip.streak{color:var(--coral)}
-.chip.xp{color:var(--sun)}
+.chip.xp{color:var(--sun-text)}
 .iconbtn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center}
 .iconbtn svg{width:20px;height:20px}
 
@@ -80,7 +80,7 @@ p{margin:0}
 /* missions */
 .mission{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;background:var(--surface);border:1px solid var(--line);width:100%;text-align:left}
 .mission .ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none;font-family:var(--display);font-weight:800;font-size:1.05rem}
-.mission .xpv{font-weight:800;color:var(--sun);font-size:.85rem;white-space:nowrap}
+.mission .xpv{font-weight:800;color:var(--sun-text);font-size:.85rem;white-space:nowrap}
 .mission.done{opacity:.6}
 .mission.done .xpv{color:var(--brand)}
 .k-pakai{background:#DDF2E3;color:#0A7A41}
@@ -319,7 +319,7 @@ textarea.input{min-height:84px;resize:vertical}
 .card .kpi{background:var(--surface-2);border:0}
 .admpost{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}.admpost.hid{opacity:.6;border-style:dashed}.admact{flex-wrap:wrap;gap:6px}
 .admset .row{flex-wrap:wrap}.admset .input{min-width:0;width:100%}.admset .row>.input{flex:1 1 90px;width:auto}.admset .field{min-width:0}
-.admseg button{white-space:nowrap}.pinned{color:var(--sun);font-weight:800}
+.admseg button{white-space:nowrap}.pinned{color:var(--sun-text);font-weight:800}
 .toast svg{width:16px;height:16px;vertical-align:-3px;display:inline-block}
 .hero{display:flex;align-items:center;gap:14px;width:100%;padding:16px;border-radius:22px;border:0;text-align:left;background:linear-gradient(135deg,var(--brand),#0B6E3C);color:#fff;box-shadow:0 10px 24px -12px rgba(10,140,75,.7)}
 .hero .eyebrow{color:#C8F06A;display:block}.hero b{display:block;font-size:1.08rem;margin:1px 0}.hero .small{color:#DDF3E5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -345,7 +345,7 @@ html[data-fs="xl"] .tabs button{font-size:.6rem}html[data-fs="xl"] .tabs button 
 .ligasteps{display:flex;gap:6px}.ligasteps i{flex:1;height:8px;border-radius:9px;background:rgba(255,255,255,.25)}.ligasteps i.on{background:#FFE08A}
 .lb.up{border-left:4px solid var(--brand)}.lb.down{border-left:4px solid var(--coral)}
 .zline{display:flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:4px 0}.zline::before,.zline::after{content:'';flex:1;height:1px;background:currentColor;opacity:.4}.zline.up{color:var(--brand)}.zline.down{color:var(--coral)}
-.mrow{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}.warnt{color:var(--coral);font-weight:700}
+.mrow{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}.warnt{color:var(--coral-text);font-weight:700}
 .gstats.lite{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.gstats.lite div{background:var(--surface-2);border-radius:14px;padding:10px 4px}.gstats.lite b{display:block;font-family:var(--display);font-size:1.4rem}.gstats.lite span{font-size:.7rem;color:var(--muted)}
 .avcols{display:flex;flex-wrap:wrap;gap:10px}.avc{width:40px;height:40px;border-radius:50%;border:3px solid transparent}.avc.on{border-color:var(--ink)}
 .avdot{width:22px;height:22px;border-radius:50%;border:4px solid;flex:none}.softrow.sel{border-color:var(--brand);background:var(--brand-soft)}.softrow:disabled{opacity:.55}
@@ -385,7 +385,7 @@ html[data-fs="xl"] .tabs button{font-size:.6rem}html[data-fs="xl"] .tabs button 
 :root[data-theme="dark"] .t-pemula{background:#173826;color:#5EE09A}:root[data-theme="dark"] .t-manager{background:#152A45;color:#7FB2FF}:root[data-theme="dark"] .t-builder{background:#2A1E40;color:#BFA2FF}
 .maplabel{display:flex;align-items:center;gap:10px;margin:14px 0 4px;position:relative;z-index:1}
 .maplabel::before,.maplabel::after{content:"";flex:1;height:1px;background:var(--line)}
-.maplabel span{font-family:var(--display);font-weight:800;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sun);background:var(--bg);padding:0 6px}
+.maplabel span{font-family:var(--display);font-weight:800;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sun-text);background:var(--bg);padding:0 6px}
 .node.adv .dot{border-color:var(--sun)}
 .node.adv:not(.done):not(.now) .dot{background:var(--sun-soft);color:var(--sun)}
 .advbox{padding:12px;border-radius:16px;border:1.5px dashed var(--sun);background:var(--sun-soft)}
@@ -405,7 +405,7 @@ html[data-fs="xl"] .tabs button{font-size:.6rem}html[data-fs="xl"] .tabs button 
 .gcol i{width:100%;max-width:36px;border-radius:8px 8px 3px 3px;background:var(--brand-soft);transition:height .6s cubic-bezier(.2,.8,.2,1),background .2s}
 .gcol.on i{background:linear-gradient(180deg,var(--sun),#F57E0F)}
 .gv{font-size:.62rem;font-weight:800;color:var(--muted);white-space:nowrap}
-.gcol.on .gv{color:var(--sun)}
+.gcol.on .gv{color:var(--sun-text)}
 .gl{font-family:var(--display);font-weight:800;font-size:.66rem;color:var(--muted)}
 .simtree{border-radius:22px;padding:16px;background:var(--surface);border:1px solid var(--line)}
 .topnode{width:58px;height:58px;flex:none;display:grid;place-items:center;border-radius:16px;font-family:var(--display);font-weight:800;color:#fff;margin-right:10px;animation:pop2 .5s cubic-bezier(.2,1.6,.4,1)}
@@ -431,7 +431,7 @@ html[data-fs="xl"] .tabs button{font-size:.6rem}html[data-fs="xl"] .tabs button 
 .story p{font-family:var(--display);font-weight:700;font-size:.98rem;line-height:1.4;margin-top:4px}
 .growq{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px;border-radius:16px;border:1.5px dashed var(--brand);background:var(--brand-soft)}
 .growq .ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}
-.growq .xpv{font-weight:800;color:var(--sun);font-size:.85rem}
+.growq .xpv{font-weight:800;color:var(--sun-text);font-size:.85rem}
 .growq.done{opacity:.65}
 
 /* ---- v12 clean layout ---- */
@@ -623,6 +623,105 @@ a.softrow{text-decoration:none;color:inherit}.mtseg{display:grid!important;grid-
 .sp-run{display:contents}
 .sp-skip{position:absolute;bottom:calc(30px + env(safe-area-inset-bottom,0px));font-size:.75rem;color:#7F9C8B;letter-spacing:.08em;animation:fadeUp .4s ease 2.1s both}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- audit-001 #6: area sentuh minimal 44px untuk jempol ---- */
+.iconbtn{width:44px!important;height:44px!important}
+.seg button{min-height:44px}
+.pill{min-height:44px;display:inline-flex;align-items:center;gap:6px}
+.pa{min-height:44px}
+.pmenu{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border-radius:12px}
+.g1btn{width:44px;height:44px}
+.g1e{grid-template-columns:30px minmax(0,1fr) minmax(0,1.15fr) 44px}
+.kamus summary,details>summary{min-height:44px}
+details>summary{display:flex;align-items:center}
+/* tautan teks & pil kecil: bentuk tetap, area ketuknya diperluas tanpa menggeser tata letak */
+button.link,a.link,.coinpill,.pstats button,.nickbtn{position:relative}
+button.link::after,a.link::after,.coinpill::after,.pstats button::after,.nickbtn::after{content:'';position:absolute;inset:-10px -6px}
+/* ---- audit-001 #7: label peta Journey tidak tertimpa garis jalur ---- */
+.node .info{position:relative;z-index:1;background:var(--bg);border-radius:12px;padding:4px 8px;margin:-4px -8px}
+/* ---- audit-001 #8: judul halaman untuk pembaca layar ---- */
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* ---- audit-001 #9: satu fokus di Beranda. "Langkah berikutnya" tetap kartu hijau penuh;
+   absen & event jadi kartu permukaan tenang dengan satu aksen kecil ---- */
+.login{background:var(--surface);color:var(--ink);border:1.5px solid var(--sun);box-shadow:none;padding:16px;gap:12px}
+.login h2,.login h3{color:var(--ink)}
+.lgift{width:44px;height:44px;flex:none;border-radius:14px;display:grid;place-items:center;background:var(--sun-soft);color:var(--sun-text)}
+.lgift svg{width:22px;height:22px}
+.lday{background:var(--surface-2);font-size:.75rem;color:var(--ink)}
+.lday .ln{opacity:1;color:var(--muted)}
+.lday.big{background:var(--sun-soft)}
+.lday.done{background:var(--brand);color:var(--brand-ink)}
+.lday.done .ln{color:var(--brand-ink)}
+.lday.now{background:var(--sun-soft);box-shadow:0 0 0 2px var(--sun-text);animation:bump 1.6s ease-in-out 2}
+.lday b{font-size:.78rem}
+.lclaim{background:var(--sun);color:#2A1A00}
+.evcard{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.evcard .eyebrow{color:var(--coral-text)}
+.evcard .hico{background:color-mix(in srgb,var(--ec) 16%,var(--surface));color:var(--ec)}
+.evcard .tag{background:var(--surface-2);color:var(--ink)}
+.evcard .bar{background:var(--surface-2)}
+.evcard .bar i{background:var(--ec)}
+.evcard .small{color:var(--muted)}
+/* ---- audit-001 #10: label kecil tanpa huruf kapital berspasi lebar ---- */
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:0;text-transform:none}
+.maplabel span{font-family:var(--body);font-size:.85rem;letter-spacing:0;text-transform:none}
+.zline{font-size:.8rem;text-transform:none;letter-spacing:0}
+.pkind{text-transform:none;letter-spacing:0;font-size:.74rem}
+.tierchip{font-family:var(--body);letter-spacing:0;font-size:.76rem}
+/* ---- audit-001 #11: garis kiri hanya untuk peringatan kepatuhan ---- */
+.note{border-left:0;padding-left:0;font-size:.82rem}
+.note.warn{border-left:3px solid var(--sun);padding-left:10px}
+/* ---- audit-001 #12: Akademi, satu rekomendasi utama lalu daftar ringkas ---- */
+.modfeat{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px;border-radius:20px;border:1.5px solid var(--brand);background:var(--surface);color:var(--ink)}
+.modfeat .grow{display:flex;flex-direction:column;gap:4px}
+.modfeat b{font-size:1.05rem}
+.modfeat .badge,.modrow .badge{width:44px;height:44px;flex:none;border-radius:14px;display:grid;place-items:center}
+.modlist{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:var(--surface);overflow:hidden}
+.modrow{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;text-align:left;padding:10px 14px;border:0;border-top:1px solid var(--line);background:none;color:var(--ink)}
+.modrow:first-child{border-top:0}
+.mstat{flex:none;font-size:.8rem;font-weight:800;color:var(--sun-text);display:inline-flex;align-items:center;gap:4px}
+.mstat.ok{color:var(--brand)}
+.mstat svg{width:14px;height:14px}
+/* ---- audit-001 #14: ukuran teks minimum 12px ---- */
+.lvtile small{font-size:.75rem;line-height:1.15}
+.lvtile:disabled{opacity:1;background:var(--surface-2);color:var(--muted)}
+.small{font-size:max(.82rem,12px)}
+/* ---- audit-001 #15: banner sinkron satu baris ---- */
+.syncbar{display:flex;align-items:center;gap:8px;width:100%;margin-top:8px;text-align:left;color:var(--ink);min-height:44px}
+/* ---- audit-001 #16: ikon aktivitas memakai 3 warna: hijau (produk/acara), kuning (cerita), biru (orang & belajar) ---- */
+.k-ajak,.k-sapa{background:#DCEBFF;color:#1F5FB8}
+.k-acara{background:#DDF2E3;color:#0A7A41}
+:root[data-theme="dark"] .k-ajak,:root[data-theme="dark"] .k-sapa{background:#152A45;color:#7FB2FF}
+:root[data-theme="dark"] .k-acara{background:#173826;color:#5EE09A}
+/* ---- audit-001 #17: menu bawah selebar kolom isi di tablet & laptop ---- */
+@media (min-width:520px){.tabs{left:50%;right:auto;width:min(480px,100%);transform:translateX(-50%);border-left:1px solid var(--line);border-right:1px solid var(--line);border-radius:18px 18px 0 0}}
+/* ---- audit-001 cek ulang: sisa kontras & ukuran ---- */
+.rimg em{background:var(--ink);color:var(--bg)}
+.pkind{color:color-mix(in srgb,var(--kc) 55%,var(--ink))}
+.lvtile.boss:disabled{background:var(--surface-2);color:var(--muted);border-color:var(--line)}
+.lvtile.boss:disabled small{color:var(--muted)}
+.lvgrid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.lvtile small{font-weight:500;letter-spacing:-.01em}.lvgrid{gap:5px}.lvtile{padding-inline:1px}
+.g1e .input{min-height:44px}
+.nickbtn::after,button.link::after,a.link::after{inset:-11px -6px}
+.modrow .badge svg,.modfeat .badge svg{width:22px;height:22px}
+/* bar atas tetap muat walau tombol 44px: tulisan "Quest" disembunyikan di layar sempit, logo HNI tetap utuh */
+@media (max-width:420px){.top .logo span{display:none}.top{gap:5px}.top .chip{padding:5px 8px}}
+@media (max-width:350px){.top .chip.xp svg{display:none}}
+.syncbar .grow{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.syncbar b{white-space:nowrap}
+@media (max-width:400px){.lvgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:350px){.top .chip.streak{display:none}.syncbar .grow{display:none}}
+/* audit-001 #14 lanjutan: tag, lencana, dan label badge minimal 12px */
+.tag,.gtag{font-size:.75rem}
+.rimg em{font-size:.75rem}
+.rimg.xs em{font-size:.62rem}
+.bdg{font-size:.75rem}
+.advb b,.advrow b{font-size:.75rem}
+/* ---- audit-002: Skrip PCA ---- */
+mark.ph{background:var(--sun-soft);color:var(--ink);border-radius:5px;padding:0 3px;font-weight:700}
+.scrhead{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+.scard p{line-height:1.55}
 </style>
 
 <div class="splash" id="splash" aria-label="HNI Quest">
@@ -641,14 +740,14 @@ a.softrow{text-decoration:none;color:inherit}.mtseg{display:grid!important;grid-
   <div class="sp-load"><i></i></div></div>
 </div>
 <div class="app" id="app">
-  <div class="top">
+  <header class="top">
     <div class="logo"><img src="data:image/webp;base64,UklGRiIwAABXRUJQVlA4WAoAAAAQAAAApgAAxwAAQUxQSHoVAAABoIf9n2G3+s3MpkmDukFtXrvWtW3bvu21bdu9rnVt266tJHVwdmZ+z7O7Z+f3m3OSvyMCFmwrYSMLNTGu5RmjgJr9h7z7KOj4RidQ0Nx9FHT4Bn+oANXscfkv2Ih/RofNHHf6HcPo+++uoJo17vZ3lIJR+txeEDRbIYDe8xKMqHHRAAiaLR68JCoPs2jFdhA0U7zz6phTqHooBM0Sj1oXcypt2h0Kmp1QAPvWORjRYMPBzc5hAEeHaBBdZM2JzQuJAM5CG7GbDF4AgWg+WMGE6JYh5WM1XgdKNBcs4U7UEVPpAZCyWQhSwFMYUjkxEL4goDkgBS3eSgx5HJreElQzwK0/iJlJn7Zt8hRA1Q8xs+nXrhA0ce73X8weaP4gCJo077giZi+0ekgTJglj16NGPx+Nm/YC2WRLOzwe3zx9YgGPbaqFSbHrH8k0T0n/DBNNNRLQegaG3vjtdiCacGcNDzuHZ/pQ/aRs0l22lHAVGuuDbwApm7zqyCdr8PxmQI0M4ARrLJdPhaBZMGuOjoh39cTYFGsW6LioMA6f0jRZKhKdQVd0bYjnkVipJjAwgxQUGk/ut0O8lsIiFj7vH9Q9jgdQFHHux5DIj0JA6uVP3heCPOf96vHF9hBQfnQyhiSeSTEUA+j4CmYiz0Fe8+EZzODcUQTQUrb8kaCkafytVEiC9Tt2AWasOQaCPObjrTUYormU0KgldF/j9BAYW9MHFOGRGm9jyS2eBgV5y6cnBro434uFbuABjDOhdZW+DwTuMoomJvwdcb5zIchTPg+NzUb+WbkbXOAsPMTrKKJVfYWhze7IL4EgL/li1DZVbe1LAT/T4bB8x61ABDDg/0QNZtN4CET+8WWJIS6Nlm3jJCk7LLMmJdOqSmcJAWy/Mr7PqXRVRPnGVzgHYo1rd3CSgj1SRsEQ9wPldg9Xo3YOjddElGecGIadtA0o8uii8TFC3W1fE3eVFMqvqwllwU3L+7hIqKK/ME4y+H+xEi7utzK2fgl0NQR5VxqF/isH6aqEISaS0Go7ylVxEirnxTY6iSbkDRXAeWQFMcSvCqUgJFFUCCFbfhsrRTTKmx8N4LSEGkulV13PnpClC2xol7SSwqVqvIEhQxE+Fwry4vgYltGaifsyV9L+2IiHutICuDaSEBl0ch4cBnCQ4ZkuIe4JykWTcIZblH1i/zCLjoAg5zy2wfIMQWNXVTmGDyl6rxrolKRzpA0xjclwrxyTgp02oGE7z95xQxvo1oE/YDvijN0yBIKcct9VqUwv4CJnrw3OnvoyD54jg2sHgcqhvVUxF7UPj0/dAEev7RZicIMPv5HGhZ1B5szTV/Idhn58pp8Lzh1Q8ivUfoT/uUzkhoQSM335+UI8G+ik4Hx/wr+rlMhN6U9gBv0Ea2qrpCS3hE7rjUVf9BwEOeHxWeynpbxAjhRM9OghzsRmRi6M13go8EdmV1BEHmI1egs2xGO9k4Qdt5iIPUafEYMUX6JGj6QbdvP8e0JUzI87aq90IChSfIhXxgjp4k5+f0+qDzDjOdjfFMGnJWTwh/UcMvhF4DUIOWRKjNlvdBQhCuA4v3FckzNH+P+FvX9Er+CM/T1wRkIU/GWN1wrGXw/MyaRDwaXrvCbqWLl1xkei9pq64crCXExgxFh7x3/k8fK3QjpL+d7j9fiv+kdYczU7Aies9phocLQDXuTyQ+Oxp645FSAQOXScd5uJ3kCGOM0ZvKkisUfsnV45nrCKEi9p9IXS2sa+qZ2thP4Za31lCydECHM/f7fbv/50qztTQQZwjz9x543Ii7m/ANpO9lSEwWUlIFJMh9LlaDz1LDM75CBVULuaGzwVkW6ZBnA0aj9VirdROxbBZCWI67COrkPtpeA5IFOuvGu9SIqNJxKzCcWkIiAeBDDEy2ISi/XdQWZxzwa0Pnj1KAgE7QiKWVrjtv/f0AFA0ajPnz4oxEshyPZw+hHzvwEQEFt3+c0LdqLraEp8jrj80qLo9pOo49ceAGv8LquNCPEDag/8QyWFY9DF41cifiup2o+CUzET1cAfB9F6TwWl73sgqwcl6l7CVtp64E9ag6KNEIf+HUmVwXOoGr5st9qYeMDEN7uTJkQlFM7mU5jlcQvgWh8ivl8MitRL9JqCsVllTHW5lLT4oWT7MBqrT4uKpFABf9jV+E3iVMD3qPl2dtSoSWWeVYvaJDE8SYqkGNRobIqe9FY5JZcUBXO4ZDHTB2T03S9Ey+UPSBxA5dQUXdDqcFsKKZiOOnVMWjgOlCBQ0cdcCvFcEUAgLuCL90UJgYWCPRejtunOO0ngEWgcAMzlAJJwsRW359A4K/H1Nlu6X9qQMMEEi6FDvLGUudZPXYiMIU2IRnJU/I+ad1rTNsLQfh1arj+NhKjlRDTGJd/XQhJmvAxBR/68koSi31qeXmFwb2gB+zFFs7WDSGZl1ZekKa/93BMxn6MmjU79ISDgGNHI6otDvAeKyGskUh7JsSQ0g+bGsrqDy2BSMBoNDevKnUhIjseQQRq/Byl+Qs0yZE4lYdl1Da1GjWNGgfGsaVw3nIClAG7BkHOhrhv0qOdcCfFuKKDsI9lAxv0hyNR4W2Poy1JHuUkEMI1DGo+IVVwOz4FAuHnMZrKkxu4EKi08E+Gl0zA3SdnqP9QM/A/DY4zaMzi/rZCEp2wzGjqKl1OCgIoN1jIArdsBlLvwbeu0ZYzT8QjN8PVFd8XrLI21mzuDTJ2yZfWuK/tSFpScyphUxDWDqtFy3O6Bm/uvZqFOnfIV8jc0yKL/OoJ000uMBhXeqhkIXic0XKiYxxunDP4dCJGsx6FouCP/l84JZpCq9D+GsKsY48mC1k6dUMiib2K1g0dZc+0q8ahx6VVKG9lNMxya9Ex2JKXVvu4B8zMJzAKKlxLNav4ioRsYeejC30YR/ka+2m5xZRmI+H7sicaHD+wg5w0QSn3n2VOu8ecCJZxN4VAMfci7fww5gMetBxmNWd/XWYCEraLZRa9pme1BOSXvv8HHvoLQPhulCGgxD42Xe/BjoXKvurrGa6TxJmeaUEW/oPYzX1EUq+o7eXLYhfgYAV7ws0cy+EcLQvU+6ckJZ3EIqAAm+PPYHQbKXaDx6cQeQZD6SH+Ar4NAwru+boUx1Z0JSvyjaR5eH92Z057rWmuMr2b6cWxVrUXrrVW/4y5QtlnhCaIxqztId9W+562lWqxtC7Abif1pAgpO9IRR4+kQODOdhyGiNxoBfsU0m3q5k8RXqL3w91I503pv1j5vyyUAzyeCt6R3Cc/fLsZYH2G4W97E8hiPYSLAt2jQp6AnEZJextADv0ngU/zOHOJPst2qrGRfBa7pKKWr1XTf7GFnTV1v4RJWVlQbnzfFYnX5Dho9KwTPEaYa7/CgW91HiF9Ez3DtLofTzi1reBjmwipkO+5aMWNrojvvdECx2NJOjx2P3qMflDu6nO2ousb9HAU/+Qd73eO0UMPset1R6RJWZOyK1kK44rN4vJ4Wnp1BCQaf38CD28a9pPV8pqV5qSsWsu0qVnVuepWSZPCdqCySc5Q1mRTiHe6oeBEDr7HLyqQzvpvnBPnoIgwp4ef/0VLCGcex3D5mcw8h/UUaL3PFUvSsMyyX0annUoLF+ctp4eqSOmRBeMEZidKl5Mjala2E8DgOWaxvdT0tVK+jhYfgTVYnbMKthSJsGqDv+nLFSmwbGuZagIdpiLdsoQn5vBiDPBBT3VG7tdYS49qOQtCnFogOSvECLWQaaO14CqgfLAuFiTxQhCGQPPAFLt6VVaK2vyb2vZAkaqSFTyBWYJkTEMppAmwhRdbW9xTSFeYw8ZwB8Bkx1BPNOiGKFzPHip1dpCBqI0QvjfIZG7u8DORfRH/5JtpzvqJEMIdejdOdQexgDAnvrsIZZjG9fteAKCVqig3VaCmhoRvItmt4Fa63c+qE8DEBuMYvQDIqkdQ0azoI6NFICxuXoiVFu0ALuJZZ4a+5Mx9KCkc7czP71xBvidDuRqyH1f+iJa4HLBBtV1vDW0XkiIQonI/G7SZp6ShZinitETMugGMxJIX/v0FDHQwixZAZPZoaEefEQ7zZHT/BjK8BRfUvGvxpJhpqUxKyZBEvWl/h2koB3eqsdUjW0BukI67aGMVM3ShqjsTw7tOoabUGIqr0E5jR1e57NMWBLMRZ4NSMrsOQrT8L8SsakkwvXEcKFtd3iEl+yyGDi4uFcHQf+6BxYDpIBI6npjhS21leVyUjHOUbic/orSfRenETG/Ts9d3auZ5biNjzyckdJBoFJ4xMIB2JhniHR1Jb0sUxdAVRU+QM/F87G5NjcjLEu9wK7rdWc/ilpCv6Ulp7tLh7j81oKSHpeJCy/SpjOEmuRfYSBoY2VWvfGlyzxkOQA8GsTax7UTCZ2Pbr+xbSfNQGF7ZIzgcchSFLLSfNsqdO8kmPaniIJ8QQBBQtJtbComJ4n9aerI0d9IlqZYCyuKECpOP0LAxTAF/gOJdQySlZ48wslDvSZNP4KcCDNPzZ2xmlKOeYnyFe5MoMlZvQZs+Td3FW3WUYchzLnYRMuhqolfA4wCm0oPG9JDoFBzBgafzNbaxOs2GWSHNc50L9gZrvppfwIWpaOBNgR7S0hrQxqyEF8W1mZHY58gNxNOqscKIIiMsuqDcpSHLVZmol7ApQupraRR6fxCdUwTeo6cCedwQB7WrRJh+XjiDSA2cKWONPWVNIgTiJ+HxiTWuQ1IwhzkhZAtqjmm5WY217Zy28mTgN7TRnvXWgLzUydl2fFISzMaTmlOQ5T4ubqkBmLzqy2pLvwCkQOE6PRJ3dBpyve9D06c39QGVx5y20OgzxVgjorTWM30qUDS65ho1qVErKqcWN5SAp65aI8C5Lg3cREZ7BPSBqjWWr0RJnHYVMuQkPYIaqRmb6Oce4qRFEjbMp4yKRM6lzhkL+TL1S3QZEApEmVt4woVJ3Ymf43pS0py/EM0TgZzI9EztERLZmN4LWnBJ1LZPtNWSbWUIWvEtuCL9nz4CmtWuTWILt6Kz/JDfojwulYBtoIZ4HQeK9KvXEXtLWpfkgpCj+DENi0i6gnJZto9OSVeSpuRC/LoM0ZL3rLRF+JjI+shc5EqV/IA25hLIvMEN2+zgH43q8yinLA9Sx95vUZZkKHsGQeP5V9vh2PvkGbYiG+DQq/YhEBue1ECL9axtjrGPFlIDCBaTzDH7eOuKUuMsmS73Vl2aPjV3r0PIjkFA0HUNLoZGOuhDqL/yvAET6+RiiOTqnxLHu7mHqPcKGninjxkxLFM1siTxkqSQiI8JSFrm5W5Z9zCUJaUWQ1fhiEHFa3Ivqu9b2XZDpnhJae3S5yKKqujYShqC5F7ru2b54UHoQULTI/aURbwYh06V9Iws6x2MjoDhS1r1MkgkFR27AkHsKlSu6gmAqZSFuPh6UQ7aRVDa4vDQCkR3diiFVup+Ucpml2/wa5XI+OU5HwTUFLgvyIQyd2f7a0aXHq+BXNPRVpkFaa+8R9ZXUe32FC3sApc+gA67B/x3LVd2bYhIrglzZXmrtBjMBtZcNbwpew9Djmw6OXoXGuPyGyrX/kjOmGI1rTwS3iTmoXltqPDkSMTXsxFiG+7Vzh4tQ0OX1WJVluNKcc3+3YZiqLuLkHlEZhHVphmyWDHGOre+gZng7A/eNgUP/STvQ+JMQrG3MUXNPO5p7FFAW6N3O0E8/clvvw9EgmfaGwA0ZSq+tSTsI+4NkbNEaqG3K0fqbWoGUbt4PQyTHY5zNWDLW+Rhb3SNCT0js+tAmxNAQfAFu8BcnwJsoX93jPaMyCfXXq8Ya1sIn95oWaxi2XLGUpB2/fR6oiZ9Fq/Ed1tf7GEmmoxyPDQDaLpiSqGelx8mlDW5/vGZt1xW0/Xidr/o3lkuv6wjUywLKN+j4a9713SNskiT8TI6pG9ubhOrsU28snZ6AQBDfrVl44Ju1iPGwTD4/BBE3TDm0OHlEaQtP09maxgGCIqqKH3Tefl1B3ewNlSe8sSZyN5J769dqJ5/aOa4oSRT7HpYv514aGCHLogk9Bt2avEhpLTGEdtsLevLOHeP7TZaZtdrH2GWtpQAgv6+CQXfT9zEL9jtRFXW/ewzjXgzZL4Eg0hQePQWMsZj1Mh0pGKO3eJbHs+gopexUYwyHZpTl2TvxWs/isDHruwnJEDleW8KhX/pDIPLnddADf2NiPCVWoxj0GlPm6kOiXPnyEvDDa1kINU7hNRgp20TGJ0tqvLdFlJgPqUUPJKwkRolL20vJrN5hvL0T1uD3u0SJuU/d7Udkvm3OjAbl4T2KGeayxcwtxSBlbl8CUXp7yMqG6Od9iwF7vapB/PPgeMTN3as/4LB/IumZ/IaPnkyoIur25nTNf/YQAOm/mGSdDnsnNuG4W2lL6J28y5m3lEkJA+z1nQF4DzFZ79jtrYTYzFaysjtIT4/WDhut4b+axk7bI5ZRERI4A7nYexai9fBiwF29dQ0B7K2NRf4Bfndep4SqwG4aQgYx3i4X/hTLy99/Yw6Mh1hvdDTyV8MnBKt9/dC2CUEDJch3L3ENOhzx1oaE1c1nPAEKvA70p3qgLLSr3jq1v8jSwAKlpJRCCClVJEUyL6hBZ0xZG9enQQ+c3LHolc6MO34PeBKQM789c8bO7Ynydxxy9gt/mjhF+0ERz9rk4BWv1njazZVsQTW/Tr33wsNHb9+3a1VlVfdBu4w5+pKHZv6xPtkDe0lJ9Dzn5ED1C+BojdrbHpEwzfeiG7Zsrmu0ab17aKy3PQo28W/ZckD7bEySt6w6DLVximG9LlbfkvihnNBOizFE7x+b/PgXN8TliRep5oi6foOhxabwsSH+2BOCHKp6LV+Kim8CwVh8rSSnaqkEuERjmPchRDs+wpjr/+83ci7q/MzlesWKFLm3PNtNxLxO1IhvlEOQH2bdiatR52ORtNf/5DpX1zejRJufHQtO7Zn815B5YyfPRdT5+FcLj8lRKsfp0+q2zWjz60BbrL+7bd79kysFMGCijQ7y6Qjf3CofUmlO6SEzE8Dyou+ziO+OBH6ZOTSaR82IgIW57m1M3Ku+PQ74f5VbFwTs8uJmhnLtTy2ue3WYZ8M9RxZ+rxvnYiIhVym48LZ+7qN8LablIVM2JhJMDlK2zDiiNNtXk/cHQWxGn/nOpnhg8KVyG50YlOo+PK9HYpai6fzD4Rhg1xNfW5Ts1OKsLGMi2Xkue+u0Hs5ZiqaRPU4oHjp++sK0xqSNMTb5iSTQaY1x6eyrR5YlpW2S/xku8fgVDjz8lqm/rdXUuPavmXccs3Vxwn/QNFKYzhQQ5dsfeN4dL8768ve5i5etWrN8/p/fvzfx/osO37lKQfJartsYAFZQOCCCGgAA0GIAnQEqpwDIAD4xFolDIiEhFUoNaCADBLYTgWwMwhgXiG5pv/D/jB2y4M/J/jt+U3zrWh+0fcz94P8B1EJ6esL8P/evxn+in+1/yX5AfJDzAP4R/Gv8j/b/yI7g39b/6XqA/nH9v/9H+n95n/e/sz7lf65/l/2b/unyAfyf+2f/j2mf+L7Av9z/5XsB/zP/N/+j2Z/+B/7v758C/7Y/+//Nfv/9A38v/tP/m/P//8fQB6AH77+4v/AP3l7UP8J/0880/79+Rf7R9x7649r/2q0w/5P+H/3frh/q+9XgBfi/863XfUv8x6AXrj9P/1niK6inhT2Av5J/Wf9563/7TwG/tH+w9gD+Q/0z/Y/5b8nfkb/4f9h+VXtH/P/8x/8fcD/kf9G/3v96/e//L//////ej6/v2/9i79W/vnapTEAhc/DDnBgw1pXOUt+PV3Qy1hZu5fHbplbHd1lJxMQRDswn7scst20DZau4uOdhqh8M4jsyEEAC1uq4TxIxRR0g9CYKnRc6DYX0w2CsrkekuJ2qFXddaadf9myZRyWYfBjjQrstQjgtp/p7ZuzPDeW/HbgNYdXzF/bZq0q2MN55FuOxHFdJ+yNNn4/RWpkuXuEVZn9ZKSvInpqUl9lNV2LQ0CPws5+zLNJLMmWcLr8iROk3VZ1sotX2S5QPE8lktD//TCCMVmQmvBM5s5n+QI5pt2ZCIXQ0b6WDXdX2iqAfr6/qXgGURpfZ2wcUiGhBndpaNAuOs/XlnYm2hrS0AU9Ua8ErLqzMJRcV+v9fx0wPn557NJZVfN4bOxHHFbWwOpgQAS/N3SU6d7IoWV4enihDyDDLlO0sRyVQe1HshZWIau7qF2UB2w0sqEYOYRVt4DQ9uO9KTpyGCb2I25X/rTT5NyvFNWtZTIreI496QHgS/lSasl93MhjUxdZihkTTYJ1WOF/E+r00n58K8YNJBqEA5GTcvkJhkj+JpAWpYFQ20VE0ewhjPYX3/3ap/yZvKOYchLzSZKPasDTfNxwWzz+ZpDGrEjE+ejWd9FvtacbnmGrbg6AmOmjYn16tq7uNAAD+/2AYBL9WnvUI8NwsRCROm5jlwAy7Sy3//CvtOFFIZm0LkxWZT8m/ftaAY+rCfPlGydzx5An0EPDpN/twhzJb6CEtLDFUaCWKU17EyVjyyhcacIV5K9m1INxY6QyQm0Zm6Vi/zQOwkBxbqnGU2gyw8LOLsGrcAk04aOvI0VTLao1sQd6ZB+5pRPRuC8cURRXkm8b8txyTo2IO9WB43DcGk/teQGy5u4pwMum2ECiJB02DppNEpxaAAAMn/Ii6d/XRIiiEraP9ciaHi8V5r2i79a5hysNjPcnVS8iZHvyugvWHCmFH1X0s/0DkRrSQHzKZ5jMJ13Y8r51f3+ncM+a7tjT+tht9W2T3hc57+wZkPBztr1ZBsrZQLAPGy7SNbpggYeqyzRqXmoWyQVr8NsaU37u9huXN1dW+oyb/RJcdHNscrOs4v/sLF2Mhfv08iDnNM2UbqQzbqetuSsbPfxLdIu8lny076f5j9iNcJ6jp4MRKlon1j/g6dU0MZpyFNTGjrgxqZZTIJaCA7/gzsR9f1dWbdp1CQ/yRl/5YQA2/5mMwT0aluolrAN/UI+u+l3UrZ62+fBgIoE+T9n+YqcKxHWdZ5+PidSsAMIMifbqN2A+QBqldBT3Tuz1gMcgAgCmqhCWc1geeYU8/ZOhtvftHIdF8l/pwJIlOJO5rYjylS0606ApMS885ZM7mBQEkLxa4ijF+YlK3GCv2ySY9gLksWlBlU6T6cv0C/tWjwzyBR01B8j9AH0Ak4GdFV3JX08cBNkMSqNq/Oo0htVwSasXooyvH3wkR53ItbzfLq3Qz5huVaniHaAVc7VGqHuHEWglcVkyWpb88h3udsvcO11AzQuwaaNGmSx8W/x4t0zU8G72M2zGzKKVR24GsVKalIwek4KNU3PAD21ZLtbPvFHF0RQhSr/DVataKNMQGdImGiH4j8OYVD79HarTJP/VNSpolgMpIQNiBugYtaJEvIZH2JQf+mppaQ+kk3hBYnmmIZ2fsr0l2nrbXgpViFioKrEqY2RSeHvTFjis9PKhvMoro2OEp5JzEvBh8MeJz8mS3x5qseUYlHInL7hmf8anCJtGbKtyyhdVC8oDgDyxXCEQWVRMqDNlCd27eIYhOoripvNaLfQyffEfZAHFGI+TVVRHrLxIziG82Y8priqikWHTP/o7frIhhdrSgVqi3ICR8vpLgTwPOBt0LfNQRvDrqQQf1aYVuB/x3ScDd+X2UKB1LZkT3SkSV0SjiR2s6xFV3azhGkAwxkqv4VbpIWsMs0i3tpsI/zN/52PPwM4Xo1STL9iJh8LqxJQNJgqAskbO4aAkq1B3FZWuaIqh8LqdKfssYz04X8FhJDGIOHC7wQiLgs/pw2oG/iA0eDn6cXW//hyzWmzuR8I4YbZfBX4AjyZV7Hik8BvtzznYkjLwPKqsOucwTbosvpqL5qco7NG9XQW7Qs33V0czWBZyQ2Jcoybn2Qvmb/jup2SHcH7rc89HvxZBh31OT0qQyON+pzcLmvirPya7XVytbUDvhD/iKFvtiX5xA9LAxLKHcMMwqrh1FlH/7JBhHFwj506/udzJA2KFJNWzUF0XkSQwMwNfexb1SECf2DP8twyfE/RVCcvWbasNTXKfrAu1kV3bobIG6o0JGFa+0U6xArtUbvOkVcfAMcGJQyGVZ2GdpChkTqrII3c+0u8UogewQNIUEVqwPWPKXE5CeyIZmtCC2fn/n63fUL3xryC8uicCT/bso03kxEoIRB0QM1RcAWbGT1muaUygZ0BiaplN1+bvq2WzDJpSwkUYmZIyT8Exe5gQMoE7oO2MLG0li1aH0vnARSQmTiXE7WJMZOvKougjqR416UP+PCHZR6QWAPx9u3QHnVEQuP8G5EjWCxrrXrdyeWgIZ7HrHMlg07fgbRoeO1BWnyOcMbqGkf4hZFpxLkTg25uyHVPpTWCeYePK3Xy46jf1i9NQskhwGunSo2CxVyfkKJR3M8oRHYFlyojh42VAzqMFZXZC8CHOBhYMhCCPkdMm80SPlJol66YC8Y+tsN+AWZxgHCvMiaGk8O0x5h7XdKz1he2ClhRGL7art3cnG3hUwmOJfX1dlDU5Xn0r+QsuSmzUEXU9+HSwIMGtM1/e0ZAUR9QQot98dCKTBJ7bjQ0ek+H1cqjdZvru/KToueIwjkDjCUg4+2f6V+97b5sVGqTpUsPu6zh88S0chrgLHyQR4yfy7ba4SgDaiCueaAqarzIOjOONp1kTdap4VngfyLQVSwayXh75kHhJ8g+Xv4853m2Zva/PwgDOPVHnJlws2HaialBMIHs/s97wem5+h+ORe/uFL59kH1UIOs2oqeHXmLqCmRL7vXNySOQ2W/LV0A8W7/6u1EQwYTUEKve2nk2V0s/qmf9Z1DglJco6nGbMAvnvO6VYitxCDdMrEqmp6+d9MQISawdRaHlM6um4k9DnadGLPbJhhwWag4QPkqYTMxgG9SPlwcq9drN/IihKsvgSglUnzLYDIkbAukq3P7VAHlvgQ5RsPQ/Gv8OAguoDHRo+EhHkgI8gACxliZ0rWMF1J71hsGz8Grm+q4tdAEMqi7IhSwRaF7DUZIk/ZIt371cqgZEmFMEnuG7gpP3SsuijPhKewKeLDpMql6vomjkHlS5Hcz1JtzZnLJjcaiyF84/bZ3z25RdFmBF/Q4HczAdgIbbn6I4A2fgskZxbnJEJ0gLy2CKO3m/hRfNjO3BwdcqUzg21YKWrJGvnh9pFGoT87aczzpW5g7dYbTZcXwKwU86Sv5Jwd75hlV2efepwOpiab3N0cn/5UZZwnScHlD/yTc9zPj8NvXftq8S+ptVCWj1GiNiOnZ1HSt54o3oeigpb00uHqRTxc1pdiFWU9HeLps28ykRokJsNHDCYMzUeBCkGJ3mmKEVGQjHSuVSe3xUVFQFhnObWZ3JwxVE3Dq89iau9H3DEY19vjB39i79riFOhA8oaD/AEgFWT38AQhSYxNQVtNuXvktWabNDs45nZJEMV+D2e1MV0j9NkyxoR2K5g9bhvWjvo0hx/7DD+9a/1U/4TCzlWCyD6VEeey23wQrK1AxzxZwuzuF4JiRaoyOctu7II2LeMeZoFtbIhmF7SfgOSRpST19tmHK5Xjx1oRcBgwOzRUWQgYiV9qSnp8cEEo7T+S8XTtMKyy4e9F4BncC+GbWEDJe/Pf5nnmCqS689C73i6uFtoHxyeZdpqwqopukp1h1jWDADvP5NM69fDvJxc9XdhsH4slRwHL/u+wwxCSK41JG4kxxEoj2QCD3aHHrx3gjjuosDAsUS3l0steH395gUTnr99crnAvQOWOFtChJu2Fo5xhaFwYRp4aflla4gyVh68kDUvHte2VfPg5EeZqNT72HdO3xut5SHbggsdnUqpzLkftK+FwvEtQf436I2xf/yanzSgFZ14cVpoR4eLX9LbXq3JIZCazKwHtB4B1GJeU3y6S0eHpu+zMRC7u+Sw+sX0xdhv+8jKO4xiUBCR/cDzONOznI5p1vIWo4+yWHmgxGT+/Ub/Uvwijw4J7UlD24QbYh1RcyN6mdVbNtLdZUeG3WOv88y+SD5tGyOW+hqeljkheRA9bG1uHY+TJLk+wIm/GsgnJhMMhDxhj82blpbRrIemC3IJ3dU65E58PqFZpR/EHiRKxNpFbzhOZRGZkan6YIX9nusOezKjabBcg+Hn3Z21zawyXwq90nK8TEvsTGzjIv70G3/oA6rjFsAwp33LYm7mWA+ItwSBvM9Tsc3vGYd76ZT+KXQiisGHDWuuti8fp73Uv+hyIgOhVi6tFUsL7ogN2fCs/st35MvXdvoK4LXsWPCohGz22woolhZvJ9vXcm7PDLk7Jd5IO2B5zpbKlPjI0Hsq92ENXqz90eIht8gx5W3HWquvuVQLeIo0nU3JvjlPKP0S1kY0KMJoyxIr7GTovVQLxqm3qJM3HZPO5B/DqYo+0vv7BTqNAnQvNjRjbPR/p/kz21FZiTcNU9oB6oDzJE91nriXtPBU9cVHc9Egco7HFVwGe1BN/yQB3/P37kEio2+ODmFuF0JGMKKqAbY/7xq9jAslIX8ly2E/nqWrfEurLwQRtT4eX2QxMTdFj9eeFIW2KvXn/aeUOWlTCf8lcV112Gpn/mrd8Ke4FCOIV9tS+fRKAae+IhPT7PS8pFwsit4aAQEqxS9mm3WPSKvZGBlJ9T4Z5NKsdYI6ZFMTzYX9gq0x4fi454P/MZ8XeZWRkcHjEGnkVfuMEbqEFfd4+x5pfQvcsdRU6oePQyUcXprORJZHA7nlMmnEtSZsF6/YD/iqkCKFCseUuJZLx+D8BeyhP9elckNu54tMzmshl+DSUelJMhIATnM4uc7owmkwpbZlhSc7ody9aw8VxBFZxAHAmzmfWwNQ4gdTAawro63yoFCD7VEaJKlFq33CIYuy3jFf9CNbwivRAdzDr7/nfW/WvqNyie5uxJJksC5cIFgiFQl/lf6rr6P0r79qkwtG6vLVMkg3PmIRgkJ+QnE53E7NIXQOtp7y1igR0A8QtEVL0g8skK0GZtBJeHBfhRtGW1QYzqlV9OvdIVzcugzjTH8eGbCWb24oZYDRkrlIWXl57i62xWGPaXh/M/NALVv6uQUGlzx5Sbc7VWZRXfPGWxq63Ij0V3+GusAaAynouzgv0RMeuCkAasDXFVNMd/M6dG+Z9wXZLcjCbhFu2thu6h9j47lovCiJ3sNg14U+xKkEobUEoMJHTY2chiSG+jM/ddcQRttsbreZ7tJ0surE8Lqb/B8xRVY/5Az+/zjvjflmvvYEClNw55UZ96bh1FVe4wSey9+Qe7sBvp8wGbK1VlEmtKPEls90oHazUSIE5f0iicRLycE9zWoJL41M+eD9mOAWehOcBeHzoKVvm16CojTmHbxX/jTr+HFqjZwy1ydh0KCG8bbNecoOSs7j68rPqxcsHIy5uo+PynjoXGWeRuBhbbI6L4gHQvAZuuq3mirJ+BaYTlgDASuGn1YjI6xEgYSgZ0I6VqJIROTnyV93y+HdTfXgmSVZBgHk+1hM7ll1jUntSYGeD9Z/nnD16MxGY5S6EBJYopMMm/dmzW1lK9pY8Zu7a2Hn4mytidYRL0wG99WRsKKiMi/6cuecldLBawgBUv/rnI3mr7pPPPn71F45q5YSX9qPpaTYecsCzAKlF9W0RlYJriOI3WC8jcvZ36PK8DAUOGZTldgXx8EpZ1G2ROowv+vwSevfOkamjEtMxMeAhx+2z/TmTxB609LCFCkddkLHkY2dsS3/p494RYt0Ddna5fU8gBvR77fUFtyOA3mouJ43rkxAIjvtl+ryyL4imoq5fanuRvkwJ80Bn2VUO/1jNMNJy0xY3ZfNan5CFvreCB1WnjS6hAwCi56SNTiUuWfD/ZMjq/alyUyAOQVfjS1+qeD97S3MtiJJ312HvTHHcQbVzuSqGr8o2BE6C0rtw9XS8zJc9h5XCxdyyikhTpum88O9K+G0asU8EsF2e9RgWLctPyZpVoCttg21L8GobCjrrrl1iIEL6DC5syGO762Z2CiO39+G2PeEPjNLpesyoFnebZgV+RpPicWCFg5GBVPR0RCA5MOsJxeHpvNIvIxiIRSJ19sgcdz835BY6bbUdZ0xDhosh76cswjd31l88o7e6IxSkqMAYUKXy3NDntuHhiwwhZWxepIBXqSG2wRVigkXGsttTCmtMyMHU6wlWjn0rMA+1PHc3V1V6rreJZs4OGP0LlM5M4P1BgFfaU0Mn/udoY9J+nncXgO/97z5cV876dm4NKgCzKCsqwPq8b7tN7qpEPtec2a2i1pBVr+XqPr+LR/njGdKc1S0+jG2ARPbPrFtIpfzs27TeiFtylv0umJ2/Qpn/oViwDmhyW6I+Ae/BWNiZ8+w4TDdffupwQPG/5+vtD/52SxgUgWASdYoxiftKFLre8mYEb9jEETg0v/Ozw21gG6YNSluSjYUiVjajKcJpAtgWWrOw6/g8V46hlFCgQpaY1mOZc6SE082uRQNyLdaHkHrG8zufswM4BXN5o5tzVorYIkIiL/KeBI0roTpMAUkNV/1ll/6BBEPKzgiyecR+HXBIEmtiQtIgpo6shZZdX/3V9xSwqZfFVkvjzJlMCWy2EQtXGhCfVEuUNES8EoqWCpwLJvi9kAQ9KNlTvb2pcmfZNzmy3M/PKDr8GIgstHaz+/tVwQXwtJ/FJuD9n77PUkffkvyeWg0jAgGQZCImxQloHNZNrK/mgjTEdD+rguNdCmyWO2HElg++Lv3fVo0sv43EMlUqe8BD/JCnyICtnb/JpZaxCbQNUSnTUXq7vztDAbrYnOPdU49z1Bfd/TvNvylVa/iHbJXn2T1ze6m9d/4nVW4TGP8uzRVPSXWjWFNQiQNHOPSZOL+3Kb6GF//9Zyd2htp5yfwwFi0Q+MaUAfNNZOjrshjMQkMKZTxWNkKaNPrt0Icy/FFP07HdyD/YIq0C03gdiH4lkcpJxaINt2eBz6q+q5C3MUWAT01GRdohMAkvShRgFz8DusA/4sGibuO7XxUsAdVSMup2f1ricBtuOBvV6kgdFo6yDvkyxUertcfVvJDPTMSqbSb81RrTNTWd0Eowaz25vXpAvySmZzK4CgwRXn30NxQTXL0r7Qq3NLSHEAGscLFFrwxRgfoue97tzEAczey6VWwEksUUQntBK7by44iLIZvhn8MWhppYVZiVUf2l7akN17MOkVNXGyLnwhdBRXtVbjGuSVvzmYrr93wXK8VHYhGuQcJJJBjKFNOfZ6W/AkFioM/KR0XaglkqQcNI0K8xEOmdra0XHzVQ+mTATnFXvsQ/OykObGMsnK9qPnKa6WGyZmSp0WHtrv+kWy8En4wRhyEeaPoVpSSt1jeZ+3pgUku4ogYuHdpwqqpnTvZ/9LevKiKGPn7WhT9svZUpaildtCpV+sfdU1FCz2CtB7N1OYsc2gAzchlOlEnwmIOMb26bK1qzUyev5tZ3nOT+JBpY4LIeSlTrssHyikYg7E5QTMZ7Ztx3hP4e8v7EQQBTJb6Qu9z9qDve2GyKFEnLrHzgGx0SBnkMlRRMioK3iqs+hLbbGPxHowR3WbuGAsDneClU5aDKxBg3bIqsHHRo4PtR596vUPIU/3dlnhEZR54Ck74KE2KY06B/f+vCYQFqzhxvfJxFXahdJFZuRKSSLoW/8SZjiEwJLVA4/uMlMzWwRN+4NEJ+qDWwv2pneJOLpSpmF8ScHdXjanxMcfExar3rGxZSmudVlk4OBJfEn/1xeBYp4aiDNx/QSS9HKI7WJ3xtQ716+SXI8jnZa9f+fJHiy4Hd9sFeUuAiy/xX2KmmfZRctssyugRh9ZXMp2nDoHtTMYslvQl4LRKWD0ATg4Vq74oqSOPi0IhDUdxILA34OyC5K4VUlkmo03vdxNOIf5+GXen6dvoyD7InAd+rhFKH+o02B6lntU+wLndQDI7UE3pv0xH4CIDBWgc0iLjjBvI4UsAOfFbtlcw4uYGq66pn7xim1RO3zOWvmef06Z45bKxcmwqrMnRNJ038q3AvNWKnvcoyl9X0MFef/HaA610+A6k8kqsHOElkuYs5gqY33mpdF85GT163wtwojIHH1yKG+oP/ydZ5+Z+IAAAwyGjdrGsImH3SSdDktAjNNYJp3vsI2okiVmuux31yG74JvFb7GeX9dO55i6EY9PoR5/Rvo7eD1rkxNkp2iUxsmUvTLA6/hkDpzSy2HLZ/16gZ7otY80Zi3pZd/nMKBjEwS5PLie3vX0pEROOnwMDZ32EY76GA/ghwMddDdJwh8SnY9nSm7qumhBLHAiQu/4siVI9SBppTIoyU54Gsjn+NvXycuEgpzxMG6LQbu4DAnvl1ixLlmjgLBoDm59fwLIz5kpcIVb4rEbiM0sKyiOcAj5ZasyCXNJllNLpCInWRD8T+AOvSSYVCHWArp5RaKUQseWxGhvtNvk4VYmkp//iRlwkAAAAA" alt="" style="height:25px;width:auto;flex:none"><img src="data:image/webp;base64,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" alt="HNI" style="height:12px;width:auto;flex:none"><span>Quest</span></div>
     <div class="grow"></div>
     <span class="chip streak" title="Streak harian"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.4 1.2-3.9 2.3-5 .2 1.7 1 2.7 2 3.2C11 8.6 11.3 5 12 2z"/></svg><span id="chipStreak" class="num">0</span></span>
     <span class="chip xp num" id="chipXpWrap" title="Total XP"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><span id="chipXp">0</span></span>
     <button class="iconbtn" data-act="theme" aria-label="Ganti mode terang/gelap"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
     <button class="iconbtn" data-act="profile" aria-label="Profil dan pengaturan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></button>
-  </div>
+  </header>
   <div id="banner"></div>
   <main id="view"><div class="empty">Memuat HNI Quest…</div></main>
 </div>
@@ -778,7 +877,7 @@ const MODULES=[
  {id:'pca',cat:'PCA',t:'Rumus PCA',ic:'mega',col:'k-belajar',cards:[
   {h:'PCA = Pakai, Cerita, Ajak',b:'<p>Cara kerja paling natural di HNI:</p><ul><li><b>Pakai</b>: jadi bukti hidup. Kamu sendiri pakai produknya.</li><li><b>Cerita</b>: bagikan pengalaman nyata, offline atau online.</li><li><b>Ajak</b>: ajak orang coba produk, ikut acara, atau gabung jadi mitra.</li></ul>'},
   {h:'Pakai: mulai dari rumah',b:'<ul><li>Pilih 2–3 produk yang cocok dengan kebutuhanmu, misalnya kopi, pasta gigi, atau madu.</li><li>Ganti produk harian di rumah dengan produk HNI.</li><li>Catat apa yang kamu rasakan. Itu bahan ceritamu.</li></ul>'},
-  {h:'Cerita: rumus SAS',b:'<ul><li><b>S</b>ituasi: "Dulu aku sering…"</li><li><b>A</b>ksi: "Aku coba rutin pakai…"</li><li><b>S</b>ekarang: "Yang aku rasakan…"</li></ul><p>Tutup dengan ajakan halus: "Kalau penasaran, DM aja."</p><p class="note">Cerita pengalaman, bukan janji. Hindari kata "pasti sembuh".</p>'},
+  {h:'Cerita: rumus SAS',b:'<ul><li><b>S</b>ituasi: "Dulu aku sering…"</li><li><b>A</b>ksi: "Aku coba rutin pakai…"</li><li><b>S</b>ekarang: "Yang aku rasakan…"</li></ul><p>Tutup dengan ajakan halus: "Kalau penasaran, DM aja."</p><p class="note warn">Cerita pengalaman, bukan janji. Hindari kata "pasti sembuh".</p>'},
   {h:'Cerita online yang nggak cringe',b:'<ul><li>Story IG/WA: foto produk di aktivitas harian, misalnya kopi pagi atau bekal kerja.</li><li>Reels/TikTok: "1 hari pakai produk halal", unboxing, atau review jujur.</li><li>Konsisten lebih penting daripada viral: 3–4 kali per minggu.</li></ul>'},
   {h:'Ajak: 3 level ajakan',b:'<ul><li><b>Ajak coba</b>: tawarkan produk sesuai kebutuhan temanmu.</li><li><b>Ajak acara</b>: BOSS, SBP, atau kajian tim. Biar yang menjelaskan bisnisnya ahlinya.</li><li><b>Ajak gabung</b>: tunjukkan manfaat harga mitra dan peluang belajar bisnis halal.</li></ul>'},
   {h:'Follow-up 1-3-7',b:'<ul><li><b>Hari 1</b>: kirim info atau sampel cerita.</li><li><b>Hari 3</b>: tanya pendapatnya.</li><li><b>Hari 7</b>: ajak coba atau ikut acara.</li></ul><p>Untuk pelanggan, sapa lagi saat produknya kira-kira mau habis (2–4 minggu).</p>'}
@@ -858,7 +957,7 @@ const MODULES=[
   {h:'Bonus Generasi: squad goals',b:'<p>Kalau orang yang kamu ajak sudah jadi Manager, kamu dapat bonus dari poin mereka: <b>Generasi 1 = 6%, Generasi 2 = 4%, Generasi 3 = 3%</b>, dan seterusnya.</p><p>Contoh: 6 teman Manager dengan poin grup 2.000 → 6 × 6% × 2.000 × Rp1.000 = <b>Rp720.000</b>.</p><p>Bantu temanmu sukses, kamu ikut naik. Win-win.</p>'},
   {h:'Bonus rajin belanja (RSB)',b:'<ul><li>Buat level Agen Biasa sampai Manager.</li><li>Belanja kebutuhan rutin sekitar Rp600 ribu sebulan (TP 200) selama <b>3 bulan berturut-turut</b> → bonus mulai bulan ke-3.</li><li>Atau langsung TP 600 (sekitar Rp1,8 juta) dalam sebulan → bonus di bulan itu juga.</li><li>Kalau satu bulan bolong (misal TP 100), hitungan 3 bulannya ulang dari awal. Jaga streak-nya!</li></ul>'},
   {h:'Bonus jaringan global (RKJ)',b:'<ul><li>Buat level SM sampai ED.</li><li>HNI menyisihkan 9% dari total poin seluruh Indonesia dan luar negeri, lalu dibagi sesuai "indeks" jaringanmu.</li><li>Contoh: 6 jalur aktif → indeks 16 → sekitar <b>Rp840.000</b> (dengan asumsi poin nasional 14 juta).</li><li>Jaga TP pribadi 600 → bonusnya <b>3×</b> lipat jadi Rp2.520.000.</li></ul>'},
-  {h:'Main story mode-nya!',b:'<p>Lihat gimana bonus tumbuh dari Manager sampai ED dalam 6 bulan, plus bedanya TP 200 vs TP 600.</p><p><button class="btn" data-act="sim">Buka Simulator Bonus</button></p><p class="note">Ini simulasi dari materi pelatihan, dengan asumsi semua tim aktif. Hasil nyata tergantung usaha masing-masing. Bukan janji penghasilan.</p>'}
+  {h:'Main story mode-nya!',b:'<p>Lihat gimana bonus tumbuh dari Manager sampai ED dalam 6 bulan, plus bedanya TP 200 vs TP 600.</p><p><button class="btn" data-act="sim">Buka Simulator Bonus</button></p><p class="note warn">Ini simulasi dari materi pelatihan, dengan asumsi semua tim aktif. Hasil nyata tergantung usaha masing-masing. Bukan janji penghasilan.</p>'}
  ],quiz:[
   {q:'Cashback (BPP) untuk 1.000 poin di level ED (35%) adalah…',o:['Rp350.000','Rp35.000','Rp3.500.000','Rp100.000'],a:0},
   {q:'Kamu SM (23%), temanmu Manager (20%) dengan poin grup 2.000. Bonus grupmu dari dia…',o:['Rp60.000','Rp460.000','Rp20.000','Rp230.000'],a:0},
@@ -1200,7 +1299,8 @@ let CONFIG=JSON.parse(JSON.stringify(DEFAULT_CONFIG));
 // Tombol reset hanya untuk uji coba Adzul. Versi Apps Script: false / hapus.
 const DEV_RESET=!window.HNI_PWA;
 // ---------- theme (default terang) ----------
-function getTheme(){try{return localStorage.getItem('hniquest:theme')||'light'}catch(e){return 'light'}}
+try{document.documentElement.lang='id'}catch(e){}
+function getTheme(){const os=()=>{try{return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){return 'light'}};try{return localStorage.getItem('hniquest:theme')||os()}catch(e){return os()}}
 function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('hniquest:theme',t)}catch(e){}}
 setTheme(getTheme());
 // ---------- icons ----------
@@ -1212,6 +1312,7 @@ const ICONS={
   image:'<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/>',
   shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>',
   text:'<path d="M4 7V5h16v2M9 19h6M12 5v14"/>',
+  edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
   repost:'<path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/>',
  leaf:'<path d="M5 19c0-8.5 6-14 15-14 0 9-6 15-14 15z"/><path d="M5 19l8-8"/>',
  chat:'<path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/>',
@@ -1554,7 +1655,7 @@ function renderBanner(){
   const b=$('#banner');let h='';
 
   // Dibuka di luar penampil Claude (tab sendiri, simpan ke layar utama, atau salinan file): penyimpanan bersama tidak tersedia
-  if(READY&&!API_URL&&!window.HNI_PWA&&MODE!=='db'&&S.onboarded)h+=`<div class="banner" style="margin-top:8px;background:var(--sun-soft)"><b>Data belum tersinkron.</b> ${window.HNI_NOWRITE?'Akun Claude yang dipakai hanya punya akses lihat ke aplikasi ini (minta pemilik memberi akses Contributor),':'Halaman ini sedang dibuka di luar Claude,'} jadi Kabar teman-teman, leaderboard, dan Dasbor Admin tidak tampil, dan progres hanya tersimpan di perangkat ini. Buka lewat link artefak di aplikasi atau situs Claude (claude.ai) supaya tersambung lagi.</div>`;
+  if(syncBannerOn())h+=`<button class="banner syncbar" data-act="syncwhy"><b>Belum tersinkron</b><span class="grow small">Progres hanya di perangkat ini</span><span class="link small">Kenapa?</span></button>`;
   if(CONFIG.pengumuman)h+=`<div class="banner" style="margin-top:8px;background:var(--brand-soft)">${esc(CONFIG.pengumuman)}</div>`;
   b.innerHTML=h;
 }
@@ -1582,6 +1683,14 @@ function render(){
   if(READY)checkUnlocks();
 }
 
+// Banner ringkas saat penyimpanan bersama tidak tersambung; penjelasan lengkap dibuka saat diketuk.
+function syncBannerOn(){return READY&&!API_URL&&!window.HNI_PWA&&MODE!=='db'&&S.onboarded}
+function openSyncWhy(){sheet(`<div class="stack"><h2>Kenapa belum tersinkron?</h2>
+  <p>${window.HNI_NOWRITE?'Akun Claude yang dipakai hanya punya akses <b>lihat</b> ke aplikasi ini. Minta pemilik aplikasi memberi akses Contributor.':'Aplikasi sedang dibuka <b>di luar Claude</b> (tab browser sendiri, pintasan layar utama, atau salinan file).'}</p>
+  <p class="muted">Akibatnya Kabar teman-teman, leaderboard, dan Dasbor Admin tidak tampil, dan progres hanya tersimpan di perangkat ini.</p>
+  <p><b>Cara menyambungkan:</b> buka lewat link artefak di aplikasi atau situs Claude (claude.ai), lalu muat ulang.</p>
+  <button class="btn block" data-close>Oke, mengerti</button></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet})}
+
 // ===== js/views.js =====
 // ---------- views ----------
 const LOGIN_XP=[5,10,15,20,25,30,50];
@@ -1589,7 +1698,7 @@ function loginState(){const L=S.login||{last:'',day:0,total:0};const t=dkey(),y=
 function loginCard(){const {L,claimed,next}=loginState();
   const days=LOGIN_XP.map((x,i)=>{const d=i+1;const done=claimed?d<=L.day:d<next;const now=!claimed&&d===next;return `<div class="lday ${done?'done':''} ${now?'now':''} ${d===7?'big':''}"><span class="ln">Hari ${d}</span><span class="lic">${done?ico('check'):d===7?ico('trophy'):ico('star')}</span><b class="num">+${x}</b></div>`}).join('');
   if(claimed)return `<section class="section"><div class="login done"><div class="row between"><div><span class="eyebrow">Absen harian</span><h3>Hari ${L.day} beres! Besok buka hadiah hari ${L.day%7+1}.</h3></div><span class="lstreak num">${L.day}/7</span></div><div class="lstrip">${days}</div></div></section>`;
-  return `<section class="section"><div class="login"><div class="lglow"></div><div class="row between" style="position:relative"><div><span class="eyebrow" style="color:#2A1A00">Absen harian</span><h2>Hadiah hari ${next} menunggumu!</h2><p class="small">${next===7?'Hari ke-7: kotak hadiah besar + badge Setia 7 Hari!':'Absen 7 hari berturut-turut, hadiahnya makin besar.'}</p></div><button class="giftbtn" data-act="login" aria-label="Buka hadiah absen">${ico('trophy')}</button></div><div class="lstrip" style="position:relative">${days}</div><button class="btn block lclaim" data-act="login">Buka hadiah hari ${next} · +${LOGIN_XP[next-1]} XP</button></div></section>`}
+  return `<section class="section"><div class="login"><div class="row between" style="position:relative"><div><span class="eyebrow">Absen harian</span><h3 style="margin:2px 0 0">Hadiah hari ${next} menunggumu</h3><p class="small">${next===7?'Hari ke-7: kotak hadiah besar + badge Setia 7 Hari!':'Absen 7 hari berturut-turut, hadiahnya makin besar.'}</p></div><span class="lgift" aria-hidden="true">${ico('trophy')}</span></div><div class="lstrip" style="position:relative">${days}</div><button class="btn block lclaim" data-act="login">Buka hadiah hari ${next} · +${LOGIN_XP[next-1]} XP</button></div></section>`}
 function claimLogin(){const {L,claimed,next}=loginState();if(claimed)return;S.login={last:dkey(),day:next,total:(L.total||0)+1};const xp=LOGIN_XP[next-1];earnCoin((coinCfg().earn.absen||[])[next-1]||0,'Absen hari '+next);if(next===7){giveBadge('login7');S.shield=Math.min(2,(S.shield||0)+1)}
   sfx('gift');const el=document.createElement('div');el.className='levelup';el.innerHTML=`<div class="box stack giftbox"><div class="gift">${ico('trophy')}</div><div class="eyebrow" style="color:#A9C7B5">Absen hari ${next}</div><div class="big">+${xp}</div><h2>XP masuk!</h2>${next===7?`<p style="color:#FFE08A">${ico('shield')} +1 Perisai streak! Melindungi streak-mu kalau absen 1 hari.</p>`:''}<div class="factbox dark"><span class="eyebrow">Tahukah kamu?</span><p>${esc(factOfDay(next))}</p></div><button class="btn sun block" data-close>Lanjut</button></div>`;
   el.addEventListener('click',e=>{if(e.target===el||e.target.closest('[data-close]'))el.remove()});document.body.appendChild(el);confetti(innerWidth/2,innerHeight/2,50);
@@ -1612,9 +1721,9 @@ function viewHome(){
   const sqMoved=mySq()&&MODE==='db'?BOARD.filter(r=>r.sq===mySq()&&r.id!==UID&&r.dd===today&&r.dn>0).length:0;
   const nDone=ms.filter(m=>S.day.done.includes(m)).length;
   const sqPos=mySq()?(squadsTable(boardRows()).findIndex(x=>x.sq===mySq())+1):0;
-  return `
+  return `<h1 class="vh">Beranda HNI Quest</h1>
   <section class="player stack" style="margin-top:6px"><img class="wm" src="${IMG.mark}" alt="">
-    <div class="row">${avatar(S.nick||'Mitra',50,S.av)}<div class="grow"><div class="sub" style="color:#C8F06A">${esc(hello)},</div><div class="title"><button class="nickbtn" data-act="nick" aria-label="Ganti nama panggilan">${esc(honor())}<span class="ii">${ico('text')}</span></button></div><div class="sub prank">${rankImg(r.c,'xs')}${esc(r.n)}</div></div><div style="text-align:right"><div class="lvl num">${lv.lvl}</div><div class="sub">${esc(lv.title)}</div></div></div>
+    <div class="row">${avatar(S.nick||'Mitra',50,S.av)}<div class="grow"><div class="sub" style="color:#C8F06A">${esc(hello)},</div><div class="title"><button class="nickbtn" data-act="nick" aria-label="Ganti nama panggilan">${esc(honor())}<span class="ii">${ico('edit')}</span></button></div><div class="sub prank">${rankImg(r.c,'xs')}${esc(r.n)}</div></div><div style="text-align:right"><div class="lvl num">${lv.lvl}</div><div class="sub">${esc(lv.title)}</div></div></div>
     <div class="bar"><i id="xpbar" data-w="${Math.round(lv.pct*100)}" style="width:${LAST_BAR==null?0:LAST_BAR}%"></i></div>
     <div class="pstats"><span class="${streakRisk?'warn':''}">${ico('flame')}<b class="num">${S.streak}</b> hari</span><span>${ico('star')}<b class="num">${S.wxp}</b> XP minggu ini</span><button class="coinpill" data-act="wallet">${ico('coin')}<b class="num" id="coinNum">${fmtCoin(coinBal())}</b></button>${mySq()?`<button data-tab-go="rank">${ico('crown')}Squad #${sqPos||'-'}</button>`:`<button data-act="profile">${ico('crown')}Gabung squad</button>`}</div>
     ${streakRisk?`<p class="pwarn small">Streak ${S.streak} hari-mu menunggu. Satu misi saja cukup biar nggak putus.${S.shield?` Kamu punya ${S.shield} perisai streak.`:''}</p>`:''}
@@ -1633,7 +1742,7 @@ function viewHome(){
   ${S.onboarded&&(!S.age||!S.gender)?`<section class="section"><button class="softrow" data-act="profile">${ico('star')}<span class="grow small"><b>Bikin misimu lebih personal.</b> Isi umur dan gender di Profil.</span><span class="link">Isi</span></button></section>`:''}
 
   <section class="section">
-    <div class="row"><h2>Misi hari ini</h2><span class="mini-chips"><span class="tierchip t-${myTier()}">${esc(TIERS[myTier()].n)}</span><span class="tierchip ghost">${esc(persona().n)}</span></span></div>
+    <div class="row"><h2>Misi hari ini</h2><span class="mini-chips"><span class="tierchip t-${myTier()}">${esc(TIERS[myTier()].n)}</span></span></div>
     <div class="combo-track"><div class="ct-bar"><i style="width:${nDone/3*100}%"></i></div><span class="small ${S.day.combo?'combo':'muted'}">${S.day.combo?'Combo tuntas! +10':nDone+'/3 · tuntaskan semua = bonus +10'}</span></div>
     ${sqMoved?`<p class="small proofline nosimple">${ico('userplus')}<b>${sqMoved} teman squad-mu</b> ${band()==='senior'||band()==='matang'?'sudah bergerak hari ini.':'sudah gerak hari ini. Giliranmu!'}</p>`:''}
     <div class="mlist">${ms.map(missionRow).join('')}</div>
@@ -1648,7 +1757,7 @@ function viewHome(){
   <section class="section nosimple"><div class="row"><h2>Progresmu</h2><button class="link" data-tab-go="journey">Lihat peta</button></div>
     <div class="card stack">
       <div class="prog"><div class="row between"><span class="small"><b>Menuju ${np.done?'puncak':esc(np.nx.n)}</b></span><b class="num small">${np.done?'100':Math.round(np.pct*100)}%</b></div><div class="bar light"><i style="width:${np.done?100:Math.round(np.pct*100)}%"></i></div><span class="small muted">${np.done?'Kamu di puncak: LED Platinum.':esc(np.txt)}</span>
-      ${rankIdx(S.rank)<3&&promoActive()?`<span class="small" style="color:var(--coral);font-weight:700">Promo: ${CONFIG.promo.poin||600} poin dalam 1 invoice langsung Manager, s.d. ${promoUntil()}.</span>`:''}</div>
+      ${rankIdx(S.rank)<3&&promoActive()?`<span class="small" style="color:var(--coral-text);font-weight:700">Promo: ${CONFIG.promo.poin||600} poin dalam 1 invoice langsung Manager, s.d. ${promoUntil()}.</span>`:''}</div>
       <div class="divider"></div>
       <div class="prog"><div class="row between"><span class="small"><b>${esc(wk.t)}</b> <span class="muted">· tantangan minggu ini</span></span><b class="num small">${Math.min(wp,wk.goal)}/${wk.goal}</b></div><div class="bar light"><i style="width:${Math.min(100,wp/wk.goal*100)}%"></i></div>
       <div class="row between"><span class="small muted">${esc(wk.d)}</span>${claimed?'<span class="tag soft">Diklaim</span>':`<button class="btn sun claim" style="padding:8px 14px;flex:none" data-act="claimweek" ${wp>=wk.goal?'':'disabled'}>+100</button>`}</div>
@@ -1722,10 +1831,17 @@ function viewAcademy(){
   const passed=MODULES.filter(m=>S.learned[m.id]&&S.learned[m.id].pass).length;
   let body='';
   if(AC_TAB==='modul'){
-    const groups=['Dasar','PCA','Softskill','Leader'];
-    const modCard=m=>{const L=S.learned[m.id];return `<button class="mod ${L&&L.pass?'done':''}" data-mod="${m.id}"><span class="badge ${m.col}">${ico(m.ic)}</span><h3>${esc(m.t)}</h3><span class="small muted">${m.cards.length} kartu · ${m.quiz.length} soal</span><span class="small" style="margin-top:auto;font-weight:800;color:${L&&L.pass?'var(--brand)':'var(--sun)'}">${L&&L.pass?'Lulus · '+L.score+'/'+m.quiz.length:'+50 XP'}</span></button>`};
+    // Satu rekomendasi utama (kartu lebar), lalu daftar ringkas. Setiap modul hanya tampil sekali.
+    const groups=['Dasar','PCA','Softskill','Leader'];const isDone=m=>!!(S.learned[m.id]&&S.learned[m.id].pass);
     const rec=REC[myTier()].map(id=>MODULES.find(m=>m.id===id)).filter(Boolean);
-    body=`<section class="section"><div class="row"><h2>Pas buat level-mu</h2><span class="tierchip t-${myTier()}">${esc(TIERS[myTier()].n)}</span></div><div class="modgrid">${rec.map(modCard).join('')}</div></section>`+groups.map(g=>`<section class="section"><div class="row"><h2>${g==='PCA'?'Playbook PCA':g==='Leader'?'Untuk Leader':'Semua: '+g}</h2></div><div class="modgrid">${MODULES.filter(m=>m.cat===g).map(modCard).join('')}</div></section>`).join('');
+    const next=rec.find(m=>!isDone(m))||MODULES.find(m=>!isDone(m));
+    const status=m=>{const L=S.learned[m.id];return L&&L.pass?`<span class="mstat ok">${ico('check')} Lulus ${L.score}/${m.quiz.length}</span>`:`<span class="mstat">+50 XP</span>`};
+    const modRow=m=>`<button class="modrow ${isDone(m)?'done':''}" data-mod="${m.id}"><span class="badge ${m.col}">${ico(m.ic)}</span><span class="grow"><b>${esc(m.t)}</b><br><span class="small muted">${m.cards.length} kartu · ${m.quiz.length} soal</span></span>${status(m)}</button>`;
+    const shown=new Set(next?[next.id]:[]);
+    const recRest=rec.filter(m=>!shown.has(m.id));recRest.forEach(m=>shown.add(m.id));
+    body=(next?`<section class="section"><h2>Lanjutkan belajar</h2><button class="modfeat" data-mod="${next.id}"><span class="badge ${next.col}">${ico(next.ic)}</span><span class="grow"><b>${esc(next.t)}</b><span class="small muted">${next.cards.length} kartu · ${next.quiz.length} soal · lulus dapat +50 XP</span></span><span class="btn small">Mulai</span></button></section>`:`<section class="section"><div class="empty">Semua modul sudah lulus. Mantap! Ulangi kapan saja untuk menyegarkan ingatan.</div></section>`)
+      +(recRest.length?`<section class="section"><div class="row"><h2>Disarankan untuk level-mu</h2><span class="tierchip t-${myTier()}">${esc(TIERS[myTier()].n)}</span></div><div class="modlist">${recRest.map(modRow).join('')}</div></section>`:'')
+      +groups.map(g=>{const L=MODULES.filter(m=>m.cat===g&&!shown.has(m.id));if(!L.length)return '';return `<section class="section"><h2>${g==='PCA'?'Playbook PCA':g==='Leader'?'Untuk Leader':g==='Softskill'?'Softskill':'Dasar'}</h2><div class="modlist">${L.map(modRow).join('')}</div></section>`}).join('');
   }else if(AC_TAB==='produk'){body=viewProducts()}
   else{body=viewScripts()}
   return `<div class="stack" style="margin-top:6px"><h1>Akademi</h1><p class="muted">${passed}/${MODULES.length} modul lulus. Belajar sedikit-sedikit, yang penting rutin.</p>
@@ -1741,20 +1857,6 @@ function viewProducts(){
   <div class="stack" style="gap:8px">${list.map(([p,i])=>prodRow(p,i)).join('')||'<div class="empty">Produk tidak ditemukan. Coba kata lain.</div>'}</div></section>`;
 }
 function prodRow(p,i){const v=p[5][0];return `<button class="prod" data-prod="${i}">${pImg(i,'pthumb')}<span class="grow"><b>${esc(p[0])}</b> <span class="ptag num">${fmtPt(v[3])} poin</span><br><span class="small muted">${esc(p[3])}</span><br><span class="small num">${rp(v[1])} · mitra ${rp(v[2])}${p[5].length>1?' · '+p[5].length+' varian':''}</span></span></button>`}
-function viewScripts(){
-  const S1=[
-    ['Ajak coba produk (WA)','Hai {nama}! Kemarin kamu cerita soal {kebutuhan}. Aku lagi rutin pakai {produk}, produk halal dari HNI. Mau aku ceritain pengalamanku? Santai aja, nggak harus beli kok.'],
-    ['Ajak ikut acara','Hai {nama}, Sabtu ini ada sesi kenalan bisnis HNI (BOSS). Isinya tentang bisnis halal dan cara kerjanya, biar kamu dengar langsung dari ahlinya. Mau bareng aku?'],
-    ['Ajak gabung jadi mitra','Aku gabung HNI supaya dapat harga mitra untuk kebutuhan harian dan belajar bisnis halal pelan-pelan. Daftarnya Rp30.000 sudah termasuk starter kit. Penghasilannya tergantung usaha masing-masing ya. Mau aku kenalin ke upline-ku dulu?'],
-    ['Sapa pelanggan (repeat order)','Hai {nama}! {produk}-nya gimana, cocok? Biasanya sekitar segini mulai habis. Kalau mau lanjut, kabari aku ya, nanti aku bantu pesan.'],
-    ['Follow-up hari ke-3','Hai {nama}, gimana setelah baca info kemarin? Kalau ada yang mau ditanyakan, aku siap jelasin.'],
-    ['Jawab "MLM ya?"','Iya, HNI itu direct selling halal. Terdaftar, punya Dewan Pengawas Syariah, dan bersertifikat DSN-MUI. Nggak ada target wajib. Mau aku ceritain cara kerjanya?']
-  ];
-  return `<section class="section"><p class="small muted">Ganti kata dalam {kurung} sesuai orangnya. Pakai bahasamu sendiri supaya terasa natural.</p>
-  ${S1.map(([t,b],i)=>`<div class="card stack"><h3>${esc(t)}</h3><p id="scr${i}">${esc(b)}</p><button class="btn ghost" data-copy="scr${i}">Salin teks</button></div>`).join('')}
-  <p class="note">Jangan menjanjikan penghasilan, peringkat, atau kesembuhan. Ikuti kode etik HNI.</p></section>`;
-}
-
 function viewTeam(){
   let body='';if(TEAM_TAB==='mentor')TEAM_TAB='prospek';
   if(TEAM_TAB==='prospek'){
@@ -1774,7 +1876,7 @@ function viewTeam(){
 }
 let TEAM_TAB_TIPE='all';
 function prospectRow(p){const tl={prospek:'Prospek',pelanggan:'Pelanggan',mitra:'Mitra tim'}[p.tipe];const late=p.next&&p.next<=dkey();
-  return `<button class="mission" data-pros="${p.id}">${avatar(p.name,40)}<span class="grow"><b>${esc(p.name)}</b> <span class="tag soft">${tl}</span><br><span class="small muted">${p.tipe==='prospek'?esc(STAGES[p.stage]):esc(p.minat||'')}${p.next?` · follow-up ${late?'<b style="color:var(--coral)">hari ini</b>':esc(p.next)}`:''}</span>${p.tipe==='prospek'?`<span class="stage" style="margin-top:6px">${STAGES.map((s,i)=>`<i class="${i<=p.stage?'on':''}"></i>`).join('')}</span>`:''}</span></button>`}
+  return `<button class="mission" data-pros="${p.id}">${avatar(p.name,40)}<span class="grow"><b>${esc(p.name)}</b> <span class="tag soft">${tl}</span><br><span class="small muted">${p.tipe==='prospek'?esc(STAGES[p.stage]):esc(p.minat||'')}${p.next?` · follow-up ${late?'<b style="color:var(--coral-text)">hari ini</b>':esc(p.next)}`:''}</span>${p.tipe==='prospek'?`<span class="stage" style="margin-top:6px">${STAGES.map((s,i)=>`<i class="${i<=p.stage?'on':''}"></i>`).join('')}</span>`:''}</span></button>`}
 
 function boardRows(){let rows=BOARD.slice();const meRow={id:UID||'me',nick:S.nick||'Kamu',sq:mySq(),sqn:S.mentorName,xp:S.xp,lvl:levelOf(S.xp).lvl,wk:S.wk,wxp:S.wxp,mk:S.mk,mxp:S.mxp,rank:dispRank(),st:S.streak,lt:ligaOf().t,ltw:ligaOf().wk,pwk:S.pwk,pwxp:S.pwxp,av:S.av};
   if(MODE!=='db')rows=[meRow];else{rows=rows.filter(r=>r.id===UID||!((MODC.hideBoard||[]).includes(r.id)||isBanned(r.id)));const k=rows.findIndex(r=>r.id===UID);if(k>=0)rows[k]=Object.assign({},rows[k],meRow);else rows.push(meRow)}return rows}
@@ -1787,8 +1889,8 @@ function viewRank(){
   const isMe=r=>r.id===UID||r.id==='me';
   const all=boardRows();const sq=mySq();
   let scope=LB_SCOPE;if(scope==='squad'&&!sq)scope='nasional';settleLeague();
-  const lbRow=(r,i)=>`<div class="lb ${isMe(r)?'me':''}"><span class="pos num">${i+1}</span>${avatar(r.nick,38,r.av)}<span class="grow"><b>${esc(r.nick)}${isMe(r)?' (kamu)':''}</b><br><span class="small muted lbrank">Lv ${r.lvl||1} · ${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${esc((RANKS.find(x=>x.c===r.rank)||RANKS[0]).n)}</span></span><b class="num" style="color:var(--sun)">${r.sc}</b></div>`;
-  const podium=top=>top.length>=2?`<div class="podium" style="margin-top:8px">${[1,0,2].map(k=>top[k]?`<div class="p">${top[k].emb||avatar(top[k].nick,k===0?58:46)}<b class="small">${esc(top[k].nick)}</b><span class="small num" style="color:var(--sun);font-weight:800">${top[k].sc} XP</span><div class="blk" style="height:${[78,56,44][k]}px;background:${['var(--sun)','#C9D4CC','#E5B48A'][k]}">${k+1}</div></div>`:'<div></div>').join('')}</div>`:'';
+  const lbRow=(r,i)=>`<div class="lb ${isMe(r)?'me':''}"><span class="pos num">${i+1}</span>${avatar(r.nick,38,r.av)}<span class="grow"><b>${esc(r.nick)}${isMe(r)?' (kamu)':''}</b><br><span class="small muted lbrank">Lv ${r.lvl||1} · ${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${esc((RANKS.find(x=>x.c===r.rank)||RANKS[0]).n)}</span></span><b class="num" style="color:var(--sun-text)">${r.sc}</b></div>`;
+  const podium=top=>top.length>=2?`<div class="podium" style="margin-top:8px">${[1,0,2].map(k=>top[k]?`<div class="p">${top[k].emb||avatar(top[k].nick,k===0?58:46)}<b class="small">${esc(top[k].nick)}</b><span class="small num" style="color:var(--sun-text);font-weight:800">${top[k].sc} XP</span><div class="blk" style="height:${[78,56,44][k]}px;background:${['var(--sun)','#C9D4CC','#E5B48A'][k]}">${k+1}</div></div>`:'<div></div>').join('')}</div>`:'';
   const per={week:'minggu ini',month:'bulan ini',all:'sepanjang masa'}[LB_MODE];
   let body='';
   if(scope==='liga'){body=viewLeague()}
@@ -1808,7 +1910,7 @@ function viewRank(){
   }else{
     const tbl=squadsTable(all);
     body=`<section class="section"><div class="row"><h2>Antar squad</h2><span class="small muted">Total XP anggota, ${per}</span></div>${podium(tbl.slice(0,3).map(x=>({nick:x.n,sc:x.sc,emb:squadEmblem(x.n,46)})))}
-    <div class="stack" style="gap:8px">${tbl.length?tbl.map((x,i)=>`<div class="lb ${x.sq===sq?'me':''}"><span class="pos num">${i+1}</span>${squadEmblem(x.n,38)}<span class="grow"><b>${esc(x.n)}${x.sq===sq?' (squad-mu)':''}</b><br><span class="small muted">${x.m.length} anggota</span></span><b class="num" style="color:var(--sun)">${x.sc.toLocaleString('id-ID')}</b></div>`).join(''):'<div class="empty">Belum ada squad. Isi ID Mentor LED di Profil untuk bergabung.</div>'}</div></section>`;
+    <div class="stack" style="gap:8px">${tbl.length?tbl.map((x,i)=>`<div class="lb ${x.sq===sq?'me':''}"><span class="pos num">${i+1}</span>${squadEmblem(x.n,38)}<span class="grow"><b>${esc(x.n)}${x.sq===sq?' (squad-mu)':''}</b><br><span class="small muted">${x.m.length} anggota</span></span><b class="num" style="color:var(--sun-text)">${x.sc.toLocaleString('id-ID')}</b></div>`).join(''):'<div class="empty">Belum ada squad. Isi ID Mentor LED di Profil untuk bergabung.</div>'}</div></section>`;
   }
   const mxp=S.mk===mkey()?S.mxp:0;
   const rw=CONFIG.rewards||[];
@@ -1816,7 +1918,7 @@ function viewRank(){
   <div class="seg" role="group">${[['liga','Liga'],['squad','Squad-ku'],['nasional','Nasional'],['antar','Antar Squad']].map(([k,t])=>`<button data-scope="${k}" aria-pressed="${scope===k}">${t}</button>`).join('')}</div>
   <div class="pills" ${scope==='liga'?'hidden':''}>${[['week','Minggu ini'],['month','Bulan ini'],['all','Sepanjang masa']].map(([k,t])=>`<button class="pill" data-lb="${k}" aria-pressed="${LB_MODE===k}">${t}</button>`).join('')}</div>
   ${!sq?`<div class="banner" style="background:var(--brand-soft)">Kamu belum punya squad. <button class="link" data-act="profile" style="padding:0">Isi ID Mentor LED</button> supaya bisa gabung squad dan ikut leaderboard squad.</div>`:''}
-  ${MODE!=='db'?'<p class="small muted">Leaderboard bersama aktif saat aplikasi dibuka dengan akun yang punya akses simpan. Sekarang hanya datamu yang tampil.</p>':''}</div>
+  ${MODE!=='db'&&!syncBannerOn()?'<p class="small muted">Leaderboard bersama aktif saat aplikasi dibuka dengan akun yang punya akses simpan. Sekarang hanya datamu yang tampil.</p>':''}</div>
   ${body}
   <section class="section"><div class="row"><h2>Hadiah bulan ini</h2></div><div class="card stack"><div class="row between"><span class="small muted">XP-mu bulan ini</span><b class="num" style="font-family:var(--display);font-size:1.3rem">${mxp}</b></div>
   ${rw.map(t=>`<div class="row"><span class="tag ${mxp>=t.xp?'soft':''}" style="min-width:74px;text-align:center;${mxp>=t.xp?'':'background:var(--surface-2);color:var(--muted)'}">${esc(t.tier)}</span><span class="small grow">${esc(t.hadiah)}<br><span class="muted num">${t.xp.toLocaleString('id-ID')} XP</span></span>${mxp>=t.xp?'<b style="color:var(--brand)">✓</b>':''}</div>`).join('')}
@@ -1879,9 +1981,23 @@ function viewKuis(){
 
 // ===== js/sheets.js =====
 // ---------- sheets ----------
-function sheet(html,onMount){const L=$('#layer');L.innerHTML=`<div class="scrim" id="scrim"><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${html}</div></div>`;
-  $('#scrim').addEventListener('click',e=>{if(e.target.id==='scrim'&&S.onboarded)closeSheet()});onMount&&onMount(L)}
-function closeSheet(){$('#layer').innerHTML=''}
+// Lembar (dialog): fokus keyboard masuk ke dalam lembar, Tab tidak keluar ke halaman belakang, Escape menutup,
+// dan saat ditutup fokus kembali ke tombol yang membukanya.
+let SHEET_RET=null;
+const FOCUSABLE='button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),summary,[tabindex]:not([tabindex="-1"])';
+function sheet(html,onMount){const L=$('#layer');const had=!!L.innerHTML;if(!had)SHEET_RET=document.activeElement;
+  L.innerHTML=`<div class="scrim" id="scrim"><div class="sheet" role="dialog" aria-modal="true" tabindex="-1"><div class="grab"></div>${html}</div></div>`;
+  const sh=L.querySelector('.sheet');const h=sh.querySelector('h1,h2');if(h){h.id='sheet-title';sh.setAttribute('aria-labelledby','sheet-title')}
+  $('#scrim').addEventListener('click',e=>{if(e.target.id==='scrim'&&S.onboarded)closeSheet()});onMount&&onMount(L);
+  if(!sh.contains(document.activeElement))sh.focus({preventScroll:true})}
+function closeSheet(){const L=$('#layer');if(!L.innerHTML)return;L.innerHTML='';const r=SHEET_RET;SHEET_RET=null;if(r&&r.isConnected&&r.focus)try{r.focus({preventScroll:true})}catch(e){}}
+document.addEventListener('keydown',e=>{
+  const lv=[...document.querySelectorAll('.levelup')].pop();
+  if(e.key==='Escape'){if(lv){lv.click&&lv.dispatchEvent(new MouseEvent('click',{bubbles:true}));lv.remove();return}if($('#layer').innerHTML&&S.onboarded){e.preventDefault();closeSheet()}return}
+  if(e.key!=='Tab')return;const box=lv?lv:$('#layer').innerHTML?$('#layer .sheet'):null;if(!box)return;
+  const f=[...box.querySelectorAll(FOCUSABLE)].filter(x=>x.offsetParent!==null);if(!f.length){e.preventDefault();box.focus&&box.focus();return}
+  const first=f[0],last=f[f.length-1];if(!box.contains(document.activeElement)){e.preventDefault();first.focus();return}
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
 function productSelect(id,sel){return `<div class="psel"><img class="pimg" id="${id}-img" src="${PIMG[+sel]||''}" alt=""><select class="input" data-pimg id="${id}">${CATS.map((c,ci)=>`<optgroup label="${esc(c)}">${PRODUCTS.map((p,i)=>p[1]===ci?`<option value="${i}" ${sel==i?'selected':''}>${esc(p[0])}</option>`:'').join('')}</optgroup>`).join('')}</select></div>`}
 
 function openOnboarding(){
@@ -1898,14 +2014,14 @@ function openOnboarding(){
       `<span class="eyebrow">Posisimu sekarang</span><h1>Upline, pangkat & tim</h1><p class="muted">Isi sesuai AVO supaya misi, peta, badge, dan progres upline-mu langsung pas.</p>
        <div class="row" style="gap:10px;align-items:flex-end"><div class="field grow"><label for="ob-up">ID HNI Upline</label><input class="input num" id="ob-up" inputmode="numeric" maxlength="8" value="${esc(d.upId)}" placeholder="8 digit"></div><div class="field grow"><label for="ob-upn">Nama Upline</label><input class="input" id="ob-upn" maxlength="40" value="${esc(d.upName)}" placeholder="mis. Bu Siti"></div></div>
        <span class="small muted" style="margin-top:-6px">Upline = yang mensponsorimu langsung. Saat kamu naik pangkat, progres upline-mu ikut terbarui otomatis.</span>
-       <div class="field"><label for="ob-rank">Pangkat saat ini</label><select class="input" id="ob-rank">${RANKS.slice(0,PERM_MAX+1).map(r=>`<option value="${r.c}" ${d.rank===r.c?'selected':''}>${esc(r.n)}</option>`).join('')}</select><span class="small" style="color:var(--coral)">Pangkat dikunci setelah ini. Perubahan berikutnya lewat pengajuan yang disetujui admin.</span></div>
+       <div class="field"><label for="ob-rank">Pangkat saat ini</label><select class="input" id="ob-rank">${RANKS.slice(0,PERM_MAX+1).map(r=>`<option value="${r.c}" ${d.rank===r.c?'selected':''}>${esc(r.n)}</option>`).join('')}</select><span class="small" style="color:var(--coral-text)">Pangkat dikunci setelah ini. Perubahan berikutnya lewat pengajuan yang disetujui admin.</span></div>
        <div class="field" id="ob-akumw" ${rankIdx(d.rank)<3?'':'hidden'}><label for="ob-akum">Akumulasi poin pribadi + grup</label><input class="input num" id="ob-akum" type="number" min="0" inputmode="numeric" value="${d.akum||''}" placeholder="0"><span class="small muted">Dipakai untuk menghitung jarak ke Mitra Baru 14%, 17%, dan Manager.</span></div>
        <div id="ob-advw" ${rankIdx(d.rank)>=PERM_MAX?'':'hidden'}>${advHtml('ob',d.adv,d.bulanan,d.gelar)}</div>
        <div class="field"><label>Tim Generasi 1 (maks. ${G1_MAX} orang)</label><span class="small muted">Siapa saja yang kamu sponsori langsung? Isi ID HNI dan pangkatnya. Belum punya tim? Lewati saja.</span><div id="g1box"></div></div>`,
       `<span class="eyebrow">Biar nyaman dibaca</span><h1>Pilih tampilanmu</h1><p class="muted">${senior()?'Kami sarankan huruf lebih besar dan tampilan simpel. ':''}Bisa diubah kapan saja di Profil.</p>
        <div class="field"><label>Ukuran huruf</label><div class="pills">${[['','Normal'],['l','Besar'],['xl','Sangat besar']].map(([k,t])=>`<button class="pill" data-ob-fs="${k}" aria-pressed="${d.fs===k}">${t}</button>`).join('')}</div></div>
        <button class="softrow" id="ob-simple">${ico('check')}<span class="grow small"><b>Mode Simpel</b><br><span class="muted">Tampilan lebih lega & ringkas: tombol lebih besar, animasi dikurangi. Semua fitur tetap bisa dibuka.</span></span><span class="tag ${d.simple?'soft':''}" id="ob-simtag">${d.simple?'Nyala':'Mati'}</span></button>
-       <p class="note">Dengan mulai, kamu setuju menjalankan bisnis sesuai kode etik HNI: jujur, tanpa overclaim, tanpa janji penghasilan.</p>`
+       <p class="note warn">Dengan mulai, kamu setuju menjalankan bisnis sesuai kode etik HNI: jujur, tanpa overclaim, tanpa janji penghasilan.</p>`
     ];
     sheet(`<div class="stack">${steps[step]}<div class="dots">${steps.map((_,i)=>`<i class="${i===step?'on':''}"></i>`).join('')}</div><div class="row">${step?'<button class="btn ghost grow" id="ob-back">Kembali</button>':''}<button class="btn grow" id="ob-next">${step===steps.length-1?'Mulai main':'Lanjut'}</button></div></div>`,()=>{
       const g=id=>{const e=$('#'+id);return e?e.value:null};
@@ -1960,7 +2076,7 @@ function openPQ(k){
 
 function openProfile(){
   const lv=levelOf(S.xp);
-  sheet(`<div class="stack"><div class="row">${avatar(S.nick||'Mitra',56,S.av)}<div class="grow"><h2 style="display:flex;align-items:center;gap:8px">${esc(S.nick||'Mitra')}<button class="link small" data-act="nick">Ganti nama</button></h2><span class="small muted">ID ${esc(S.idhni||'-')} · Level ${lv.lvl} ${esc(lv.title)} · streak terbaik ${S.best} hari</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+  sheet(`<div class="stack"><div class="row">${avatar(S.nick||'Mitra',56,S.av)}<div class="grow"><h2 style="display:flex;align-items:center;gap:8px">${esc(S.nick||'Mitra')}<button class="link small" data-act="nick"><span class="ii">${ico('edit')}</span> Ganti nama</button></h2><span class="small muted">ID ${esc(S.idhni||'-')} · Level ${lv.lvl} ${esc(lv.title)} · streak terbaik ${S.best} hari</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
   <div class="row"><button class="btn ghost grow" data-act="wallet">${ico('coin')} Dompet Koin</button><button class="btn ghost grow" data-act="remind">${ico('bell')} Pengingat</button></div>
   ${CAN_ADMIN?`<button class="btn block" data-act="admin" style="background:#2A1A00;color:#FFE08A">${ico('shield')} Dasbor Admin</button>`:''}
   <div class="row"><button class="btn ghost grow" data-act="avatar">${ico('star')} Avatar & bingkai</button><button class="btn ghost grow" data-act="sharecard">${ico('image')} Kartu pencapaian</button></div>
@@ -1988,7 +2104,7 @@ function openProfile(){
   <p class="small muted">Penyimpanan: ${MODE==='db'?'tersinkron ke akunmu':'mode coba, tersimpan di perangkat ini saja'}.</p>
   ${API_URL?`<button class="btn ghost block" id="pf-logout">Keluar dari akun</button>`:''}
   <p class="note">Privasi: mitra lain dan mentor squad-mu hanya melihat nama panggilan, avatar, pangkat, level, dan keaktifanmu. ID HNI, umur, catatan prospek, dan data belanja tidak pernah ditampilkan.</p>
-  <button class="btn ghost block" id="pf-reset" style="color:var(--coral)" ${DEV_RESET?'':'hidden'}>Mulai ulang dari awal (khusus uji coba)</button>
+  <button class="btn ghost block" id="pf-reset" style="color:var(--coral-text)" ${DEV_RESET?'':'hidden'}>Mulai ulang dari awal (khusus uji coba)</button>
   <div class="card tight stack" id="pf-resetc" hidden><p class="small"><b>Hapus semua progres?</b> XP, badge, misi, catatan prospek, dan belanja akan dihapus, lalu aplikasi dimulai lagi dari bumper dan onboarding.</p><div class="row"><button class="btn ghost grow" id="pf-resetn">Batal</button><button class="btn grow" id="pf-resety" style="background:var(--coral);color:#fff">Ya, mulai ulang</button></div></div></div>`,L=>{
     L.querySelector('[data-close]').onclick=closeSheet;
     const pmid=$('#pf-mid');pmid.oninput=()=>{pmid.value=pmid.value.replace(/\D/g,'').slice(0,8)};pmid.onblur=()=>{const n=normId(pmid.value);if(n)pmid.value=n};
@@ -2090,7 +2206,7 @@ function viewSim(){
     ${has600&&tp===200?`<p class="small">Coba ganti ke <b>TP pribadi 600</b>: BPP naik dan RKJ jadi 3×, total menjadi <b>${rp(simTotal(s,600))}</b>.</p>`:''}
     <p class="small muted">${Object.entries(BONUS_NAMA).filter(([k])=>items.some(x=>x[0]===k)).map(([k,n])=>`<b>${k}</b> = ${n} (${BONUS_ARTI[k]})`).join(' · ')}</p></div></section>
   <section class="section"><div class="row"><button class="btn ghost grow" data-sim="${Math.max(0,SIM.i-1)}" ${SIM.i?'':'disabled'}>Sebelumnya</button><button class="btn grow" data-sim="${Math.min(SIMS.length-1,SIM.i+1)}" ${SIM.i<SIMS.length-1?'':'disabled'}>Lanjut</button></div>
-  <p class="note">Ilustrasi dari materi pelatihan HNI, dengan asumsi seluruh tim aktif sesuai gambar. RKJ dan RSB berupa asumsi karena tergantung Poin Internasional HNI. Hasil nyata tergantung usaha masing-masing dan <b>bukan janji penghasilan</b>. Angka resmi di AVO.</p></section>`;
+  <p class="note warn">Ilustrasi dari materi pelatihan HNI, dengan asumsi seluruh tim aktif sesuai gambar. RKJ dan RSB berupa asumsi karena tergantung Poin Internasional HNI. Hasil nyata tergantung usaha masing-masing dan <b>bukan janji penghasilan</b>. Angka resmi di AVO.</p></section>`;
 }
 function animSim(){const ab=document.querySelector('[data-sim][aria-pressed="true"]');if(ab)try{ab.scrollIntoView({block:'nearest',inline:'center'})}catch(e){}const el=document.getElementById('simTot');if(!el)return;const to=+el.dataset.v,from=SIM.last;SIM.last=to;if(RM()||from===to){el.textContent=rp(to);return}const t0=performance.now();const st=t=>{const k=Math.min(1,(t-t0)/800);el.textContent=rp(from+(to-from)*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)}
 function openGrow(){if(S.day.grow){toast('Tantangan Tumbuh hari ini sudah selesai');return}
@@ -2133,7 +2249,7 @@ function openCerita(pre){
     <p class="why">${esc(PWHY[band()])}</p>
     <div class="field"><label for="ct-t">Draf cerita (edit pakai gayamu)</label><textarea class="input" id="ct-t" style="min-height:140px">${esc(caption(ch,p))}</textarea></div>
     <div class="row"><button class="btn ghost grow" id="ct-copy">Salin</button><button class="btn grow" id="ct-ok">Sudah kubagikan</button></div>
-    <p class="note">Ganti bagian [ ] dengan pengalaman nyatamu. Jangan menjanjikan kesembuhan.</p></div>`,L=>{
+    <p class="note warn">Ganti bagian [ ] dengan pengalaman nyatamu. Jangan menjanjikan kesembuhan.</p></div>`,L=>{
       L.querySelectorAll('[data-ch]').forEach(b=>b.onclick=()=>{ch=b.dataset.ch;pre=+$('#ct-p').value;draw()});
       $('#ct-p').onchange=()=>{$('#ct-t').value=caption(ch,+$('#ct-p').value)};
       $('#ct-copy').onclick=()=>copyText($('#ct-t'));
@@ -2151,11 +2267,11 @@ function openPerson(id,forMission){
   <div class="field"><label for="ps-kontak">Kontak (opsional)</label><input class="input" id="ps-kontak" maxlength="40" value="${esc(p.kontak)}" placeholder="No. WA atau @username"></div>
   <div class="field"><label for="ps-next">Jadwal follow-up berikutnya</label><input class="input" id="ps-next" type="date" value="${esc(p.next)}"></div>
   <div class="field"><label for="ps-notes">Catatan</label><textarea class="input" id="ps-notes" maxlength="300">${esc(p.notes)}</textarea></div>
-  ${ex?`<button class="btn sun block" id="ps-fu">Sudah aku hubungi hari ini</button>`:''}
+  ${ex?`<button class="btn ghost block" id="ps-scr">${ico('chat')} Kirim pesan pakai skrip</button><button class="btn sun block" id="ps-fu">Sudah aku hubungi hari ini</button>`:''}
   <button class="btn block" id="ps-save">${ex?'Simpan perubahan':'Simpan'}</button>
   ${ex?`<button class="btn ghost block" id="ps-del">Hapus</button><div id="ps-delc" hidden class="card tight row"><span class="small grow">Hapus ${esc(p.name)} dari daftar?</span><button class="btn" id="ps-dely" style="background:var(--coral)">Hapus</button></div>`:''}
   <p class="note">Data orang ini hanya terlihat olehmu. Minta izin sebelum menyimpan kontak orang lain.</p></div>`,L=>{
-    L.querySelector('[data-close]').onclick=closeSheet;
+    L.querySelector('[data-close]').onclick=closeSheet;const scb=$('#ps-scr');if(scb)scb.onclick=()=>openScriptPicker(ex);
     L.querySelectorAll('[data-ptipe]').forEach(b=>b.onclick=()=>{p.tipe=b.dataset.ptipe;L.querySelectorAll('[data-ptipe]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#ps-stage-w').hidden=p.tipe!=='prospek'});
     const read=()=>{p.name=$('#ps-name').value.trim();p.stage=+$('#ps-stage').value;p.minat=$('#ps-minat').value.trim();p.kontak=$('#ps-kontak').value.trim();p.next=$('#ps-next').value;p.notes=$('#ps-notes').value.trim()};
     const put=()=>{const i=S.prospects.findIndex(x=>x.id===p.id);if(i>=0)S.prospects[i]=p;else S.prospects.push(p)};
@@ -2174,7 +2290,8 @@ function openAjak(kind){
   sheet(`<div class="stack"><span class="eyebrow">Misi ${kind==='sapa'?'Sapa pelanggan':'Ajak'}</span><h2>${kind==='sapa'?'Siapa yang mau kamu sapa?':'Ajak siapa hari ini?'}</h2>
   <button class="btn block" id="aj-new">${kind==='sapa'?'Tambah pelanggan / mitra':'Tambah prospek baru'}</button>
   ${list.length?`<span class="eyebrow">Atau follow-up yang sudah ada</span>${list.map(prospectRow).join('')}`:'<div class="empty small">Belum ada daftar. Tambahkan satu dulu.</div>'}
-  <p class="note">Butuh kata-kata? Lihat Akademi → Skrip PCA.</p></div>`,L=>{
+  <button class="softrow" id="aj-scr">${ico('chat')}<span class="grow small"><b>Butuh kata-kata?</b><br><span class="muted">Buka Skrip PCA: soft selling, penawaran, follow-up, jawab keberatan.</span></span><span class="harr">${ico('chevrons')}</span></button></div>`,L=>{
+    $('#aj-scr').onclick=()=>{closeSheet();AC_TAB='skrip';SCR_F='all';setTab('academy')};
     $('#aj-new').onclick=()=>openPerson(null,kind);
     L.querySelectorAll('[data-pros]').forEach(b=>b.onclick=()=>openPerson(b.dataset.pros,kind));
   });
@@ -2207,7 +2324,7 @@ function openBelanja(){
     <label class="row small"><input type="checkbox" id="bl-inv" ${invoice?'checked':''}> Semua ini dalam 1 invoice</label>
     ${promo?`<div class="banner" style="background:var(--brand-soft)"><b>Memenuhi promo Manager!</b> ${fmtPt(tot.pt)} poin dalam 1 invoice. Pastikan tercatat di AVO, lalu perbarui peringkatmu di Profil.</div>`:''}
     <button class="btn block" id="bl-save" ${items.length?'':'disabled'}>Simpan ke catatan belanja</button>
-    <p class="note">Hitungan ini ilustrasi, bukan janji penghasilan. Komisi resmi mengikuti perhitungan HNI di AVO. Belanja memberi 1 XP per 10 poin, maks. 100 XP per hari.</p></div>`,L=>{
+    <p class="note warn">Hitungan ini ilustrasi, bukan janji penghasilan. Komisi resmi mengikuti perhitungan HNI di AVO. Belanja memberi 1 XP per 10 poin, maks. 100 XP per hari.</p></div>`,L=>{
       L.querySelector('[data-close]').onclick=closeSheet;
       $('#bl-add').onclick=()=>{const p=+$('#bl-p').value,q=Math.max(1,+$('#bl-q').value||1);items.push({p,q,v:variantFor(p)});draw()};
       L.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{items.splice(+b.dataset.rm,1);draw()});
@@ -2330,12 +2447,12 @@ function showLeagueResult(){const L=ligaOf();if(L.seen||!L.res)return;L.seen=tru
 function weekEndsIn(){const ws=weekStart();const end=addDays(ws,7);const ms=end-new Date();const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5);return d>0?`${d} hari ${h} jam`:`${h} jam`}
 function viewLeague(){const L=ligaOf();const [nm,col]=LIGA[L.t];const grp=ligaGroup(wkey(),L.t);const n=grp.length;const isMe=r=>r.id===(UID||'me');
   const row=(r,i)=>{const zone=n>1&&i<LIGA_UP&&L.t<4&&r.sc>0?'up':(n>=10&&i>=n-LIGA_DOWN&&L.t>0)?'down':'';
-    return `${i===LIGA_UP&&n>LIGA_UP&&L.t<4?'<div class="zline up"><span>Zona naik liga ↑</span></div>':''}${n>=10&&i===n-LIGA_DOWN&&L.t>0?'<div class="zline down"><span>Zona turun liga ↓</span></div>':''}<div class="lb ${isMe(r)?'me':''} ${zone}"><span class="pos num">${i+1}</span>${avatar(r.nick,38,r.av)}<span class="grow"><b>${esc(r.nick)}${isMe(r)?' (kamu)':''}</b><br><span class="small muted">Lv ${r.lvl||1}</span></span><b class="num" style="color:var(--sun)">${r.sc}</b></div>`};
+    return `${i===LIGA_UP&&n>LIGA_UP&&L.t<4?'<div class="zline up"><span>Zona naik liga ↑</span></div>':''}${n>=10&&i===n-LIGA_DOWN&&L.t>0?'<div class="zline down"><span>Zona turun liga ↓</span></div>':''}<div class="lb ${isMe(r)?'me':''} ${zone}"><span class="pos num">${i+1}</span>${avatar(r.nick,38,r.av)}<span class="grow"><b>${esc(r.nick)}${isMe(r)?' (kamu)':''}</b><br><span class="small muted">Lv ${r.lvl||1}</span></span><b class="num" style="color:var(--sun-text)">${r.sc}</b></div>`};
   return `<section class="section"><div class="liga stack" style="--lc:${col}"><div class="row"><span class="ligab">${ico('trophy')}</span><div class="grow"><span class="eyebrow">Liga minggu ini</span><h2>Liga ${nm}</h2><span class="small">Berakhir dalam ${weekEndsIn()}</span></div></div>
     <div class="ligasteps">${LIGA.map(([x,c],i)=>`<i class="${i<=L.t?'on':''}" style="--c:${c}" title="${x}"></i>`).join('')}</div>
     <p class="small">${L.t<4?`5 teratas naik ke Liga ${LIGA[L.t+1][0]}.`:'Ini liga tertinggi. Pertahankan!'} ${L.t>0?'5 terbawah atau XP 0 turun liga.':''}</p></div></section>
   <section class="section"><div class="row"><h2>Grupmu</h2><span class="small muted">${n} pemain · XP minggu ini</span></div><div class="stack" style="gap:8px">${grp.map(row).join('')}</div>
-  ${MODE!=='db'?'<p class="note">Mode coba: grup liga terisi saat data tersinkron. Sendirian? Kumpulkan 200 XP minggu ini untuk naik liga.</p>':''}</section>`}
+  ${MODE!=='db'&&!syncBannerOn()?'<p class="note">Mode coba: grup liga terisi saat data tersinkron. Sendirian? Kumpulkan 200 XP minggu ini untuk naik liga.</p>':''}</section>`}
 
 // ---------- dasbor mentor ----------
 // Anggota squad = pemain yang mengisi ID Mentor LED sama dengan ID HNI-mu. Yang terlihat: nama panggilan, pangkat, keaktifan. ID HNI tidak.
@@ -2350,7 +2467,7 @@ function mentorView(){const mem=mentorMembers();const t=dkey();
   const row=r=>`<div class="mrow"><div class="row">${avatar(r.nick,40,r.av)}<div class="grow"><b>${esc(r.nick)}</b> ${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}<br><span class="small ${r.off>=3?'warnt':'muted'}">${r.off===0?`Aktif hari ini · ${r.dn||0} misi`:r.off>=99?'Belum pernah aktif':`${r.off} hari tidak aktif`} · streak ${r.st||0}</span></div><a class="btn small ghost" href="${wa(r)}" target="_blank" rel="noopener">WA</a></div>
     ${r.nx?`<div class="row" style="gap:8px"><span class="small muted" style="min-width:110px">Menuju ${esc(r.nx)}</span><div class="bar light grow"><i style="width:${r.np}%"></i></div><b class="small num">${r.np}%</b></div>`:''}</div>`;
   return `<section class="section"><div class="card stack"><div class="row"><span class="tico gold">${ico('crown')}</span><div class="grow"><span class="eyebrow">Dasbor mentor</span><h3 style="margin:0">Squad binaanku</h3></div><b class="num">${counts.all} orang</b></div>
-    <div class="gstats lite"><div><b class="num">${counts.aktif}</b><span>Aktif hari ini</span></div><div><b class="num" style="color:var(--coral)">${counts.sepi}</b><span>Perlu disapa</span></div><div><b class="num" style="color:var(--brand)">${counts.naik}</b><span>Hampir naik</span></div></div></div></section>
+    <div class="gstats lite"><div><b class="num">${counts.aktif}</b><span>Aktif hari ini</span></div><div><b class="num" style="color:var(--coral-text)">${counts.sepi}</b><span>Perlu disapa</span></div><div><b class="num" style="color:var(--brand)">${counts.naik}</b><span>Hampir naik</span></div></div></div></section>
   <section class="section"><div class="pills">${[['all','Semua'],['sepi','Perlu disapa'],['naik','Hampir naik']].map(([k,tx])=>`<button class="pill" data-mf="${k}" aria-pressed="${MENTOR_FILTER===k}">${tx}</button>`).join('')}</div>
   <div class="stack" style="gap:8px">${list.map(row).join('')||'<div class="empty">Tidak ada anggota di kategori ini.</div>'}</div>
   <p class="note">Data diambil dari anggota yang mengisi ID HNI-mu sebagai Mentor LED. Tombol WA membuka WhatsApp dengan pesan siap kirim; pilih kontaknya sendiri.</p></section>`}
@@ -2571,7 +2688,7 @@ function admReportList(D){const by={};(D.reports||[]).forEach(r=>(r.items||[]).f
 function admPostRow(p,extra){const hid=(MODC.hidden||[]).includes(p.key),pin=(MODC.pinned||[]).includes(p.key),ban=isBanned(p.u);
   return `<div class="admpost ${hid?'hid':''}"><div class="row"><b class="small">${esc((p.au||{}).nick||'?')}</b>${(p.au||{}).off?'<span class="tag soft">Resmi</span>':''}${ban?'<span class="tag bad">Dilarang</span>':''}<span class="small muted grow">${ago(p.ts)}${p.re?' · balasan':''}</span>${pin?'<span class="tag">Disematkan</span>':''}${hid?'<span class="tag bad">Disembunyikan</span>':''}</div>
   <p class="small" style="margin:4px 0">${esc(p.t)}</p>${extra||''}
-  <div class="row admact"><button class="btn small ghost" data-adm="hide" data-k="${p.key}">${hid?'Tampilkan':'Sembunyikan'}</button>${p.re?'':`<button class="btn small ghost" data-adm="pin" data-k="${p.key}">${pin?'Lepas sematan':'Sematkan'}</button>`}${(p.au||{}).off?'':`<button class="btn small ghost" data-adm="ban" data-u="${p.u}" style="color:var(--coral)">${ban?'Cabut larangan':'Larang penulis'}</button>`}</div></div>`}
+  <div class="row admact"><button class="btn small ghost" data-adm="hide" data-k="${p.key}">${hid?'Tampilkan':'Sembunyikan'}</button>${p.re?'':`<button class="btn small ghost" data-adm="pin" data-k="${p.key}">${pin?'Lepas sematan':'Sematkan'}</button>`}${(p.au||{}).off?'':`<button class="btn small ghost" data-adm="ban" data-u="${p.u}" style="color:var(--coral-text)">${ban?'Cabut larangan':'Larang penulis'}</button>`}</div></div>`}
 function admFeed(D){const L=admPosts(D).filter(p=>!ADM.q||(p.t+(p.au||{}).nick).toLowerCase().includes(ADM.q.toLowerCase()));
   return `<section class="section"><div class="card stack"><span class="eyebrow">Tulis sebagai akun resmi</span><textarea class="input" id="adm-off" maxlength="280" placeholder="Pengumuman, tema minggu ini, ucapan selamat pemenang…"></textarea><div class="row"><select class="input" id="adm-offk" style="max-width:160px">${Object.entries(FEED_KIND).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join('')}</select><button class="btn grow" data-act="admpost">Kirim sebagai Tim HNI Quest</button></div></div></section>
   <section class="section"><input class="input" id="adm-q" type="search" placeholder="Cari isi kabar atau nama" value="${esc(ADM.q)}"><div class="stack" style="gap:8px;margin-top:10px">${L.slice(0,150).map(p=>admPostRow(p)).join('')||'<div class="empty">Belum ada kabar.</div>'}</div></section>`}
@@ -2581,14 +2698,14 @@ function admReports(D){const A=admPosts(D);const by=Object.fromEntries(A.map(p=>
 function admUsers(D){const t=dkey();const L=(D.board||[]).filter(r=>!ADM.q||String(r.nick).toLowerCase().includes(ADM.q.toLowerCase())).sort((a,b)=>(b.xp||0)-(a.xp||0));
   return `<section class="section"><input class="input" id="adm-q" type="search" placeholder="Cari nama panggilan" value="${esc(ADM.q)}"><p class="small muted">${L.length} pengguna di leaderboard. Sembunyikan nama yang tidak pantas atau larang akun yang curang.</p><div class="stack" style="gap:8px">${L.slice(0,200).map(r=>{const hb=(MODC.hideBoard||[]).includes(r.id),ban=isBanned(r.id);
     return `<div class="admpost ${hb||ban?'hid':''}"><div class="row">${avatar(r.nick,32,r.av)}<span class="grow small"><b>${esc(r.nick)}</b> · Lv ${r.lvl||1} · ${esc((RANKS.find(x=>x.c===r.rank)||RANKS[0]).n)}<br><span class="muted">${(r.xp||0).toLocaleString('id-ID')} XP · ${r.dd===t?'aktif hari ini':'terakhir '+(r.dd?fmtD(r.dd):'-')}${r.sqn?' · squad '+esc(r.sqn):''}</span></span></div>
-    <div class="row admact"><button class="btn small ghost" data-adm="hideb" data-u="${r.id}">${hb?'Tampilkan di rangking':'Sembunyikan dari rangking'}</button><button class="btn small ghost" data-adm="ban" data-u="${r.id}" style="color:var(--coral)">${ban?'Cabut larangan':'Larang'}</button></div></div>`}).join('')}</div></section>`}
+    <div class="row admact"><button class="btn small ghost" data-adm="hideb" data-u="${r.id}">${hb?'Tampilkan di rangking':'Sembunyikan dari rangking'}</button><button class="btn small ghost" data-adm="ban" data-u="${r.id}" style="color:var(--coral-text)">${ban?'Cabut larangan':'Larang'}</button></div></div>`}).join('')}</div></section>`}
 // --- penukaran koin
 function admCoins(D){const cf=coinCfg();const rows=[];(D.redeem||[]).forEach(r=>(r.reqs||[]).forEach(q=>rows.push(Object.assign({u:r.id,nick:r.nick,idhni:r.idhni,sqn:r.sqn,a:(D.ans[r.id]||{})[q.id]},q))));rows.sort((a,b)=>(a.a?1:0)-(b.a?1:0)||b.ts-a.ts);
   const B=Object.fromEntries((D.board||[]).map(b=>[b.id,b]));
   return `${!cf.tukar?'<section class="section"><div class="banner" style="background:var(--sun-soft)">Mode simulasi: penukaran koin masih ditutup untuk pengguna. Buka di Pengaturan → Koin setelah integrasi dengan sistem HNI siap.</div></section>':''}<section class="section"><p class="small muted">Cek ID HNI di AVO dan keaktifan pemain sebelum menyetujui. Kode voucher dibuat oleh tim e-commerce hni.id, lalu ditempel di sini. 1 koin = Rp${cf.rp}.</p><div class="stack" style="gap:8px">${rows.map(q=>{const b=B[q.u]||{};
     return `<div class="admpost"><div class="row"><b class="small grow">${esc(q.nick||'?')} · ID ${esc(q.idhni||'-')}</b><span class="tag ${q.a?(q.a.st==='disetujui'?'soft':'bad'):''}">${q.a?q.a.st:'menunggu'}</span></div>
     <span class="small">${fmtCoin(q.koin)} koin → <b>Rp${fmtCoin(q.rp)}</b> · ${new Date(q.ts).toLocaleDateString('id-ID')}${q.sqn?' · squad '+esc(q.sqn):''}</span><span class="small muted">Lv ${b.lvl||'-'} · ${(b.xp||0).toLocaleString('id-ID')} XP · streak ${b.st||0}</span>
-    ${q.a?(q.a.code?`<code class="vcode">${esc(q.a.code)}</code>`:'')+(q.a.note?`<span class="small muted">${esc(q.a.note)}</span>`:''):`<div class="row"><input class="input" id="vc-${q.u}-${q.id}" placeholder="Kode voucher hni.id"><button class="btn small" data-rdok="${q.u}|${q.id}">Setujui</button></div><div class="row"><input class="input" id="vn-${q.u}-${q.id}" placeholder="Alasan bila ditolak"><button class="btn small ghost" data-rdno="${q.u}|${q.id}" style="color:var(--coral)">Tolak</button></div>`}</div>`}).join('')||'<div class="empty">Belum ada penukaran.</div>'}</div></section>`}
+    ${q.a?(q.a.code?`<code class="vcode">${esc(q.a.code)}</code>`:'')+(q.a.note?`<span class="small muted">${esc(q.a.note)}</span>`:''):`<div class="row"><input class="input" id="vc-${q.u}-${q.id}" placeholder="Kode voucher hni.id"><button class="btn small" data-rdok="${q.u}|${q.id}">Setujui</button></div><div class="row"><input class="input" id="vn-${q.u}-${q.id}" placeholder="Alasan bila ditolak"><button class="btn small ghost" data-rdno="${q.u}|${q.id}" style="color:var(--coral-text)">Tolak</button></div>`}</div>`}).join('')||'<div class="empty">Belum ada penukaran.</div>'}</div></section>`}
 async function admAnswer(u,id,st,code,note){const cur=Object.assign({},ADM.data.ans[u]||{});cur[id]={st,code:code||'',note:note||'',ts:Date.now()};try{await DB.doc('redeemAns/'+u).set({ans:cur});ADM.data.ans[u]=cur;toast(st==='disetujui'?'Disetujui, kode terkirim':'Ditolak, koin dikembalikan ke pemain')}catch(e){toast('Gagal: '+(e.code||'cek akses'))}render()}
 // --- pengaturan (no. 7: konten tanpa developer)
 function admSettings(){const C=JSON.parse(JSON.stringify(CONFIG));const cf=coinCfg();const ri=Object.assign({},REWARD_INFO_DEFAULT,C.rewardInfo||{});const ev=evList();
@@ -2597,7 +2714,7 @@ function admSettings(){const C=JSON.parse(JSON.stringify(CONFIG));const cf=coinC
   <div class="card stack"><span class="eyebrow">Pengumuman (banner di atas app)</span><textarea class="input" id="st-peng" maxlength="200" placeholder="Kosongkan bila tidak ada">${esc(C.pengumuman||'')}</textarea></div>
   <div class="card stack"><span class="eyebrow">Promo jalur cepat Manager</span><div class="row"><label class="small grow"><input type="checkbox" id="st-pa" ${C.promo&&C.promo.aktif!==false?'checked':''}> Aktif</label></div><div class="row"><div class="field grow"><label>Berlaku sampai</label>${inp('st-ps',C.promo&&C.promo.sampai,'','date')}</div><div class="field grow"><label>Poin dalam 1 invoice</label>${inp('st-pp',C.promo&&C.promo.poin,'','number')}</div></div></div>
   <div class="card stack"><span class="eyebrow">Hadiah bulanan (XP)</span>${(C.rewards||[]).map((t,i)=>`<div class="row"><input class="input" id="st-rt${i}" value="${esc(t.tier)}" style="max-width:96px"><input class="input num" id="st-rx${i}" type="number" value="${t.xp}" style="max-width:96px"><input class="input grow" id="st-rh${i}" value="${esc(t.hadiah)}"></div>`).join('')}</div>
-  <div class="card stack"><span class="eyebrow">Info hadiah</span><div class="field"><label>Jadwal pengumuman</label>${inp('st-ij',ri.jadwal)}</div><div class="field"><label>Cara klaim</label>${inp('st-ic',ri.cara)}</div><div class="field"><label>Syarat (satu per baris)</label><textarea class="input" id="st-is">${esc(ri.syarat.join('\n'))}</textarea></div><div class="field"><label>Pemenang (format: Bulan: nama1, nama2 — satu bulan per baris)</label><textarea class="input" id="st-iw" placeholder="Oktober 2026: Rara, Dina">${esc((ri.pemenang||[]).map(p=>p.bulan+': '+(p.nama||[]).join(', ')).join('\n'))}</textarea></div></div>
+  <div class="card stack"><span class="eyebrow">Info hadiah</span><div class="field"><label>Jadwal pengumuman</label>${inp('st-ij',ri.jadwal)}</div><div class="field"><label>Cara klaim</label>${inp('st-ic',ri.cara)}</div><div class="field"><label>Syarat (satu per baris)</label><textarea class="input" id="st-is">${esc(ri.syarat.join('\n'))}</textarea></div><div class="field"><label>Pemenang (format: Bulan: nama1, nama2; satu bulan per baris)</label><textarea class="input" id="st-iw" placeholder="Oktober 2026: Rara, Dina">${esc((ri.pemenang||[]).map(p=>p.bulan+': '+(p.nama||[]).join(', ')).join('\n'))}</textarea></div></div>
   <div class="card stack"><span class="eyebrow">Koin HNI</span><label class="small"><input type="checkbox" id="st-ca" ${cf.aktif?'checked':''}> Koin aktif (bisa dikumpulkan)</label><label class="small"><input type="checkbox" id="st-ct" ${cf.tukar?'checked':''}> Penukaran ke voucher hni.id dibuka <span class="muted">(nyalakan setelah terintegrasi dengan sistem HNI)</span></label>
     <div class="row"><div class="field grow"><label>Rp per koin</label>${inp('st-crp',cf.rp,'','number')}</div><div class="field grow"><label>Min. tukar</label>${inp('st-cmin',cf.min,'','number')}</div></div>
     <div class="row"><div class="field grow"><label>Maks. tukar/bulan</label>${inp('st-cmax',cf.maxBulan,'','number')}</div><div class="field grow"><label>Berlaku (bulan)</label>${inp('st-cexp',cf.exp,'','number')}</div></div>
@@ -2667,9 +2784,9 @@ function viewFeed(){const A=feedAll();const sq=mySq();S.feedSeen=Date.now();save
   <section class="section"><button class="composer" data-act="compose">${avatar(S.nick||'Mitra',38,S.av)}<span class="grow muted">Bagikan cerita atau pencapaianmu…</span><span class="btn small">Tulis</span></button>
     <div class="pills" style="margin-top:8px">${Object.entries(FEED_KIND).map(([k,v])=>`<button class="pill" data-compose="${k}">${ico(v[1])}${v[0]}</button>`).join('')}</div></section>
   ${FEED_SCOPE==='squad'&&!sq?`<section class="section"><div class="empty">Isi ID Mentor LED di Profil supaya bisa lihat kabar squad-mu. Sementara itu, cek tab Nasional.</div></section>`:''}
-  ${MODE!=='db'?`<p class="note">Mode coba: kabar hanya tersimpan di perangkat ini. Setelah tersinkron, kamu akan melihat kabar teman-teman.</p>`:''}
+  ${MODE!=='db'&&!syncBannerOn()?`<p class="note">Mode coba: kabar hanya tersimpan di perangkat ini. Setelah tersinkron, kamu akan melihat kabar teman-teman.</p>`:''}
   <section class="section stack" style="gap:10px">${list.map(p=>postCard(p,A)).join('')||`<div class="empty">Belum ada kabar di sini. Jadilah yang pertama berbagi semangat!</div>`}</section>
-  <p class="note">Bagikan pengalaman jujur. Jangan menjanjikan kesembuhan atau penghasilan. Kabar yang melanggar bisa dihapus admin.</p>`}
+  <p class="note warn">Bagikan pengalaman jujur. Jangan menjanjikan kesembuhan atau penghasilan. Kabar yang melanggar bisa dihapus admin.</p>`}
 function achIdeas(){const lv=levelOf(S.xp);const r=RANKS[rankIdx(dispRank())];const out=[];
   if(S.streak>=3)out.push(`Streak ${S.streak} hari berturut-turut di HNI Quest! Konsisten itu kunci.`);
   out.push(`Sekarang di Level ${lv.lvl} (${lv.title}). Satu langkah kecil tiap hari.`);
@@ -2792,7 +2909,7 @@ function viewMentor(){if(!canMentor()){SUB=null;return viewHome()}
   <section class="section"><div class="guild stack"><div class="row">${squadEmblem(sqTitle())}<div class="grow"><span class="eyebrow" style="color:#C9DDD0">Squad binaanmu</span><h2>${fmtN(st.all)} anggota</h2><span class="small" style="color:#A9C7B5">Mentor: ${esc(S.nick||'')} · ${esc(RANKS[rankIdx(gelarNow())].n)} periode ${esc(ledPeriod().t)}</span></div></div>
     <div class="gstats"><div><b class="num">${st.today}</b><span>Aktif hari ini</span></div><div><b class="num">${st.week}</b><span>Aktif minggu ini</span></div><div><b class="num">${fmtN(st.xp)}</b><span>XP minggu ini</span></div></div></div></section>
   <div class="seg mtseg" role="group">${tabs.map(([k,t])=>`<button data-mttab="${k}" aria-pressed="${MT_TAB===k}">${t}</button>`).join('')}</div>
-  ${MODE!=='db'?'<p class="note">Mode coba: data anggota muncul saat aplikasi tersambung ke server. Pengaturan yang kamu buat tetap tersimpan di perangkat ini.</p>':''}`;
+  ${MODE!=='db'&&!syncBannerOn()?'<p class="note">Mode coba: data anggota muncul saat aplikasi tersambung ke server. Pengaturan yang kamu buat tetap tersimpan di perangkat ini.</p>':''}`;
   return head+({pantau:mtPantau,anggota:mtAnggota,gas:mtGas,info:mtInfo,rekap:mtRekap})[MT_TAB](d,st)}
 
 // 1) Pantau: kesehatan squad + saran aksi hari ini
@@ -2810,11 +2927,11 @@ function mtPantau(d,st){
   const delta=st.prev?Math.round((st.xp-st.prev)/st.prev*100):null;
   return `<section class="section"><div class="card stack"><div class="row between"><h3 style="margin:0">Kesehatan squad</h3><b class="num" style="font-family:var(--display);font-size:1.4rem;color:${health>=60?'var(--brand)':health>=30?'var(--sun)':'var(--coral)'}">${health}%</b></div>
     <div class="bar light"><i style="width:${health}%"></i></div><p class="small muted" style="margin:0">${st.week} dari ${st.all} anggota dapat XP minggu ini.${delta!=null?` XP squad ${delta>=0?'naik':'turun'} ${Math.abs(delta)}% dibanding minggu lalu.`:''}</p>
-    <div class="gstats lite"><div><b class="num" style="color:var(--coral)">${st.sepi.length}</b><span>Perlu disapa</span></div><div><b class="num" style="color:var(--sun)">${st.risk.length}</b><span>Streak terancam</span></div><div><b class="num" style="color:var(--brand)">${st.naik.length}</b><span>Hampir naik</span></div></div></div></section>
+    <div class="gstats lite"><div><b class="num" style="color:var(--coral-text)">${st.sepi.length}</b><span>Perlu disapa</span></div><div><b class="num" style="color:var(--sun-text)">${st.risk.length}</b><span>Streak terancam</span></div><div><b class="num" style="color:var(--brand)">${st.naik.length}</b><span>Hampir naik</span></div></div></div></section>
   <section class="section"><div class="row"><h2>Lakukan hari ini</h2><span class="small muted">${acts.length?Math.min(acts.length,4)+' saran':''}</span></div><div class="stack" style="gap:8px">
     ${acts.slice(0,4).map(x=>`<button class="softrow" ${x.a}>${ico(x.ic)}<span class="grow small"><b>${esc(x.t)}</b><br><span class="muted">${esc(x.s)}</span></span><span class="harr">${ico('chevrons')}</span></button>`).join('')||'<div class="empty">Squad-mu sedang on fire. Pertahankan dengan apresiasi!</div>'}</div></section>
   ${ch?`<section class="section">${chCard(d.ch,st,true)}</section>`:''}
-  <section class="section"><div class="row"><h2>Bintang minggu ini</h2><span class="small muted">${w}</span></div>${st.top.length?`<div class="stack" style="gap:8px">${st.top.slice(0,5).map((r,i)=>`<button class="lb" data-mem="${esc(r.id)}"><span class="pos num">${i+1}</span>${avatar(r.nick,38,r.av)}<span class="grow" style="text-align:left"><b>${esc(r.nick)}</b><br><span class="small muted">streak ${r.st||0} · Lv ${r.lvl||1}</span></span><b class="num" style="color:var(--sun)">${fmtN(r.wx)}</b></button>`).join('')}</div>`:'<div class="empty">Belum ada yang dapat XP minggu ini. Kirim semangat di grup squad!</div>'}</section>`}
+  <section class="section"><div class="row"><h2>Bintang minggu ini</h2><span class="small muted">${w}</span></div>${st.top.length?`<div class="stack" style="gap:8px">${st.top.slice(0,5).map((r,i)=>`<button class="lb" data-mem="${esc(r.id)}"><span class="pos num">${i+1}</span>${avatar(r.nick,38,r.av)}<span class="grow" style="text-align:left"><b>${esc(r.nick)}</b><br><span class="small muted">streak ${r.st||0} · Lv ${r.lvl||1}</span></span><b class="num" style="color:var(--sun-text)">${fmtN(r.wx)}</b></button>`).join('')}</div>`:'<div class="empty">Belum ada yang dapat XP minggu ini. Kirim semangat di grup squad!</div>'}</section>`}
 function mtEmpty(){const t=`Assalamu'alaikum tim! Yuk gabung squad kita di HNI Quest: buka aplikasinya, masuk ke Profil, lalu isi ID Mentor LED dengan ID HNI saya: ${S.idhni}. Nanti kita bisa saling semangati, ikut tantangan squad, dan saya bisa bantu pantau progres kalian.`;
   return `<section class="section"><div class="card stack"><span class="tico gold">${ico('userplus')}</span><h3 style="margin:0">Belum ada anggota squad</h3><p class="small muted" style="margin:0">Anggota masuk ke squad-mu saat mereka mengisi <b>ID HNI-mu</b> sebagai ID Mentor LED di Profil. Bagikan ajakan ini ke grup WhatsApp timmu.</p>
     <p class="quote small" id="mt-inv">${esc(t)}</p><div class="row" style="gap:8px"><button class="btn ghost grow" data-copy="mt-inv">Salin</button><a class="btn grow" href="${waLink(t)}" target="_blank" rel="noopener">Kirim ke WA</a></div>
@@ -2904,7 +3021,7 @@ function openAgenda(){const a=squadDoc().ag;const up=a&&agUpcoming(a);
     <div class="field"><label for="ag-t">Nama kegiatan</label><input class="input" id="ag-t" maxlength="60" value="${esc(up?a.t:'')}" placeholder="mis. Kelas Produk: Cara Cerita yang Jujur"></div>
     <div class="row" style="gap:10px"><div class="field grow"><label for="ag-d">Tanggal</label><input class="input" id="ag-d" type="date" min="${dkey()}" value="${esc(up?a.d:'')}"></div><div class="field" style="flex:0 0 120px"><label for="ag-j">Jam</label><input class="input" id="ag-j" type="time" value="${esc(up?a.jam||'':'19:30')}"></div></div>
     <div class="field"><label for="ag-l">Tempat atau link</label><input class="input" id="ag-l" maxlength="120" value="${esc(up?a.loc||'':'')}" placeholder="mis. Stokis Cempaka atau link Zoom"></div>
-    <button class="btn block" id="ag-ok">Simpan & tampilkan ke squad</button>${up?'<button class="btn ghost block" id="ag-del" style="color:var(--coral)">Batalkan agenda</button>':''}</div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;
+    <button class="btn block" id="ag-ok">Simpan & tampilkan ke squad</button>${up?'<button class="btn ghost block" id="ag-del" style="color:var(--coral-text)">Batalkan agenda</button>':''}</div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;
       $('#ag-ok').onclick=()=>{const t=$('#ag-t').value.trim(),dd=$('#ag-d').value;if(t.length<3||!dd){toast('Isi nama kegiatan dan tanggalnya');return}if(dd<dkey()){toast('Tanggal sudah lewat');return}
         const same=up&&a.t===t&&a.d===dd;squadSave({ag:{id:same?a.id:Date.now().toString(36),t,d:dd,jam:$('#ag-j').value,loc:$('#ag-l').value.trim()}});closeSheet();toast('Agenda tersimpan')};
       const del=$('#ag-del');if(del)del.onclick=()=>{squadSave({ag:null});closeSheet();toast('Agenda dibatalkan')}})}
@@ -2923,7 +3040,7 @@ function mtRekap(d,st){if(!st.all)return mtEmpty();const t=rekapText(d,st);
   return `<section class="section"><div class="card stack"><h3 style="margin:0">Rekap minggu ini</h3><p class="small muted" style="margin:0">Teks otomatis dari data squad. Kirim ke grup WhatsApp setiap akhir pekan supaya yang aktif merasa dihargai dan yang lain ikut terpacu.</p>
     <pre class="quote small" id="mt-rekap" style="white-space:pre-wrap;font-family:inherit;margin:0">${esc(t)}</pre>
     <div class="row" style="gap:8px"><button class="btn ghost grow" data-copy="mt-rekap">Salin</button><a class="btn grow" href="${waLink(t)}" target="_blank" rel="noopener">Kirim ke WA</a></div>
-    <p class="note">Hanya nama panggilan yang tampil. Jangan menambahkan janji penghasilan atau klaim kesembuhan.</p></div></section>
+    <p class="note warn">Hanya nama panggilan yang tampil. Jangan menambahkan janji penghasilan atau klaim kesembuhan.</p></div></section>
   <section class="section"><div class="card stack"><h3 style="margin:0">Pengingat ritme mentor</h3><ul class="small" style="margin:0;padding-left:18px;line-height:1.7"><li><b>Senin</b>: pasang tantangan squad dan fokus pribadi.</li><li><b>Setiap hari</b>: buka tab Pantau, kerjakan 1–2 saran.</li><li><b>Kamis</b>: sapa yang belum gerak, dorong yang hampir naik.</li><li><b>Jumat/Sabtu</b>: beri Bintang Mentor, kirim rekap ke grup.</li></ul></div></section>`}
 
 // --- sisi anggota: kartu "Dari Mentor-mu" di Beranda
@@ -3112,6 +3229,73 @@ function openNick(){sheet(`<div class="stack"><span class="eyebrow">Nama panggil
   <div class="row"><button class="btn ghost grow" data-close>Batal</button><button class="btn grow" id="nk-ok">Simpan</button></div></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;const i=$('#nk-t');i.focus();i.select();
   $('#nk-ok').onclick=()=>{const v=i.value.trim().replace(/\s+/g,' ');if(v.length<2){toast('Minimal 2 huruf ya');return}if(FEED_BAD.test(v)){toast('Pilih nama lain ya');return}if(v===S.nick){closeSheet();return}S.nick=v;save();nickSync();closeSheet();render();toast('Nama panggilan diganti')}})}
 
+// ===== js/scripts.js =====
+// ---------- Skrip PCA (audit-002) ----------
+// Pustaka kalimat siap pakai, dikelompokkan per tujuan. Isian {kurung} diganti mitra sendiri.
+// Fakta yang dipakai hanya dari Buku Panduan Sukses HNI 2025, brosur resmi, dan info resmi dari tim HNI (APLI, Dewan Syariah).
+const SCRIPT_GROUPS=[
+  {k:'soft',n:'Soft selling',ic:'chat',when:'Orang pernah menyebut kebutuhannya, atau kamu baru mulai cerita produk. Belum menawarkan.',items:[
+    ['Ajak kenalan produk','Hai {nama}! Kemarin kamu cerita soal {kebutuhan}. Aku sendiri lagi rutin pakai {produk} dari HNI dan cocok buatku. Mau aku ceritain pengalamanku? Nggak harus beli kok, ngobrol aja dulu.'],
+    ['Cerita di status WA','Sudah {lama} aku rutin {cara pakai} {produk}. Dulu {situasi}. Sekarang yang aku rasakan: {pengalaman nyata}. Ini pengalamanku pribadi ya. Kalau penasaran, chat aku aja.']]},
+  {k:'hard',n:'Hard selling (penawaran)',ic:'bag',when:'Orang sudah tertarik, misalnya bilang "boleh juga" atau tanya harga. Tawarkan dengan jelas.',items:[
+    ['Tawarkan dengan harga','{nama}, {produk} harganya {harga konsumen} isi {netto}. Menurut brosur resminya, {manfaat sesuai brosur}. Mau aku pesankan 1 dulu? Bisa aku antar {hari} atau kirim ke alamatmu.'],
+    ['Beri dua pilihan','Mau yang {varian A} atau {varian B}? Dua-duanya bisa aku pesankan hari ini, tinggal pilih.'],
+    ['Pembeli rutin: harga mitra','Karena kamu rutin pakai {produk}, lebih hemat kalau daftar mitra: harganya jadi {harga mitra} (harga biasa {harga konsumen}). Daftarnya Rp10.000, atau Rp30.000 sudah termasuk starter kit. Mau aku bantu daftarkan sekalian?']]},
+  {k:'acara',n:'Undangan acara',ic:'cal',when:'Orang penasaran soal bisnis, tapi kamu belum bisa menjelaskan semuanya sendiri.',items:[
+    ['Ajak ke BOSS','Hai {nama}, {hari, tanggal} jam {jam} ada BOSS (Business Opportunity Success Seminar) HNI di {tempat/link}. Isinya cara kerja bisnis HNI, dijelaskan bersama para leader. Aku datang. Mau bareng? Kalau iya, aku daftarkan namamu.']]},
+  {k:'mitra',n:'Ajak jadi mitra',ic:'userplus',when:'Orang sudah kenal produknya dan mulai bertanya soal bisnis.',items:[
+    ['Ajakan bergabung','Aku gabung HNI karena {alasanmu}. Yang aku dapat: harga mitra untuk belanja sendiri, dan kesempatan belajar bisnis halal pelan-pelan. Daftarnya Rp10.000, atau Rp30.000 sudah termasuk starter kit. Nggak ada target wajib, dan hasilnya tergantung usaha masing-masing. Mau aku bantu daftar sekarang, atau ngobrol dulu sama upline-ku?']]},
+  {k:'fu',n:'Follow-up',ic:'clock',when:'Sudah pernah ngobrol sebelumnya. Untuk prospek, urutannya H+1, lalu H+3, lalu H+7.',items:[
+    ['H+1 setelah kirim info','Hai {nama}, sudah sempat lihat info {produk/bisnis} yang aku kirim kemarin? Bagian mana yang paling bikin penasaran?'],
+    ['H+3: beri satu hal berguna','Hai {nama}, soal {produk/topik} kemarin, ada satu hal yang mungkin berguna buatmu: {info singkat sesuai brosur atau pengalamanmu}. Kalau mau coba, aku bisa siapkan 1 dulu.'],
+    ['H+7: belum dibalas','Hai {nama}, aku nggak mau ganggu. Kalau sekarang belum pas, nggak apa-apa. Kapan-kapan kalau butuh {kebutuhan}, kabari aku ya.'],
+    ['Seminggu setelah beli','Hai {nama}, sudah seminggu pakai {produk}. Cara pakainya sudah pas? Kalau ada yang bikin bingung, tanya aku aja.'],
+    ['Repeat order','Hai {nama}, {produk}-nya biasanya habis sekitar {perkiraan habis}. Mau aku siapkan lagi biar nggak putus? Balas "ya" aja, nanti aku pesankan.'],
+    ['Setelah acara','Makasih sudah datang ke {acara} kemarin, {nama}. Bagian mana yang paling nyantol? Kalau mau, kita ngobrol 15 menit soal langkah pertamanya.']]},
+  {k:'keberatan',n:'Jawab keberatan',ic:'shield',when:'Orang ragu. Dengarkan dulu, jawab satu hal, lalu tanya balik.',items:[
+    ['"MLM ya?"','Iya, HNI itu perusahaan direct selling halal. Sistemnya sudah bersertifikat syariah dari DSN-MUI, dan ada Dewan Syariah yang menjaga supaya sistemnya tetap sesuai syariah. HNI juga anggota APLI (Asosiasi Penjualan Langsung Indonesia), asosiasi perusahaan penjualan langsung yang anggotanya wajib mengikuti kode etik. Nggak ada target wajib, dan komisinya dihitung dari belanja produk, bukan dari merekrut orang. Mau aku tunjukkan cara kerjanya?'],
+    ['"Mahal"','Wajar kalau dibandingkan produk biasa. Ada dua cara supaya lebih hemat: pilih ukuran atau varian yang lebih kecil kalau ada, atau daftar mitra supaya dapat harga mitra. Mau aku hitungkan selisihnya?'],
+    ['"Nanti dulu, mikir dulu"','Boleh banget. Biar gampang mikirnya, yang paling bikin ragu apa: harga, cara pakai, atau hal lain? Aku jawab satu-satu.'],
+    ['"Nggak ada waktu buat bisnis"','Paham. Kamu bisa mulai dari pakai sendiri dulu, nggak ada target wajib. Kalau nanti ada waktu, belajarnya bisa pelan-pelan lewat aplikasi ini.']]}
+];
+let SCR_F='all';
+const phHtml=t=>esc(t).replace(/\{([^}]+)\}/g,'<mark class="ph">{$1}</mark>');
+const phLeft=t=>(t.match(/\{[^}]+\}/g)||[]).length;
+function waHref(text,kontak){const d=String(kontak||'').replace(/\D/g,'');const num=d.startsWith('0')?'62'+d.slice(1):d.startsWith('62')?d:'';return 'https://wa.me/'+(num.length>=10?num:'')+'?text='+encodeURIComponent(text)}
+function viewScripts(){
+  const groups=SCR_F==='all'?SCRIPT_GROUPS:SCRIPT_GROUPS.filter(g=>g.k===SCR_F);
+  return `<section class="section"><div class="pills" role="group" aria-label="Jenis skrip">${[['all','Semua']].concat(SCRIPT_GROUPS.map(g=>[g.k,g.n.replace(/ \(.*\)/,'')])).map(([k,t])=>`<button class="pill" data-scrf="${k}" aria-pressed="${SCR_F===k}">${esc(t)}</button>`).join('')}</div>
+  <p class="small muted">Ketuk <b>Pakai</b> untuk mengisi bagian yang ditandai lalu kirim lewat WhatsApp. Pakai bahasamu sendiri supaya terasa natural.</p></section>
+  ${groups.map(g=>`<section class="section"><div class="scrhead"><span class="tico">${ico(g.ic)}</span><div class="grow"><h2 style="margin:0">${esc(g.n)}</h2><p class="small muted" style="margin:2px 0 0"><b>Pakai saat:</b> ${esc(g.when)}</p></div></div>
+    <div class="stack" style="gap:10px">${g.items.map(([t,b],i)=>`<div class="card stack scard"><h3 style="margin:0">${esc(t)}</h3><p style="margin:0">${phHtml(b)}</p>
+      <div class="row" style="gap:8px"><button class="btn grow" data-scruse="${g.k}:${i}">Pakai</button><button class="btn ghost" data-scrcopy="${g.k}:${i}">Salin</button></div></div>`).join('')}</div></section>`).join('')}
+  <section class="section"><p class="note warn">Ceritakan pengalaman nyata. Sebut manfaat sesuai brosur resmi. Jangan menjanjikan kesembuhan, penghasilan, atau peringkat. Jangan membuat promo atau harga sendiri.</p></section>`}
+function scriptAt(key){const [k,i]=key.split(':');const g=SCRIPT_GROUPS.find(x=>x.k===k);return g&&g.items[+i]?{g,t:g.items[+i][0],b:g.items[+i][1]}:null}
+// Lembar "Pakai skrip": isi bagian {…}, lalu salin atau kirim lewat WhatsApp. Dari daftar Jaringan, {nama} dan nomor WA terisi otomatis.
+function openScript(key,person){const s=scriptAt(key);if(!s)return;let txt=s.b;if(person){if(person.name)txt=txt.replace(/\{nama\}/g,person.name);if(person.minat)txt=txt.replace(/\{kebutuhan\}/g,person.minat)}
+  sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">${esc(s.g.n)}</span><h2 style="margin:0">${esc(s.t)}</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    <label for="scr-t" class="small"><b>Ganti semua bagian dalam {kurung}</b>${person&&person.name?` (untuk ${esc(person.name)})`:''}</label>
+    <textarea class="input" id="scr-t" style="min-height:170px">${esc(txt)}</textarea>
+    <p class="small" id="scr-left" aria-live="polite"></p>
+    <div class="row" style="gap:8px"><a class="btn grow" id="scr-wa" target="_blank" rel="noopener">Kirim lewat WA</a><button class="btn ghost" id="scr-cp">Salin</button></div>
+    <p class="note">WhatsApp terbuka dengan pesan siap kirim${person&&person.kontak?' ke nomor yang kamu catat':'. Pilih kontaknya sendiri'}.</p></div>`,L=>{
+    L.querySelector('[data-close]').onclick=closeSheet;const ta=$('#scr-t'),wa=$('#scr-wa'),left=$('#scr-left');
+    const upd=()=>{const n=phLeft(ta.value);left.textContent=n?`Masih ada ${n} bagian {…} yang belum diganti.`:'Siap dikirim.';left.className='small '+(n?'warnt':'');wa.href=waHref(ta.value,person&&person.kontak)};
+    ta.oninput=upd;upd();
+    const warn=e=>{if(phLeft(ta.value)){toast('Ganti dulu bagian {…} supaya pesannya pas');ta.focus();const m=ta.value.indexOf('{');if(m>=0)ta.setSelectionRange(m,ta.value.indexOf('}',m)+1);e&&e.preventDefault();return true}return false};
+    wa.onclick=e=>{warn(e)};
+    $('#scr-cp').onclick=()=>{if(warn())return;copyText(ta)};
+    const m=ta.value.indexOf('{');ta.focus();if(m>=0)ta.setSelectionRange(m,ta.value.indexOf('}',m)+1)})}
+// Pilih skrip untuk satu orang di daftar Jaringan
+function openScriptPicker(person){const pick=person.tipe==='pelanggan'?['fu','hard']:person.tipe==='mitra'?['fu','acara']:['soft','hard','fu','keberatan','acara','mitra'];
+  sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Skrip PCA</span><h2 style="margin:0">Pesan untuk ${esc(person.name||'dia')}</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    ${pick.map(k=>{const g=SCRIPT_GROUPS.find(x=>x.k===k);return `<span class="eyebrow" style="margin-top:6px">${esc(g.n)}</span>${g.items.map(([t],i)=>`<button class="softrow" data-scrp="${k}:${i}">${ico(g.ic)}<span class="grow small"><b>${esc(t)}</b></span><span class="harr">${ico('chevrons')}</span></button>`).join('')}`}).join('')}</div>`,L=>{
+    L.querySelector('[data-close]').onclick=closeSheet;L.querySelectorAll('[data-scrp]').forEach(b=>b.onclick=()=>openScript(b.dataset.scrp,person))})}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-scrf],[data-scruse],[data-scrcopy]');if(!t)return;e.stopPropagation();const d=t.dataset;
+  if(d.scrf){SCR_F=d.scrf;render();return}
+  if(d.scruse){openScript(d.scruse);return}
+  if(d.scrcopy){const s=scriptAt(d.scrcopy);if(!s)return;const ok=()=>toast('Disalin. Ganti bagian {…} sebelum dikirim.');try{navigator.clipboard.writeText(s.b).then(ok,()=>openScript(d.scrcopy))}catch(err){openScript(d.scrcopy)}}},true);
+
 // ===== js/events.js =====
 // ---------- events ----------
 document.addEventListener('click',e=>{
@@ -3154,6 +3338,7 @@ document.addEventListener('click',e=>{
     case 'rankreq':if(needUpSetup()){openUpSetup(false);break}openRankReq(d.rqTo||'');break;
     case 'upsetup':openUpSetup(false);break;
     case 'nick':openNick();break;
+    case 'syncwhy':openSyncWhy();break;
     case 'sharecard':openShareCard();break;
     case 'rewards':openRewards();break;
     case 'share-mission':{const p=SHARE_PROMPT;SHARE_PROMPT=null;if(p)openCompose('capai',(SHARE_TPL[p.id]||(()=>''))(p.label));break}
