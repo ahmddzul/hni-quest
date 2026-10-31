@@ -456,7 +456,7 @@ html[data-fs="xl"] .tabs button{font-size:.6rem}html[data-fs="xl"] .tabs button 
 .pstats button{color:#C8F06A;font-weight:700}
 .pwarn{color:#FFB4AC;position:relative;z-index:1}
 .softrow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:12px 14px;border-radius:14px;border:0;background:var(--surface-2)}
-a.softrow{text-decoration:none;color:inherit}.mtseg{display:grid!important;grid-template-columns:repeat(5,auto);overflow:hidden}.mtseg button{font-size:.78rem;padding-left:4px;padding-right:4px;white-space:nowrap}.g1e{display:grid;grid-template-columns:30px minmax(0,1fr) minmax(0,1.15fr) 34px;gap:6px;align-items:center}.g1e .input{padding:10px 8px;min-width:0;font-size:.92rem}.g1e .g1img{width:30px}.g1e .g1img img{width:28px;height:28px;object-fit:contain}.g1st{grid-column:2/5;font-size:.76rem;margin-top:-2px;display:flex;align-items:center;gap:4px}.g1st.ok{color:var(--brand);font-weight:700}.g1st svg{width:13px;height:13px}.ii svg{width:1.05em;height:1.05em;vertical-align:-.17em;display:inline-block}button.lb,button.mrow{width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer}hr.soft{border:0;border-top:1px solid var(--line);margin:4px 0;width:100%}a.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+a.softrow{text-decoration:none;color:inherit}.mtseg{display:grid!important;grid-template-columns:repeat(5,auto);overflow:hidden}.mtseg button{font-size:.78rem;padding-left:4px;padding-right:4px;white-space:nowrap}.g1e{display:grid;grid-template-columns:30px minmax(0,1fr) minmax(0,1.15fr) 34px;gap:6px;align-items:center}.g1e .input{padding:10px 8px;min-width:0;font-size:.92rem}.g1e .g1img{width:30px}.g1e .g1img img{width:28px;height:28px;object-fit:contain}.g1st{grid-column:2/5;font-size:.76rem;margin-top:-2px;display:flex;align-items:center;gap:4px}.g1st.ok{color:var(--brand);font-weight:700}.g1st svg{width:13px;height:13px}.nickbtn{all:unset;font:inherit;color:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px}.nickbtn .ii svg{opacity:.55;width:.8em;height:.8em}.ii svg{width:1.05em;height:1.05em;vertical-align:-.17em;display:inline-block}button.lb,button.mrow{width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer}hr.soft{border:0;border-top:1px solid var(--line);margin:4px 0;width:100%}a.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 .softrow svg{width:18px;height:18px;color:var(--brand);flex:none}
 .prog{display:flex;flex-direction:column;gap:6px}
 .divider{height:1px;background:var(--line)}
@@ -1344,7 +1344,7 @@ async function initStore(){
     // versi pilot: masuk dengan ID HNI + PIN ke server Google Sheets
     try{const a=await apiBoot();DB=a.db;UID=a.uid;if(!API_STATE&&!(S.idhni&&S.idhni===a.id))S=blank();if(!S.idhni)S.idhni=a.id}catch(e){DB=null}
   }else try{
-    const t0=Date.now();while(!(window.claude&&window.claude.use)&&Date.now()-t0<2500)await new Promise(r=>setTimeout(r,100));
+    const t0=Date.now();while(!(window.claude&&window.claude.use)&&Date.now()-t0<(window.HNI_PWA?0:2500))await new Promise(r=>setTimeout(r,100));
     if(window.claude&&claude.use){
       [DB,USER]=await Promise.all([claude.use('db'),claude.use('user')]);
       if(USER)UID=await USER.id();
@@ -1367,13 +1367,14 @@ function save(){saveLocal();pushStateToSW();if(MODE!=='db')return;clearTimeout(s
 function flush(){
   const body=JSON.parse(JSON.stringify(S));
   writeChain=writeChain.then(()=>DB.doc('data/users/'+UID+'/state').set(body)).catch(e=>{
-    if(e&&e.code==='invalid_argument'){MODE='local';renderBanner()}
+    if(e&&e.code==='invalid_argument'){MODE='local';window.HNI_NOWRITE=1;renderBanner()}
   });
   const b={dd:S.day.d,dn:S.day.done.length,nick:S.nick||'Mitra',sq:mySq(),sqn:(S.mentorName||'').slice(0,40),xp:S.xp,lvl:levelOf(S.xp).lvl,wk:S.wk,wxp:S.wxp,mk:S.mk,mxp:S.mxp,rank:dispRank(),st:S.streak,b:S.badges.length,g:gameTops(),pwk:S.pwk||'',pwxp:S.pwxp||0,lt:ligaOf().t,ltw:ligaOf().wk,ltp:ligaOf().tp??ligaOf().t,ltpw:ligaOf().pw||'',av:S.av||{},jn:S.joined||'',mh:idKey(S.idhni),uh:idKey(S.upId),rk:S.rank,rv:S.rv||'',fd:S.fd||'',...boardProg()};
   const mt=metricsBody();const sig=JSON.stringify(b)+JSON.stringify(mt);
   if(sig!==boardSig&&S.onboarded){boardSig=sig;writeChain=writeChain.then(()=>DB.doc('board/'+UID).set(Object.assign({ts:Date.now()},b))).then(()=>DB.doc('metrics/'+UID).set(mt)).catch(()=>{})}
 }
 function boardProg(){const p=nextRankProgress();return p.done?{np:100,nx:''}:{np:Math.round((p.pct||0)*100),nx:p.nx?p.nx.n:''}}
+
 
 // ===== js/api.js =====
 // ---------- versi pilot: server Google Apps Script + Google Sheets ----------
@@ -1552,6 +1553,8 @@ function levelUp(L){sfx('level');const lv=levelOf(S.xp);const el=document.create
 function renderBanner(){
   const b=$('#banner');let h='';
 
+  // Dibuka di luar penampil Claude (tab sendiri, simpan ke layar utama, atau salinan file): penyimpanan bersama tidak tersedia
+  if(READY&&!API_URL&&!window.HNI_PWA&&MODE!=='db'&&S.onboarded)h+=`<div class="banner" style="margin-top:8px;background:var(--sun-soft)"><b>Data belum tersinkron.</b> ${window.HNI_NOWRITE?'Akun Claude yang dipakai hanya punya akses lihat ke aplikasi ini (minta pemilik memberi akses Contributor),':'Halaman ini sedang dibuka di luar Claude,'} jadi Kabar teman-teman, leaderboard, dan Dasbor Admin tidak tampil, dan progres hanya tersimpan di perangkat ini. Buka lewat link artefak di aplikasi atau situs Claude (claude.ai) supaya tersambung lagi.</div>`;
   if(CONFIG.pengumuman)h+=`<div class="banner" style="margin-top:8px;background:var(--brand-soft)">${esc(CONFIG.pengumuman)}</div>`;
   b.innerHTML=h;
 }
@@ -1611,7 +1614,7 @@ function viewHome(){
   const sqPos=mySq()?(squadsTable(boardRows()).findIndex(x=>x.sq===mySq())+1):0;
   return `
   <section class="player stack" style="margin-top:6px"><img class="wm" src="${IMG.mark}" alt="">
-    <div class="row">${avatar(S.nick||'Mitra',50,S.av)}<div class="grow"><div class="sub" style="color:#C8F06A">${esc(hello)},</div><div class="title">${esc(honor())}</div><div class="sub prank">${rankImg(r.c,'xs')}${esc(r.n)}</div></div><div style="text-align:right"><div class="lvl num">${lv.lvl}</div><div class="sub">${esc(lv.title)}</div></div></div>
+    <div class="row">${avatar(S.nick||'Mitra',50,S.av)}<div class="grow"><div class="sub" style="color:#C8F06A">${esc(hello)},</div><div class="title"><button class="nickbtn" data-act="nick" aria-label="Ganti nama panggilan">${esc(honor())}<span class="ii">${ico('text')}</span></button></div><div class="sub prank">${rankImg(r.c,'xs')}${esc(r.n)}</div></div><div style="text-align:right"><div class="lvl num">${lv.lvl}</div><div class="sub">${esc(lv.title)}</div></div></div>
     <div class="bar"><i id="xpbar" data-w="${Math.round(lv.pct*100)}" style="width:${LAST_BAR==null?0:LAST_BAR}%"></i></div>
     <div class="pstats"><span class="${streakRisk?'warn':''}">${ico('flame')}<b class="num">${S.streak}</b> hari</span><span>${ico('star')}<b class="num">${S.wxp}</b> XP minggu ini</span><button class="coinpill" data-act="wallet">${ico('coin')}<b class="num" id="coinNum">${fmtCoin(coinBal())}</b></button>${mySq()?`<button data-tab-go="rank">${ico('crown')}Squad #${sqPos||'-'}</button>`:`<button data-act="profile">${ico('crown')}Gabung squad</button>`}</div>
     ${streakRisk?`<p class="pwarn small">Streak ${S.streak} hari-mu menunggu. Satu misi saja cukup biar nggak putus.${S.shield?` Kamu punya ${S.shield} perisai streak.`:''}</p>`:''}
@@ -1957,7 +1960,7 @@ function openPQ(k){
 
 function openProfile(){
   const lv=levelOf(S.xp);
-  sheet(`<div class="stack"><div class="row">${avatar(S.nick||'Mitra',56,S.av)}<div class="grow"><h2>${esc(S.nick||'Mitra')}</h2><span class="small muted">ID ${esc(S.idhni||'-')} · Level ${lv.lvl} ${esc(lv.title)} · streak terbaik ${S.best} hari</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+  sheet(`<div class="stack"><div class="row">${avatar(S.nick||'Mitra',56,S.av)}<div class="grow"><h2 style="display:flex;align-items:center;gap:8px">${esc(S.nick||'Mitra')}<button class="link small" data-act="nick">Ganti nama</button></h2><span class="small muted">ID ${esc(S.idhni||'-')} · Level ${lv.lvl} ${esc(lv.title)} · streak terbaik ${S.best} hari</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
   <div class="row"><button class="btn ghost grow" data-act="wallet">${ico('coin')} Dompet Koin</button><button class="btn ghost grow" data-act="remind">${ico('bell')} Pengingat</button></div>
   ${CAN_ADMIN?`<button class="btn block" data-act="admin" style="background:#2A1A00;color:#FFE08A">${ico('shield')} Dasbor Admin</button>`:''}
   <div class="row"><button class="btn ghost grow" data-act="avatar">${ico('star')} Avatar & bingkai</button><button class="btn ghost grow" data-act="sharecard">${ico('image')} Kartu pencapaian</button></div>
@@ -1998,10 +2001,10 @@ function openProfile(){
     $('#pf-resetn').onclick=()=>{$('#pf-resetc').hidden=true;$('#pf-reset').hidden=false};
     $('#pf-resety').onclick=resetAll;
     $('#pf-save').onclick=()=>{
-      const er=g1Validate(PG1);if(er){toast(er);return}const nr=S.rank;const ni=rankIdx(nr);
-      Object.assign(S,{ageNum:+$('#pf-age').value||S.ageNum,age:bandFromAge(+$('#pf-age').value)||S.age,gender:$('#pf-gen').value,idhni:S.rankLock&&S.idhni?S.idhni:(normId($('#pf-id').value)||S.idhni),nick:$('#pf-nick').value.trim()||S.nick,mentorId:normId($('#pf-mid').value),mentorName:$('#pf-mn').value.trim(),akum:rankIdx(nr)<3?Math.max(0,+$('#pf-akum').value||0):0,g1l:g1Clean(PG1),adv:ni>=8?readAdv('pf'):advOf(),region:$('#pf-reg').value,goal:$('#pf-goal').value.trim()});
+      const er=g1Validate(PG1,null,true);if(er){toast(er);return}const oldNick=S.nick;const nr=S.rank;const ni=rankIdx(nr);
+      Object.assign(S,{ageNum:+$('#pf-age').value||S.ageNum,age:bandFromAge(+$('#pf-age').value)||S.age,gender:$('#pf-gen').value,idhni:S.rankLock&&S.idhni?S.idhni:(normId($('#pf-id').value)||S.idhni),nick:$('#pf-nick').value.trim()||S.nick,mentorId:normId($('#pf-mid').value),mentorName:$('#pf-mn').value.trim(),akum:rankIdx(nr)<3?Math.max(0,+$('#pf-akum').value||0):0,g1l:g1Clean(PG1,true),adv:ni>=8?readAdv('pf'):advOf(),region:$('#pf-reg').value,goal:$('#pf-goal').value.trim()});
       if(ni>=8){S.bulanan=$('#pf-bul').value;S.bulananM=mkey();S.gelar=$('#pf-gel').value;S.gelarP=ledPeriod().k}else{S.bulanan='';S.gelar=''}
-      closeSheet();linkRecompute();const pk=peakIdx();
+      if(S.nick!==oldNick)nickSync();closeSheet();linkRecompute();const pk=peakIdx();
       if(pk>S.maxRank){const steps=pk-S.maxRank;S.maxRank=pk;award(300*steps,'Naik ke '+RANKS[pk].n,{t:'rank',r:RANKS[pk].c})}else{checkBadges();save();render();toast('Profil tersimpan')}
     };
   });
@@ -2517,7 +2520,9 @@ function waShareLink(text){return 'https://wa.me/?text='+encodeURIComponent(text
 let MODC={hidden:[],pinned:[],banned:[],hideBoard:[],dismissed:[]},CAN_ADMIN=false;
 function modListen(){if(!DB)return;try{DB.doc('config/mod').onSnapshot(s=>{MODC=Object.assign({hidden:[],pinned:[],banned:[],hideBoard:[],dismissed:[]},s.exists?JSON.parse(JSON.stringify(s.data())):{});if(TAB==='feed'&&!SUB&&!$('#layer').innerHTML)render()},()=>{})}catch(e){}}
 function isBanned(uid){return (MODC.banned||[]).includes(uid)}
-(async()=>{try{const t0=Date.now();while(!(window.claude&&window.claude.use)&&Date.now()-t0<3000)await new Promise(r=>setTimeout(r,150));if(window.claude&&claude.use){const u=await claude.use('user');CAN_ADMIN=!!(u&&((u.canEdit&&u.canEdit())||(u.isOwner&&u.isOwner())))}}catch(e){}})();
+(async()=>{try{if(window.HNI_API||window.HNI_PWA)return;const t0=Date.now();while(!(window.claude&&window.claude.use)&&Date.now()-t0<3000)await new Promise(r=>setTimeout(r,150));if(window.claude&&claude.use){const u=await claude.use('user');if(!u)return;
+  // isOwner()/canEdit() mengembalikan Promise: harus ditunggu (sebelumnya Promise selalu dianggap benar)
+  const own=u.isOwner?await u.isOwner():false;const ed=u.canEdit?await u.canEdit():false;const was=CAN_ADMIN;CAN_ADMIN=!!(own||ed);if(CAN_ADMIN!==was&&READY&&!$('#layer').innerHTML)render()}}catch(e){}})();
 // laporan dari pemain: reports/<uid> = {items:[{key,why,ts}]}
 const REPORT_WHY=['Klaim kesehatan berlebihan','Janji penghasilan','Spam / jualan agresif','Kata kasar / SARA','Lainnya'];
 function openReport(key){sheet(`<div class="stack"><span class="eyebrow">Laporkan kabar</span><h2>Apa masalahnya?</h2><div class="stack" style="gap:6px">${REPORT_WHY.map(w=>`<button class="softrow" data-why="${esc(w)}">${ico('flagx')}<span class="grow small"><b>${w}</b></span></button>`).join('')}</div><p class="note">Laporanmu anonim untuk penulis dan akan dicek admin.</p></div>`,L=>{
@@ -2995,10 +3000,10 @@ function bindG1List(box,list,after){let busy=false,t=0;const now=()=>{if(busy)re
   box.onclick=e=>{const a=e.target.closest('[data-g1add]'),d=e.target.closest('[data-g1del]');
     if(a&&!a.disabled){if(list.length>=G1_MAX){toast(`Maksimal ${G1_MAX} orang`);return}list.push({id:'',r:'MB'});clearTimeout(t);now();const ins=box.querySelectorAll('[data-g1id]');if(ins.length)ins[ins.length-1].focus()}
     if(d){list.splice(+d.dataset.g1del,1);clearTimeout(t);now()}}}
-function g1Validate(list,ownId){const own=idKey(ownId||S.idhni||'');const seen={};
-  for(const e of list){if(e.auto&&e.k)continue;if(!e.id)return 'Isi ID HNI setiap Generasi 1, atau hapus barisnya.';const k=idKey(e.id);if(k===own)return 'ID Generasi 1 tidak boleh sama dengan ID-mu.';if(seen[k])return 'Ada ID Generasi 1 yang ganda.';seen[k]=1}
+function g1Validate(list,ownId,allowEmpty){const own=idKey(ownId||S.idhni||'');const seen={};
+  for(const e of list){if(e.auto&&e.k)continue;if(!e.id){if(allowEmpty)continue;return 'Isi ID HNI setiap Generasi 1, atau hapus barisnya.'}const k=idKey(e.id);if(k===own)return 'ID Generasi 1 tidak boleh sama dengan ID-mu.';if(seen[k])return 'Ada ID Generasi 1 yang ganda.';seen[k]=1}
   return ''}
-function g1Clean(list){return list.filter(e=>e.id||e.k).map(e=>{const o={r:e.r||'MB'};if(e.id)o.id=normId(e.id);if(e.k&&!e.id){o.k=e.k;o.auto=true}return o}).slice(0,G1_MAX)}
+function g1Clean(list,keepEmpty){return list.filter(e=>e.id||e.k||keepEmpty).map(e=>{const o={r:e.r||'MB'};if(e.id)o.id=normId(e.id);if(e.k&&!e.id){o.k=e.k;o.auto=true}return o}).slice(0,G1_MAX)}
 
 // --- sinkron data upline/downline dari papan
 function linkListen(){if(!DB||MODE!=='db')return;const me=idKey(S.idhni),up=idKey(S.upId);
@@ -3099,6 +3104,14 @@ function openUpSetup(auto){const L0=JSON.parse(JSON.stringify(S.g1l||[]));const 
 // tampilkan otomatis sekali sehari untuk pengguna lama yang belum mengisi upline
 function maybeAskUpSetup(){if(!needUpSetup()||S.upAsk===dkey())return;const go=()=>{if($('#layer').innerHTML||document.querySelector('.levelup')){setTimeout(go,2500);return}if(needUpSetup()&&S.upAsk!==dkey())openUpSetup(true)};setTimeout(go,1500)}
 
+// --- ganti nama panggilan (kapan saja, tanpa persetujuan admin)
+function nickSync(){try{const f=FEED[myFeedId()];if(f&&(f.posts||[]).length)feedSave()}catch(e){}try{if(typeof SQD!=='undefined'&&SQD&&canMentor())squadSave({})}catch(e){}}
+function openNick(){sheet(`<div class="stack"><span class="eyebrow">Nama panggilan</span><h2>Mau dipanggil apa?</h2>
+  <div class="field"><label for="nk-t">Nama panggilan</label><input class="input" id="nk-t" maxlength="24" value="${esc(S.nick||'')}" placeholder="mis. Rara"></div>
+  <p class="small muted">Tampil di Beranda, leaderboard, squad, dan Kabar (termasuk kabar lamamu). ID HNI tidak ikut berubah.</p>
+  <div class="row"><button class="btn ghost grow" data-close>Batal</button><button class="btn grow" id="nk-ok">Simpan</button></div></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;const i=$('#nk-t');i.focus();i.select();
+  $('#nk-ok').onclick=()=>{const v=i.value.trim().replace(/\s+/g,' ');if(v.length<2){toast('Minimal 2 huruf ya');return}if(FEED_BAD.test(v)){toast('Pilih nama lain ya');return}if(v===S.nick){closeSheet();return}S.nick=v;save();nickSync();closeSheet();render();toast('Nama panggilan diganti')}})}
+
 // ===== js/events.js =====
 // ---------- events ----------
 document.addEventListener('click',e=>{
@@ -3140,6 +3153,7 @@ document.addEventListener('click',e=>{
     case 'mentor':openMentor();break;
     case 'rankreq':if(needUpSetup()){openUpSetup(false);break}openRankReq(d.rqTo||'');break;
     case 'upsetup':openUpSetup(false);break;
+    case 'nick':openNick();break;
     case 'sharecard':openShareCard();break;
     case 'rewards':openRewards();break;
     case 'share-mission':{const p=SHARE_PROMPT;SHARE_PROMPT=null;if(p)openCompose('capai',(SHARE_TPL[p.id]||(()=>''))(p.label));break}
