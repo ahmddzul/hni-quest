@@ -456,7 +456,7 @@ html[data-fs="xl"] .tabs button{font-size:.6rem}html[data-fs="xl"] .tabs button 
 .pstats button{color:#C8F06A;font-weight:700}
 .pwarn{color:#FFB4AC;position:relative;z-index:1}
 .softrow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:12px 14px;border-radius:14px;border:0;background:var(--surface-2)}
-a.softrow{text-decoration:none;color:inherit}.mtseg{display:grid!important;grid-template-columns:repeat(5,auto);overflow:hidden}.mtseg button{font-size:.78rem;padding-left:4px;padding-right:4px;white-space:nowrap}.ii svg{width:1.05em;height:1.05em;vertical-align:-.17em;display:inline-block}button.lb,button.mrow{width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer}hr.soft{border:0;border-top:1px solid var(--line);margin:4px 0;width:100%}a.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+a.softrow{text-decoration:none;color:inherit}.mtseg{display:grid!important;grid-template-columns:repeat(5,auto);overflow:hidden}.mtseg button{font-size:.78rem;padding-left:4px;padding-right:4px;white-space:nowrap}.g1e{display:grid;grid-template-columns:30px minmax(0,1fr) minmax(0,1.15fr) 34px;gap:6px;align-items:center}.g1e .input{padding:10px 8px;min-width:0;font-size:.92rem}.g1e .g1img{width:30px}.g1e .g1img img{width:28px;height:28px;object-fit:contain}.g1st{grid-column:2/5;font-size:.76rem;margin-top:-2px;display:flex;align-items:center;gap:4px}.g1st.ok{color:var(--brand);font-weight:700}.g1st svg{width:13px;height:13px}.ii svg{width:1.05em;height:1.05em;vertical-align:-.17em;display:inline-block}button.lb,button.mrow{width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer}hr.soft{border:0;border-top:1px solid var(--line);margin:4px 0;width:100%}a.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 .softrow svg{width:18px;height:18px;color:var(--brand);flex:none}
 .prog{display:flex;flex-direction:column;gap:6px}
 .divider{height:1px;background:var(--line)}
@@ -1279,7 +1279,9 @@ const rankIdx=c=>Math.max(0,RANKS.findIndex(r=>r.c===c));
 const PERM_MAX=8,BULANAN=['GED','DED','CED'],GELAR=['LED','LEDP','SAP','EMR','PLT'];
 function normRank(){const i=rankIdx(S.rank);if(i>PERM_MAX){const c=S.rank;if(BULANAN.includes(c)){S.bulanan=S.bulanan||c;S.bulananM=S.bulananM||mkey()}else if(GELAR.includes(c)){S.gelar=S.gelar||c;S.gelarP=S.gelarP||ledPeriod().k}S.rank='ED'}if(!Array.isArray(S.jalur))S.jalur=[];if(!BULANAN.includes(S.bulanan))S.bulanan='';if(!GELAR.includes(S.gelar))S.gelar='';if(rankIdx(S.rank)<PERM_MAX){S.bulanan='';S.gelar=''}}
 // migrasi data lama + pengaturan tampilan
-function migrate(){if(S.onboarded&&!S.pq)S.pq={squad:S.mentorId?'lama':'',posisi:'lama',tim:'lama',impian:S.goal?'lama':''};if(!S.ui)S.ui=S.onboarded?{fs:'',simple:false}:null;S.shield=S.shield||0;S.av=S.av||{c:'',f:''};S.unl=S.unl||{}}
+function migrate(){if(S.onboarded&&!S.pq)S.pq={squad:S.mentorId?'lama':'',posisi:'lama',tim:'lama',impian:S.goal?'lama':''};if(!S.ui)S.ui=S.onboarded?{fs:'',simple:false}:null;S.shield=S.shield||0;S.av=S.av||{c:'',f:''};S.unl=S.unl||{};
+  if(!Array.isArray(S.g1l)){const g=Object.assign({ED:0,SD:0,D:0,EM:0,SM:0,M:0,MB:0},S.g1||{});S.g1l=[];G1_RANKS.forEach(([k])=>{for(let i=0;i<(+g[k]||0)&&S.g1l.length<G1_MAX;i++)S.g1l.push({id:'',r:k})})}
+  if(S.onboarded&&S.rankLock==null)S.rankLock=true;S.upId=S.upId||'';S.upName=S.upName||''}
 function applyUI(o){o=o||S.ui||{};document.documentElement.dataset.fs=o.fs||'';document.body.classList.toggle('simple',!!o.simple)}
 function bulananNow(){return S.bulanan&&S.bulananM===mkey()?S.bulanan:''}
 const BLN=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
@@ -1311,8 +1313,8 @@ document.addEventListener('change',e=>{const t=e.target;if(t.matches&&t.matches(
 // ---------- state ----------
 function normId(v){const d=String(v||'').replace(/\D/g,'').slice(-8);if(!d||/^0+$/.test(d))return '';return d.padStart(8,'0')}
 const G1_RANKS=[['ED','ED ke atas'],['SD','Senior Director'],['D','Director'],['EM','Executive Manager'],['SM','Senior Manager'],['M','Manager'],['MB','Mitra Baru']];
-const G1_MAX=10;
-function g1Of(o){const g=Object.assign({ED:0,SD:0,D:0,EM:0,SM:0,M:0,MB:0},(o&&o.g1)||{});return g}
+const G1_MAX=20;
+function g1Of(o){const z={ED:0,SD:0,D:0,EM:0,SM:0,M:0,MB:0};if(o&&Array.isArray(o.g1l)){(o===S?g1Eff(o.g1l):o.g1l).forEach(e=>{if(z[e.r]!=null)z[e.r]++});return z}return Object.assign(z,(o&&o.g1)||{})}
 const g1Total=g=>G1_RANKS.reduce((a,[k])=>a+(+g[k]||0),0);
 function g1Counts(g){g=g||g1Of(S);return{sm:g.ED+g.SD+g.D+g.EM+g.SM,m:g.M,mb:g.MB,tot:g1Total(g)}}
 function g1Html(g){const t=g1Total(g);
@@ -1324,7 +1326,7 @@ function bindG1(box,g,after){box.innerHTML=g1Html(g);box.onclick=e=>{const b=e.t
 function sqKey(id){if(!id)return '';let h=2166136261;for(const ch of 'hniq:'+id){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)>>>0}return 'S'+h.toString(36)}
 const mySq=()=>sqKey(S.mentorId);
 function modeName(list){const c={};list.filter(Boolean).forEach(n=>{const k=n.trim().replace(/\s+/g,' ');const key=k.toLowerCase().replace(/[^a-z0-9]/g,'');if(!key)return;c[key]=c[key]||{v:[],c:0};c[key].c++;c[key].v.push(k)});const a=Object.values(c).sort((x,y)=>y.c-x.c);if(!a.length)return '';const best=a[0].v.sort((x,y)=>(y.match(/[A-Z.]/g)||[]).length-(x.match(/[A-Z.]/g)||[]).length)[0];return best.split(' ').map(w=>w&&w[0].toUpperCase()+w.slice(1)).join(' ')}
-function blank(){return{v:1,onboarded:false,idhni:'',nick:'',age:'',ageNum:0,gender:'',mentorId:'',mentorName:'',region:'12',rank:'MB10',akum:0,g1:{ED:0,SD:0,D:0,EM:0,SM:0,M:0,MB:0},adv:{tp:0,ed9:0,other9:0,kbg:0,serap:0,ed24:0},goal:'',target:'',
+function blank(){return{v:1,onboarded:false,idhni:'',nick:'',age:'',ageNum:0,gender:'',mentorId:'',mentorName:'',upId:'',upName:'',rankLock:false,g1l:[],region:'12',rank:'MB10',akum:0,g1:{ED:0,SD:0,D:0,EM:0,SM:0,M:0,MB:0},adv:{tp:0,ed9:0,other9:0,kbg:0,serap:0,ed24:0},goal:'',target:'',
   xp:0,wk:wkey(),wxp:0,mk:mkey(),mxp:0,streak:0,best:0,last:'',
   day:{d:dkey(),done:[],extra:{}},log:[],learned:{},quiz:{d:'',score:-1},perfect:0,
   prospects:[],buys:[],badges:[],wclaim:{},maxRank:0,bulanan:'',bulananM:'',gelar:'',gelarP:'',jalur:[],jalurM:'',joined:dkey()}}
@@ -1355,11 +1357,11 @@ async function initStore(){
       MODE='db';
     }catch(e){MODE='local'}
     try{DB.doc('config/app').onSnapshot(s=>{if(s.exists){const d=s.data();CONFIG=Object.assign(JSON.parse(JSON.stringify(DEFAULT_CONFIG)),JSON.parse(JSON.stringify(d)));render()}},()=>{})}catch(e){}
-    feedListen();redeemListen();modListen();squadListen();
-    try{DB.collection('board').orderBy('xp','desc').limit(300).onSnapshot(s=>{BOARD=s.docs.map(d=>Object.assign({id:d.id},JSON.parse(JSON.stringify(d.data()))));BOARD_READY=true;settleLeague();if((TAB==='rank'||TAB==='team')&&!SUB&&!$('#layer').innerHTML)render()},()=>{})}catch(e){}
+    feedListen();redeemListen();modListen();squadListen();linkListen();rankAnsListen();
+    try{DB.collection('board').orderBy('xp','desc').limit(300).onSnapshot(s=>{BOARD=s.docs.map(d=>Object.assign({id:d.id},JSON.parse(JSON.stringify(d.data()))));BOARD_READY=true;settleLeague();linkRecompute();if((TAB==='rank'||TAB==='team')&&!SUB&&!$('#layer').innerHTML)render()},()=>{})}catch(e){}
   }
   READY=true;normRank();migrate();applyUI();rollover();if(MODE!=='db')settleLeague();saveLocal();ENTER=true;await SPLASH;render();
-  if(!S.onboarded)openOnboarding();
+  if(!S.onboarded)openOnboarding();else maybeAskUpSetup();
 }
 function save(){saveLocal();pushStateToSW();if(MODE!=='db')return;clearTimeout(saveT);saveT=setTimeout(flush,700)}
 function flush(){
@@ -1367,7 +1369,7 @@ function flush(){
   writeChain=writeChain.then(()=>DB.doc('data/users/'+UID+'/state').set(body)).catch(e=>{
     if(e&&e.code==='invalid_argument'){MODE='local';renderBanner()}
   });
-  const b={dd:S.day.d,dn:S.day.done.length,nick:S.nick||'Mitra',sq:mySq(),sqn:(S.mentorName||'').slice(0,40),xp:S.xp,lvl:levelOf(S.xp).lvl,wk:S.wk,wxp:S.wxp,mk:S.mk,mxp:S.mxp,rank:dispRank(),st:S.streak,b:S.badges.length,g:gameTops(),pwk:S.pwk||'',pwxp:S.pwxp||0,lt:ligaOf().t,ltw:ligaOf().wk,ltp:ligaOf().tp??ligaOf().t,ltpw:ligaOf().pw||'',av:S.av||{},jn:S.joined||'',rv:S.rv||'',fd:S.fd||'',...boardProg()};
+  const b={dd:S.day.d,dn:S.day.done.length,nick:S.nick||'Mitra',sq:mySq(),sqn:(S.mentorName||'').slice(0,40),xp:S.xp,lvl:levelOf(S.xp).lvl,wk:S.wk,wxp:S.wxp,mk:S.mk,mxp:S.mxp,rank:dispRank(),st:S.streak,b:S.badges.length,g:gameTops(),pwk:S.pwk||'',pwxp:S.pwxp||0,lt:ligaOf().t,ltw:ligaOf().wk,ltp:ligaOf().tp??ligaOf().t,ltpw:ligaOf().pw||'',av:S.av||{},jn:S.joined||'',mh:idKey(S.idhni),uh:idKey(S.upId),rk:S.rank,rv:S.rv||'',fd:S.fd||'',...boardProg()};
   const mt=metricsBody();const sig=JSON.stringify(b)+JSON.stringify(mt);
   if(sig!==boardSig&&S.onboarded){boardSig=sig;writeChain=writeChain.then(()=>DB.doc('board/'+UID).set(Object.assign({ts:Date.now()},b))).then(()=>DB.doc('metrics/'+UID).set(mt)).catch(()=>{})}
 }
@@ -1378,13 +1380,13 @@ function boardProg(){const p=nextRankProgress();return p.done?{np:100,nx:''}:{np
 // Aktif bila window.HNI_API berisi URL Web App (diisi di config.js). Meniru antarmuka db artifact
 // (doc/collection, get/set/onSnapshot) sehingga modul lain tidak perlu diubah.
 const API_URL=(typeof window!=='undefined'&&window.HNI_API)||'';
-const APIS={token:'',uid:'',admin:false,id:''};let API_STATE=null,API_SHARED={board:[],feed:{},squad:[],app:null,mod:{}},API_ANS={},API_W={},API_T=0,API_POLL=0,API_ADMIN=null;
-const API_LIS={board:[],feed:[],squad:[],app:[],mod:[],ans:[]};
+const APIS={token:'',uid:'',admin:false,id:''};let API_STATE=null,API_SHARED={board:[],feed:{},squad:[],app:null,mod:{}},API_ANS={},API_RANS={},API_W={},API_T=0,API_POLL=0,API_ADMIN=null;
+const API_LIS={board:[],feed:[],squad:[],app:[],mod:[],ans:[],rans:[]};
 async function apiCall(body){const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body),redirect:'follow'});return r.json()}
 function apiEmit(){const s=API_SHARED;const docs=l=>({docs:l.map(x=>({id:x.id,data:()=>x})),forEach(f){this.docs.forEach(f)}});
   API_LIS.board.forEach(f=>f(docs((s.board||[]).slice().sort((a,b)=>(b.xp||0)-(a.xp||0)))));API_LIS.feed.forEach(f=>f(docs(Object.values(s.feed||{}))));API_LIS.squad.forEach(f=>f(docs(s.squad||[])));
-  API_LIS.app.forEach(f=>f({exists:!!s.app,data:()=>s.app}));API_LIS.mod.forEach(f=>f({exists:true,data:()=>s.mod||{}}));API_LIS.ans.forEach(f=>f({exists:true,data:()=>({ans:API_ANS})}))}
-function apiTake(res){if(!res||!res.ok)return res;if(res.shared)API_SHARED=res.shared;if(res.redeemAns)API_ANS=res.redeemAns;if(res.admin!=null){APIS.admin=!!res.admin;CAN_ADMIN=APIS.admin}apiEmit();return res}
+  API_LIS.app.forEach(f=>f({exists:!!s.app,data:()=>s.app}));API_LIS.mod.forEach(f=>f({exists:true,data:()=>s.mod||{}}));API_LIS.ans.forEach(f=>f({exists:true,data:()=>({ans:API_ANS})}));API_LIS.rans.forEach(f=>f({exists:true,data:()=>({ans:API_RANS})}))}
+function apiTake(res){if(!res||!res.ok)return res;if(res.shared)API_SHARED=res.shared;if(res.redeemAns)API_ANS=res.redeemAns;if(res.rankAns)API_RANS=res.rankAns;if(res.admin!=null){APIS.admin=!!res.admin;CAN_ADMIN=APIS.admin}apiEmit();return res}
 async function apiSync(extra){const w=API_W;API_W={};try{const res=await apiCall(Object.assign({a:'sync',token:APIS.token,w},extra||{}));if(res&&res.err==='auth'){apiLogout(true);return res}return apiTake(res)}catch(e){Object.keys(w).forEach(k=>{if(!API_W[k])API_W[k]=w[k]});return {ok:false,err:'net'}}}
 function apiQueue(k,v){API_W[k]=v;clearTimeout(API_T);API_T=setTimeout(apiSync,1500)}
 function apiStartPoll(){clearInterval(API_POLL);API_POLL=setInterval(()=>{if(document.visibilityState==='visible')apiSync()},60000);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')apiSync()})}
@@ -1395,15 +1397,15 @@ const API_DB={
     return{
       async get(){if(path.startsWith('data/users/'))return{exists:!!API_STATE,data:()=>API_STATE};if(c==='feed'){const d=(API_SHARED.feed||{})[id];return{exists:!!d,data:()=>d}}if(c==='config'){const d=id==='app'?API_SHARED.app:API_SHARED.mod;return{exists:!!d,data:()=>d}}return{exists:false,data:()=>null}},
       async set(body){if(path.startsWith('data/users/')){apiQueue('state',body);return}
-        if(mine&&['board','feed','metrics','reports','redeem','squad'].includes(c)){apiQueue(c,body);return}
-        if(path==='config/app'||path==='config/mod'||path==='feed/tim-hni-quest'||c==='redeemAns')return apiAdminSet(path,body);
+        if(mine&&['board','feed','metrics','reports','redeem','squad','rankreq'].includes(c)){apiQueue(c,body);return}
+        if(path==='config/app'||path==='config/mod'||path==='feed/tim-hni-quest'||c==='redeemAns'||c==='rankAns')return apiAdminSet(path,body);
         throw {code:'permission'}},
       async delete(){},
-      onSnapshot(cb){const k=path==='config/app'?'app':path==='config/mod'?'mod':c==='redeemAns'?'ans':null;if(k){API_LIS[k].push(cb);apiEmit()}return()=>{}}
+      onSnapshot(cb){const k=path==='config/app'?'app':path==='config/mod'?'mod':c==='redeemAns'?'ans':c==='rankAns'?'rans':null;if(k){API_LIS[k].push(cb);apiEmit()}return()=>{}}
     }},
   collection(p){let W=null;const q={orderBy(){return q},limit(){return q},where(f,op,v){W=[f,v];return q},
     onSnapshot(cb){const fn=W?(snap=>{const docs=snap.docs.filter(d=>(d.data()||{})[W[0]]===W[1]);cb({docs,forEach(g){docs.forEach(g)}})}):cb;if(API_LIS[p]){API_LIS[p].push(fn);apiEmit()}return()=>{}},
-    async get(){const d=await apiAdminData();const L={metrics:d.metrics,reports:d.reports,redeem:d.redeem,redeemAns:d.redeemAns,board:d.board}[p]||[];return{docs:L.map(x=>({id:x.id,data:()=>x}))}}};return q}
+    async get(){const d=await apiAdminData();const L={metrics:d.metrics,reports:d.reports,redeem:d.redeem,redeemAns:d.redeemAns,board:d.board,rankreq:d.rankreq,rankAns:d.rankAns}[p]||[];return{docs:L.map(x=>({id:x.id,data:()=>x}))}}};return q}
 };
 function apiLogout(expired){try{localStorage.removeItem('hniquest:tok')}catch(e){}if(expired){toast('Sesi berakhir, silakan masuk lagi.')}setTimeout(()=>location.reload(),expired?1200:0)}
 // layar masuk / daftar (ID HNI + PIN 6 angka)
@@ -1615,6 +1617,7 @@ function viewHome(){
     ${streakRisk?`<p class="pwarn small">Streak ${S.streak} hari-mu menunggu. Satu misi saja cukup biar nggak putus.${S.shield?` Kamu punya ${S.shield} perisai streak.`:''}</p>`:''}
   </section>
   ${sharePromptCard()}
+  ${upSetupCard()}
   ${heroCard()}
   ${mentorCard()}
   ${mentorEntryCard()}
@@ -1623,7 +1626,7 @@ function viewHome(){
   ${profileQuestCard()}
   ${edCheckCard()}
 
-  ${eligRank?`<section class="section"><div class="celebrate stack"><span class="eyebrow" style="color:#2A1A00">${promoHit?'Promo jalur cepat terpenuhi!':'Syarat terpenuhi!'}</span><h2>Kamu siap jadi ${esc(eligRank.n)}</h2><p class="small">Cek AVO untuk memastikan, lalu perbarui peringkatmu di Profil dan klaim +300 XP.</p><button class="btn" data-act="profile">Perbarui peringkat</button></div></section>`:''}
+  ${eligRank?`<section class="section"><div class="celebrate stack"><span class="eyebrow" style="color:#2A1A00">${promoHit?'Promo jalur cepat terpenuhi!':'Syarat terpenuhi!'}</span><h2>Kamu siap jadi ${esc(eligRank.n)}</h2><p class="small">Cek AVO untuk memastikan, lalu perbarui peringkatmu ke admin. Setelah disetujui kamu dapat +300 XP.</p><button class="btn" data-act="rankreq" data-rq-to="${eligRank.c}">${rankReqPending()?'Lihat status pengajuan':'Ajukan kenaikan pangkat'}</button></div></section>`:''}
   ${S.onboarded&&(!S.age||!S.gender)?`<section class="section"><button class="softrow" data-act="profile">${ico('star')}<span class="grow small"><b>Bikin misimu lebih personal.</b> Isi umur dan gender di Profil.</span><span class="link">Isi</span></button></section>`:''}
 
   <section class="section">
@@ -1880,7 +1883,7 @@ function productSelect(id,sel){return `<div class="psel"><img class="pimg" id="$
 
 function openOnboarding(){
   // Onboarding singkat: 2 langkah. Data lain diisi belakangan lewat Quest Lengkapi Profil (berhadiah XP).
-  let step=0;const d={idhni:S.idhni||'',nick:S.nick,ageNum:S.ageNum||0,age:S.age||'',gender:S.gender||'',fs:(S.ui&&S.ui.fs)||'',simple:!!(S.ui&&S.ui.simple),rank:S.rank||'MB10',akum:S.akum||0,g1:g1Of(S),adv:advOf(),bulanan:bulananNow(),gelar:gelarNow()};
+  let step=0;const d={idhni:S.idhni||'',nick:S.nick,ageNum:S.ageNum||0,age:S.age||'',gender:S.gender||'',fs:(S.ui&&S.ui.fs)||'',simple:!!(S.ui&&S.ui.simple),rank:S.rank||'MB10',akum:S.akum||0,upId:S.upId||'',upName:S.upName||'',g1l:JSON.parse(JSON.stringify(S.g1l||[])),adv:advOf(),bulanan:bulananNow(),gelar:gelarNow()};
   const senior=()=>d.age==='matang'||d.age==='senior';
   const draw=()=>{
     const steps=[
@@ -1889,11 +1892,13 @@ function openOnboarding(){
        <div class="field"><label for="ob-nick">Nama panggilan</label><input class="input" id="ob-nick" maxlength="24" value="${esc(d.nick)}" placeholder="mis. Rara"></div>
        <div class="row" style="align-items:flex-end"><div class="field" style="flex:0 0 132px"><label for="ob-age">Umur</label><input class="input num" id="ob-age" type="number" inputmode="numeric" min="5" max="99" value="${d.ageNum||''}" placeholder="mis. 25" style="padding-left:14px;padding-right:10px"></div><div class="field grow"><label>Gender</label><div class="pills" id="ob-gen">${[['L','Laki-laki'],['P','Perempuan']].map(([k,t])=>`<button class="pill" data-ob-gen="${k}" aria-pressed="${d.gender===k}">${t}</button>`).join('')}</div></div></div>
        <span class="small muted">Umur & gender dipakai supaya misi, bahasa, dan ide produknya pas buatmu.</span>`,
-      `<span class="eyebrow">Posisimu sekarang</span><h1>Pangkat & tim</h1><p class="muted">Isi sesuai AVO supaya misi, peta, dan badge-mu langsung pas. Bisa diubah kapan saja di Profil.</p>
-       <div class="field"><label for="ob-rank">Pangkat saat ini</label><select class="input" id="ob-rank">${RANKS.slice(0,PERM_MAX+1).map(r=>`<option value="${r.c}" ${d.rank===r.c?'selected':''}>${esc(r.n)}</option>`).join('')}</select></div>
+      `<span class="eyebrow">Posisimu sekarang</span><h1>Upline, pangkat & tim</h1><p class="muted">Isi sesuai AVO supaya misi, peta, badge, dan progres upline-mu langsung pas.</p>
+       <div class="row" style="gap:10px;align-items:flex-end"><div class="field grow"><label for="ob-up">ID HNI Upline</label><input class="input num" id="ob-up" inputmode="numeric" maxlength="8" value="${esc(d.upId)}" placeholder="8 digit"></div><div class="field grow"><label for="ob-upn">Nama Upline</label><input class="input" id="ob-upn" maxlength="40" value="${esc(d.upName)}" placeholder="mis. Bu Siti"></div></div>
+       <span class="small muted" style="margin-top:-6px">Upline = yang mensponsorimu langsung. Saat kamu naik pangkat, progres upline-mu ikut terbarui otomatis.</span>
+       <div class="field"><label for="ob-rank">Pangkat saat ini</label><select class="input" id="ob-rank">${RANKS.slice(0,PERM_MAX+1).map(r=>`<option value="${r.c}" ${d.rank===r.c?'selected':''}>${esc(r.n)}</option>`).join('')}</select><span class="small" style="color:var(--coral)">Pangkat dikunci setelah ini. Perubahan berikutnya lewat pengajuan yang disetujui admin.</span></div>
        <div class="field" id="ob-akumw" ${rankIdx(d.rank)<3?'':'hidden'}><label for="ob-akum">Akumulasi poin pribadi + grup</label><input class="input num" id="ob-akum" type="number" min="0" inputmode="numeric" value="${d.akum||''}" placeholder="0"><span class="small muted">Dipakai untuk menghitung jarak ke Mitra Baru 14%, 17%, dan Manager.</span></div>
        <div id="ob-advw" ${rankIdx(d.rank)>=PERM_MAX?'':'hidden'}>${advHtml('ob',d.adv,d.bulanan,d.gelar)}</div>
-       <div class="field"><label>Tim Generasi 1 (maks. 10 orang)</label><span class="small muted">Berapa orang yang kamu ajak langsung, dan pangkatnya apa? Belum punya tim? Biarkan 0.</span><div id="g1box"></div></div>`,
+       <div class="field"><label>Tim Generasi 1 (maks. ${G1_MAX} orang)</label><span class="small muted">Siapa saja yang kamu sponsori langsung? Isi ID HNI dan pangkatnya. Belum punya tim? Lewati saja.</span><div id="g1box"></div></div>`,
       `<span class="eyebrow">Biar nyaman dibaca</span><h1>Pilih tampilanmu</h1><p class="muted">${senior()?'Kami sarankan huruf lebih besar dan tampilan simpel. ':''}Bisa diubah kapan saja di Profil.</p>
        <div class="field"><label>Ukuran huruf</label><div class="pills">${[['','Normal'],['l','Besar'],['xl','Sangat besar']].map(([k,t])=>`<button class="pill" data-ob-fs="${k}" aria-pressed="${d.fs===k}">${t}</button>`).join('')}</div></div>
        <button class="softrow" id="ob-simple">${ico('check')}<span class="grow small"><b>Mode Simpel</b><br><span class="muted">Tampilan lebih lega & ringkas: tombol lebih besar, animasi dikurangi. Semua fitur tetap bisa dibuka.</span></span><span class="tag ${d.simple?'soft':''}" id="ob-simtag">${d.simple?'Nyala':'Mati'}</span></button>
@@ -1902,8 +1907,8 @@ function openOnboarding(){
     sheet(`<div class="stack">${steps[step]}<div class="dots">${steps.map((_,i)=>`<i class="${i===step?'on':''}"></i>`).join('')}</div><div class="row">${step?'<button class="btn ghost grow" id="ob-back">Kembali</button>':''}<button class="btn grow" id="ob-next">${step===steps.length-1?'Mulai main':'Lanjut'}</button></div></div>`,()=>{
       const g=id=>{const e=$('#'+id);return e?e.value:null};
       const grab=()=>{if(step===0){d.idhni=normId(g('ob-id'));d.nick=(g('ob-nick')||'').trim()}
-        if(step===1){d.rank=g('ob-rank');d.akum=rankIdx(d.rank)<3?Math.max(0,+g('ob-akum')||0):0;if(rankIdx(d.rank)>=PERM_MAX){d.adv=readAdv('ob');d.bulanan=g('ob-bul')||'';d.gelar=g('ob-gel')||''}else{d.bulanan='';d.gelar=''}}};
-      const gb=$('#g1box');if(gb)bindG1(gb,d.g1);
+        if(step===1){d.upId=normId(g('ob-up'));d.upName=(g('ob-upn')||'').trim();d.rank=g('ob-rank');d.akum=rankIdx(d.rank)<3?Math.max(0,+g('ob-akum')||0):0;if(rankIdx(d.rank)>=PERM_MAX){d.adv=readAdv('ob');d.bulanan=g('ob-bul')||'';d.gelar=g('ob-gel')||''}else{d.bulanan='';d.gelar=''}}};
+      const gb=$('#g1box');if(gb)bindG1List(gb,d.g1l);const upEl=$('#ob-up');if(upEl){upEl.oninput=()=>{upEl.value=upEl.value.replace(/\D/g,'').slice(0,8)};upEl.onblur=()=>{const n=normId(upEl.value);if(n)upEl.value=n}}
       const orank=$('#ob-rank');if(orank)orank.onchange=()=>{const i=rankIdx(orank.value);$('#ob-akumw').hidden=i>=3;$('#ob-advw').hidden=i<PERM_MAX};
       const ageEl=$('#ob-age');if(ageEl)ageEl.oninput=()=>{d.ageNum=Math.max(0,Math.min(99,+ageEl.value||0));d.age=bandFromAge(d.ageNum)};
       document.querySelectorAll('[data-ob-gen]').forEach(b=>b.onclick=()=>{d.gender=b.dataset.obGen;document.querySelectorAll('[data-ob-gen]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
@@ -1913,8 +1918,8 @@ function openOnboarding(){
       $('#ob-next').onclick=()=>{grab();
         if(step===0){if(!d.idhni){$('#ob-id').focus();toast('Isi ID HNI dulu ya (8 digit)');return}if(!d.nick){$('#ob-nick').focus();toast('Isi nama panggilan dulu ya');return}if(!d.age||!d.gender){toast('Isi umur dan pilih gender dulu ya');return}
           if(senior()&&!S.ui){d.fs=d.fs||'l';d.simple=true}step=1;draw();return}
-        if(step===1){step=2;draw();return}
-        Object.assign(S,{age:d.age,ageNum:d.ageNum,gender:d.gender,idhni:d.idhni,nick:d.nick,onboarded:true,ui:{fs:d.fs,simple:d.simple},rank:d.rank,akum:d.akum,g1:Object.assign({},d.g1),adv:Object.assign({},S.adv||{},d.adv),bulanan:d.bulanan,bulananM:mkey(),gelar:d.gelar,gelarP:ledPeriod().k,pq:Object.assign({},S.pq||{},{posisi:dkey(),tim:dkey()})});applyUI();S.maxRank=peakIdx();closeSheet();award(20,'Selamat datang!',{t:'start'})};
+        if(step===1){if(!d.upId){$('#ob-up').focus();toast('Isi ID HNI upline-mu dulu ya');return}if(d.upId===d.idhni){toast('ID upline tidak boleh sama dengan ID-mu');return}if(!d.upName){$('#ob-upn').focus();toast('Isi nama upline-mu dulu ya');return}const ge=g1Validate(d.g1l,d.idhni);if(ge){toast(ge);return}step=2;draw();return}
+        Object.assign(S,{age:d.age,ageNum:d.ageNum,gender:d.gender,idhni:d.idhni,nick:d.nick,onboarded:true,ui:{fs:d.fs,simple:d.simple},rank:d.rank,rankLock:true,upId:d.upId,upName:d.upName,g1l:g1Clean(d.g1l),akum:d.akum,adv:Object.assign({},S.adv||{},d.adv),bulanan:d.bulanan,bulananM:mkey(),gelar:d.gelar,gelarP:ledPeriod().k,pq:Object.assign({},S.pq||{},{posisi:dkey(),tim:dkey()})});applyUI();S.maxRank=peakIdx();closeSheet();award(20,'Selamat datang!',{t:'start'});linkListen()};
       const bk=$('#ob-back');if(bk)bk.onclick=()=>{grab();step--;draw()};
     })};
   draw();
@@ -1938,14 +1943,14 @@ function openPQ(k){
     <p class="note">Squad dikunci dengan ID Mentor LED (unik). Semua mitra dengan ID mentor yang sama otomatis satu squad. Belum tahu? Tanyakan ke upline-mu.</p>
     <button class="btn block" id="q-ok">Simpan</button></div>`,()=>{const m=$('#q-mid');m.oninput=()=>{m.value=m.value.replace(/\D/g,'').slice(0,8)};$('#q-ok').onclick=()=>{const id=normId(m.value);if(!id){toast('Isi ID Mentor LED dulu ya');return}S.mentorId=id;S.mentorName=$('#q-mn').value.trim();pqFinish('squad','Squad tersimpan')}});
   if(k==='posisi'){let rank=S.rank;sheet(`<div class="stack"><span class="eyebrow">Posisimu sekarang</span><h2>Pangkat & poin</h2><p class="small muted">Cek di AVO kalau ragu.</p>
-    <div class="field"><label for="q-rank">Pangkat saat ini</label><select class="input" id="q-rank">${RANKS.slice(0,PERM_MAX+1).map(r=>`<option value="${r.c}" ${rank===r.c?'selected':''}>${esc(r.n)}</option>`).join('')}</select></div>
+    <div class="field"><label for="q-rank">Pangkat saat ini (terkunci)</label><select class="input" id="q-rank" disabled><option value="${rank}">${esc(RANKS[rankIdx(rank)].n)}</option></select></div>
     <div id="q-advw" ${rankIdx(rank)>=8?'':'hidden'}>${advHtml('q',advOf(),bulananNow(),gelarNow())}</div>
     <div class="field"><label for="q-akum">Akumulasi poin pribadi + grup</label><input class="input num" id="q-akum" type="number" min="0" inputmode="numeric" value="${S.akum||''}" placeholder="0"></div>
     <div class="field"><label for="q-reg">Wilayah harga</label><select class="input" id="q-reg"><option value="12" ${S.region==='12'?'selected':''}>Reg. 1 & 2</option><option value="3" ${S.region==='3'?'selected':''}>Reg. 3</option></select></div>
     <button class="btn block" id="q-ok">Simpan</button></div>`,()=>{$('#q-rank').onchange=()=>{$('#q-advw').hidden=rankIdx($('#q-rank').value)<8};
-      $('#q-ok').onclick=()=>{const nr=$('#q-rank').value;S.rank=nr;S.akum=Math.max(0,+$('#q-akum').value||0);S.region=$('#q-reg').value;
+      $('#q-ok').onclick=()=>{const nr=S.rank;S.akum=Math.max(0,+$('#q-akum').value||0);S.region=$('#q-reg').value;
         if(rankIdx(nr)>=8){S.adv=readAdv('q');S.bulanan=$('#q-bul').value;S.bulananM=mkey();S.gelar=$('#q-gel').value;S.gelarP=ledPeriod().k}else{S.bulanan='';S.gelar=''}pqFinish('posisi')}})}
-  if(k==='tim'){const G=g1Of(S);sheet(`<div class="stack"><span class="eyebrow">Tim Generasi 1</span><h2>Siapa yang kamu ajak langsung?</h2><div id="q-g1"></div><div class="row"><button class="btn ghost grow" id="q-none">Belum punya tim</button><button class="btn grow" id="q-ok">Simpan</button></div></div>`,()=>{bindG1($('#q-g1'),G);$('#q-none').onclick=()=>{S.g1=g1Of({});pqFinish('tim','Santai, tim akan tumbuh!')};$('#q-ok').onclick=()=>{S.g1=Object.assign({},G);pqFinish('tim')}})}
+  if(k==='tim'){const G=JSON.parse(JSON.stringify(S.g1l||[]));sheet(`<div class="stack"><span class="eyebrow">Tim Generasi 1</span><h2>Siapa yang kamu ajak langsung?</h2><div id="q-g1"></div><div class="row"><button class="btn ghost grow" id="q-none">Belum punya tim</button><button class="btn grow" id="q-ok">Simpan</button></div></div>`,()=>{bindG1List($('#q-g1'),G);$('#q-none').onclick=()=>{pqFinish('tim','Santai, tim akan tumbuh!')};$('#q-ok').onclick=()=>{const er=g1Validate(G);if(er){toast(er);return}S.g1l=g1Clean(G);pqFinish('tim');linkRecompute()}})}
   if(k==='impian')sheet(`<div class="stack"><span class="eyebrow">Niat & impian</span><h2>Kenapa kamu mulai?</h2><p class="small muted">Ini akan muncul saat kamu butuh semangat.</p>
     <textarea class="input" id="q-goal" maxlength="200" placeholder="mis. Bantu orang tua, punya bisnis halal sendiri, jadi ED sebelum 30 tahun">${esc(S.goal||'')}</textarea><button class="btn block" id="q-ok">Simpan</button></div>`,()=>{$('#q-ok').onclick=()=>{const v=$('#q-goal').value.trim();if(v.length<3){toast('Tulis sedikit dulu ya');return}S.goal=v;pqFinish('impian')}});
 }
@@ -1960,14 +1965,18 @@ function openProfile(){
   <div class="card stack"><span class="eyebrow">Tampilan</span>
     <div class="field"><label>Ukuran huruf</label><div class="pills">${[['','Normal'],['l','Besar'],['xl','Sangat besar']].map(([k,t])=>`<button class="pill" data-pf-fs="${k}" aria-pressed="${(S.ui&&S.ui.fs||'')===k}">${t}</button>`).join('')}</div></div>
     <button class="softrow" id="pf-simple">${ico('check')}<span class="grow small"><b>Mode Simpel</b><br><span class="muted">Tampilan lebih lega & ringkas. Semua fitur tetap ada.</span></span><span class="tag ${S.ui&&S.ui.simple?'soft':''}">${S.ui&&S.ui.simple?'Nyala':'Mati'}</span></button></div>
-  <div class="field"><label for="pf-id">ID HNI (8 digit)</label><input class="input num" id="pf-id" inputmode="numeric" maxlength="8" value="${esc(S.idhni||'')}"></div>
+  <div class="field"><label for="pf-id">ID HNI (8 digit)</label><input class="input num" id="pf-id" inputmode="numeric" maxlength="8" value="${esc(S.idhni||'')}" ${S.rankLock&&S.idhni?'disabled':''}>${S.rankLock&&S.idhni?'<span class="small muted">ID terkunci karena dipakai untuk menghubungkan upline dan Generasi 1.</span>':''}</div>
   <div class="row"><div class="field grow"><label for="pf-age">Umur</label><input class="input num" id="pf-age" type="number" min="5" max="99" value="${S.ageNum||''}" placeholder="tahun"></div><div class="field grow"><label for="pf-gen">Gender</label><select class="input" id="pf-gen"><option value="L" ${S.gender==='L'?'selected':''}>Laki-laki</option><option value="P" ${S.gender==='P'?'selected':''}>Perempuan</option></select></div></div>
   <div class="field"><label for="pf-nick">Nama panggilan</label><input class="input" id="pf-nick" maxlength="24" value="${esc(S.nick)}"></div>
   <div class="squadbox stack"><span class="eyebrow">Squad</span><div class="row"><div class="field grow"><label for="pf-mid">ID Mentor LED</label><input class="input num" id="pf-mid" inputmode="numeric" maxlength="8" value="${esc(S.mentorId||'')}"></div><div class="field grow"><label for="pf-mn">Nama Mentor LED</label><input class="input" id="pf-mn" maxlength="40" value="${esc(S.mentorName||'')}"></div></div><p class="note">Squad dikunci dengan ID HNI Mentor LED (unik). Ganti ID = pindah squad.</p></div>
-  <div class="field"><label for="pf-rank">Peringkat saat ini</label><select class="input" id="pf-rank">${RANKS.slice(0,PERM_MAX+1).map(r=>`<option value="${r.c}" ${S.rank===r.c?'selected':''}>${esc(r.n)}</option>`).join('')}</select></div>
+  <div class="card stack" style="gap:8px"><span class="eyebrow">Pangkat & upline (terkunci)</span>
+    <div class="row" style="gap:10px">${rankImg(S.rank,'md')}<div class="grow"><b>${esc(RANKS[rankIdx(S.rank)].n)}</b><br><span class="small muted">Upline: ${S.upId?`${esc(S.upName||'-')} · ${esc(S.upId)}`:'belum diisi'}</span></div></div>
+    ${S.upId?`<span class="small ${LINK.upRow?'':'muted'}" style="${LINK.upRow?'color:var(--brand)':''}">${uplineStatus()}</span>`:''}
+    ${rankReqPending()?`<span class="tag" style="align-self:flex-start">Pengajuan menunggu admin</span>`:S.rreq&&S.rreq.st==='ditolak'?`<span class="small warnt">Pengajuan terakhir ditolak${S.rreq.ans?': '+esc(S.rreq.ans):''}</span>`:''}
+    <button class="btn ghost block" data-act="rankreq">${rankReqPending()?'Lihat status pengajuan':S.upId?'Ajukan perubahan pangkat / upline':'Lengkapi data upline (sekali isi)'}</button></div>
   <div class="field" id="pf-akumw" ${rankIdx(S.rank)<3?'':'hidden'}><label for="pf-akum">Akumulasi poin pribadi + grup</label><input class="input num" id="pf-akum" type="number" min="0" value="${S.akum}"></div>
   <div id="pf-advw" ${rankIdx(S.rank)>=8?'':'hidden'}>${advHtml('pf',advOf(),bulananNow(),gelarNow())}</div>
-  <div class="field"><label>Pangkat Generasi 1 (maks. 10)</label><div id="pf-g1"></div></div>${rankIdx(S.rank)>=PERM_MAX?`<button class="softrow" data-act="jalur">${ico('chart')}<span class="grow small"><b>Kamu sudah ED.</b> Isi juga TPG tiap jalur bulan ini supaya app bisa cek GED/DED/CED.</span><span class="link">Isi</span></button>`:''}
+  <div class="field"><label>Generasi 1 (maks. ${G1_MAX})</label><div id="pf-g1"></div></div>${rankIdx(S.rank)>=PERM_MAX?`<button class="softrow" data-act="jalur">${ico('chart')}<span class="grow small"><b>Kamu sudah ED.</b> Isi juga TPG tiap jalur bulan ini supaya app bisa cek GED/DED/CED.</span><span class="link">Isi</span></button>`:''}
   <div class="field"><label for="pf-reg">Wilayah harga</label><select class="input" id="pf-reg"><option value="12" ${S.region==='12'?'selected':''}>Reg. 1 & 2</option><option value="3" ${S.region==='3'?'selected':''}>Reg. 3</option></select></div>
   <div class="field"><label for="pf-goal">Impianku</label><textarea class="input" id="pf-goal" maxlength="200">${esc(S.goal)}</textarea></div>
   <button class="btn block" id="pf-save">Simpan</button>
@@ -1981,7 +1990,7 @@ function openProfile(){
     L.querySelector('[data-close]').onclick=closeSheet;
     const pmid=$('#pf-mid');pmid.oninput=()=>{pmid.value=pmid.value.replace(/\D/g,'').slice(0,8)};pmid.onblur=()=>{const n=normId(pmid.value);if(n)pmid.value=n};
     const pid=$('#pf-id');pid.oninput=()=>{pid.value=pid.value.replace(/\D/g,'').slice(0,8)};pid.onblur=()=>{const n=normId(pid.value);if(n)pid.value=n};
-    const PG1=g1Of(S);bindG1($('#pf-g1'),PG1);$('#pf-rank').onchange=()=>{const i=rankIdx($('#pf-rank').value);$('#pf-advw').hidden=i<8;$('#pf-akumw').hidden=i>=3};
+    const PG1=JSON.parse(JSON.stringify(S.g1l||[]));bindG1List($('#pf-g1'),PG1);
     L.querySelectorAll('[data-pf-fs]').forEach(b=>b.onclick=()=>{S.ui=Object.assign({},S.ui,{fs:b.dataset.pfFs});applyUI();save();L.querySelectorAll('[data-pf-fs]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
     $('#pf-simple').onclick=()=>{S.ui=Object.assign({},S.ui,{simple:!(S.ui&&S.ui.simple)});applyUI();save();closeSheet();render();paintTabs();toast(S.ui.simple?'Mode Simpel nyala':'Mode Simpel mati')};
     const lo=$('#pf-logout');if(lo)lo.onclick=()=>{if(confirm('Keluar dari akun di HP ini?'))apiLogout()};
@@ -1989,10 +1998,10 @@ function openProfile(){
     $('#pf-resetn').onclick=()=>{$('#pf-resetc').hidden=true;$('#pf-reset').hidden=false};
     $('#pf-resety').onclick=resetAll;
     $('#pf-save').onclick=()=>{
-      const nr=$('#pf-rank').value;const ni=rankIdx(nr);
-      Object.assign(S,{ageNum:+$('#pf-age').value||S.ageNum,age:bandFromAge(+$('#pf-age').value)||S.age,gender:$('#pf-gen').value,idhni:normId($('#pf-id').value)||S.idhni,nick:$('#pf-nick').value.trim()||S.nick,mentorId:normId($('#pf-mid').value),mentorName:$('#pf-mn').value.trim(),rank:nr,akum:rankIdx(nr)<3?Math.max(0,+$('#pf-akum').value||0):0,g1:Object.assign({},PG1),adv:ni>=8?readAdv('pf'):advOf(),region:$('#pf-reg').value,goal:$('#pf-goal').value.trim()});
+      const er=g1Validate(PG1);if(er){toast(er);return}const nr=S.rank;const ni=rankIdx(nr);
+      Object.assign(S,{ageNum:+$('#pf-age').value||S.ageNum,age:bandFromAge(+$('#pf-age').value)||S.age,gender:$('#pf-gen').value,idhni:S.rankLock&&S.idhni?S.idhni:(normId($('#pf-id').value)||S.idhni),nick:$('#pf-nick').value.trim()||S.nick,mentorId:normId($('#pf-mid').value),mentorName:$('#pf-mn').value.trim(),akum:rankIdx(nr)<3?Math.max(0,+$('#pf-akum').value||0):0,g1l:g1Clean(PG1),adv:ni>=8?readAdv('pf'):advOf(),region:$('#pf-reg').value,goal:$('#pf-goal').value.trim()});
       if(ni>=8){S.bulanan=$('#pf-bul').value;S.bulananM=mkey();S.gelar=$('#pf-gel').value;S.gelarP=ledPeriod().k}else{S.bulanan='';S.gelar=''}
-      closeSheet();const pk=peakIdx();
+      closeSheet();linkRecompute();const pk=peakIdx();
       if(pk>S.maxRank){const steps=pk-S.maxRank;S.maxRank=pk;award(300*steps,'Naik ke '+RANKS[pk].n,{t:'rank',r:RANKS[pk].c})}else{checkBadges();save();render();toast('Profil tersimpan')}
     };
   });
@@ -2515,27 +2524,27 @@ function openReport(key){sheet(`<div class="stack"><span class="eyebrow">Laporka
   L.querySelectorAll('[data-why]').forEach(b=>b.onclick=()=>{S.reports=(S.reports||[]).filter(r=>r.key!==key).concat([{key,why:b.dataset.why,ts:Date.now()}]).slice(-50);save();
     if(MODE==='db'&&DB&&UID){const body={items:S.reports};writeChain=writeChain.then(()=>DB.doc('reports/'+UID).set(body)).catch(()=>{})}closeSheet();toast('Terima kasih, laporan terkirim')})})}
 // metrik: metrics/<uid> — ditulis bersama leaderboard, dibaca admin
-function metricsBody(){return{j:S.joined,act:(S.act||[]).slice(-90),evc:S.evc||{},f:{onb:!!S.onboarded,m1:missionCount()>0,pq:PQ_ITEMS.every(([k])=>pqDone(k)),sq:!!S.mentorId,st7:(S.best||0)>=7},gen:S.age||'',rank:S.rank,lv:levelOf(S.xp).lvl,ui:S.ui||{}}}
+function metricsBody(){return{j:S.joined,act:(S.act||[]).slice(-90),evc:S.evc||{},f:{onb:!!S.onboarded,up:!!S.upId,m1:missionCount()>0,pq:PQ_ITEMS.every(([k])=>pqDone(k)),sq:!!S.mentorId,st7:(S.best||0)>=7},gen:S.age||'',rank:S.rank,lv:levelOf(S.xp).lvl,ui:S.ui||{}}}
 
 // ---------- dasbor admin ----------
 let ADM={tab:'ringkas',data:null,loading:false,q:''};
 function openAdmin(){if(!CAN_ADMIN){toast('Khusus admin');return}closeSheet();stopGame();SUB='admin';ENTER=true;render();admLoad();window.scrollTo({top:0})}
-async function admLoad(){if(!DB){ADM.data={board:BOARD,feed:FEED,metrics:[],reports:[],redeem:[],ans:{}};render();return}ADM.loading=true;render();
+async function admLoad(){if(!DB){ADM.data={board:BOARD,feed:FEED,metrics:[],reports:[],redeem:[],ans:{},rankreq:[],rankans:{}};render();return}ADM.loading=true;render();
   const col=async p=>{try{const s=await DB.collection(p).limit(1000).get();return s.docs.map(d=>Object.assign({id:d.id},JSON.parse(JSON.stringify(d.data()))))}catch(e){return []}};
-  const [metrics,reports,redeem,ans]=await Promise.all([col('metrics'),col('reports'),col('redeem'),col('redeemAns')]);
-  ADM.data={board:BOARD,feed:FEED,metrics,reports,redeem,ans:Object.fromEntries(ans.map(a=>[a.id,a.ans||{}]))};ADM.loading=false;render()}
+  const [metrics,reports,redeem,ans,rankreq,rankans]=await Promise.all([col('metrics'),col('reports'),col('redeem'),col('redeemAns'),col('rankreq'),col('rankAns')]);
+  ADM.data={board:BOARD,feed:FEED,metrics,reports,redeem,ans:Object.fromEntries(ans.map(a=>[a.id,a.ans||{}])),rankreq,rankans:Object.fromEntries(rankans.map(a=>[a.id,a.ans||{}]))};ADM.loading=false;render()}
 async function admSaveMod(patch){const next=Object.assign({},MODC,patch);try{await DB.doc('config/mod').set(next);MODC=next;toast('Tersimpan')}catch(e){toast('Gagal menyimpan: '+(e.code||'cek akses'))}render()}
 function toggleIn(list,v){list=(list||[]).slice();const i=list.indexOf(v);if(i>=0)list.splice(i,1);else list.push(v);return list}
-function viewAdmin(){const D=ADM.data;const tabs=[['ringkas','Ringkasan'],['kabar','Kabar'],['lapor','Laporan'],['user','Pengguna'],['koin','Koin'],['atur','Pengaturan']];
+function viewAdmin(){const D=ADM.data;const tabs=[['ringkas','Ringkasan'],['pangkat','Pangkat'],['kabar','Kabar'],['lapor','Laporan'],['user','Pengguna'],['koin','Koin'],['atur','Pengaturan']];
   const head=`<div class="row" style="margin-top:6px"><button class="iconbtn" data-act="admback" aria-label="Kembali"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5l-7 7 7 7"/></svg></button><div class="grow"><span class="eyebrow">Khusus admin</span><h2>Dasbor Admin</h2></div><button class="btn small ghost" data-act="admreload">Muat ulang</button></div>
   <div class="seg admseg" role="group" style="overflow-x:auto">${tabs.map(([k,t])=>`<button data-admtab="${k}" aria-pressed="${ADM.tab===k}">${t}</button>`).join('')}</div>`;
   if(!D||ADM.loading)return head+'<div class="empty">Memuat data…</div>';
-  return head+({ringkas:admSummary,kabar:admFeed,lapor:admReports,user:admUsers,koin:admCoins,atur:admSettings})[ADM.tab](D)}
+  return head+({ringkas:admSummary,pangkat:admRanks,kabar:admFeed,lapor:admReports,user:admUsers,koin:admCoins,atur:admSettings})[ADM.tab](D)}
 // --- ringkasan & metrik (no. 9)
 function admSummary(D){const t=dkey();const M=D.metrics;const B=D.board;const days=k=>dkey(addDays(new Date(),-k));
   const active=n=>M.filter(m=>(m.act||[]).some(d=>d>days(n))).length;const dau=M.filter(m=>(m.act||[]).includes(t)).length;
   const ret=n=>{const c=M.filter(m=>m.j&&m.j<=days(n));if(!c.length)return null;const ok=c.filter(m=>{const d=dkey(addDays(parseD(m.j),n));const d2=dkey(addDays(parseD(m.j),n+1));return (m.act||[]).some(x=>x===d||x===d2)}).length;return{p:Math.round(ok/c.length*100),n:c.length}};
-  const fn=[['onb','Selesai onboarding'],['m1','Misi pertama'],['sq','Gabung squad'],['pq','Profil lengkap'],['st7','Streak 7 hari']].map(([k,l])=>[l,M.filter(m=>m.f&&m.f[k]).length]);const f0=Math.max(1,fn[0][1]);
+  const fn=[['onb','Selesai onboarding'],['up','Isi upline'],['m1','Misi pertama'],['sq','Gabung squad'],['pq','Profil lengkap'],['st7','Streak 7 hari']].map(([k,l])=>[l,M.filter(m=>m.f&&m.f[k]).length]);const f0=Math.max(1,fn[0][1]);
   const ev={};M.forEach(m=>Object.entries(m.evc||{}).forEach(([k,v])=>{ev[k]=(ev[k]||0)+v}));
   const mis=Object.keys(MISSION_DEF).map(k=>[MISSION_DEF[k].t,ev[k]||0]).sort((a,b)=>b[1]-a[1]);const mx=Math.max(1,...mis.map(x=>x[1]));
   const gen={};M.forEach(m=>{gen[m.gen||'?']=(gen[m.gen||'?']||0)+1});
@@ -2958,6 +2967,138 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-mttab],[da
   if(a==='nama'){sheet(`<div class="stack"><h2>Nama squad</h2><input class="input" id="sqn-t" maxlength="30" value="${esc(squadDoc().nama||'')}" placeholder="mis. Squad Berkah Jaya"><p class="note">Tampil di Beranda anggota dan di rekap. Anggota tetap mengisi Nama Mentor LED di Profil masing-masing untuk papan Antar Squad.</p><button class="btn block" id="sqn-ok">Simpan</button></div>`,()=>{$('#sqn-ok').onclick=()=>{squadSave({nama:$('#sqn-t').value.trim().slice(0,30)});closeSheet()}});return}
 },true);
 
+// ===== js/upline.js =====
+// ---------- Upline, Generasi 1 ber-ID, dan kunci pangkat ----------
+// • Saat onboarding mitra mengisi ID & nama Upline, pangkat, dan daftar Generasi 1 (ID + pangkat, maks. 20).
+// • Pencocokan tanpa menampilkan ID: setiap mitra menulis kode ID-nya sendiri (mh) dan kode ID upline (uh) di papan.
+//   Upline menemukan downline-nya dari kode itu, sehingga pangkat Generasi 1 ikut terbarui saat downline naik pangkat.
+// • Pangkat tetap (MB–ED) dikunci setelah onboarding. Perubahan lewat pengajuan yang disetujui admin.
+//   Pengajuan: rankreq/<uid> (dibaca admin). Jawaban admin: rankAns/<uid> = {ans:{<idPengajuan>:{ok,note,ts}}}.
+let LINK={byKey:{},down:[],upRow:null,subs:{}},RANK_ANS={};
+const idKey=id=>{id=normId(id);if(!id)return '';let h=2166136261;for(const ch of 'hniu:'+id){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)>>>0}return 'U'+h.toString(36)};
+const G1_SHORT={ED:'ED ke atas',SD:'Sr. Director',D:'Director',EM:'Exec. Manager',SM:'Sr. Manager',M:'Manager',MB:'Mitra Baru'};
+function g1Code(c){if(!c)return 'MB';const i=rankIdx(c);if(i>=PERM_MAX)return 'ED';return ['M','SM','EM','D','SD'].includes(c)?c:'MB'}
+const g1KeyOf=e=>e.k||idKey(e.id);
+function g1Eff(list){return (list||[]).map(e=>{const L=LINK.byKey[g1KeyOf(e)];return L?Object.assign({},e,{r:g1Code(L.rk),link:L}):e})}
+
+// --- editor daftar Generasi 1 (dipakai di onboarding & Profil)
+function g1ListHtml(list){const n=list.length;const own=idKey(S.idhni);
+  return `<div class="stack" style="gap:8px">${list.map((e,i)=>{const k=g1KeyOf(e);const L=k&&LINK.byKey[k];const r=L?g1Code(L.rk):e.r;const dup=k&&list.findIndex(x=>g1KeyOf(x)===k)!==i;
+    const msg=L?`<span class="g1st ok">${ico('check')} Terhubung: ${esc(L.nick||'Mitra')}${e.auto?' (mendaftar dengan ID-mu sebagai upline)':''}</span>`:!e.id&&!e.k?'<span class="g1st warnt">Isi ID HNI-nya</span>':dup?'<span class="g1st warnt">ID ganda</span>':k&&k===own?'<span class="g1st warnt">Ini ID-mu sendiri</span>':'';
+    return `<div class="g1e"><span class="g1img"><img src="${RKIMG[r]}" alt="${r}"></span>${e.auto&&!e.id?`<input class="input num" value="Otomatis" disabled>`:`<input class="input num" data-g1id="${i}" inputmode="numeric" maxlength="8" value="${esc(e.id||'')}" placeholder="ID HNI" aria-label="ID HNI Generasi 1 ke-${i+1}">`}
+      <select class="input" data-g1r="${i}" ${L?'disabled':''} aria-label="Pangkat Generasi 1 ke-${i+1}">${G1_RANKS.map(([c])=>`<option value="${c}" ${r===c?'selected':''}>${G1_SHORT[c]}</option>`).join('')}</select><button class="g1btn" data-g1del="${i}" aria-label="Hapus baris">×</button>${msg}</div>`}).join('')||'<p class="small muted" style="margin:0">Belum ada. Belum punya tim? Lewati saja.</p>'}
+    <button class="btn ghost block" data-g1add ${n>=G1_MAX?'disabled':''}>+ Tambah Generasi 1 (${n}/${G1_MAX})</button>
+    <p class="note">Isi <b>ID HNI dan pangkat</b> setiap mitra Generasi 1 (yang kamu sponsori langsung), maksimal ${G1_MAX} orang. Yang sudah memakai HNI Quest ditandai <b>✓ Terhubung</b>; yang belum akan terhubung otomatis saat dia mendaftar, lalu pangkatnya ikut terbarui setiap dia naik pangkat. ID HNI tidak ditampilkan ke mitra lain.</p></div>`}
+function bindG1List(box,list,after){let busy=false,t=0;const now=()=>{if(busy)return;busy=true;try{box.innerHTML=g1ListHtml(list)}finally{busy=false}after&&after()};const draw=()=>{clearTimeout(t);t=setTimeout(now,0)};now();
+  box.oninput=e=>{const t=e.target;if(t.dataset.g1id!=null){t.value=t.value.replace(/\D/g,'').slice(0,8)}};
+  box.onchange=e=>{const t=e.target;if(t.dataset.g1id!=null){const i=+t.dataset.g1id;list[i].id=normId(t.value);delete list[i].k;draw()}if(t.dataset.g1r!=null){list[+t.dataset.g1r].r=t.value}};
+  box.onclick=e=>{const a=e.target.closest('[data-g1add]'),d=e.target.closest('[data-g1del]');
+    if(a&&!a.disabled){if(list.length>=G1_MAX){toast(`Maksimal ${G1_MAX} orang`);return}list.push({id:'',r:'MB'});clearTimeout(t);now();const ins=box.querySelectorAll('[data-g1id]');if(ins.length)ins[ins.length-1].focus()}
+    if(d){list.splice(+d.dataset.g1del,1);clearTimeout(t);now()}}}
+function g1Validate(list,ownId){const own=idKey(ownId||S.idhni||'');const seen={};
+  for(const e of list){if(e.auto&&e.k)continue;if(!e.id)return 'Isi ID HNI setiap Generasi 1, atau hapus barisnya.';const k=idKey(e.id);if(k===own)return 'ID Generasi 1 tidak boleh sama dengan ID-mu.';if(seen[k])return 'Ada ID Generasi 1 yang ganda.';seen[k]=1}
+  return ''}
+function g1Clean(list){return list.filter(e=>e.id||e.k).map(e=>{const o={r:e.r||'MB'};if(e.id)o.id=normId(e.id);if(e.k&&!e.id){o.k=e.k;o.auto=true}return o}).slice(0,G1_MAX)}
+
+// --- sinkron data upline/downline dari papan
+function linkListen(){if(!DB||MODE!=='db')return;const me=idKey(S.idhni),up=idKey(S.upId);
+  if(me&&LINK.subs.d!==me){LINK.subs.d=me;try{DB.collection('board').where('uh','==',me).limit(100).onSnapshot(s=>{LINK.down=s.docs.map(d=>Object.assign({},JSON.parse(JSON.stringify(d.data())),{id:d.id}));linkRecompute()},()=>{})}catch(e){}}
+  if(up&&LINK.subs.u!==up){LINK.subs.u=up;try{DB.collection('board').where('mh','==',up).limit(3).onSnapshot(s=>{const r=s.docs[0];LINK.upRow=r?Object.assign({},JSON.parse(JSON.stringify(r.data())),{id:r.id}):null;if(!$('#layer').innerHTML&&!SUB)render()},()=>{})}catch(e){}}}
+function linkRecompute(){const me=idKey(S.idhni);const by={};
+  BOARD.forEach(r=>{if(r.mh&&r.id!==UID)by[r.mh]=r});LINK.down.forEach(r=>{if(r.mh&&r.id!==UID)by[r.mh]=r});
+  if(!LINK.upRow&&S.upId){const u=by[idKey(S.upId)];if(u)LINK.upRow=u}
+  LINK.byKey={};const list=S.g1l||[];const keys=new Set(list.map(g1KeyOf));let changed=false,added=[];
+  list.forEach(e=>{const k=g1KeyOf(e);if(k&&by[k])LINK.byKey[k]=by[k]});
+  // downline yang mendaftar dengan ID-ku sebagai upline tapi belum ada di daftarku → tambahkan otomatis
+  LINK.down.forEach(r=>{if(!r.mh||keys.has(r.mh)||r.uh!==me)return;if(list.length>=G1_MAX)return;list.push({k:r.mh,auto:true,r:g1Code(r.rk)});keys.add(r.mh);LINK.byKey[r.mh]=r;added.push(r.nick||'Mitra');changed=true});
+  // kabar gembira: Generasi 1 naik pangkat
+  S.g1seen=S.g1seen||{};const ups=[];
+  Object.entries(LINK.byKey).forEach(([k,r])=>{const was=S.g1seen[k];if(r.rk&&was&&rankIdx(r.rk)>rankIdx(was))ups.push(r);if(r.rk&&was!==r.rk){S.g1seen[k]=r.rk;changed=true}});
+  if(changed){S.g1l=list;save()}
+  if(added.length)toast(`${esc(added.join(', '))} terhubung sebagai Generasi 1-mu`);
+  if(ups.length&&S.onboarded)setTimeout(()=>g1RankUpSheet(ups),400);
+  if(!$('#layer').innerHTML&&(!SUB)&&['home','journey','team'].includes(TAB))render()}
+function g1RankUpSheet(ups){if($('#layer').innerHTML){setTimeout(()=>g1RankUpSheet(ups),2500);return}const np=nextRankProgress();
+  sheet(`<div class="stack" style="text-align:center;align-items:center"><span class="unlk">${ico('rocket')}</span><span class="eyebrow">Generasi 1-mu naik pangkat</span>
+    ${ups.map(r=>`<h2 style="margin:0">${esc(r.nick||'Mitra')} → ${esc((RANKS[rankIdx(r.rk)]||{}).n||r.rk)}</h2>`).join('')}
+    <p class="muted">Hasil bimbinganmu berbuah! ${np.done?'':`Progresmu menuju <b>${esc(np.nx.n)}</b> sekarang ${Math.round(np.pct*100)}% (${esc(np.txt)}).`}</p>
+    <button class="btn block" data-close>Mantap!</button></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet});
+  confetti(innerWidth/2,innerHeight/3,50);award(25*ups.length,'Generasi 1 naik pangkat',{t:'g1up'})}
+function uplineStatus(){if(!S.upId)return '';const u=LINK.upRow;return u?`Terhubung dengan ${esc(u.nick||S.upName||'upline')} di HNI Quest`:'Upline belum memakai HNI Quest. Otomatis terhubung saat dia mendaftar.'}
+
+// --- pengajuan perubahan pangkat (persetujuan admin)
+function rankReqPending(){return S.rreq&&S.rreq.st==='wait'?S.rreq:null}
+function openRankReq(pre){const p=rankReqPending();
+  if(p){sheet(`<div class="stack"><span class="eyebrow">Pengajuan perubahan data</span><h2>Menunggu persetujuan admin</h2>
+    <dl class="kv">${p.to?`<dt>Pangkat</dt><dd>${esc(RANKS[rankIdx(p.from)].n)} → <b>${esc(RANKS[rankIdx(p.to)].n)}</b></dd>`:''}${p.up?`<dt>Upline baru</dt><dd>${esc(p.upn||'')} (${esc(p.up)})</dd>`:''}<dt>Diajukan</dt><dd>${esc(dkey(new Date(p.ts)))}</dd></dl>${p.note?`<p class="quote small">${esc(p.note)}</p>`:''}
+    <p class="note">Admin akan mengecek data di AVO. Kamu akan diberi tahu di aplikasi setelah disetujui atau ditolak.</p>
+    <div class="row"><button class="btn ghost grow" id="rq-cancel">Batalkan pengajuan</button><button class="btn grow" data-close>Oke</button></div></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;$('#rq-cancel').onclick=()=>{S.rreq.st='batal';writeRankReq();save();closeSheet();toast('Pengajuan dibatalkan');render()}});return}
+  const cur=S.rank;const to=pre||RANKS[Math.min(PERM_MAX,rankIdx(cur)+1)].c;
+  sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Pangkat & upline dikunci</span><h2>Ajukan perubahan</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    <p class="small muted">Supaya data adil untuk semua (leaderboard, progres upline, hadiah), pangkat hanya bisa diubah dengan persetujuan admin. Pastikan sudah sesuai AVO.</p>
+    <div class="row" style="gap:10px"><div class="field grow"><label>Pangkat sekarang</label><div class="input" style="display:flex;align-items:center;gap:8px">${rankImg(cur,'xs')}${esc(RANKS[rankIdx(cur)].n)}</div></div></div>
+    <div class="field"><label for="rq-to">Ubah menjadi</label><select class="input" id="rq-to"><option value="">(pangkat tidak berubah)</option>${RANKS.slice(0,PERM_MAX+1).map(r=>r.c===cur?'':`<option value="${r.c}" ${r.c===to?'selected':''}>${esc(r.n)}${rankIdx(r.c)<rankIdx(cur)?' (koreksi turun)':''}</option>`).join('')}</select></div>
+    <details class="small"><summary><b>Koreksi data upline</b> (opsional)</summary><div class="stack" style="gap:8px;margin-top:8px"><div class="field"><label for="rq-up">ID HNI upline yang benar</label><input class="input num" id="rq-up" inputmode="numeric" maxlength="8" placeholder="kosongkan bila tidak berubah"></div><div class="field"><label for="rq-upn">Nama upline</label><input class="input" id="rq-upn" maxlength="40"></div></div></details>
+    <div class="field"><label for="rq-note">Keterangan untuk admin</label><textarea class="input" id="rq-note" maxlength="200" style="min-height:70px" placeholder="mis. Naik Manager per Oktober 2026, sudah tercatat di AVO."></textarea></div>
+    <button class="btn block" id="rq-ok">Kirim pengajuan</button>
+    ${MODE!=='db'?'<p class="note">Mode coba (tanpa server): perubahan langsung diterapkan supaya bisa dicoba. Di versi pilot dan resmi, perubahan menunggu persetujuan admin.</p>':''}</div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;const u=$('#rq-up');u.oninput=()=>{u.value=u.value.replace(/\D/g,'').slice(0,8)};
+      $('#rq-ok').onclick=()=>{const t=$('#rq-to').value,up=normId(u.value),upn=$('#rq-upn').value.trim(),note=$('#rq-note').value.trim();
+        if(!t&&!up){toast('Pilih pangkat baru atau isi koreksi upline');return}if(up&&up===normId(S.idhni)){toast('ID upline tidak boleh ID-mu sendiri');return}if(up&&!upn){toast('Isi juga nama upline');return}
+        S.rreq={id:Date.now().toString(36),ts:Date.now(),from:cur,to:t,up,upn,note,st:'wait'};
+        if(MODE!=='db'){closeSheet();applyRankChange(S.rreq,'Mode coba: langsung diterapkan');return}
+        writeRankReq();save();closeSheet();toast('Pengajuan terkirim ke admin');render()}})}
+function writeRankReq(){if(MODE!=='db'||!DB||!UID)return;const r=S.rreq;if(!r)return;const g=g1Counts();const lk=g1Eff(S.g1l).filter(e=>e.link).length;
+  const body={nick:S.nick||'Mitra',idhni:S.idhni||'',from:r.from,to:r.to||'',up:r.up||'',upn:r.upn||'',note:r.note||'',ts:r.ts,rq:r.id,st:r.st,g1:`${g.sm} SM+ · ${g.m} M · ${g.mb} MB (${lk} terhubung)`,akum:S.akum||0};
+  writeChain=writeChain.then(()=>DB.doc('rankreq/'+UID).set(body)).catch(()=>{})}
+function rankAnsListen(){if(!DB||!UID)return;try{DB.doc('rankAns/'+UID).onSnapshot(s=>{RANK_ANS=s.exists?JSON.parse(JSON.stringify(s.data().ans||{})):{};applyRankAns()},()=>{})}catch(e){}}
+function applyRankAns(){const r=rankReqPending();if(!r)return;const a=RANK_ANS[r.id];if(!a)return;
+  if(a.ok){applyRankChange(r,a.note)}else{r.st='ditolak';r.ans=a.note||'';save();showRankResult(false,r)}}
+function applyRankChange(r,note){r.st='disetujui';r.ans=note||'';if(r.to)S.rank=r.to;if(r.up){S.upId=r.up;S.upName=r.upn||S.upName;LINK.upRow=null;LINK.subs.u=null}
+  if(rankIdx(S.rank)<PERM_MAX){S.bulanan='';S.gelar=''}if(rankIdx(S.rank)>=3)S.akum=0;
+  const pk=peakIdx();showRankResult(true,r);if(pk>S.maxRank){const steps=pk-S.maxRank;S.maxRank=pk;award(300*steps,'Naik ke '+RANKS[pk].n,{t:'rank',r:RANKS[pk].c})}else{save();render()}linkListen()}
+function showRankResult(ok,r){const go=()=>{if($('#layer').innerHTML){setTimeout(go,2000);return}
+  sheet(`<div class="stack" style="text-align:center;align-items:center"><span class="unlk ${ok?'':'dim'}">${ico(ok?'check':'flagx')}</span><span class="eyebrow">Pengajuan ${ok?'disetujui':'ditolak'} admin</span>
+    <h2 style="margin:0">${ok?(r.to?`Pangkatmu sekarang ${esc(RANKS[rankIdx(r.to)].n)}`:'Data upline diperbarui'):'Belum bisa disetujui'}</h2>${r.ans?`<p class="quote small" style="text-align:left;align-self:stretch">${esc(r.ans)}</p>`:''}
+    <button class="btn block" data-close>${ok?'Alhamdulillah!':'Oke'}</button></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet});if(ok)confetti(innerWidth/2,innerHeight/3,40)};go()}
+
+// --- dasbor admin: tab Pangkat
+function admRanks(D){
+  const L=(D.rankreq||[]).filter(r=>r.rq&&r.st!=='batal').map(r=>Object.assign({},r,{u:r.id,ans:(D.rankans[r.id]||{})[r.rq]})).sort((a,b)=>(a.ans?1:0)-(b.ans?1:0)||b.ts-a.ts);
+  const wait=L.filter(r=>!r.ans).length;
+  return `<section class="section"><p class="small muted">${wait} pengajuan menunggu. Cek data di AVO sebelum menyetujui. Setelah disetujui, pangkat berubah saat mitra membuka aplikasi, lalu Generasi 1 upline-nya ikut terbarui.</p><div class="stack" style="gap:10px">
+  ${L.map(r=>`<div class="card stack" style="gap:6px"><div class="row between"><b>${esc(r.nick)}</b><span class="tag ${r.ans?(r.ans.ok?'soft':''):''}">${r.ans?(r.ans.ok?'Disetujui':'Ditolak'):'Menunggu'}</span></div>
+    <dl class="kv small"><dt>ID HNI</dt><dd class="num">${esc(r.idhni)}</dd>${r.to?`<dt>Pangkat</dt><dd>${esc((RANKS[rankIdx(r.from)]||{}).n||r.from)} → <b>${esc((RANKS[rankIdx(r.to)]||{}).n||r.to)}</b></dd>`:''}${r.up?`<dt>Upline baru</dt><dd>${esc(r.upn)} (${esc(r.up)})</dd>`:''}<dt>Generasi 1</dt><dd>${esc(r.g1||'-')}</dd>${r.akum?`<dt>Akumulasi</dt><dd class="num">${fmtN(r.akum)}</dd>`:''}<dt>Diajukan</dt><dd>${esc(dkey(new Date(r.ts)))}</dd></dl>
+    ${r.note?`<p class="quote small">${esc(r.note)}</p>`:''}
+    ${r.ans?(r.ans.note?`<p class="small muted">Catatan admin: ${esc(r.ans.note)}</p>`:''):`<input class="input" id="rk-n-${esc(r.u)}" maxlength="160" placeholder="Catatan untuk mitra (wajib bila ditolak)"><div class="row" style="gap:8px"><button class="btn ghost grow" data-rkno="${esc(r.u)}|${esc(r.rq)}">Tolak</button><button class="btn grow" data-rkok="${esc(r.u)}|${esc(r.rq)}">Setujui</button></div>`}</div>`).join('')||'<div class="empty">Belum ada pengajuan perubahan pangkat.</div>'}</div></section>`}
+async function admRankAnswer(u,id,ok,note){const cur=Object.assign({},ADM.data.rankans[u]||{});cur[id]={ok,note:note||'',ts:Date.now()};
+  try{await DB.doc('rankAns/'+u).set({ans:cur});ADM.data.rankans[u]=cur;toast(ok?'Disetujui':'Ditolak');render()}catch(e){toast('Gagal menyimpan: '+(e.code||'cek akses'))}}
+document.addEventListener('click',e=>{if(SUB!=='admin')return;const t=e.target.closest('[data-rkok],[data-rkno]');if(!t)return;e.stopPropagation();const d=t.dataset;
+  if(d.rkok){const [u,id]=d.rkok.split('|');admRankAnswer(u,id,true,($('#rk-n-'+u)||{}).value||'Sudah dicek di AVO. Selamat!')}
+  if(d.rkno){const [u,id]=d.rkno.split('|');const n=(($('#rk-n-'+u)||{}).value||'').trim();if(!n){toast('Tulis alasan penolakan dulu');return}admRankAnswer(u,id,false,n)}},true);
+
+// --- pengguna lama: lengkapi upline & ID Generasi 1 (sekali isi langsung, tanpa persetujuan admin)
+const needUpSetup=()=>!!(S.onboarded&&!S.upId);
+const g1MissingId=()=>(S.g1l||[]).filter(e=>!e.id&&!e.k).length;
+function upSetupCard(){const nu=needUpSetup(),nm=g1MissingId();if(!nu&&!nm)return '';
+  return `<section class="section"><button class="softrow" data-act="upsetup" style="background:var(--sun-soft,#FFF4D6)">${ico('usercheck')}<span class="grow small"><b>${nu?'Lengkapi data upline-mu':'Lengkapi ID Generasi 1'}</b><br><span class="muted">${nu?'Supaya progres naik pangkatmu tersambung ke upline. ':''}${nm?nm+' Generasi 1 belum ada ID-nya. ':''}${nu&&!S.upDone?'+20 XP':''}</span></span><span class="link">Isi</span></button></section>`}
+function openUpSetup(auto){const L0=JSON.parse(JSON.stringify(S.g1l||[]));const nu=needUpSetup();
+  sheet(`<div class="stack"><span class="eyebrow">Pembaruan data</span><h2>${nu?'Lengkapi upline & Generasi 1':'Lengkapi ID Generasi 1'}</h2>
+    <p class="small muted">HNI Quest sekarang menghubungkan mitra dengan upline dan Generasi 1-nya. Saat Generasi 1-mu naik pangkat, progresmu ikut naik otomatis. ${nu?'Isi sekali saja; setelah ini data upline dikunci dan perubahannya lewat admin.':''}</p>
+    ${nu?`<div class="row" style="gap:10px;align-items:flex-end"><div class="field grow"><label for="us-up">ID HNI Upline</label><input class="input num" id="us-up" inputmode="numeric" maxlength="8" placeholder="8 digit"></div><div class="field grow"><label for="us-upn">Nama Upline</label><input class="input" id="us-upn" maxlength="40" placeholder="mis. Bu Siti"></div></div>`:''}
+    ${!S.idhni?`<div class="field"><label for="us-id">ID HNI-mu</label><input class="input num" id="us-id" inputmode="numeric" maxlength="8" placeholder="8 digit"></div>`:''}
+    <div class="field"><label>Generasi 1 (ID + pangkat, maks. ${G1_MAX})</label><div id="us-g1"></div></div>
+    <button class="btn block" id="us-ok">Simpan</button>${auto?'<button class="btn ghost block" id="us-later">Nanti saja</button>':''}</div>`,L=>{
+    bindG1List($('#us-g1'),L0);
+    ['#us-up','#us-id'].forEach(s=>{const e=$(s);if(e){e.oninput=()=>{e.value=e.value.replace(/\D/g,'').slice(0,8)};e.onblur=()=>{const n=normId(e.value);if(n)e.value=n}}});
+    const lt=$('#us-later');if(lt)lt.onclick=()=>{S.upAsk=dkey();save();closeSheet()};
+    $('#us-ok').onclick=()=>{const own=S.idhni||normId(($('#us-id')||{}).value);if(!own){toast('Isi ID HNI-mu dulu');return}
+      let up='',upn='';if(nu){up=normId($('#us-up').value);upn=$('#us-upn').value.trim();if(!up){toast('Isi ID HNI upline-mu');return}if(up===own){toast('ID upline tidak boleh sama dengan ID-mu');return}if(!upn){toast('Isi nama upline-mu');return}}
+      const er=g1Validate(L0,own);if(er){toast(er);return}
+      S.idhni=own;if(nu){S.upId=up;S.upName=upn}S.rankLock=true;S.g1l=g1Clean(L0);closeSheet();linkListen();linkRecompute();
+      if(nu&&!S.upDone){S.upDone=dkey();award(20,'Data upline lengkap',{t:'upline'})}else{save();render();toast('Tersimpan')}}})}
+// tampilkan otomatis sekali sehari untuk pengguna lama yang belum mengisi upline
+function maybeAskUpSetup(){if(!needUpSetup()||S.upAsk===dkey())return;const go=()=>{if($('#layer').innerHTML||document.querySelector('.levelup')){setTimeout(go,2500);return}if(needUpSetup()&&S.upAsk!==dkey())openUpSetup(true)};setTimeout(go,1500)}
+
 // ===== js/events.js =====
 // ---------- events ----------
 document.addEventListener('click',e=>{
@@ -2997,6 +3138,8 @@ document.addEventListener('click',e=>{
     case 'showmore':document.body.classList.toggle('showmore');render();break;
     case 'avatar':openAvatar();break;
     case 'mentor':openMentor();break;
+    case 'rankreq':if(needUpSetup()){openUpSetup(false);break}openRankReq(d.rqTo||'');break;
+    case 'upsetup':openUpSetup(false);break;
     case 'sharecard':openShareCard();break;
     case 'rewards':openRewards();break;
     case 'share-mission':{const p=SHARE_PROMPT;SHARE_PROMPT=null;if(p)openCompose('capai',(SHARE_TPL[p.id]||(()=>''))(p.label));break}
