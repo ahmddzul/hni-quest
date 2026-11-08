@@ -1,14 +1,14 @@
 {
- "name": "HNI Quest",
- "short_name": "HNI Quest",
- "description": "Misi harian, belajar, dan game untuk mitra HNI.",
+ "name": "HNIF \u00b7 HNI Focus",
+ "short_name": "HNIF",
+ "description": "HNIF (HNI Focus): misi harian, belajar produk, dan game untuk mitra HNI.",
  "lang": "id",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
  "orientation": "portrait",
- "background_color": "#F3F7F1",
- "theme_color": "#0A8C4B",
+ "background_color": "#F4F6EF",
+ "theme_color": "#467419",
  "icons": [
   {
    "src": "icon-192.png",
