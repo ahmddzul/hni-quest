@@ -745,6 +745,7 @@ mark.ph{background:var(--sun-soft);color:var(--ink);border-radius:5px;padding:0 
 @media (prefers-reduced-motion:reduce){.sp-f,.sp-tagline{animation:none}}
 .hnifmark{display:flex;align-items:center;gap:10px;justify-content:center}.hnifmark .hm{height:44px;width:auto}.wordmark.big img{height:30px}.wordmark.big .wf{margin-left:5.4px}
 .hnifsub{display:block;text-align:center;font-size:.78rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin-top:-6px}
+.sheet{position:relative}.sheet-x{position:absolute;top:10px;right:10px;z-index:2}
 </style>
 
 <div class="splash" id="splash" aria-label="HNIF">
@@ -2219,7 +2220,9 @@ function viewKuis(){
 let SHEET_RET=null;
 const FOCUSABLE='button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),summary,[tabindex]:not([tabindex="-1"])';
 function sheet(html,onMount){const L=$('#layer');const had=!!L.innerHTML;if(!had)SHEET_RET=document.activeElement;
-  L.innerHTML=`<div class="scrim" id="scrim"><div class="sheet" role="dialog" aria-modal="true" tabindex="-1"><div class="grab"></div>${html}</div></div>`;
+  const needX=S.onboarded&&!/aria-label="Tutup"|data-close/.test(html);
+  L.innerHTML=`<div class="scrim" id="scrim"><div class="sheet" role="dialog" aria-modal="true" tabindex="-1"><div class="grab"></div>${needX?'<button class="iconbtn sheet-x" id="sheet-x" aria-label="Tutup">✕</button>':''}${html}</div></div>`;
+  const sx=L.querySelector('#sheet-x');if(sx)sx.onclick=closeSheet;
   const sh=L.querySelector('.sheet');const h=sh.querySelector('h1,h2');if(h){h.id='sheet-title';sh.setAttribute('aria-labelledby','sheet-title')}
   $('#scrim').addEventListener('click',e=>{if(e.target.id==='scrim'&&S.onboarded)closeSheet()});onMount&&onMount(L);
   if(!sh.contains(document.activeElement))sh.focus({preventScroll:true})}
@@ -2387,19 +2390,19 @@ function advHtml(p,a,bul,gel){return `<div class="advbox stack"><span class="eye
   <p class="note">Omset (TPG) tiap jalur diisi terpisah lewat <b>Isi TPG tiap jalur</b> di Beranda atau Journey. Dari situ app menghitung GED/DED/CED dan Sapphire–Platinum.</p></div>`}
 function readAdv(p){const v=id=>Math.max(0,+(($('#'+p+'-'+id)||{}).value)||0);return Object.assign({},S.adv||{},{tp:v('tp'),kbg:v('kbg'),serap:v('sr')})}
 const BIMBING_TOPIK=['Cek kabar & semangati','Bantu capai TP 200','Latih PCA bareng','Bahas target naik pangkat','Ajak ikut acara','Bantu follow-up prospeknya'];
-function openBimbing(){
-  const team=S.prospects.filter(p=>p.tipe==='mitra');let who=team[0]?team[0].id:null,topik=BIMBING_TOPIK[0];
+function openBimbing(pick){
+  const team=S.prospects.filter(p=>p.tipe==='mitra');let who=pick&&team.some(p=>p.id===pick)?pick:team[0]?team[0].id:null,topik=BIMBING_TOPIK[0];
   const draw=()=>sheet(`<div class="stack"><span class="eyebrow">Misi Bimbing</span><h2>Siapa yang kamu dampingi hari ini?</h2>
-  ${team.length?`<div class="pills">${team.map(p=>`<button class="pill" data-who="${p.id}" aria-pressed="${who===p.id}">${esc(p.name)}</button>`).join('')}</div>`:'<div class="empty small">Belum ada mitra tim di daftarmu.</div>'}
+  ${team.length?`<div class="pills">${team.map(p=>`<button class="pill" data-who="${p.id}" aria-pressed="${who===p.id}">${esc(p.name)}</button>`).join('')}</div>`:'<div class="empty small">Belum ada mitra tim di daftarmu. Misi Bimbing untuk orang yang sudah daftar jadi mitra HNI di timmu. Untuk pelanggan atau prospek, pakai misi Sapa.</div>'}
   <button class="btn ghost" id="bb-add">Tambah mitra tim</button>
   <div class="field"><label>Topik bimbingan</label><div class="pills">${BIMBING_TOPIK.map(t=>`<button class="pill" data-tp="${esc(t)}" aria-pressed="${t===topik}">${esc(t)}</button>`).join('')}</div></div>
   <div class="field"><label for="bb-n">Catatan singkat (opsional)</label><input class="input" id="bb-n" maxlength="140" placeholder="mis. target TP 200 bulan ini"></div>
-  <button class="btn block" id="bb-ok" ${who?'':'disabled'}>Selesai membimbing</button>
+  ${who?'<button class="btn block" id="bb-ok">Selesai membimbing</button>':'<p class="small muted" style="margin:0;text-align:center">Tambahkan atau pilih satu mitra tim dulu.</p><button class="btn ghost block" data-close>Tutup</button>'}
   <p class="note">Leader yang baik membuat timnya berhasil. Jadwal sapa berikutnya otomatis 7 hari lagi.</p></div>`,L=>{
     L.querySelectorAll('[data-who]').forEach(b=>b.onclick=()=>{who=b.dataset.who;draw()});
     L.querySelectorAll('[data-tp]').forEach(b=>b.onclick=()=>{topik=b.dataset.tp;draw()});
-    $('#bb-add').onclick=()=>openPerson(null,'bimbing');
-    $('#bb-ok').onclick=()=>{const p=S.prospects.find(x=>x.id===who);if(!p)return;const n=$('#bb-n').value.slice(0,140);p.next=dkey(addDays(new Date(),7));closeSheet();completeMission('bimbing','Bimbing '+p.name,{who,tp:topik,n})};
+    $('#bb-add').onclick=()=>openPerson(null,'bimbing');const cl=L.querySelector('[data-close]');if(cl)cl.onclick=closeSheet;
+    const ok=$('#bb-ok');if(ok)ok.onclick=()=>{const p=S.prospects.find(x=>x.id===who);if(!p)return;const n=$('#bb-n').value.slice(0,140);p.next=dkey(addDays(new Date(),7));closeSheet();completeMission('bimbing','Bimbing '+p.name,{who,tp:topik,n})};
   });
   draw();
 }
@@ -2495,7 +2498,7 @@ function openPerson(id,forMission){
   const ex=S.prospects.find(p=>p.id===id);const p=ex?Object.assign({},ex):{id:uid(),name:'',kontak:'',tipe:forMission==='sapa'?'pelanggan':forMission==='bimbing'?'mitra':'prospek',stage:0,minat:'',next:dkey(addDays(new Date(),3)),notes:''};
   sheet(`<div class="stack"><div class="row"><span class="eyebrow grow">${ex?'Detail orang':'Tambah orang'}</span><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
   <div class="field"><label for="ps-name">Nama</label><input class="input" id="ps-name" maxlength="40" value="${esc(p.name)}" placeholder="Nama atau panggilan"></div>
-  <div class="field"><label>Jenis</label><div class="pills">${[['prospek','Prospek'],['pelanggan','Pelanggan'],['mitra','Mitra tim']].map(([k,t])=>`<button class="pill" data-ptipe="${k}" aria-pressed="${p.tipe===k}">${t}</button>`).join('')}</div></div>
+  <div class="field"><label>Jenis</label><div class="pills">${[['prospek','Prospek'],['pelanggan','Pelanggan'],['mitra','Mitra tim']].map(([k,t])=>`<button class="pill" data-ptipe="${k}" aria-pressed="${p.tipe===k}">${t}</button>`).join('')}</div>${forMission==='bimbing'&&!ex?'<p class="small muted" style="margin:4px 0 0">Untuk misi Bimbing pilih <b>Mitra tim</b>, yaitu orang yang sudah daftar jadi mitra HNI.</p>':''}</div>
   <div class="field" id="ps-idh-w" ${p.tipe==='mitra'?'':'hidden'}><label for="ps-idh">No. ID HNI</label><input class="input" id="ps-idh" inputmode="numeric" maxlength="12" value="${esc(p.idh||'')}" placeholder="mis. 00012345"></div>
   <div class="field" id="ps-stage-w" ${p.tipe==='prospek'?'':'hidden'}><label for="ps-stage">Tahap</label><select class="input" id="ps-stage">${STAGES.map((s,i)=>`<option value="${i}" ${p.stage===i?'selected':''}>${s}</option>`).join('')}</select></div>
   <div class="field"><label for="ps-minat">Kebutuhan / minat</label><input class="input" id="ps-minat" maxlength="80" value="${esc(p.minat)}" placeholder="mis. sering begadang, suka kopi"></div>
@@ -2512,7 +2515,7 @@ function openPerson(id,forMission){
     const read=()=>{p.name=$('#ps-name').value.trim();p.stage=+$('#ps-stage').value;p.minat=$('#ps-minat').value.trim();p.kontak=$('#ps-kontak').value.trim();p.next=$('#ps-next').value;p.notes=$('#ps-notes').value.trim();p.idh=normId($('#ps-idh').value)||''};
     const put=()=>{const i=S.prospects.findIndex(x=>x.id===p.id);if(i>=0)S.prospects[i]=p;else S.prospects.push(p)};
     $('#ps-save').onclick=()=>{read();if(!p.name){toast('Isi nama dulu');return}const isNew=!ex;const before=ex?ex.stage:-1;put();closeSheet();
-      if(isNew&&forMission==='bimbing'){save();openBimbing();return}
+      if(isNew&&forMission==='bimbing'){save();if(p.tipe!=='mitra')toast(`${esc(p.name)} tersimpan sebagai ${p.tipe==='pelanggan'?'Pelanggan':'Prospek'} di Jaringan. Misi Bimbing khusus mitra tim; untuk ${esc(p.name)} pakai misi Sapa.`);openBimbing(p.tipe==='mitra'?p.id:null);return}
       if(isNew){completeMission(p.tipe==='prospek'?'ajak':'sapa',p.tipe==='prospek'?'Prospek baru':'Kontak baru',{who:p.id,nw:p.tipe==='prospek'})}
       else{if(p.tipe==='prospek'&&p.stage===4&&before<4)toast('Alhamdulillah, rekrut baru!');checkBadges();save();render()}};
     const fu=$('#ps-fu');if(fu)fu.onclick=()=>{read();if(!p.name)return;if(p.next<=dkey())p.next=dkey(addDays(new Date(),p.tipe==='prospek'?4:21));put();closeSheet();completeMission(p.tipe==='prospek'?'ajak':'sapa','Follow-up '+p.name,{who:p.id})};
