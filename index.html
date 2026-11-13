@@ -1045,6 +1045,25 @@ div.hk{cursor:default}button.hk:hover{border-color:var(--brand)}
 .ract{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:var(--surface)}
 .ract input{width:22px;height:22px;accent-color:var(--brand);flex:none;margin-top:1px}.ract .grow{display:flex;flex-direction:column;gap:2px}
 .ract.on{background:var(--brand-soft);border-color:color-mix(in srgb,var(--brand) 40%,var(--line))}.ract.on b{color:var(--brand-text)}
+
+#coach{position:fixed;inset:0;z-index:9000}
+.coach-dim{position:fixed;inset:0;background:rgba(8,20,13,.62)}
+.coach-hole{position:fixed;box-shadow:0 0 0 9999px rgba(8,20,13,.62);transition:all .3s ease;cursor:pointer}
+.coach-ring{position:fixed;border:3px solid #E8A92A;pointer-events:none;animation:coachPulse 1.4s ease-out infinite;transition:all .3s ease}
+.coach-ring.r2{animation-delay:.7s;border-color:#A6CE39}
+@keyframes coachPulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.18);opacity:0}}
+.coach-tip{position:fixed;background:var(--surface);color:var(--ink);border-radius:14px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.28);display:flex;flex-direction:column;gap:8px;animation:tipIn .25s ease}
+.coach-tip.center{left:50%!important;top:50%!important;transform:translate(-50%,-50%);width:min(340px,calc(100vw - 24px))}
+.coach-tip h3{margin:0;font-size:1.05rem}.coach-tip p{margin:0;font-size:.9rem;line-height:1.5}
+.coach-tip .halo-links{grid-template-columns:1fr}.coach-tip .halo-l{min-height:44px;padding:6px 10px}
+.coach-arrow{position:absolute;width:14px;height:14px;background:var(--surface);transform:rotate(45deg)}
+.coach-tip.up .coach-arrow{top:-7px}.coach-tip.down .coach-arrow{bottom:-7px}.coach-tip.toside .coach-arrow{left:-7px}
+.coach-tip.center .coach-arrow{display:none}
+@keyframes tipIn{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.coach-tip.center{animation:none}
+.pulse-hint{position:relative;outline:3px solid #E8A92A;outline-offset:3px;animation:hintBlink 1s ease-in-out infinite;border-radius:12px}
+@keyframes hintBlink{0%,100%{outline-color:#E8A92A}50%{outline-color:rgba(232,169,42,.15)}}
+@media (prefers-reduced-motion:reduce){.coach-ring,.pulse-hint{animation:none}}
 </style>
 
 <div class="splash" id="splash" aria-label="HNIF">
@@ -4764,23 +4783,61 @@ function viewFAQ(){const q=FAQ_Q.trim().toLowerCase();let n=0;
 function openFAQ(){SUB='faq';ENTER=true;closeSheet();render();window.scrollTo({top:0})}
 
 // ---------- Tur fitur (pengguna baru) ----------
+// Tur fitur bergaya "coach mark": layar diredupkan, tombol yang dibahas disorot dengan lingkaran berkedip,
+// dan penjelasan muncul tepat di sebelahnya.
+const navSel=k=>()=>innerWidth>=1024?`#side [data-nav="${k}"]`:`#tabs [data-tab="${k==='team:gen'?'team':k==='bisnis:bonus'?'bisnis':k}"]`;
 const TOUR=[
- {ic:'leaf',t:'Selamat datang di HNIF',b:'HNIF membantumu belajar, aktif setiap hari, promosi produk dengan jujur, merawat pelanggan, dan membina jaringan. Tur ini hanya 1 menit.'},
- {ic:'compass',t:'Beranda',b:'Di paling atas ada <b>TP bulan ini</b>, poin belanjamu bulan ini. Di bawahnya koin, misi minggu ini, dan 4 pintasan kerja: Belajar, Promosi, Rawat pelanggan, Bina tim.',go:'home'},
- {ic:'check',t:'Misi harian',b:'Setiap hari ada 3 misi kecil sesuai pangkatmu. Selesaikan untuk dapat koin. Kerjakan minimal 1 misi setiap hari supaya rajin berturut-turutmu tidak putus.'},
- {ic:'mountain',t:'Journey: Road To',b:'Perjalananmu dibagi menjadi langkah kecil: <b>Road to ED</b> untuk yang belum ED, <b>Road to LED</b> untuk ED, dan <b>Road to Platinum</b> untuk LED. Ada ceklis syarat, aktivitas pendukung mingguan, dan pengingat setiap Senin. Tidak ada paksaan, pilih yang sanggup kamu kerjakan.',go:'journey'},
- {ic:'cap',t:'Akademi',b:'Semua materi terbuka: produk, Success Plan, PCA, soft skill, kepemimpinan. Ada katalog 127 produk dan Skrip PCA siap kirim lewat WhatsApp.',go:'academy'},
- {ic:'users',t:'Jaringan',b:'<b>Genealogi</b> untuk melihat timmu lengkap dengan ID, TP, dan TPG. <b>Monitor ED</b> untuk leader. <b>Prospek & Pelanggan</b> dengan Peta RFM. <b>Kabar</b> dan <b>Rangking</b> squad.',go:'team'},
- {ic:'chart',t:'Bisnis',b:'Estimasi bonus harian, statement, total bonus, bukti potong PPh21, HNI Cash, serta rekening dan pilihan pencairan bonus.',go:'bisnis'},
- {ic:'coin',t:'Koin',b:'Koin adalah hadiah di aplikasi (1 koin = Rp1). Koin terbesar datang dari belanja, TP tembus 200/600, dan closing mitra baru. Koin bukan poin HNI.'},
- {ic:'chat',t:'Butuh bantuan?',b:'Tombol <b>Bantuan</b> di bagian atas aplikasi berisi kontak <b>HALO HNI</b> (WhatsApp, email, Telegram), tanya jawab, dan panduan memakai HNIF.',halo:1}];
-function openTour(i=0){const s=TOUR[i];const last=i===TOUR.length-1;
-  sheet(`<div class="stack tour"><div class="row"><span class="eyebrow grow">Tur HNIF · ${i+1}/${TOUR.length}</span><button class="link small" id="tr-skip" data-close>Lewati</button></div>
-    <div class="tour-ic">${ico(s.ic)}</div><h2 style="margin:0">${esc(s.t)}</h2><p style="margin:0">${s.b}</p>${s.halo?haloLinks():''}
-    <div class="tour-dots" aria-hidden="true">${TOUR.map((_,j)=>`<i class="${j===i?'on':''}"></i>`).join('')}</div>
-    <div class="row" style="gap:8px">${i?`<button class="btn ghost grow" id="tr-prev">Sebelumnya</button>`:''}<button class="btn grow" id="tr-next">${last?'Selesai':'Lanjut'}</button></div></div>`,L=>{
-    const done=()=>{S.tourSeen=dkey();save();closeSheet();afterTour()};
-    $('#tr-skip').onclick=done;$('#tr-next').onclick=()=>last?done():openTour(i+1);const pv=$('#tr-prev');if(pv)pv.onclick=()=>openTour(i-1)})}
+ {t:'Selamat datang di HNIF',b:'Tur singkat ini menunjukkan letak setiap fitur penting. Ikuti lingkaran yang berkedip. Kurang dari 1 menit.'},
+ {sel:'.tphero',t:'TP bulan ini',b:'Poin belanja pribadimu bulan ini terhadap target. Ketuk <b>Catat belanja</b> setiap kali belanja, dan TP-mu langsung naik.'},
+ {sel:'.hk3',t:'Koin, misi, dan rajin harian',b:'Koin adalah hadiah di aplikasi (1 koin = Rp1). Kerjakan minimal 1 misi setiap hari supaya rajin berturut-turutmu tidak putus.'},
+ {sel:'.pins',t:'4 pintasan kerja',b:'Satu ketukan ke pekerjaan inti mitra: <b>Belajar</b>, <b>Promosi</b>, <b>Rawat pelanggan</b>, dan <b>Bina tim</b>.'},
+ {sel:'.roadcard',t:'Road To',b:'Tahap berikutnya menuju ED, LED, atau Platinum, beserta aktivitas pendukung mingguan. Pilih yang sanggup kamu kerjakan.'},
+ {sel:()=>{const h=[...document.querySelectorAll('#view h2')].find(x=>/Misi hari ini/.test(x.textContent));return h?h.closest('section'):null},t:'Misi hari ini',b:'Tiga misi kecil sesuai pangkatmu. Tuntaskan semuanya untuk bonus combo.'},
+ {sel:navSel('journey'),t:'Journey',b:'Peta pangkat dan Road To lengkap: syarat setiap tahap, progresmu, dan simulasi bonus.'},
+ {sel:navSel('academy'),t:'Akademi',b:'Semua materi terbuka: produk, Success Plan, PCA, kepemimpinan. Ada katalog 127 produk dan Skrip PCA siap kirim.'},
+ {sel:navSel('team:gen'),t:'Jaringan',b:'Genealogi timmu (lengkap dengan ID, TP, dan TPG), Monitor ED, Prospek & Pelanggan dengan Peta RFM, Kabar, dan Rangking.'},
+ {sel:navSel('bisnis:bonus'),t:'Bisnis',b:'Estimasi bonus harian, statement, total bonus, bukti potong PPh21, HNI Cash, serta rekening dan pencairan.'},
+ {sel:'#chipXpWrap',t:'Dompet koin',b:'Saldo koinmu. Ketuk untuk melihat riwayat dan cara mendapat koin.'},
+ {sel:'header [data-help="bantuan"]',t:'Bantuan HALO HNI',b:'Kontak layanan pelanggan (WhatsApp, email, Telegram), tanya jawab, dan panduan memakai HNIF. Selalu ada di sini.',halo:1},
+ {sel:'header [data-act="profile"]',t:'Profil',b:'Data diri, Mentor dan Mentor LED, ganti PIN, nomor HP, email, dan pengaturan tampilan.'}];
+let COACH=null;
+function coachTarget(s){if(!s.sel)return null;const q=typeof s.sel==='function'?s.sel():s.sel;const el=typeof q==='string'?document.querySelector(q):q;
+  if(!el)return null;const r=el.getBoundingClientRect();return r.width&&r.height?el:null}
+function openTour(i=0){closeSheet();if(i===0&&(TAB!=='home'||SUB)){SUB=null;setTab('home')}
+  const s=TOUR[i];if(!s)return endTour();
+  let el=coachTarget(s);if(s.sel&&!el&&i<TOUR.length-1)return openTour(i+1);
+  if(el){const r=el.getBoundingClientRect();if(r.top<70||r.bottom>innerHeight-90){el.scrollIntoView({block:r.height>innerHeight*.5?'start':'center'});window.scrollBy(0,r.height>innerHeight*.5?-80:0)}}
+  setTimeout(()=>drawCoach(i,el),el?260:0)}
+function drawCoach(i,el){const s=TOUR[i];const last=i===TOUR.length-1;let C=document.getElementById('coach');
+  if(!C){C=document.createElement('div');C.id='coach';C.setAttribute('role','dialog');C.setAttribute('aria-modal','true');document.body.appendChild(C)}
+  COACH={i,el};C.setAttribute('aria-label','Tur HNIF: '+s.t);
+  C.innerHTML=`${el?'<div class="coach-hole"></div><div class="coach-ring"></div><div class="coach-ring r2"></div>':'<div class="coach-dim"></div>'}
+    <div class="coach-tip ${el?'':'center'}"><div class="row"><span class="eyebrow grow">Tur HNIF · ${i+1}/${TOUR.length}</span><button class="link small" id="co-skip">Lewati</button></div>
+    <h3>${esc(s.t)}</h3><p>${s.b}</p>${s.halo?haloLinks():''}
+    <div class="row" style="gap:8px;align-items:center"><div class="tour-dots grow" aria-hidden="true">${TOUR.map((_,j)=>`<i class="${j===i?'on':''}"></i>`).join('')}</div>${i?`<button class="btn ghost small" id="co-prev">Kembali</button>`:''}<button class="btn small" id="co-next">${last?'Selesai':'Lanjut'}</button></div><i class="coach-arrow"></i></div>`;
+  placeCoach();
+  $('#co-skip').onclick=endTour;$('#co-next').onclick=()=>last?endTour():openTour(i+1);const pv=$('#co-prev');if(pv)pv.onclick=()=>openTour(i-1);
+  const hole=C.querySelector('.coach-hole');if(hole)hole.onclick=()=>last?endTour():openTour(i+1);
+  setTimeout(()=>{const b=$('#co-next');b&&b.focus()},50)}
+function placeCoach(){const C=document.getElementById('coach');if(!C||!COACH)return;const el=COACH.el;const tip=C.querySelector('.coach-tip');if(!el){return}
+  const r=el.getBoundingClientRect();const pd=6;const box={l:r.left-pd,t:r.top-pd,w:r.width+pd*2,h:r.height+pd*2};
+  const rad=Math.min(16,box.h/2);
+  C.querySelectorAll('.coach-hole,.coach-ring').forEach(x=>Object.assign(x.style,{left:box.l+'px',top:box.t+'px',width:box.w+'px',height:box.h+'px',borderRadius:(box.w<70&&box.h<70?'50%':rad+'px')}));
+  const tw=Math.min(340,innerWidth-24);tip.style.width=tw+'px';const th=tip.offsetHeight;
+  const below=box.t+box.h+14+th<innerHeight-8;const above=box.t-14-th>8;
+  let top=below?box.t+box.h+14:above?box.t-14-th:Math.max(8,innerHeight-th-8);
+  let left=Math.min(Math.max(12,box.l+box.w/2-tw/2),innerWidth-tw-12);
+  if(innerWidth>=1024&&box.l<260){left=box.l+box.w+16;top=Math.min(Math.max(8,box.t+box.h/2-th/2),innerHeight-th-8)}
+  tip.style.left=left+'px';tip.style.top=top+'px';
+  const ar=tip.querySelector('.coach-arrow');tip.classList.remove('up','down','toside');
+  if(innerWidth>=1024&&box.l<260){tip.classList.add('toside');ar.style.left='';ar.style.top=(box.t+box.h/2-top-7)+'px'}
+  else{tip.classList.add(below?'up':'down');ar.style.top='';ar.style.left=Math.min(Math.max(16,box.l+box.w/2-left-7),tw-30)+'px'}}
+addEventListener('resize',()=>{if(COACH&&COACH.el)placeCoach()});
+addEventListener('scroll',()=>{if(COACH&&COACH.el)placeCoach()},{passive:true});
+addEventListener('keydown',e=>{if(!COACH)return;if(e.key==='Escape')endTour();else if(e.key==='ArrowRight'){const b=$('#co-next');b&&b.click()}else if(e.key==='ArrowLeft'){const b=$('#co-prev');b&&b.click()}});
+function endTour(){const C=document.getElementById('coach');if(C)C.remove();const was=COACH;COACH=null;S.tourSeen=dkey();save();window.scrollTo({top:0});if(was)afterTour()}
+// sorot satu tombol sebentar (dipakai tombol "Coba" di Panduan memakai HNIF)
+function pulseAt(q,ms=4200){setTimeout(()=>{const el=typeof q==='function'?q():document.querySelector(q);if(!el)return;el.scrollIntoView({block:'center',behavior:'smooth'});el.classList.add('pulse-hint');setTimeout(()=>el.classList.remove('pulse-hint'),ms)},380)}
 function isNewMitra(){return rankIdx(S.rank)<3}
 function afterTour(){if(isNewMitra()&&!S.hniAsk){S.hniAsk=dkey();save();
     sheet(`<div class="stack" style="text-align:center;align-items:center"><div class="tour-ic">${ico('leaf')}</div><h2 style="margin:0">Kamu mitra baru HNI</h2><p class="muted" style="margin:0">Mau penjelasan singkat tentang HNI dulu? Isinya: apa itu HNI, poin dan TP, cara mendapat keuntungan, pangkat, dan hal yang perlu dihindari. Sekitar 3 menit.</p>
@@ -4805,18 +4862,18 @@ function openHNI(i){const s=HNI_INTRO[i];const last=i===HNI_INTRO.length-1;
 // ---------- Panduan memakai HNIF (checklist sampai paham) ----------
 // Selesai otomatis bila kondisinya terpenuhi, atau saat mitra membuka fiturnya lewat tombol "Coba".
 const TUT=[
- {k:'tp',t:'Catat belanja pertamamu',d:'TP bulan ini di Beranda naik dari belanja yang kamu catat.',ok:()=>S.buys.length>0,go:()=>openBelanja()},
+ {k:'tp',t:'Catat belanja pertamamu',d:'TP bulan ini di Beranda naik dari belanja yang kamu catat.',ok:()=>S.buys.length>0,go:()=>{setTab('home');window.scrollTo(0,0);pulseAt('.tphero [data-act="belanja"]')}},
  {k:'misi',t:'Selesaikan 1 misi harian',d:'Misi kecil sesuai pangkat. Dapat koin dan menjaga rajin harian.',ok:()=>missionCount()>=1,go:()=>{setTab('home');setTimeout(()=>{const e=[...document.querySelectorAll('h2')].find(h=>/Misi hari ini/.test(h.textContent));e&&e.scrollIntoView({block:'start'})},300)}},
  {k:'absen',t:'Ambil absen harian',d:'Hadiah 7 hari berturut-turut, makin lama makin besar.',ok:()=>!!(S.login&&S.login.total>0),go:()=>{setTab('home');setTimeout(()=>{const e=document.querySelector('.login');e&&e.scrollIntoView({block:'center'})},300)}},
  {k:'modul',t:'Lulus 1 modul Akademi',d:'Mulai dari "Top Brand: 4 Produk Pintu Masuk".',ok:()=>Object.values(S.learned||{}).some(x=>x&&x.pass),go:()=>{AC_TAB='modul';setTab('academy')}},
- {k:'skrip',t:'Buka Skrip PCA',d:'Pilih skrip, isi nama, lalu kirim lewat WhatsApp.',go:()=>{AC_TAB='skrip';setTab('academy')}},
+ {k:'skrip',t:'Buka Skrip PCA',d:'Pilih skrip, isi nama, lalu kirim lewat WhatsApp.',go:()=>{AC_TAB='skrip';setTab('academy');pulseAt('[data-scruse]')}},
  {k:'prospek',t:'Tambah 1 prospek atau pelanggan',d:'HNIF mengingatkan jadwal follow-up di Beranda.',ok:()=>S.prospects.some(p=>!p.demo),go:()=>openPerson(null)},
- {k:'rfm',t:'Kenali Peta RFM pelanggan',d:'Lihat siapa yang perlu disapa minggu ini. Bisa dicoba dengan data contoh.',go:()=>goNav('team:rfm')},
- {k:'gen',t:'Lihat Genealogi dan profil mitra',d:'Ketuk nama mitra untuk melihat ID, pangkat, dan prestasinya.',go:()=>goNav('team:gen')},
+ {k:'rfm',t:'Kenali Peta RFM pelanggan',d:'Lihat siapa yang perlu disapa minggu ini. Bisa dicoba dengan data contoh.',go:()=>{goNav('team:rfm');pulseAt('.rfmgrid, [data-rfm-demo]')}},
+ {k:'gen',t:'Lihat Genealogi dan profil mitra',d:'Ketuk nama mitra untuk melihat ID, pangkat, dan prestasinya.',go:()=>{goNav('team:gen');pulseAt('.gnm')}},
  {k:'squad',t:'Isi data Mentor dan Mentor LED',d:'Supaya kamu masuk squad dan dibina leader.',ok:()=>!!(S.upId&&S.mentorId),go:()=>openProfile()},
  {k:'kabar',t:'Kirim 1 kabar',d:'Bagikan semangat atau pencapaianmu ke squad.',ok:()=>{try{return (myFeed().posts||[]).some(p=>!p.rp)}catch(e){return false}},go:()=>{setTab('feed');setTimeout(()=>openCompose('capai'),300)}},
- {k:'bisnis',t:'Cek menu Bisnis',d:'Estimasi bonus, statement, HNI Cash, rekening, dan bukti potong.',go:()=>{BIZ_TAB='bonus';setTab('bisnis')}},
- {k:'bantuan',t:'Simpan kontak HALO HNI',d:'Tombol Bantuan di bagian atas berisi WhatsApp, email, dan Telegram Halo HNI.',go:()=>openBantuan()}];
+ {k:'bisnis',t:'Cek menu Bisnis',d:'Estimasi bonus, statement, HNI Cash, rekening, dan bukti potong.',go:()=>{BIZ_TAB='bonus';setTab('bisnis');pulseAt('[data-biz="cash"]')}},
+ {k:'bantuan',t:'Simpan kontak HALO HNI',d:'Tombol Bantuan di bagian atas berisi WhatsApp, email, dan Telegram Halo HNI.',go:()=>pulseAt('header [data-help="bantuan"]')}];
 function tutMark(k){S.tutv=S.tutv||{};if(!S.tutv[k]){S.tutv[k]=dkey();save();tutCheck()}}
 function tutIs(s){return !!((S.tutv&&S.tutv[s.k])||(s.ok&&s.ok()))}
 function tutDone(){return TUT.filter(tutIs).length}
