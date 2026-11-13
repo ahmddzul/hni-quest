@@ -116,6 +116,7 @@ p{margin:0}
 .tag.promo{background:var(--coral);color:#fff}
 .tag.now{background:var(--sun);color:#2A1A00}
 .tag.soft{background:var(--brand-soft);color:var(--brand)}
+.tag.demo{background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted);font-weight:700;letter-spacing:.02em}
 
 /* tabs */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
@@ -3515,7 +3516,7 @@ function admPostRow(p,extra){const hid=(MODC.hidden||[]).includes(p.key),pin=(MO
   <p class="small" style="margin:4px 0">${esc(p.t)}</p>${extra||''}
   <div class="row admact"><button class="btn small ghost" data-adm="hide" data-k="${p.key}">${hid?'Tampilkan':'Sembunyikan'}</button>${p.re?'':`<button class="btn small ghost" data-adm="pin" data-k="${p.key}">${pin?'Lepas sematan':'Sematkan'}</button>`}${(p.au||{}).off?'':`<button class="btn small ghost" data-adm="ban" data-u="${p.u}" style="color:var(--coral-text)">${ban?'Cabut larangan':'Larang penulis'}</button>`}</div></div>`}
 function admFeed(D){const L=admPosts(D).filter(p=>!ADM.q||(p.t+(p.au||{}).nick).toLowerCase().includes(ADM.q.toLowerCase()));
-  return `<section class="section"><div class="card stack"><span class="eyebrow">Tulis sebagai akun resmi</span><textarea class="input" id="adm-off" maxlength="280" placeholder="Pengumuman, tema minggu ini, ucapan selamat pemenang…"></textarea><div class="row"><select class="input" id="adm-offk" style="max-width:160px">${Object.entries(FEED_KIND).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join('')}</select><button class="btn grow" data-act="admpost">Kirim sebagai Tim HNIF</button></div></div></section>
+  return `<section class="section"><div class="card stack"><span class="eyebrow">Tulis sebagai akun resmi</span><textarea class="input" id="adm-off" maxlength="280" placeholder="Pengumuman, tema minggu ini, ucapan selamat pemenang…"></textarea><div class="row"><select class="input" id="adm-offk" style="max-width:160px">${Object.entries(FEED_KIND).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join('')}</select><button class="btn grow" data-act="admpost">Kirim sebagai Manajemen HNI</button></div></div></section>
   <section class="section"><input class="input" id="adm-q" type="search" placeholder="Cari isi kabar atau nama" value="${esc(ADM.q)}"><div class="stack" style="gap:8px;margin-top:10px">${L.slice(0,150).map(p=>admPostRow(p)).join('')||'<div class="empty">Belum ada kabar.</div>'}</div></section>`}
 function admReports(D){const A=admPosts(D);const by=Object.fromEntries(A.map(p=>[p.key,p]));const R=admReportList(D);
   return `<section class="section"><p class="muted small">Kabar yang dilaporkan pemain, urut dari laporan terbanyak.</p><div class="stack" style="gap:8px">${R.map(r=>{const p=by[r.key];if(!p)return '';return admPostRow(p,`<div class="small warnt">${r.n} laporan: ${Object.entries(r.why).map(([w,n])=>esc(w)+(n>1?' ×'+n:'')).join(', ')}</div><button class="link small" data-adm="dismiss" data-k="${r.key}" style="padding:0;align-self:flex-start">Abaikan laporan (kabar aman)</button>`)}).join('')||'<div class="empty">Tidak ada laporan. Komunitas aman 👍</div>'}</div></section>`}
@@ -3571,7 +3572,7 @@ function admReadSettings(){const v=id=>{const e=$('#'+id);return e?e.value:''};c
   C.themes=v('st-th').split('\n').map(l=>l.split('|').map(s=>s.trim())).filter(a=>a[0]).map((a,i)=>({tag:a[0].startsWith('#')?a[0]:'#'+a[0],q:a[1]||'',k:['capai','inspirasi','motivasi'][i%3]}));return C}
 async function admSaveSettings(){const C=admReadSettings();try{await DB.doc('config/app').set(C);CONFIG=Object.assign(JSON.parse(JSON.stringify(DEFAULT_CONFIG)),C);toast('Pengaturan tersimpan')}catch(e){toast('Gagal menyimpan: '+(e.code||'cek akses'))}}
 async function admOfficialPost(){const t=($('#adm-off').value||'').trim();if(t.length<3){toast('Tulis isinya dulu');return}const k=$('#adm-offk').value;
-  try{const ref=DB.doc('feed/tim-hni-quest');const s=await ref.get();const d=s.exists?JSON.parse(JSON.stringify(s.data())):{nick:'Tim HNIF',off:true,sq:'',sqn:'',rank:'',lvl:0,av:{c:'#467419'},likes:[],posts:[]};d.posts=(d.posts||[]).concat([{id:Date.now().toString(36),ts:Date.now(),k,t}]).slice(-80);await ref.set(d);toast('Terkirim sebagai Tim HNIF')}catch(e){toast('Gagal: hanya pemilik app yang bisa menulis akun resmi')}}
+  try{const ref=DB.doc('feed/tim-hni-quest');const s=await ref.get();const d=s.exists?JSON.parse(JSON.stringify(s.data())):{nick:'Manajemen HNI',off:true,sq:'',sqn:'',rank:'',lvl:0,av:{c:'#467419'},likes:[],posts:[]};d.posts=(d.posts||[]).concat([{id:Date.now().toString(36),ts:Date.now(),k,t}]).slice(-80);await ref.set(d);toast('Terkirim sebagai Manajemen HNI')}catch(e){toast('Gagal: hanya pemilik app yang bisa menulis akun resmi')}}
 document.addEventListener('click',e=>{if(SUB!=='admin')return;const t=e.target.closest('[data-admtab],[data-adm],[data-rdok],[data-rdno],[data-act^="adm"],[data-adm-gift],[data-adm-giftm],[data-adm-gm]');if(!t)return;const d=t.dataset;e.stopPropagation();
   if(d.admGm){ADM.gm=d.admGm;render();return}
   if(d.admGift){const [u,k,n,...note]=d.admGift.split('|');admGift(u,k,+n,note.join('|'));return}
@@ -3710,8 +3711,8 @@ function squadBoardSync(){if(!DB||MODE!=='db')return;[mySq(),canMentor()?mentorS
   try{DB.collection('board').where('sq','==',k).limit(300).onSnapshot(s=>{SQB[k]=s.docs.map(d=>Object.assign({},JSON.parse(JSON.stringify(d.data())),{id:d.id}));squadRender()},()=>{SQB_SUB[k]=0})}catch(e){SQB_SUB[k]=0}})}
 function squadRender(){if($('#layer').innerHTML)return;if(SUB==='mentor'||(!SUB&&['home','rank','team'].includes(TAB)))render()}
 function squadRows(k){if(!k)return [];const base=(SQB[k]||BOARD.filter(r=>r.sq===k)).filter(r=>r.id!==UID);
-  // Mentor LED yang belum punya anggota melihat data contoh supaya bisa mencoba semua fitur
-  if(!base.length&&typeof canMentor==='function'&&canMentor()&&k===mentorSq()&&typeof sampleSquad==='function')return sampleSquad(k);return base}
+  // Mentor LED selalu mendapat 10 anggota contoh (di samping anggota asli) supaya semua fitur bisa dicoba
+  if(!window.NO_SAMPLE&&typeof canMentor==='function'&&canMentor()&&k===mentorSq()&&typeof sampleSquad==='function')return base.concat(sampleSquad(k));return base}
 // mode coba (tanpa server): simpan data mentor di perangkat supaya fitur tetap bisa dicoba
 function loadLocalSquad(){if(SQD)return SQD;try{SQD=JSON.parse(localStorage.getItem('hniquest:squad')||'null')}catch(e){}return SQD}
 
@@ -3752,7 +3753,7 @@ function viewMentor(){if(!canMentor()){SUB=null;return viewHome()}
     <div class="gstats"><div><b class="num">${st.today}</b><span>Aktif hari ini</span></div><div><b class="num">${st.week}</b><span>Aktif minggu ini</span></div><div><b class="num">${fmtN(st.xp)}</b><span>Misi minggu ini</span></div></div></div></section>
   <div class="seg mtseg" role="group">${tabs.map(([k,t])=>`<button data-mttab="${k}" aria-pressed="${MT_TAB===k}">${t}</button>`).join('')}</div>
   ${MODE!=='db'&&!syncBannerOn()?'<p class="note">Mode coba: data anggota muncul saat aplikasi tersambung ke server. Pengaturan yang kamu buat tetap tersimpan di perangkat ini.</p>':''}`;
-  return head+(isSampleSquad()?SAMPLE_NOTE.replace('Angka di layar ini simulasi. Setelah tersambung ke AVO, data diambil langsung dari sistem HNI.','Squad-mu belum punya anggota, jadi ditampilkan 10 anggota contoh supaya semua fitur bisa dicoba. Anggota asli muncul setelah mitra mengisi ID HNI-mu sebagai Mentor LED.'):'')+({pantau:mtPantau,anggota:mtAnggota,gas:mtGas,info:mtInfo,rekap:mtRekap,event:mtEventTab})[MT_TAB](d,st)}
+  return head+(isSampleSquad()?SAMPLE_NOTE.replace('Angka di layar ini simulasi. Setelah tersambung ke AVO, data diambil langsung dari sistem HNI.','Squad-mu dilengkapi 10 anggota contoh (bertanda <i>contoh</i>) supaya semua fitur bisa dicoba. Anggota asli tetap tampil dan bertambah saat mitra mengisi ID HNI-mu sebagai Mentor LED.'):'')+({pantau:mtPantau,anggota:mtAnggota,gas:mtGas,info:mtInfo,rekap:mtRekap,event:mtEventTab})[MT_TAB](d,st)}
 
 // 1) Pantau: kesehatan squad + saran aksi hari ini
 function mtPantau(d,st){
@@ -3785,7 +3786,7 @@ function mtAnggota(d,st){if(!st.all)return mtEmpty();
   if(MT_F==='sepi')L=st.sepi;if(MT_F==='risk')L=st.risk;if(MT_F==='naik')L=st.naik;if(MT_F==='baru')L=st.baru;if(MT_F==='fokus')L=L.filter(r=>d.fc[r.id]);
   if(MT_F==='all')L.sort((a,b)=>b.wx-a.wx||a.off-b.off);
   const row=r=>{const f=d.fc[r.id];const fd=f&&r.fd===f.id;const ks=(d.kd[r.id]||[]).length;
-    return `<button class="mrow" data-mem="${esc(r.id)}" style="text-align:left;width:100%"><div class="row">${avatar(r.nick,40,r.av)}<div class="grow"><b>${esc(r.nick)}</b> ${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${ks?` <span class="tag soft"><span class="ii">${ico('star')}</span>${ks}</span>`:''}<br><span class="small ${r.off>=3?'warnt':'muted'}">${r.off===0?`Aktif hari ini · ${r.dn||0} misi`:r.off>=99?'Belum pernah aktif':`${r.off} hari tidak aktif`} · rajin ${r.st||0} hari · ${fmtN(r.wx)} misi minggu ini</span>
+    return `<button class="mrow" data-mem="${esc(r.id)}" style="text-align:left;width:100%"><div class="row">${avatar(r.nick,40,r.av)}<div class="grow"><b>${esc(r.nick)}</b> ${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${r.demo?' <span class="tag demo">contoh</span>':''}${ks?` <span class="tag soft"><span class="ii">${ico('star')}</span>${ks}</span>`:''}<br><span class="small ${r.off>=3?'warnt':'muted'}">${r.off===0?`Aktif hari ini · ${r.dn||0} misi`:r.off>=99?'Belum pernah aktif':`${r.off} hari tidak aktif`} · rajin ${r.st||0} hari · ${fmtN(r.wx)} misi minggu ini</span>
       ${f?`<br><span class="small" style="color:${fd?'var(--brand)':'var(--muted)'}"><span class="ii">${ico(fd?'check':'target')}</span> Fokus: ${esc(f.t.slice(0,60))}${fd?' (selesai)':''}</span>`:''}</div><span class="harr">${ico('chevrons')}</span></div>
       ${r.nx?`<div class="row" style="gap:8px"><span class="small muted" style="min-width:110px">Menuju ${esc(r.nx)}</span><div class="bar light grow"><i style="width:${r.np}%"></i></div><b class="small num">${r.np}%</b></div>`:''}</button>`};
   return `<section class="section"><div class="pills">${Object.entries(F).map(([k,t])=>`<button class="pill" data-mf2="${k}" aria-pressed="${MT_F===k}">${t}</button>`).join('')}</div>
@@ -3801,7 +3802,7 @@ function openMember(id){const st=sqStats(squadRows(mentorSq()));const r=st.L.fin
     ['Ajak pertemuan',d.ag&&agUpcoming(d.ag)?`${r.nick}, jangan lupa ${d.ag.t} tanggal ${agDate(d.ag)}${d.ag.loc?' di '+d.ag.loc:''}. Ditunggu ya, kita belajar bareng!`:`${r.nick}, minggu ini kita ngobrol sebentar yuk, bahas target dan rencanamu. Kapan kamu luang?`],
     ['Jaga rajin harian',`${r.nick}, rajin ${r.st||0} hari-mu tinggal dijaga hari ini. Satu misi saja cukup biar nggak putus. Semangat!`]
   ];
-  sheet(`<div class="stack"><div class="row">${avatar(r.nick,54,r.av)}<div class="grow"><span class="eyebrow">Anggota squad</span><h2 style="margin:0">${esc(r.nick)}</h2><span class="small muted prank">${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${esc((RANKS.find(x=>x.c===r.rank)||RANKS[0]).n)} · Level ${r.lvl||1}</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+  sheet(`<div class="stack"><div class="row">${avatar(r.nick,54,r.av)}<div class="grow"><span class="eyebrow">Anggota squad${r.demo?' · data contoh':''}</span><h2 style="margin:0">${esc(r.nick)}</h2><span class="small muted prank">${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${esc((RANKS.find(x=>x.c===r.rank)||RANKS[0]).n)} · Level ${r.lvl||1}</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
     <div class="gstats lite"><div><b class="num">${r.off===0?'Hari ini':r.off>=99?'-':r.off+' hr'}</b><span>Terakhir aktif</span></div><div><b class="num">${r.st||0}</b><span>Rajin harian</span></div><div><b class="num">${fmtN(r.wx)}</b><span>Misi minggu ini</span></div></div>
     ${r.nx?`<div class="stack" style="gap:4px"><div class="row between small"><span>Menuju ${esc(r.nx)}</span><b class="num">${r.np}%</b></div><div class="bar light"><i style="width:${r.np}%"></i></div></div>`:''}
     <dl class="kv"><dt>Badge</dt><dd class="num">${r.b||0}</dd><dt>Bintang Mentor</dt><dd class="num">${ks.length}</dd>${r.jn?`<dt>Bergabung</dt><dd>${esc(r.jn)}</dd>`:''}</dl>
@@ -4325,12 +4326,13 @@ function evAll(){const out=[];const seen=new Set();
   const add=(doc,owner)=>{(doc&&doc.evs||[]).forEach(e=>{if(!evUpcoming(e)||seen.has(e.id))return;seen.add(e.id);out.push(Object.assign({},e,{own:owner,sqn:doc.nama||doc.nm||''}))})};
   (typeof SQ_ALL!=='undefined'?SQ_ALL:[]).forEach(d=>add(d,d.id));
   if(MODE!=='db'){const l=typeof loadLocalSquad==='function'?loadLocalSquad():null;if(l)add(l,'me')}
+  if(typeof sampleEvents==='function')add({evs:sampleEvents()},'demo');
   return out.sort((a,b)=>(a.d+(a.jam||''))<(b.d+(b.jam||''))?-1:1)}
 function myEvents(){return (squadDoc().evs||[]).filter(evUpcoming)}
 function joinedIds(){return (S.ej||[]).map(x=>x.id)}
 function evJoined(id){return joinedIds().includes(id)}
 // peserta = baris papan yang mencantumkan id event (papan nasional + papan squad yang sedang dipantau)
-function evGoers(id){const rows=new Map();BOARD.forEach(r=>rows.set(r.id,r));if(typeof SQB!=='undefined')Object.values(SQB).forEach(L=>L.forEach(r=>rows.set(r.id,r)));
+function evGoers(id){const rows=new Map();BOARD.forEach(r=>rows.set(r.id,r));if(/^evdemo/.test(id)&&typeof sampleSquad==='function'&&typeof canMentor==='function'&&canMentor())sampleSquad(mentorSq()).forEach(r=>rows.set(r.id,r));if(typeof SQB!=='undefined')Object.values(SQB).forEach(L=>L.forEach(r=>rows.set(r.id,r)));
   const L=[...rows.values()].filter(r=>r.id!==UID&&Array.isArray(r.ej)&&r.ej.includes(id));if(evJoined(id))L.push({id:UID||'me',nick:S.nick||'Kamu',me:true});return L}
 function evFull(e){return e.kuota>0&&evGoers(e.id).length>=e.kuota&&!evJoined(e.id)}
 function evWhen(e){return agDate({d:e.d,jam:e.jam})}
@@ -4405,9 +4407,10 @@ function openEventForm(id){if(!canMentor()){toast('Event hanya bisa dibuat Mento
     const del=$('#ev-del');if(del)del.onclick=()=>{squadSave({evs:(squadDoc().evs||[]).filter(x=>x.id!==e.id&&evUpcoming(x))});closeSheet();toast('Event dibatalkan')}})}
 
 // bagian di Ruang Mentor (tab Pesan & agenda)
-function mtEventsSection(){const L=myEvents();
+function mtEventsSection(){const L=myEvents();const SE=typeof sampleEvents==='function'?sampleEvents().filter(evUpcoming):[];
   return `<section class="section"><div class="card stack"><div class="row"><span class="tico">${ico('users')}</span><div class="grow"><span class="eyebrow">Event terbuka</span><h3 style="margin:0">Tampil untuk semua mitra, bisa daftar ikut</h3></div></div>
-    ${L.length?`<div class="stack" style="gap:8px">${L.map(e=>evRow(Object.assign({},e,{own:UID||'me'}))).join('')}</div>`:'<p class="small muted" style="margin:0">Belum ada event. Contoh: kelas produk, BOSS lokal, atau kopdar mitra satu kota.</p>'}
+    ${L.length?`<div class="stack" style="gap:8px">${L.map(e=>evRow(Object.assign({},e,{own:UID||'me'}))).join('')}</div>`:'<p class="small muted" style="margin:0">Belum ada event buatanmu. Contoh: kelas produk, BOSS lokal, atau kopdar mitra satu kota.</p>'}
+    ${SE.length?`<span class="small muted">Event contoh (untuk mencoba alur pendaftaran):</span><div class="stack" style="gap:8px">${SE.map(evRow).join('')}</div>`:''}
     <button class="btn block" data-ev-act="new" ${L.length>=EV_MAX?'disabled':''}>Buat event</button>
     <p class="note">Maksimal ${EV_MAX} event mendatang. Kuota dihitung dari pendaftar di aplikasi.</p></div></section>`}
 
@@ -4903,11 +4906,11 @@ function mentorMailUnread(){try{const m=memberSquadData();if(!m)return 0;return 
 function inboxUnread(){return notifUnread()+(typeof dmUnread==='function'?dmUnread():0)+mentorMailUnread()}
 function paintInboxBadge(){const n=inboxUnread();document.querySelectorAll('[data-inbox] .nbadge').forEach(b=>{b.textContent=n>9?'9+':n;b.hidden=!n})}
 function tsShort(ts){const d=new Date(ts);const t=dkey(d)===dkey()?'Hari ini':dkey(d)===dkey(addDays(new Date(),-1))?'Kemarin':`${d.getDate()} ${BLN[d.getMonth()]}`;return `${t} · ${pad(d.getHours())}.${pad(d.getMinutes())}`}
-function notifCard(n,unread){return `<article class="ncard ${unread?'new':''}">${n.img?`<img class="nimg" src="${n.img}" alt="">`:''}<div class="nbody"><div class="row between"><b>${esc(n.t||'Pengumuman')}</b>${unread?'<span class="newtag">baru</span>':''}</div><p>${esc(n.b||'')}</p><span class="small muted">${esc(tsShort(n.ts))} · ${n.to==='all'?'Untuk semua mitra':'Khusus untukmu'} · Tim HNIF</span></div></article>`}
+function notifCard(n,unread){return `<article class="ncard ${unread?'new':''}">${n.img?`<img class="nimg" src="${n.img}" alt="">`:''}<div class="nbody"><div class="row between"><b>${esc(n.t||'Pengumuman')}</b>${unread?'<span class="newtag">baru</span>':''}</div><p>${esc(n.b||'')}</p><span class="small muted">${esc(tsShort(n.ts))} · ${n.to==='all'?'Untuk semua mitra':'Khusus untukmu'} · Manajemen HNI</span></div></article>`}
 function openInboxAll(tab){tab=tab||'notif';const N=myNotifs();const seen=S.ntSeen||[];const dmN=typeof dmUnread==='function'?dmUnread():0;const mlN=mentorMailUnread();
   const segs=[['notif','Notifikasi',notifUnread()],['dm','Pesan mitra',dmN],['led','Mentor LED',mlN]];
   let body='';
-  if(tab==='notif'){body=N.length?N.map(n=>notifCard(n,!seen.includes(n.id))).join(''):'<p class="muted" style="margin:0">Belum ada notifikasi. Pengumuman dari Tim HNIF akan muncul di sini.</p>';
+  if(tab==='notif'){body=N.length?N.map(n=>notifCard(n,!seen.includes(n.id))).join(''):'<p class="muted" style="margin:0">Belum ada notifikasi. Pengumuman dari Manajemen HNI akan muncul di sini.</p>';
     S.ntSeen=[...new Set(seen.concat(N.map(n=>n.id)))].slice(-80);save()}
   else if(tab==='dm'){const L=dmInbox();const sent=(S.dm||[]).slice().reverse();S.dmSeen=Date.now();save();
     body=(L.length?L.map(x=>`<div class="mail open"><div class="row between"><b>${esc(x.from)}</b><span class="small muted">${esc(tsTxt(x.ts))}</span></div><p style="margin:4px 0 0;white-space:pre-wrap">${esc(x.t)}</p>${x.fh?`<button class="btn small ghost" style="margin-top:8px" data-dmrep2="${esc(x.fh)}" data-dmnm="${esc(x.from)}">Balas</button>`:''}</div>`).join(''):'<p class="muted" style="margin:0">Belum ada pesan masuk.</p>')
@@ -4958,21 +4961,40 @@ function sampleSquad(k){const t=dkey(),d=n=>dkey(addDays(new Date(),-n)),w=wkey(
   const P=[['Nadia Putri','SM',14,6,'#2C9BE0',0,92,'Executive Manager',40],['Fikri Hidayat','M',9,4,'#E08A2C',0,70,'Senior Manager',120],['Galih Pratama','MB14',0,0,'#8B5CF6',5,25,'Mitra Baru 17%',200],['Sari Wulandari','SM',5,5,'#0A8C4B',1,48,'Executive Manager',300],['Bima Saputra','MB10',3,1,'#D94F4F',0,60,'Mitra Baru 14%',4],
     ['Intan Permata','M',11,9,'#F5A70F',0,85,'Senior Manager',90],['Yoga Ramadhan','MB17',2,3,'#14B8A6',1,88,'Manager',60],['Rina Amelia','MB10',1,1,'#EC4899',0,10,'Mitra Baru 14%',2],['Dimas Arya','EM',7,7,'#6366F1',2,35,'Director',400],['Lia Kurnia','M',0,0,'#64748B',8,30,'Senior Manager',250]];
   return P.map((x,i)=>({id:'demo'+i,demo:1,nick:x[0],rank:x[1],wk:w,wm:x[2],mm:x[2]*3,mt:x[2]*10,st:x[3],av:{c:x[4]},dd:d(x[5]),np:x[6],nx:x[7],jn:d(x[8]),pwk:lw,pwm:Math.round(x[2]*.8),sq:k,sqn:S.nick||'Mentor',
-    rp:i===0?[{m:'mz',t:'Siap, Kak! Minggu ini aku ajak 2 orang ke kelas produk.',ts:Date.now()-36e5}]:i===5?[{m:'mz',t:'Insya Allah, TP 600 bulan ini aman.',ts:Date.now()-72e5}]:[],ej:i%3===0?[{id:'evdemo'}]:[]}))}
-function isSampleSquad(){try{const r=squadRows(mentorSq());return r.length&&r[0].demo}catch(e){return false}}
+    rp:i===0?[{m:'mz',t:'Siap, Kak! Minggu ini aku ajak 2 orang ke kelas produk.',ts:Date.now()-36e5}]:i===5?[{m:'mz',t:'Insya Allah, TP 600 bulan ini aman.',ts:Date.now()-72e5}]:[],ej:i%3===0?['evdemo','evdemo-a']:i%3===1?['evdemo-a','evdemo-b']:['evdemo-b']}))}
+function isSampleSquad(){try{return squadRows(mentorSq()).some(r=>r.demo)}catch(e){return false}}
+
+// ---------- Event & laporan contoh untuk Mentor LED ----------
+const isDemoEv=id=>/^evdemo/.test(String(id||''));
+function sampleEvents(){if(window.NO_SAMPLE||typeof canMentor!=='function'||!canMentor())return [];const D=n=>dkey(addDays(new Date(),n));const by=(S.nick||'Mentor')+' (contoh)';
+  return [
+    {id:'evdemo-a',demo:1,by,n:'Kelas Produk untuk Mitra Baru (contoh)',ds:'Kenalan dengan produk HNI dan cara menceritakannya ke calon konsumen. Ajak 1 teman.',d:D(4),jam:'19:30',loc:'Aula Serbaguna Antapani',prov:'Jawa Barat',kota:'Kota Bandung',kuota:40,htm:0},
+    {id:'evdemo-b',demo:1,by,n:'BOSS Lokal Sabtu Pagi (contoh)',ds:'Presentasi peluang usaha HNI dan sharing pengalaman mitra.',d:D(9),jam:'09:00',loc:'Gedung Pertemuan Cimahi',prov:'Jawa Barat',kota:'Kota Cimahi',kuota:60,htm:25000},
+    {id:'evdemo',demo:1,by,n:'Kelas Produk Top Brand (contoh)',d:D(-3),jam:'19:30',loc:'Aula Serbaguna Antapani',prov:'Jawa Barat',kota:'Kota Bandung',kuota:40,htm:0},
+    {id:'evdemo-c',demo:1,by,n:'Kopdar Mitra Baru Bandung Timur (contoh)',d:D(-1),jam:'16:00',loc:'Rumah Makan Sunda Ujungberung',prov:'Jawa Barat',kota:'Kota Bandung',kuota:25,htm:0},
+    {id:'evdemo-d',demo:1,by,n:'Talkshow Hidup Sehat Halal (contoh)',d:D(-10),jam:'13:00',loc:'Masjid Raya Cipadung',prov:'Jawa Barat',kota:'Kota Bandung',kuota:80,htm:0},
+    {id:'evdemo-e',demo:1,by,n:'BOSS Lokal Bulan Lalu (contoh)',d:D(-24),jam:'09:00',loc:'Gedung Pertemuan Cimahi',prov:'Jawa Barat',kota:'Kota Cimahi',kuota:60,htm:25000}]}
+function demoPhoto(t,c1,c2){return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="320" height="220" fill="url(#g)"/><g fill="#fff" opacity=".35"><circle cx="70" cy="120" r="26"/><circle cx="160" cy="110" r="30"/><circle cx="250" cy="120" r="26"/><rect x="40" y="150" width="60" height="70" rx="20"/><rect x="125" y="145" width="70" height="75" rx="24"/><rect x="220" y="150" width="60" height="70" rx="20"/></g><text x="16" y="30" font-family="sans-serif" font-size="16" font-weight="700" fill="#fff">${t}</text><text x="16" y="50" font-family="sans-serif" font-size="12" fill="#fff">Foto contoh</text></svg>`)}
+function demoInvoice(no,tot){return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="220" height="300"><rect width="220" height="300" fill="#fff"/><rect width="220" height="44" fill="#0A8C4B"/><text x="14" y="28" font-family="sans-serif" font-size="15" font-weight="700" fill="#fff">INVOICE (contoh)</text><text x="14" y="70" font-family="monospace" font-size="12" fill="#333">${no}</text>${[0,1,2,3,4].map(i=>`<rect x="14" y="${90+i*26}" width="${120+((i*37)%60)}" height="10" rx="3" fill="#ddd"/><rect x="170" y="${90+i*26}" width="36" height="10" rx="3" fill="#ddd"/>`).join('')}<line x1="14" y1="230" x2="206" y2="230" stroke="#999"/><text x="14" y="256" font-family="sans-serif" font-size="13" font-weight="700" fill="#111">Total ${tot}</text></svg>`)}
+let SLAP=null;
+function sampleLaps(){if(SLAP)return SLAP;const nm=['Siti Aminah','Budi Santoso','Rahma Dewi','Agus Salim','Wulan Sari','Hendra Wijaya','Fitri Handayani','Rudi Hartono','Nur Aisyah','Eko Prasetyo','Maya Lestari','Teguh Firmansyah','Dewi Anggraini','Arif Rahman','Ratna Juwita','Joko Susilo','Ani Rahmawati','Hadi Purnomo','Lina Marlina','Wahyu Nugroho','Desi Ratnasari','Iwan Setiawan'];
+  const ps=n=>nm.slice(0,n).map((x,i)=>({n:x,hp:'08120000'+String(1000+i*37).slice(-4)}));const ts=Date.now();
+  SLAP={'evdemo-d':{demo:1,inv:[{no:'INV-HNI-0418',total:1850000},{no:'INV-HNI-0419',total:925000},{no:'INV-HNI-0423',total:2430000}],invImg:[demoInvoice('INV-HNI-0418','Rp1.850.000')],ps:ps(22),ft:[demoPhoto('Sesi talkshow','#0A8C4B','#14B8A6'),demoPhoto('Tanya jawab','#2C9BE0','#6366F1'),demoPhoto('Foto bersama','#F5A70F','#E08A2C')],rk:[{id:'10456721',n:'Rahma Dewi'},{id:'10456735',n:'Hendra Wijaya'},{id:'10456790',n:'Nur Aisyah'}],cat:'Peserta antusias, banyak yang minta kelas lanjutan soal pola hidup sehat.',ts:ts-8*864e5},
+    'evdemo-e':{demo:1,inv:[{no:'INV-HNI-0301',total:3120000},{no:'INV-HNI-0307',total:1475000}],invImg:[],ps:ps(15),ft:[demoPhoto('Presentasi peluang','#8B5CF6','#EC4899'),demoPhoto('Sharing mitra','#D94F4F','#F5A70F')],rk:[{id:'10451102',n:'Agus Salim'},{id:'10451150',n:'Maya Lestari'}],cat:'Dua peserta langsung bergabung. Follow up 5 peserta lain minggu depan.',ts:ts-22*864e5}};
+  const E=sampleEvents();for(const k in SLAP){const e=E.find(x=>x.id===k)||{};Object.assign(SLAP[k],{evn:e.n,evd:e.d,evloc:e.loc,evkota:e.kota})}return SLAP}
 
 // ---------- Laporan event (Mentor LED) ----------
 function evArchive(){const past=(squadDoc().evs||[]).filter(e=>!evUpcoming(e));const arc=(S.evArc||[]);const all=[...arc];past.forEach(e=>{if(!all.find(x=>x.id===e.id))all.push(e)});
-  if(!all.length&&isSampleSquad())all.push({id:'evdemo',demo:1,n:'Kelas Produk Top Brand (contoh)',d:dkey(addDays(new Date(),-3)),jam:'19:30',loc:'Aula SC Bandung 12',prov:'Jawa Barat',kota:'Kota Bandung',kuota:40,htm:0});
+  sampleEvents().filter(e=>!evUpcoming(e)).forEach(e=>{if(!all.find(x=>x.id===e.id))all.push(e)});
   return all.sort((a,b)=>b.d<a.d?-1:1)}
 function evArchiveSave(list){const past=list.filter(e=>!evUpcoming(e));if(!past.length)return;S.evArc=[...(S.evArc||[]).filter(x=>!past.find(p=>p.id===x.id)),...past].slice(-12);save()}
-function lapOf(id){return (S.evlap||{})[id]}
+function lapOf(id){return (S.evlap||{})[id]||(isDemoEv(id)&&typeof canMentor==='function'&&canMentor()?sampleLaps()[id]:undefined)}
 function lapSum(l){return{inv:(l.inv||[]).reduce((a,x)=>a+(+x.total||0),0),ps:(l.ps||[]).length,rk:(l.rk||[]).length,ft:(l.ft||[]).length}}
 function mtEventTab(){const A=evArchive();
   return `${mtEventsSection()}
   <section class="section"><div class="card stack"><div class="row"><span class="tico">${ico('flag')}</span><div class="grow"><span class="eyebrow">Event yang sudah berjalan</span><h3 style="margin:0">Laporan event</h3></div></div>
-    <p class="small muted" style="margin:0">Setelah event selesai, isi laporannya: invoice belanja, daftar peserta, foto kegiatan, dan mitra baru yang direkrut. Laporan terkirim ke admin HNIF.</p>
-    ${A.length?`<div class="stack" style="gap:8px">${A.map(e=>{const l=lapOf(e.id);const s=l?lapSum(l):null;const n=evGoers?evGoers(e.id):0;return `<div class="evrow"><div class="grow"><b>${esc(e.n)}</b><span class="small muted">${esc(tglID(e.d))} · ${esc(e.kota||e.loc||'')} · ${n} pendaftar di aplikasi</span>${s?`<span class="lapchips"><span>${fmtN(s.ps)} peserta</span><span>${rp(s.inv)}</span><span>${fmtN(s.rk)} mitra baru</span><span>${s.ft} foto</span></span>`:'<span class="small warnt">Laporan belum diisi</span>'}</div><button class="btn small ${l?'ghost':''}" data-lap="${e.id}">${l?'Lihat / ubah':'Isi laporan'}</button></div>`}).join('')}</div>`:'<p class="small muted" style="margin:0">Belum ada event yang selesai.</p>'}</div></section>`}
+    <p class="small muted" style="margin:0">Setelah event selesai, isi laporannya: invoice belanja, daftar peserta, foto kegiatan, dan mitra baru yang direkrut. Laporan terkirim ke Manajemen HNI.</p>
+    ${A.length?`<div class="stack" style="gap:8px">${A.map(e=>{const l=lapOf(e.id);const s=l?lapSum(l):null;const n=typeof evGoers==="function"?evGoers(e.id).length:0;return `<div class="evrow"><div class="grow"><b>${esc(e.n)}</b><span class="small muted">${esc(tglID(e.d))} · ${esc(e.kota||e.loc||'')} · ${n} pendaftar di aplikasi</span>${s?`<span class="lapchips"><span>${fmtN(s.ps)} peserta</span><span>${rp(s.inv)}</span><span>${fmtN(s.rk)} mitra baru</span><span>${s.ft} foto</span></span>`:'<span class="small warnt">Laporan belum diisi</span>'}</div><button class="btn small ${l?'ghost':''}" data-lap="${e.id}">${l?'Lihat / ubah':'Isi laporan'}</button></div>`}).join('')}</div>`:'<p class="small muted" style="margin:0">Belum ada event yang selesai.</p>'}</div></section>`}
 let LAP=null;
 function openLap(id){const e=evArchive().find(x=>x.id===id);if(!e)return;LAP=JSON.parse(JSON.stringify(lapOf(id)||{inv:[{no:'',total:''}],invImg:[],ps:[],ft:[],rk:[{id:'',n:''}],cat:''}));LAP.ev=id;drawLap(e)}
 function drawLap(e){const l=LAP;const s=lapSum(l);
@@ -4987,7 +5009,7 @@ function drawLap(e){const l=LAP;const s=lapSum(l);
       <div class="lapimgs">${(l.ft||[]).map((im,i)=>`<span><img src="${im}" alt="Foto kegiatan ${i+1}"><button data-lx="ft.${i}" aria-label="Hapus foto">✕</button></span>`).join('')}</div></div>
     <div class="lapsec"><h3>4. Mitra baru yang direkrut <span class="small muted">${s.rk}</span></h3>${l.rk.map((x,i)=>`<div class="row" style="gap:6px"><input class="input num" style="max-width:130px" data-lf="rk.${i}.id" inputmode="numeric" maxlength="8" placeholder="ID HNI" value="${esc(x.id)}"><input class="input grow" data-lf="rk.${i}.n" placeholder="Nama mitra baru" value="${esc(x.n)}"><button class="iconbtn" data-lx="rk.${i}" aria-label="Hapus baris">✕</button></div>`).join('')}<button class="link small" data-ladd="rk" style="align-self:flex-start">+ Tambah mitra baru</button></div>
     <div class="field"><label for="lap-cat">Catatan (opsional)</label><textarea class="input" id="lap-cat" maxlength="400" placeholder="mis. Peserta antusias dengan Sevel, minta kelas lanjutan.">${esc(l.cat||'')}</textarea></div>
-    <button class="btn block" id="lap-ok">Simpan & kirim laporan</button><p class="note">Data peserta hanya dikirim ke admin HNIF untuk keperluan tindak lanjut, tidak ditampilkan ke mitra lain.</p></div>`,L=>{L.querySelector('[data-close]').onclick=()=>{LAP=null;closeSheet()};
+    <button class="btn block" id="lap-ok">Simpan & kirim laporan</button><p class="note">Data peserta hanya dikirim ke Manajemen HNI untuk keperluan tindak lanjut, tidak ditampilkan ke mitra lain.</p></div>`,L=>{L.querySelector('[data-close]').onclick=()=>{LAP=null;closeSheet()};
     const grab=()=>{L.querySelectorAll('[data-lf]').forEach(i=>{const [a,b,c]=i.dataset.lf.split('.');LAP[a][+b][c]=i.value});LAP.cat=$('#lap-cat').value;LAP.ps=parsePs($('#lap-ps').value)};
     $('#lap-ps').oninput=()=>{$('#lap-pscnt').textContent=parsePs($('#lap-ps').value).length+' peserta'};
     L.querySelectorAll('[data-ladd]').forEach(b=>b.onclick=()=>{grab();LAP[b.dataset.ladd].push(b.dataset.ladd==='inv'?{no:'',total:''}:{id:'',n:''});drawLap(e)});
@@ -4999,10 +5021,11 @@ function drawLap(e){const l=LAP;const s=lapSum(l);
       if(!l.inv.length&&!l.ps.length&&!(l.ft||[]).length){toast('Isi minimal invoice, peserta, atau foto');return}
       const bad=l.rk.find(x=>!/^\d{8}$/.test(x.id));if(bad){toast('ID HNI mitra baru harus 8 angka');return}
       const first=!lapOf(l.ev);S.evlap=S.evlap||{};const ev=evArchive().find(x=>x.id===l.ev)||{};S.evlap[l.ev]=Object.assign({},l,{evn:ev.n,evd:ev.d,evloc:ev.loc,evkota:ev.kota,ts:Date.now()});delete S.evlap[l.ev].ev;save();pushEvReports();LAP=null;closeSheet();
+      if(isDemoEv(l.ev)){toast('Laporan contoh tersimpan (latihan, tidak dikirim ke Manajemen HNI)');render();return}
       if(first)award(K().acara||10,'Laporan event terkirim',{t:'evlap'});else toast('Laporan diperbarui');render()}})}
 function parsePs(t){return String(t||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean).map(x=>{const p=x.split(/[,;\t]/).map(s=>s.trim()).filter(Boolean);const hp=(p.find(s=>/^\+?\d[\d\s-]{7,}$/.test(s))||'').replace(/[\s-]/g,'');const n=p.filter(s=>s!==hp&&!/^\+?\d[\d\s-]{7,}$/.test(s)).join(' ');return{n:n||'-',hp}}).filter(x=>x.n!=='-'||x.hp)}
 // laporan event ikut dokumen reports/<uid> supaya terbaca admin (tanpa koleksi baru)
-function pushEvReports(){if(MODE==='db'&&DB&&UID){const body={items:S.reports||[],ev:Object.entries(S.evlap||{}).map(([id,l])=>Object.assign({id,by:S.nick||'',idhni:S.idhni||''},l)).slice(-12)};writeChain=writeChain.then(()=>DB.doc('reports/'+UID).set(body)).catch(()=>{})}}
+function pushEvReports(){if(MODE==='db'&&DB&&UID){const body={items:S.reports||[],ev:Object.entries(S.evlap||{}).filter(([id])=>!isDemoEv(id)).map(([id,l])=>Object.assign({id,by:S.nick||'',idhni:S.idhni||''},l)).slice(-12)};writeChain=writeChain.then(()=>DB.doc('reports/'+UID).set(body)).catch(()=>{})}}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-lap]');if(t)openLap(t.dataset.lap)});
 // admin: tab Laporan Event
 function admEvLap(){const R=((ADM.data&&ADM.data.reports)||[]).flatMap(r=>(r.ev||[]).map(x=>Object.assign({uid:r.id},x)));const mine=Object.entries(S.evlap||{}).map(([id,l])=>Object.assign({id,by:S.nick,idhni:S.idhni},l));
@@ -5054,7 +5077,7 @@ const FAQ=[
    ['Apa arti Pangkat/Niaga seperti A/MB?','Huruf pertama adalah niaga (A = Agen biasa, SC = Stock Center, DC = Distribution Center, AC = Agency Center). Huruf kedua adalah pangkat (MB = Mitra Baru, M = Manager, SM = Senior Manager, dan seterusnya).'],
    ['Apa itu Peta RFM?','Alat untuk merawat pelanggan. Pelanggan dikelompokkan dari kapan terakhir beli, seberapa sering, dan berapa banyak belanjanya. Setiap kelompok punya saran langkah dan pesan WhatsApp siap kirim.'],
    ['Apa itu Monitor ED?','Halaman untuk ED ke atas yang memantau semua ED di jaringan dan syarat menuju GED, DED, CED, serta gelar LED.'],
-   ['Di mana melihat notifikasi dan pesan?','Ketuk ikon lonceng di bar atas (di desktop juga ada di menu samping: Notifikasi & pesan). Isinya tiga bagian: Notifikasi dari Tim HNIF, Pesan mitra, dan pesan dari Mentor LED. Angka merah menunjukkan jumlah yang belum dibaca.'],
+   ['Di mana melihat notifikasi dan pesan?','Ketuk ikon lonceng di bar atas (di desktop juga ada di menu samping: Notifikasi & pesan). Isinya tiga bagian: Notifikasi dari Manajemen HNI, Pesan mitra, dan pesan dari Mentor LED. Angka merah menunjukkan jumlah yang belum dibaca.'],
    ['Bagaimana bergabung dengan squad Mentor LED?','Buka Profil, isi ID HNI Mentor LED-mu di bagian Squad, lalu simpan.']]],
  ['Bonus & HNI Cash',[['Kapan estimasi bonus harian berhenti dihitung?','Estimasi dihitung setiap hari sampai tanggal 27. Angka final ada di Statement Bonus dan dibayar paling lambat tanggal 10 bulan berikutnya.'],
    ['Bisakah memilih bonus masuk ke HNI Cash?','Bisa. Buka Bisnis, lalu Rekening & pencairan, lalu pilih HNI Cash atau Transfer ke rekening.'],
