@@ -907,6 +907,62 @@ button.kpi{cursor:pointer}button.kpi:hover{border-color:var(--brand)}
   .sheet{max-width:560px}
   .mlist{gap:8px}
 }
+
+/* v36: TP hero, genealogi ringkas, label journey, monitor ED, rekening */
+.tphero{position:relative;overflow:hidden;background:#0F5C34;color:#fff;border-radius:14px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;border-left:6px solid var(--lime)}
+.tphero::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:22px solid rgba(166,206,57,.16);pointer-events:none}
+.tph-top{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.tph-l{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+.tph-n{font-family:var(--display);font-size:2.6rem;font-weight:800;line-height:1.05;letter-spacing:-.03em}
+.tph-n span{font-size:1rem;font-weight:600;color:#CFE6D6;letter-spacing:0}
+.tphero .btn.sun{background:var(--sun);color:#1B2B22;position:relative;z-index:1}
+.tph-bar{position:relative;height:12px;border-radius:6px;background:rgba(255,255,255,.18)}
+.tph-bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--lime),#D6EE7A);min-width:6px;transition:width .6s}
+.tph-bar em{position:absolute;top:-3px;bottom:-3px;width:2px;background:rgba(255,255,255,.7)}
+.tph-msg{margin:0;font-size:.88rem;color:#E4F1E8}.tph-msg b{color:#fff}
+.tph-goals{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:1}
+.tph-goals button{display:flex;flex-direction:column;align-items:flex-start;gap:0;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:10px;padding:6px 10px;font:inherit;font-weight:800;min-height:44px;cursor:pointer}
+.tph-goals button span{font-size:.68rem;font-weight:600;color:#CFE6D6}
+.tph-goals button[aria-pressed="true"]{background:#fff;color:#0F5C34;border-color:#fff}.tph-goals button[aria-pressed="true"] span{color:#56645B}
+.hk{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media (max-width:519px){.hk .kpi{padding:10px}.hk .kpi>span{font-size:.7rem}.hk .kpi small{display:none}}
+@media (min-width:1024px){.hhead{flex-direction:column;align-items:stretch}.hhead .hgreet{min-width:0}}
+
+.gtbl{max-width:100%}
+.gtable{font-size:.82rem}
+.gtable th,.gtable td{padding:7px 10px}
+.gtable .stk{position:sticky;left:0;z-index:2;background:var(--surface);min-width:150px;max-width:190px;box-shadow:1px 0 0 var(--line)}
+.gtable th.stk{z-index:3;background:var(--surface-2)}
+.gtable .hl{background:color-mix(in srgb,var(--brand) 7%,var(--surface))}
+.gtable th.hl{background:var(--brand-soft);color:var(--brand-text)}
+.gname{min-width:0;gap:4px}
+.gnm{display:flex;flex-direction:column;align-items:flex-start;border:0;background:none;padding:2px 0;font:inherit;color:var(--ink);text-align:left;cursor:pointer;min-width:0;min-height:36px;justify-content:center}
+.gnm b{color:var(--brand-text);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--brand) 35%,transparent);text-underline-offset:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+.gnm .small{white-space:nowrap}
+.gtable .tw{width:22px;height:22px;border-radius:6px;font-size:.85rem}
+.kv.prof{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}.kv.prof dt{color:var(--muted);font-size:.85rem}.kv.prof dd{margin:0;font-weight:600}
+.btn.wa{background:#1FA855!important;color:#fff!important}
+.dtable tr.cur td{background:var(--brand-soft);font-weight:700}
+
+.node .info{background:transparent!important;padding:0;margin:0}
+.node .info b,.node .info .small{text-shadow:0 0 2px var(--bg),0 0 2px var(--bg),0 0 3px var(--bg),0 0 4px var(--bg),1px 1px 0 var(--bg),-1px -1px 0 var(--bg),1px -1px 0 var(--bg),-1px 1px 0 var(--bg)}
+
+.edgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.edm{display:flex;flex-direction:column;gap:4px}.okt{color:var(--brand-text);font-weight:800}
+.minibar{height:6px;border-radius:3px;background:var(--surface-2);width:110px;margin-bottom:3px}.minibar i{display:block;height:100%;border-radius:3px;background:var(--sun)}.minibar i.ok{background:var(--brand)}
+
+.bonnav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:14px}.bonnav .seg{margin-top:0;flex:1 1 280px}
+.minilink{display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:var(--muted);font:inherit;font-size:.82rem;font-weight:700;padding:8px 4px;min-height:40px;cursor:pointer}
+.minilink svg{width:15px;height:15px}.minilink.on,.minilink:hover{color:var(--brand-text);text-decoration:underline}
+.paychip{display:flex;align-items:center;gap:8px;width:100%;margin-top:10px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font:inherit;font-size:.85rem;color:var(--ink);text-align:left;cursor:pointer}
+.paychip svg{width:16px;height:16px;color:var(--brand)}
+.paysel{display:flex;flex-direction:column;gap:8px}
+.paysel button{display:flex;align-items:center;gap:12px;text-align:left;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font:inherit;color:var(--ink);cursor:pointer}
+.paysel button .grow{display:flex;flex-direction:column;gap:2px}
+.paysel .pico{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);color:var(--brand);flex:none}
+.paysel .radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:none}
+.paysel button[aria-checked="true"]{border-color:var(--brand);background:var(--brand-soft)}
+.paysel button[aria-checked="true"] .radio{border:6px solid var(--brand)}
 </style>
 
 <div class="splash" id="splash" aria-label="HNIF">
@@ -1665,6 +1721,8 @@ function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{l
 setTheme(getTheme());
 // ---------- icons ----------
 const ICONS={
+  bank:'<path d="M3 9.5L12 4l9 5.5"/><path d="M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3.5 20h17"/>',
+  wa:'<path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"/>',
   search:'<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>',
   camera:'<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
   pin:'<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
@@ -1834,7 +1892,7 @@ function flush(){
   writeChain=writeChain.then(()=>DB.doc('data/users/'+UID+'/state').set(body)).catch(e=>{
     if(e&&e.code==='invalid_argument'){MODE='local';window.HNI_NOWRITE=1;renderBanner()}
   });
-  const b={dd:S.day.d,dn:S.day.done.length,nick:S.nick||'Mitra',sq:mySq(),sqn:(S.mentorName||'').slice(0,40),xp:S.xp,mm:S.mmc||0,wm:S.wmc||0,mt:S.mtot||0,rp:(S.rp||[]).slice(-10),wk:S.wk,wxp:S.wxp,mk:S.mk,mxp:S.mxp,rank:dispRank(),st:S.streak,b:S.badges.length,g:gameTops(),pwk:S.pwk||'',pwxp:S.pwxp||0,lt:ligaOf().t,ltw:ligaOf().wk,ltp:ligaOf().tp??ligaOf().t,ltpw:ligaOf().pw||'',av:S.av||{},jn:S.joined||'',mh:idKey(S.idhni),uh:idKey(S.upId),ej:(S.ej||[]).filter(x=>x.d>=dkey()).map(x=>x.id),rk:S.rank,rv:S.rv||'',fd:S.fd||'',...boardProg()};
+  const b={dd:S.day.d,dn:S.day.done.length,nick:S.nick||'Mitra',sq:mySq(),sqn:(S.mentorName||'').slice(0,40),xp:S.xp,mm:S.mmc||0,wm:S.wmc||0,mt:S.mtot||0,rp:(S.rp||[]).slice(-10),dm:(S.dm||[]).slice(-10),wk:S.wk,wxp:S.wxp,mk:S.mk,mxp:S.mxp,rank:dispRank(),st:S.streak,b:S.badges.length,g:gameTops(),pwk:S.pwk||'',pwxp:S.pwxp||0,lt:ligaOf().t,ltw:ligaOf().wk,ltp:ligaOf().tp??ligaOf().t,ltpw:ligaOf().pw||'',av:S.av||{},jn:S.joined||'',mh:idKey(S.idhni),uh:idKey(S.upId),ej:(S.ej||[]).filter(x=>x.d>=dkey()).map(x=>x.id),rk:S.rank,rv:S.rv||'',fd:S.fd||'',...boardProg()};
   const mt=metricsBody();const sig=JSON.stringify(b)+JSON.stringify(mt);
   if(sig!==boardSig&&S.onboarded){boardSig=sig;writeChain=writeChain.then(()=>DB.doc('board/'+UID).set(Object.assign({ts:Date.now()},b))).then(()=>DB.doc('metrics/'+UID).set(mt)).catch(()=>{})}
 }
@@ -2069,8 +2127,8 @@ function paintNav(){const g=SUB==='mentor'?'mentor':SUB==='admin'?'admin':navGro
   const it=(k,t,ic,sub)=>{const lk=!isOpen(k.split(':')[0]);return `<button data-nav="${k}" class="${sub?'sub':''} ${lk?'locked':''}" ${cur===k?'aria-current="page"':''}>${ico(lk?'lock':ic)}<span>${t}</span></button>`};
   side.innerHTML=`<div class="side-logo">${document.querySelector('header.top .logo').outerHTML}</div><nav aria-label="Menu utama">
     <span class="side-h">Utama</span>${it('home','Beranda','compass')}${it('journey','Journey','mountain')}${it('academy','Akademi','cap')}
-    <span class="side-h">Jaringan</span>${it('team:gen','Genealogi','users',1)}${it('team:prospek','Prospek & Pelanggan','userplus',1)}${it('feed','Kabar','chat',1)}${it('rank','Rangking','trophy',1)}
-    <span class="side-h">Bisnis</span>${it('bisnis:bonus','Bonus','chart',1)}${it('bisnis:cash','HNI Cash','coin',1)}${it('bisnis:pph','Bukti Potong PPh21','text',1)}
+    <span class="side-h">Jaringan</span>${it('team:gen','Genealogi','users',1)}${it('team:ed','Monitor ED','crown',1)}${it('team:prospek','Prospek & Pelanggan','userplus',1)}${it('feed','Kabar','chat',1)}${it('rank','Rangking','trophy',1)}
+    <span class="side-h">Bisnis</span>${it('bisnis:bonus','Bonus','chart',1)}${it('bisnis:cash','HNI Cash','coin',1)}${it('bisnis:rek','Rekening & pencairan','bank',1)}
     ${canMentor()||(typeof CAN_ADMIN!=='undefined'&&CAN_ADMIN)?`<span class="side-h">Kelola</span>${canMentor()?it('mentor','Ruang Mentor LED','crown'):''}${typeof CAN_ADMIN!=='undefined'&&CAN_ADMIN?it('admin','Dasbor Admin','shield'):''}`:''}</nav>
     <button class="side-me" data-act="profile">${avatar(S.nick||'Mitra',36,S.av)}<span class="grow"><b>${esc(S.nick||'Mitra')}</b><span class="small muted">${esc(rkS(S.rank))} · ${fmtCoin(coinBal())} koin</span></span></button>`}
 function closeSideMenu(){}
@@ -2108,11 +2166,11 @@ function viewHome(){
   return `<h1 class="vh">Beranda HNIF</h1>
   <section class="hhead" style="margin-top:6px">
     <div class="hgreet">${avatar(S.nick||'Mitra',52,S.av)}<div class="grow"><span class="small muted">${esc(hello)},</span><h2 class="hname"><button class="nickbtn" data-act="nick" aria-label="Ganti nama panggilan">${esc(honor())}<span class="ii">${ico('edit')}</span></button></h2><span class="rkline">${rankImg(r.c,'xs')}${esc(r.n)}${mySq()?` · <button class="link small" data-nav="rank">Squad #${sqPos||'-'}</button>`:` · <button class="link small" data-act="profile">Gabung squad</button>`}</span></div></div>
+    ${tpHero()}
     <div class="kpis hk">
       <button class="kpi" data-act="wallet"><span>${ico('coin')} Koin</span><b class="num" id="coinNum">${fmtCoin(coinBal())}</b><small>+${fmtCoin(S.wk===wkey()?S.wxp:0)} minggu ini</small></button>
       <button class="kpi" data-nav="rank"><span>${ico('check')} Misi minggu ini</span><b class="num">${S.wk===wkey()?S.wmc||0:0}</b><small>${S.mtot||0} total</small></button>
       <div class="kpi ${streakRisk?'warn':''}"><span>${ico('flame')} Streak</span><b class="num">${S.streak} <small>hari</small></b><small>${streakRisk?'belum misi hari ini':'terjaga'}</small></div>
-      <button class="kpi" data-act="belanja"><span>${ico('cart')} TP ${BLN[new Date().getMonth()]}</span><b class="num">${fmtPt(monthTP())}</b><small>target ${tpGoal()} poin</small></button>
     </div>
     ${streakRisk?`<p class="pwarn small">Streak ${S.streak} hari-mu menunggu. Satu misi saja cukup biar nggak putus.${S.shield?` Kamu punya ${S.shield} perisai streak.`:''}</p>`:''}
   </section>
@@ -2144,7 +2202,6 @@ function viewHome(){
   </div><aside class="hside">
   ${mentorCard()}
   ${mentorEntryCard()}
-  ${tpHomeCard()}
   ${eventsHomeCard()}
   <section class="section nosimple"><div class="row"><h2>Progresmu</h2><button class="link" data-tab-go="journey">Lihat peta</button></div>
     <div class="card stack">
@@ -2165,6 +2222,12 @@ function viewHome(){
 // TP bulan ini di Beranda: TP = poin dari belanja produk bulan ini (bukan koin aplikasi)
 const TP_GOALS=[[100,'buka KPG'],[200,'Manager aktif'],[600,'BRKJ ×3, syarat GED/LED']];
 function tpGoal(){const g=+S.tpGoal;if([100,200,600].includes(g))return g;return rankIdx(S.rank)>=PERM_MAX?600:200}
+function tpHero(){if(!S.onboarded)return '';const tp=monthTP();const g=tpGoal();const pct=Math.min(1,tp/g);const left=Math.max(0,g-tp);
+  const d=new Date();const end=new Date(d.getFullYear(),d.getMonth()+1,0);const days=end.getDate()-d.getDate();const next=[200,600].find(n=>tp<n);
+  return `<div class="tphero"><div class="tph-top"><div class="grow"><span class="tph-l">TP bulan ${BLNF[d.getMonth()]}</span><div class="tph-n num">${fmtPt(tp)}<span> / ${g} poin</span></div></div><button class="btn sun" data-act="belanja">${ico('cart')} Catat belanja</button></div>
+    <div class="tph-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${g}" aria-valuenow="${tp}" aria-label="Progres TP"><i style="width:${Math.round(pct*100)}%"></i>${[200,600].filter(n=>n<g).map(n=>`<em style="left:${n/g*100}%" title="${n} poin"></em>`).join('')}</div>
+    <p class="tph-msg">${left?`Kurang <b>${fmtPt(left)} poin</b> lagi · ${days} hari tersisa`:`Target ${g} poin tercapai. Mantap!`}${next?` · tembus ${next} poin = bonus +${fmtCoin(K()[next===200?'tp200':'tp600'])} koin`:''}</p>
+    <div class="tph-goals" role="group" aria-label="Target TP">${TP_GOALS.map(([n,t])=>`<button data-tpgoal="${n}" aria-pressed="${g===n}">${n}<span>${t}</span></button>`).join('')}</div></div>`}
 function tpHomeCard(){if(!S.onboarded)return '';const tp=monthTP();const g=tpGoal();const pct=Math.min(1,tp/g);const left=Math.max(0,g-tp);
   const d=new Date();const end=new Date(d.getFullYear(),d.getMonth()+1,0);const days=end.getDate()-d.getDate();
   return `<section class="section"><div class="card stack tpcard"><div class="row between"><div><span class="eyebrow">TP bulan ${BLN[d.getMonth()]}</span><div class="tpnum num">${fmtPt(tp)} <span class="small muted">/ ${g} poin</span></div></div><button class="btn small" data-act="belanja">Catat belanja</button></div>
@@ -2213,6 +2276,7 @@ function viewJourney(){
   <section class="section"><details class="card kamus"><summary><b>Kamus istilah success plan</b><span class="small muted">Poin, TP, KPP, dan kawan-kawan</span></summary><dl class="stack" style="margin:12px 0 0">${KAMUS.map(([k,v])=>`<div><dt style="font-weight:800;color:var(--brand)">${k}</dt><dd style="margin:0" class="small">${v}</dd></div>`).join('')}</dl></details></section>
   <section class="section"><div class="map" id="map"><svg class="path" id="mapPath" aria-hidden="true"></svg>${nodes}</div></section>
   <p class="small muted" style="text-align:center;margin-top:8px">Pangkat Mitra Baru sampai ED adalah <b>pangkat tetap</b>: sekali tercapai, tidak turun.</p>
+  <section class="section"><button class="simcta" data-nav="team:ed"><span class="unl" style="width:44px;height:44px;border-radius:14px">${ico('crown')}</span><span class="grow"><b>Monitor ED jaringan</b><br><span class="small muted">Pantau semua ED di jaringanmu dan syarat menuju GED, DED, CED</span></span><span class="link">Buka</span></button></section>
   ${advTracks()}`;
 }
 function advTracks(){
@@ -2285,6 +2349,7 @@ function prodRow(p,i){const v=p[5][0];return `<button class="prod" data-prod="${
 function viewTeam(){
   let body='';if(TEAM_TAB==='mentor'||TEAM_TAB==='ringkas')TEAM_TAB=TEAM_TAB==='ringkas'?'prospek':'gen';if(TEAM_TAB==='prospek'&&TEAM_TAB_TIPE==='mitra')TEAM_TAB_TIPE='all';
   if(TEAM_TAB==='gen'){body=viewGenealogi()}
+  else if(TEAM_TAB==='ed'){body=viewEDMonitor()}
   else if(TEAM_TAB==='prospek'&&PROS_VIEW==='list'){
     const tipe=TEAM_TAB_TIPE;
     const list=S.prospects.filter(p=>tipe==='all'||p.tipe===tipe).sort((a,b)=>(a.next||'9')<(b.next||'9')?-1:1);
@@ -2303,10 +2368,11 @@ function viewTeam(){
 }
 let TEAM_TAB_TIPE='all',PROS_VIEW='list';
 // sub-menu Jaringan: Genealogi · Prospek & Pelanggan · Kabar · Rangking
-function jarItems(){return [['team:gen','Genealogi','users'],['team:prospek','Prospek & Pelanggan','userplus'],['feed','Kabar','chat'],['rank','Rangking','trophy']]}
+function jarItems(){return [['team:gen','Genealogi','users'],['team:ed','Monitor ED','crown'],['team:prospek','Prospek & Pelanggan','userplus'],['feed','Kabar','chat'],['rank','Rangking','trophy']]}
 function jarCur(){return TAB==='team'?'team:'+TEAM_TAB:TAB}
-function jarHead(){const intro={'team:gen':'Pohon jaringanmu dari AVO: peringkat, TP, dan TPG setiap mitra.','team:prospek':'Catat prospek dan pelanggan. Aplikasi mengingatkan jadwal follow-up.',feed:'Cerita dan kabar dari squad serta mitra HNIF.',rank:'Siapa paling aktif menyelesaikan misi.'}[jarCur()]||'';
-  return `<div class="pagehead"><h1>Jaringan</h1><p class="muted">${intro}</p></div><nav class="subnav" aria-label="Menu jaringan">${jarItems().map(([k,t,ic])=>{const lk=!isOpen(k);return `<button data-nav="${k}" ${jarCur()===k?'aria-current="page"':''} class="${lk?'locked':''}">${ico(lk?'lock':ic)}${t}</button>`}).join('')}</nav>`}
+function jarHead(){const intro={'team:gen':'Pohon jaringanmu dari AVO: peringkat, TP, dan TPG setiap mitra.','team:prospek':'Catat prospek dan pelanggan. Aplikasi mengingatkan jadwal follow-up.',feed:'Cerita dan kabar dari squad serta mitra HNIF.',rank:'Siapa paling aktif menyelesaikan misi.','team:ed':'Pantau semua ED di jaringanmu dan syarat menuju GED, DED, CED.'}[jarCur()]||'';
+  const un=typeof dmUnread==='function'?dmUnread():0;
+  return `<div class="pagehead"><div class="row between"><h1>Jaringan</h1><button class="btn small ghost" data-act="dminbox">${ico('chat')} Kotak pesan${un?` <span class="dotn">${un}</span>`:''}</button></div><p class="muted">${intro}</p></div><nav class="subnav" aria-label="Menu jaringan">${jarItems().map(([k,t,ic])=>{const lk=!isOpen(k);return `<button data-nav="${k}" ${jarCur()===k?'aria-current="page"':''} class="${lk?'locked':''}">${ico(lk?'lock':ic)}${t}</button>`}).join('')}</nav>`}
 function prospectRow(p){const tl={prospek:'Prospek',pelanggan:'Pelanggan',mitra:'Mitra tim'}[p.tipe];const late=p.next&&p.next<=dkey();
   return `<button class="mission" data-pros="${p.id}">${avatar(p.name,40)}<span class="grow"><b>${esc(p.name)}</b> <span class="tag soft">${tl}</span><br><span class="small muted">${p.tipe==='prospek'?esc(STAGES[p.stage]):p.tipe==='mitra'?`ID HNI ${p.idh?'<b class="num">'+esc(p.idh)+'</b>':'belum diisi'}${p.minat?' · '+esc(p.minat):''}`:esc(p.minat||'')}${p.next?` · follow-up ${late?'<b style="color:var(--coral-text)">hari ini</b>':esc(p.next)}`:''}</span>${p.tipe==='prospek'?`<span class="stage" style="margin-top:6px">${STAGES.map((s,i)=>`<i class="${i<=p.stage?'on':''}"></i>`).join('')}</span>`:''}</span></button>`}
 
@@ -4090,49 +4156,74 @@ function bizSeed(){return (S.idhni||S.nick||'hnif')+'·v1'}
 
 // ---------- data contoh: genealogi ----------
 const NAMA_CONTOH=['Rara Anindya','Dodi Saputra','Elinur Hasanah','Fajar Ramadhan','Gita Lestari','Hafiz Maulana','Indah Permata','Joko Susilo','Kartika Sari','Lukman Hakim','Maya Kusuma','Nanda Pratama','Okta Wulandari','Putri Amalia','Qori Aisyah','Rizky Firmansyah','Sinta Dewi','Taufik Hidayat','Umi Kalsum','Vina Melati','Wahyu Nugroho','Yusuf Abdullah','Zahra Nabila','Agus Salim','Bella Safitri','Cahya Purnama','Dian Puspita','Eko Prasetyo','Farah Azzahra','Galih Wicaksono','Hana Marlina','Irfan Maulidi','Jihan Fadilah','Kevin Ardiansyah','Laila Rahmah','Mira Handayani','Nur Aini','Oki Setiawan','Prita Ayu','Rahmat Hidayat','Salsa Bilqis','Tegar Pamungkas'];
+// kode niaga seperti di AVO (Pangkat/Niaga, mis. "A/AB": A = status aktif, AB = Agen Biasa)
+const NIAGA={MB10:'AB',MB14:'AB',MB17:'AB',M:'M',SM:'SM',EM:'EM',D:'D',SD:'SD',ED:'ED'};
 let GEN_CACHE=null;
+function monthsBack(n){const d=new Date();return Array.from({length:n},(_,i)=>{const x=new Date(d.getFullYear(),d.getMonth()-1-i,1);return [x.getFullYear(),x.getMonth()]})}
 function genData(){const key=bizSeed();if(GEN_CACHE&&GEN_CACHE.key===key)return GEN_CACHE;const r=seedRng(key);
-  const myId=(S.idhni||'110200001').replace(/\D/g,'').slice(0,9)||'110200001';const now=new Date();const mi=now.getMonth();
+  const myId=(S.idhni||'110200001').replace(/\D/g,'').slice(0,9)||'110200001';
   const rankFor=g=>{const x=r();if(g===1)return x<.25?'SM':x<.6?'M':x<.8?'MB17':'MB14';if(g===2)return x<.3?'M':x<.55?'MB17':x<.8?'MB14':'MB10';return x<.12?'M':x<.35?'MB14':'MB10'};
   const L=[];let n=0;const mk=(gen,mentor)=>{const id=String(1102e5+Math.floor(r()*899999)).slice(0,9);const pk=rankFor(gen);const pi=RANKS.findIndex(x=>x.c===pk);
     const base=pk==='SM'?2600:pk==='M'?1300:pk==='MB17'?520:pk==='MB14'?260:90;
-    const months=Array.from({length:12},(_,i)=>i>mi?null:Math.round(base*(.55+r()*.9)));const tpg=months[mi];
-    const tp=r()<.18?0:Math.round((r()<.35?600:200)*(.4+r()*.9)/10)*10;const pvc=Math.round(tp*(.2+r()*.5)/5)*5;
-    const o={id,nama:NAMA_CONTOH[n++%NAMA_CONTOH.length],gen,mentor,pk,pred:r()<.2&&pi<RANKS.length-1&&pi<5?RANKS[pi+1].c:pk,niaga:`${String(1+Math.floor(r()*28)).padStart(2,'0')}/${String(1+Math.floor(r()*12)).padStart(2,'0')}/${2019+Math.floor(r()*7)}`,
-      tp,pvc,pvm:tp-pvc,tpg:tpg+tp,tpgs:Math.round((tpg+tp)*(.7+r()*.3)),bul:months,thn:months.reduce((a,b)=>a+(b||0),0),akm:Math.round(base*(6+r()*30)),kids:[]};L.push(o);return o};
+    const tp=r()<.18?0:Math.round((r()<.35?600:200)*(.4+r()*.9)/10)*10;
+    const hist=Array.from({length:4},()=>{const t=r()<.2?0:Math.round((r()<.3?600:200)*(.4+r()*.9)/10)*10;return{tp:t,tpg:Math.round(base*(.55+r()*.9))+t}});
+    const y=2018+Math.floor(r()*8),jm=Math.floor(r()*12),jd=1+Math.floor(r()*28);
+    const o={id,nama:NAMA_CONTOH[n++%NAMA_CONTOH.length],gen,mentor,pk,niaga:NIAGA[pk]||'AB',pred:r()<.2&&pi<5?RANKS[pi+1].c:pk,
+      join:`${y}-${String(jm+1).padStart(2,'0')}-${String(jd).padStart(2,'0')}`,tp,tpg:Math.round(base*(.4+r()*.7))+tp,hist,
+      akm:Math.round(base*(8+r()*30)),wa:'08'+String(Math.floor(r()*9e9)+1e9).slice(0,10),kids:[]};o.st=o.tp>0||hist[0].tp>0?'A':'P';L.push(o);return o};
   const g1=Array.from({length:6},()=>mk(1,myId));
   g1.forEach(a=>{const k=Math.floor(r()*5);for(let i=0;i<k;i++){const b=mk(2,a.id);a.kids.push(b);const k2=Math.floor(r()*3.2);for(let j=0;j<k2;j++){const c=mk(3,b.id);b.kids.push(c);if(r()<.3){const d=mk(4,c.id);c.kids.push(d)}}}});
   const sum=o=>{o.down=o.kids.reduce((a,k)=>a+1+sum(k),0);return o.down};g1.forEach(sum);
   GEN_CACHE={key,myId,g1,all:L};return GEN_CACHE}
 const rkS=c=>{const x=RANKS.find(k=>k.c===c);return x?(x.s==='MB'?'MB '+x.p+'%':x.s):c};
+const tglID=s=>{const [y,m,d]=String(s).split('-');return `${+d} ${BLN[+m-1]} ${y}`};
 
 // ---------- tampilan: Genealogi ----------
 let GEN_OPEN={},GEN_Q='',GEN_F='all',GEN_SORT='tpg';
-function viewGenealogi(){const G=genData();const q=GEN_Q.trim().toLowerCase();
+const GEN_SORTS=[['tpg','TPG bulan ini'],['tp','TP bulan ini'],['akm','Akumulasi TPG'],['join','Tgl bergabung (terbaru)'],['joinold','Tgl bergabung (terlama)'],['down','Jumlah jaringan']];
+function genCmp(a,b){if(GEN_SORT==='join')return b.join.localeCompare(a.join);if(GEN_SORT==='joinold')return a.join.localeCompare(b.join);return b[GEN_SORT]-a[GEN_SORT]}
+function viewGenealogi(){const G=genData();const q=GEN_Q.trim().toLowerCase();const now=new Date();const MB=monthsBack(4);
   const match=o=>(!q||o.nama.toLowerCase().includes(q)||o.id.includes(q))&&(GEN_F==='all'||(GEN_F==='aktif'?o.tp>0:GEN_F==='pasif'?o.tp===0:GEN_F==='naik'?o.pred!==o.pk:true));
-  const aktif=G.all.filter(o=>o.tp>0).length,tpgAll=G.g1.reduce((a,o)=>a+o.tpg,0),naik=G.all.filter(o=>o.pred!==o.pk).length,deep=Math.max(...G.all.map(o=>o.gen));
+  const aktif=G.all.filter(o=>o.tp>0).length,tpgAll=G.g1.reduce((a,o)=>a+o.tpg,0),naik=G.all.filter(o=>o.pred!==o.pk).length;
   const flat=q||GEN_F!=='all';
-  const rows=[];const walk=(o)=>{rows.push(o);if(GEN_OPEN[o.id])o.kids.forEach(walk)};
-  if(flat)G.all.filter(match).sort((a,b)=>b[GEN_SORT]-a[GEN_SORT]).forEach(o=>rows.push(o));else G.g1.slice().sort((a,b)=>b[GEN_SORT]-a[GEN_SORT]).forEach(walk);
+  const rows=[];const walk=o=>{rows.push(o);if(GEN_OPEN[o.id])o.kids.slice().sort(genCmp).forEach(walk)};
+  if(flat)G.all.filter(match).sort(genCmp).forEach(o=>rows.push(o));else G.g1.slice().sort(genCmp).forEach(walk);
   const chev=o=>o.kids.length&&!flat?`<button class="tw" data-gen-tg="${o.id}" aria-expanded="${!!GEN_OPEN[o.id]}" aria-label="${GEN_OPEN[o.id]?'Tutup':'Buka'} jaringan ${esc(o.nama)}">${GEN_OPEN[o.id]?'−':'+'}</button>`:'<span class="tw sp"></span>';
-  const ind=o=>flat?0:(o.gen-1)*18;
-  const tbl=`<div class="tblwrap gen-desk"><table class="dtable"><thead><tr><th>Mitra</th><th>Gen</th><th>ID Mentor</th><th>Niaga</th><th>Peringkat</th><th>Prediksi</th><th class="r">TP</th><th class="r">PVC</th><th class="r">PVM</th><th class="r">TPG</th><th class="r">TPG Syarat</th><th class="r">TPG ${new Date().getFullYear()}</th><th class="r">Akumulasi</th></tr></thead><tbody>
-    ${rows.map(o=>`<tr data-gen-open="${o.id}" tabindex="0"><td><div class="gname" style="padding-left:${ind(o)}px">${chev(o)}<span><b>${esc(o.nama)}</b><br><span class="small muted num">${o.id}${o.down?` · ${o.down} di bawah`:''}</span></span></div></td><td class="num">${o.gen}</td><td class="num small">${o.mentor}</td><td class="num small">${o.niaga}</td><td><span class="rkc">${rkS(o.pk)}</span></td><td>${o.pred!==o.pk?`<span class="rkc up">${rkS(o.pred)}</span>`:`<span class="small muted">${rkS(o.pred)}</span>`}</td><td class="r num ${o.tp?'':'muted'}">${pt(o.tp)}</td><td class="r num">${pt(o.pvc)}</td><td class="r num">${pt(o.pvm)}</td><td class="r num"><b>${pt(o.tpg)}</b></td><td class="r num">${pt(o.tpgs)}</td><td class="r num">${pt(o.thn)}</td><td class="r num">${pt(o.akm)}</td></tr>`).join('')}</tbody></table></div>`;
-  const cards=`<div class="gen-mob">${rows.map(o=>`<div class="gcard" style="margin-left:${Math.min(ind(o),36)}px">${chev(o)}<button class="gbody" data-gen-open="${o.id}"><span class="grow"><b>${esc(o.nama)}</b> <span class="rkc">${rkS(o.pk)}</span>${o.pred!==o.pk?` <span class="rkc up">→ ${rkS(o.pred)}</span>`:''}<br><span class="small muted num">G${o.gen} · ${o.id}${o.down?` · ${o.down} di bawah`:''}</span></span><span class="gnum"><b class="num">${pt(o.tpg)}</b><span class="small muted">TPG</span></span><span class="gnum"><b class="num ${o.tp?'':'muted'}">${pt(o.tp)}</b><span class="small muted">TP</span></span></button></div>`).join('')}</div>`;
+  const ind=o=>flat?0:Math.min((o.gen-1)*10,30);
+  const tbl=`<div class="tblwrap gtbl"><table class="dtable gtable"><thead><tr><th class="stk">Mitra <span class="muted">(ketuk nama)</span></th><th class="r hl">TP ${BLN[now.getMonth()]}</th><th class="r hl">TPG ${BLN[now.getMonth()]}</th>${MB.map(([y,m])=>`<th class="r">TPG ${BLN[m]}</th>`).join('')}<th class="r">Akumulasi TPG<br><span class="muted">s.d. ${BLN[MB[0][1]]} ${MB[0][0]}</span></th></tr></thead><tbody>
+    ${rows.map(o=>`<tr><td class="stk"><div class="gname" style="padding-left:${ind(o)}px">${chev(o)}<button class="gnm" data-gen-open="${o.id}"><b>${esc(o.nama)}</b><span class="small muted num">G${o.gen} · ${rkS(o.pk)}${o.down?` · ${o.down}↓`:''}</span></button></div></td>
+      <td class="r num hl ${o.tp?'':'muted'}"><b>${pt(o.tp)}</b></td><td class="r num hl"><b>${pt(o.tpg)}</b></td>${o.hist.map(h=>`<td class="r num">${pt(h.tpg)}</td>`).join('')}<td class="r num">${pt(o.akm)}</td></tr>`).join('')}</tbody></table></div>`;
   return `${SAMPLE_NOTE}
-  <section class="section"><div class="kpis"><div class="kpi"><span>Mitra di jaringan</span><b class="num">${G.all.length}</b><small>${G.g1.length} di generasi 1</small></div><div class="kpi"><span>Aktif belanja bulan ini</span><b class="num">${aktif}</b><small>${Math.round(aktif/G.all.length*100)}% dari jaringan</small></div><div class="kpi"><span>TPG generasi 1</span><b class="num">${pt(tpgAll)}</b><small>poin bulan ${BLN[new Date().getMonth()]}</small></div><div class="kpi"><span>Diprediksi naik</span><b class="num">${naik}</b><small>kedalaman ${deep} generasi</small></div></div></section>
+  <section class="section"><div class="kpis"><div class="kpi"><span>Mitra di jaringan</span><b class="num">${G.all.length}</b><small>${G.g1.length} di generasi 1</small></div><div class="kpi"><span>Aktif belanja bulan ini</span><b class="num">${aktif}</b><small>${Math.round(aktif/G.all.length*100)}% dari jaringan</small></div><div class="kpi"><span>TPG generasi 1</span><b class="num">${pt(tpgAll)}</b><small>bulan ${BLN[now.getMonth()]}</small></div><div class="kpi"><span>Diprediksi naik</span><b class="num">${naik}</b><small>bulan ini</small></div></div></section>
   <section class="section"><div class="gtools"><label class="srch"><span class="sr-only">Cari nama atau ID</span>${ico('search')}<input class="input" id="gen-q" type="search" placeholder="Cari nama atau ID agen" value="${esc(GEN_Q)}"></label>
-    <div class="pills" role="group" aria-label="Saring">${[['all','Semua'],['aktif','Aktif'],['pasif','Belum belanja'],['naik','Diprediksi naik']].map(([k,t])=>`<button class="pill" data-gen-f="${k}" aria-pressed="${GEN_F===k}">${t}</button>`).join('')}</div>
-    <label class="sortsel small">Urutkan <select class="input" id="gen-sort">${[['tpg','TPG'],['tp','TP'],['akm','Akumulasi'],['down','Jumlah jaringan']].map(([k,t])=>`<option value="${k}" ${GEN_SORT===k?'selected':''}>${t}</option>`).join('')}</select></label></div>
-    ${flat?`<p class="small muted" style="margin:8px 0 0">${rows.length} mitra cocok. Hapus pencarian untuk kembali ke tampilan pohon.</p>`:`<div class="row" style="gap:8px;margin-top:8px"><button class="link small" data-gen-all="1">Buka semua</button><button class="link small" data-gen-all="0">Tutup semua</button></div>`}</section>
-  <section class="section">${rows.length?tbl+cards:'<div class="empty">Tidak ada mitra yang cocok.</div>'}</section>`}
-function openGenDetail(id){const G=genData();const o=G.all.find(x=>x.id===id);if(!o)return;const mx=Math.max(1,...o.bul.map(v=>v||0));const up=G.all.find(x=>x.id===o.mentor);
-  sheet(`<div class="stack"><div class="row" style="gap:12px">${avatar(o.nama,48)}<div class="grow"><span class="eyebrow">Generasi ${o.gen} · data contoh</span><h2 style="margin:0">${esc(o.nama)}</h2><span class="small muted num">ID ${o.id} · niaga ${o.niaga}</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
-    <div class="kpis k3"><div class="kpi"><span>Peringkat</span><b>${rkS(o.pk)}</b><small>${o.pred!==o.pk?'prediksi '+rkS(o.pred):'prediksi tetap'}</small></div><div class="kpi"><span>TP bulan ini</span><b class="num">${pt(o.tp)}</b><small>PVC ${pt(o.pvc)} · PVM ${pt(o.pvm)}</small></div><div class="kpi"><span>TPG</span><b class="num">${pt(o.tpg)}</b><small>syarat ${pt(o.tpgs)}</small></div></div>
-    <div><div class="row between"><b class="small">TPG per bulan ${new Date().getFullYear()}</b><span class="small muted">total ${pt(o.thn)}</span></div><div class="mbars" role="img" aria-label="Grafik TPG bulanan">${o.bul.map((v,i)=>`<div class="mb"><i style="height:${v==null?0:Math.max(3,v/mx*100)}%" class="${v==null?'nil':''}"></i><span>${BLN[i][0]}</span></div>`).join('')}</div></div>
-    <dl class="kv"><dt>ID Mentor</dt><dd class="num">${o.mentor}${up?' · '+esc(up.nama):' · kamu'}</dd><dt>Akumulasi</dt><dd class="num">${pt(o.akm)} poin</dd><dt>Mitra di bawahnya</dt><dd class="num">${o.down}</dd></dl>
-    ${o.kids.length?`<div><b class="small">Generasi berikutnya</b><div class="stack" style="gap:6px;margin-top:6px">${o.kids.map(k=>`<button class="softrow" data-gen-open="${k.id}"><span class="grow small"><b>${esc(k.nama)}</b> <span class="rkc">${rkS(k.pk)}</span><br><span class="muted num">TP ${pt(k.tp)} · TPG ${pt(k.tpg)}</span></span><span class="link">Lihat</span></button>`).join('')}</div></div>`:''}
-    ${o.tp===0?`<p class="note">${esc(o.nama.split(' ')[0])} belum belanja bulan ini. Sapa dengan cerita produk, bukan tagihan poin.</p>`:''}</div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet})}
+    <label class="sortsel small">Urutkan <select class="input" id="gen-sort">${GEN_SORTS.map(([k,t])=>`<option value="${k}" ${GEN_SORT===k?'selected':''}>${t}</option>`).join('')}</select></label></div>
+    <div class="pills" role="group" aria-label="Saring" style="margin-top:8px">${[['all','Semua'],['aktif','Aktif'],['pasif','Belum belanja'],['naik','Diprediksi naik']].map(([k,t])=>`<button class="pill" data-gen-f="${k}" aria-pressed="${GEN_F===k}">${t}</button>`).join('')}</div>
+    ${flat?`<p class="small muted" style="margin:8px 0 0">${rows.length} mitra cocok. Hapus pencarian untuk kembali ke tampilan pohon.</p>`:`<div class="row" style="gap:12px;margin-top:6px"><button class="link small" data-gen-all="1">Buka semua</button><button class="link small" data-gen-all="0">Tutup semua</button><span class="small muted grow" style="text-align:right">Geser tabel ke kanan untuk TPG 4 bulan lalu →</span></div>`}</section>
+  <section class="section">${rows.length?tbl:'<div class="empty">Tidak ada mitra yang cocok.</div>'}</section>`}
+function openGenDetail(id){const G=genData();const o=G.all.find(x=>x.id===id);if(!o)return;const MB=monthsBack(4);const now=new Date();
+  const waTxt=`Assalamu'alaikum ${o.nama.split(' ')[0]}, apa kabar?`;const wa='62'+o.wa.slice(1);
+  sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Informasi mitra · data contoh</span><h2 style="margin:0">${esc(o.nama)}</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    <dl class="kv prof"><dt>ID Agen</dt><dd class="num">${o.id}</dd><dt>Nama Agen</dt><dd>${esc(o.nama.toUpperCase())}</dd><dt>Bergabung</dt><dd class="num">${tglID(o.join)}</dd><dt>Pangkat/Niaga</dt><dd><b>${o.st}/${o.niaga}</b> <span class="small muted">· ${o.st==='A'?'aktif':'pasif'} · ${esc((RANKS.find(k=>k.c===o.pk)||{}).n||o.pk)}</span></dd><dt>Generasi</dt><dd>G${o.gen}${o.down?` · ${o.down} mitra di bawahnya`:''}</dd></dl>
+    <div class="row" style="gap:8px"><a class="btn grow wa" href="https://wa.me/${wa}?text=${encodeURIComponent(waTxt)}" target="_blank" rel="noopener">${ico('wa')} WhatsApp</a><button class="btn ghost grow" data-dm="${o.id}">${ico('chat')} Pesan</button></div>
+    <div><b class="small">Prestasi 4 bulan terakhir</b><div class="tblwrap" style="margin-top:6px"><table class="dtable"><thead><tr><th>Periode</th><th class="r">TP</th><th class="r">TPG</th></tr></thead><tbody>
+      <tr class="cur"><td>${BLNF[now.getMonth()]} ${now.getFullYear()} <span class="small muted">(berjalan)</span></td><td class="r num">${pt(o.tp)}</td><td class="r num">${pt(o.tpg)}</td></tr>
+      ${o.hist.map((h,i)=>`<tr><td>${BLNF[MB[i][1]]} ${MB[i][0]}</td><td class="r num ${h.tp?'':'muted'}">${pt(h.tp)}</td><td class="r num">${pt(h.tpg)}</td></tr>`).join('')}</tbody></table></div></div>
+    ${o.tp===0?`<p class="note">${esc(o.nama.split(' ')[0])} belum belanja bulan ini. Sapa dengan cerita produk, bukan tagihan poin.</p>`:''}
+    ${o.kids.length?`<button class="btn ghost block" data-gen-show="${o.id}">Lihat ${o.kids.length} mitra generasi berikutnya</button>`:''}</div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet})}
+// pesan dalam aplikasi ke mitra jaringan: disimpan di papan pengirim (dm, penerima = hash ID), dibaca penerima dari papan
+function openDM(id,to,nm){const o=to?{id:'',to,nama:nm||'Mitra'}:genData().all.find(x=>x.id===id)||{id,nama:'Mitra'};
+  sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Pesan dalam aplikasi</span><h2 style="margin:0">Ke ${esc(o.nama)}</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    <div class="field"><label for="dm-t">Pesanmu</label><textarea class="input" id="dm-t" maxlength="300" style="min-height:110px" placeholder="mis. Selamat ya, TPG bulan ini naik! Ada yang bisa kubantu untuk jalurmu?"></textarea></div>
+    <button class="btn block" id="dm-ok">Kirim pesan</button><p class="note">Pesan masuk ke Kotak Pesan ${esc(o.nama.split(' ')[0])} di HNIF dan bisa dibalas.</p></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;
+    $('#dm-ok').onclick=()=>{const v=$('#dm-t').value.trim();if(v.length<2){toast('Tulis pesannya dulu');return}if(FEED_BAD.test(v)){toast('Hindari klaim kesembuhan atau janji penghasilan ya.');return}
+      S.dm=(S.dm||[]).concat([{to:o.to||idKey(o.id),nm:o.nama,t:v,ts:Date.now()}]).slice(-10);save();closeSheet();toast('Pesan terkirim')}})}
+function dmInbox(){const me=idKey(S.idhni);if(!me)return [];return (typeof BOARD!=='undefined'?BOARD:[]).flatMap(r=>(r.dm||[]).filter(x=>x.to===me).map(x=>Object.assign({from:r.nick||'Mitra',fh:r.mh},x))).sort((a,b)=>b.ts-a.ts)}
+function dmUnread(){return dmInbox().filter(x=>x.ts>(S.dmSeen||0)).length}
+function openDMInbox(){const L=dmInbox();const sent=(S.dm||[]).slice().reverse();S.dmSeen=Date.now();save();
+  sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Kotak pesan</span><h2 style="margin:0">Pesan antar-mitra</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    <b class="small">Masuk</b>${L.length?L.map(x=>`<div class="mail open"><div class="row between"><b>${esc(x.from)}</b><span class="small muted">${esc(tsTxt(x.ts))}</span></div><p style="margin:4px 0 0;white-space:pre-wrap">${esc(x.t)}</p>${x.fh?`<button class="btn small ghost" style="margin-top:8px" data-dmrep="${esc(x.fh)}" data-dmnm="${esc(x.from)}">Balas</button>`:''}</div>`).join(''):'<p class="small muted" style="margin:0">Belum ada pesan masuk.</p>'}
+    ${sent.length?`<b class="small">Terkirim</b>${sent.map(x=>`<div class="reply me"><b>Ke ${esc(x.nm||'mitra')}</b> <span class="small muted">${esc(tsTxt(x.ts))}</span><br>${esc(x.t)}</div>`).join('')}`:''}
+    <p class="note">Kirim pesan baru dari Genealogi: ketuk nama mitra, lalu Pesan.${mySq()?' Pesan dari Mentor LED ada di kartu Mentor di Beranda.':''}</p></div>`,Ly=>{Ly.querySelector('[data-close]').onclick=()=>{closeSheet();render()};Ly.querySelectorAll('[data-dmrep]').forEach(b=>b.onclick=()=>openDM('',b.dataset.dmrep,b.dataset.dmnm))})}
 
 // ---------- data contoh: bonus ----------
 const BONUS_ITEMS=[['kpp','KPP','Komisi Prestasi Pribadi'],['kpg','KPG','Komisi Prestasi Grup'],['kgp','KGP','Komisi Generasi Peringkat'],['kgdc','KGDC','Komisi GED/DED/CED'],['brsb','BRSB','Royalti Stabilitas Belanja'],['brkj','BRKJ','Royalti Kemajuan Jaringan'],['brled','BRLED','Royalti LED'],['brkt','BRKT','Royalti Kepemimpinan Tahunan']];
@@ -4149,12 +4240,12 @@ let STMT=null;
 function viewBisnis(){const sub=BIZ_TAB;let body='';
   if(sub==='bonus'){
     const segs=[['harian','Estimasi harian'],['statement','Statement'],['total','Total bonus']];
-    body=`<div class="seg sm" role="group" aria-label="Jenis laporan bonus">${segs.map(([k,t])=>`<button data-bon="${k}" aria-pressed="${BONUS_TAB===k}">${t}</button>`).join('')}</div>`+(BONUS_TAB==='harian'?viewBonusHarian():BONUS_TAB==='statement'?viewStatement():viewBonusTotal())}
+    body=`<div class="bonnav"><div class="seg sm" role="group" aria-label="Jenis laporan bonus">${segs.map(([k,t])=>`<button data-bon="${k}" aria-pressed="${BONUS_TAB===k}">${t}</button>`).join('')}</div><button class="minilink ${BONUS_TAB==='pph'?'on':''}" data-bon="pph" ${BONUS_TAB==='pph'?'aria-current="page"':''}>${ico('text')} Bukti potong PPh21</button></div>`+payChip()+(BONUS_TAB==='harian'?viewBonusHarian():BONUS_TAB==='statement'?viewStatement():BONUS_TAB==='pph'?viewPPh():viewBonusTotal())}
   else if(sub==='cash'){const segs=[['va','Virtual Account'],['redeem','Redeem'],['mutasi','Mutasi']];
     body=`<div class="seg sm" role="group" aria-label="HNI Cash">${segs.map(([k,t])=>`<button data-cash="${k}" aria-pressed="${CASH_TAB===k}">${t}</button>`).join('')}</div>`+(CASH_TAB==='va'?viewVA():CASH_TAB==='redeem'?viewRedeem():viewMutasi())}
-  else body=viewPPh();
-  return `<div class="stack" style="margin-top:6px"><div class="pagehead"><h1>Bisnis</h1><p class="muted">Bonus, saldo HNI Cash, dan bukti potong pajakmu dalam satu tempat.</p></div>
-  <div class="seg" role="group" aria-label="Menu bisnis">${[['bonus','Bonus'],['cash','HNI Cash'],['pph','Bukti Potong PPh21']].map(([k,t])=>`<button data-biz="${k}" aria-pressed="${sub===k}">${t}</button>`).join('')}</div>
+  else body=viewRekening();
+  return `<div class="stack" style="margin-top:6px"><div class="pagehead"><h1>Bisnis</h1><p class="muted">Bonus, saldo HNI Cash, rekening, dan bukti potong pajakmu dalam satu tempat.</p></div>
+  <div class="seg" role="group" aria-label="Menu bisnis">${[['bonus','Bonus'],['cash','HNI Cash'],['rek','Rekening & pencairan']].map(([k,t])=>`<button data-biz="${k}" aria-pressed="${sub===k}">${t}</button>`).join('')}</div>
   ${SAMPLE_NOTE}${body}</div>`}
 
 function viewBonusHarian(){const E=dailyEst();const L=E.L;const cur=L[L.length-1]||{tp:0,tpg:0,est:0};const prev=bonusMonth(...lastMonths(1)[0]);const mx=Math.max(1,...L.map(x=>x.est));
@@ -4174,7 +4265,7 @@ function viewStatement(){const M=lastMonths(12);if(!STMT)STMT=M[0].join('-');con
     <tr class="sum"><td></td><td>Total bruto</td><td class="r num">${rp(b.bruto)}</td></tr>
     <tr><td></td><td>Potongan PPh 21</td><td class="r num neg">−${rp(b.pph)}</td></tr><tr><td></td><td>Biaya transfer</td><td class="r num neg">−${rp(b.adm)}</td></tr>
     <tr class="sum big"><td></td><td>Diterima</td><td class="r num">${rp(b.net)}</td></tr></tbody></table>
-    <p class="small muted" style="margin:8px 0 0">Ditransfer ke rekening atas nama mitra (••••${String(S.idhni||'0000').slice(-4)}).</p></div></section>`}
+    <p class="small muted" style="margin:8px 0 0">Dicairkan ke ${payTxt()}.</p></div></section>`}
 
 function viewBonusTotal(){const M=lastMonths(12).reverse();const B=M.map(([y,m])=>bonusMonth(y,m));const mx=Math.max(1,...B.map(b=>b.bruto));const tot=k=>B.reduce((a,b)=>a+b[k],0);const best=B.reduce((a,b)=>b.net>a.net?b:a,B[0]);
   return `<section class="section"><div class="kpis"><div class="kpi"><span>Bruto 12 bulan</span><b class="num">${rp(tot('bruto'))}</b></div><div class="kpi"><span>PPh 21 dipotong</span><b class="num">${rp(tot('pph'))}</b></div><div class="kpi"><span>Diterima</span><b class="num">${rp(tot('net'))}</b></div><div class="kpi"><span>Bulan terbaik</span><b>${BLN[best.m]} ${best.y}</b><small>${rp(best.net)}</small></div></div></section>
@@ -4204,7 +4295,7 @@ function viewRedeem(){const C=cashData();
   return `<section class="section"><div class="card stack"><div class="row between"><span class="small muted">Saldo bisa di-redeem</span><b class="num">${rp(C.bal)}</b></div>
     <div class="field"><label for="rd-n">Nominal redeem</label><input class="input num" id="rd-n" type="number" inputmode="numeric" min="50000" step="10000" placeholder="minimal Rp50.000"></div>
     <div class="pills" role="group" aria-label="Nominal cepat">${[100000,250000,500000].map(n=>`<button class="pill" data-rdn="${n}">${rp(n)}</button>`).join('')}<button class="pill" data-rdn="${C.bal}">Semua</button></div>
-    <div class="field"><label for="rd-to">Tujuan</label><select class="input" id="rd-to"><option>Rekening terdaftar (••••${String(S.idhni||'0000').slice(-4)})</option></select></div>
+    <div class="field"><label for="rd-to">Tujuan</label><select class="input" id="rd-to"><option>${esc(rekTxt())}</option></select></div>
     <fieldset class="field otp"><legend>Kirim kode OTP lewat</legend><label><input type="radio" name="otp" checked> WhatsApp</label><label><input type="radio" name="otp"> SMS</label><label><input type="radio" name="otp"> Email</label></fieldset>
     <button class="btn block" data-act="redeemcash">Lanjut, kirim OTP</button>
     <p class="note">Biaya transfer Rp6.500 per redeem. Proses 1×24 jam hari kerja. Di versi contoh ini tidak ada uang yang berpindah.</p></div></section>`}
@@ -4234,9 +4325,11 @@ function printEl(el){const w=window.open('','_blank');if(!w){toast('Izinkan pop-
   w.document.write(`<!doctype html><title>HNIF</title><style>body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:24px;color:#1B2B22}table{width:100%;border-collapse:collapse}td,th{padding:6px 4px;border-bottom:1px solid #E3E8E2;text-align:left}.r{text-align:right}dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px}dt{color:#56645B}dd{margin:0}.muted{color:#56645B}button{display:none}</style>${el.outerHTML}<script>print()<\/script>`);w.document.close()}
 
 // ---------- event ----------
-document.addEventListener('click',e=>{const t=e.target.closest('[data-biz],[data-bon],[data-cash],[data-gen-tg],[data-gen-open],[data-gen-f],[data-gen-all],[data-stmt],[data-bp],[data-rdn],[data-act="printstmt"],[data-act="redeemcash"]');if(!t)return;const d=t.dataset;
+document.addEventListener('click',e=>{const t=e.target.closest('[data-biz],[data-bon],[data-cash],[data-gen-tg],[data-gen-open],[data-gen-f],[data-gen-all],[data-gen-show],[data-dm],[data-stmt],[data-bp],[data-rdn],[data-act="printstmt"],[data-act="redeemcash"]');if(!t)return;const d=t.dataset;
   if(d.genTg){e.stopPropagation();GEN_OPEN[d.genTg]=!GEN_OPEN[d.genTg];render();return}
   if(d.genOpen){openGenDetail(d.genOpen);return}
+  if(d.genShow){closeSheet();GEN_Q='';GEN_F='all';let o=genData().all.find(x=>x.id===d.genShow);while(o){GEN_OPEN[o.id]=1;o=genData().all.find(x=>x.id===o.mentor)}render();return}
+  if(d.dm){openDM(d.dm,d.dmnm?idKey(d.dm):'',d.dmnm);return}
   if(d.genF){GEN_F=d.genF;render();return}
   if(d.genAll!=null){GEN_OPEN={};if(d.genAll==='1')genData().all.forEach(o=>{if(o.kids.length)GEN_OPEN[o.id]=1});render();return}
   if(d.biz){BIZ_TAB=d.biz;ENTER=true;render();return}
@@ -4251,8 +4344,68 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-biz],[data
 });
 document.addEventListener('change',e=>{const t=e.target;
   if(t.id==='st-m'){STMT=t.value;render()}else if(t.id==='mut-m'){MUT_M=t.value;render()}else if(t.id==='pph-y'){PPH_Y=+t.value;render()}else if(t.id==='gen-sort'){GEN_SORT=t.value;render()}});
-document.addEventListener('keydown',e=>{const t=e.target;if(e.key==='Enter'&&t.matches&&t.matches('tr[data-gen-open]'))openGenDetail(t.dataset.genOpen)});
 let GEN_T=0;document.addEventListener('input',e=>{if(e.target.id!=='gen-q')return;GEN_Q=e.target.value;clearTimeout(GEN_T);GEN_T=setTimeout(()=>{const pos=e.target.selectionStart;render();const i=$('#gen-q');if(i){i.focus();try{i.setSelectionRange(pos,pos)}catch(er){}}},250)});
+
+// ---------- Monitor ED jaringan (menuju GED / DED / CED, LED Sapphire+) ----------
+let ED_CACHE=null;
+function edData(){const key=bizSeed()+'ed';if(ED_CACHE&&ED_CACHE.key===key)return ED_CACHE;const r=seedRng(key);const MB=monthsBack(3);
+  const L=Array.from({length:8},(_,i)=>{const isEd=i<5||r()<.3;const nm=NAMA_CONTOH[(i*5+3)%NAMA_CONTOH.length];
+    const tpg=isEd?Math.round((5000+r()*(i<2?22000:9000))/50)*50:Math.round((1200+r()*5000)/50)*50;const tp=isEd?(r()<.75?(r()<.4?600:200)+Math.round(r()*8)*10:Math.round(r()*15)*10):Math.round(r()*30)*10;
+    return{j:i+1,nama:nm,id:String(1103e5+Math.floor(r()*899999)).slice(0,9),gen:isEd?1+Math.floor(r()*3):1,isEd,tp,tpg,hist:MB.map(()=>Math.round(tpg*(.75+r()*.4)/50)*50),wa:'08'+String(Math.floor(r()*9e9)+1e9).slice(0,10)}});
+  L.forEach(x=>{x.ed=x.isEd&&x.tp>=200});ED_CACHE={key,L};return ED_CACHE}
+function viewEDMonitor(){const D=edData();const L=D.L;const MB=monthsBack(3);const myTP=Math.max(monthTP(),advOf().tp||0);const st=jalurStats(L);const got=jalurVerdict(L,myTP).got;
+  const isED=rankIdx(S.rank)>=PERM_MAX;const eds=L.filter(x=>x.isEd).sort((a,b)=>b.tpg-a.tpg);
+  const target=[['GED',2],['DED',4],['CED',6]].find(([c,n])=>!st.qual(n)||myTP<600);
+  // saran: jalur ED yang paling dekat ke 9.000
+  const near=L.filter(x=>x.isEd&&!(x.ed&&x.tpg>=9000)).map(x=>({x,gap:Math.max(0,9000-x.tpg),tpGap:x.tp<200?200-x.tp:0})).sort((a,b)=>(a.gap+a.tpGap*10)-(b.gap+b.tpGap*10)).slice(0,3);
+  const prog=(n,have,need,unit)=>{const p=Math.min(1,have/need);return `<div class="edm"><div class="row between small"><b>${n}</b><span class="num ${have>=need?'okt':''}">${fmtN(have)}/${fmtN(need)} ${unit}</span></div><div class="bar light"><i style="width:${Math.round(p*100)}%"></i></div></div>`};
+  const edRow=x=>{const ok9=x.ed&&x.tpg>=9000;return `<tr><td class="stk"><button class="gnm" data-ed="${x.j}"><b>${esc(x.nama)}</b><span class="small muted">Jalur ${x.j} · G${x.gen}</span></button></td>
+    <td class="r num ${x.tp>=200?'':'neg'}"><b>${pt(x.tp)}</b>${x.tp>=600?' <span class="rkc up">600</span>':''}</td><td class="r num hl"><b>${pt(x.tpg)}</b></td>
+    <td><div class="minibar"><i style="width:${Math.min(100,x.tpg/9000*100)}%" class="${ok9?'ok':''}"></i></div><span class="small ${ok9?'pos':'muted'}">${ok9?'Memenuhi':x.tp<200?'Belum aktif (TP<200)':'Kurang '+pt(9000-x.tpg)}</span></td>
+    ${x.hist.map(v=>`<td class="r num">${pt(v)}</td>`).join('')}</tr>`};
+  return `${SAMPLE_NOTE}
+  ${isED?'':`<p class="note">Monitor ini untuk ED ke atas yang mengejar GED, DED, CED, atau gelar LED. Kamu bisa melihat contohnya sekarang.</p>`}
+  <section class="section"><div class="bighero"><div class="grow"><span class="eyebrow">Status bulan ini (prediksi)</span><b class="big">${got?esc(RANKS[rankIdx(got)].n):'Belum GED'}</b><span class="small">${target?`Target berikutnya: <b>${target[0]}</b> butuh ${target[1]} jalur ED aktif dengan TPG ≥9.000, jalur lain ≥9.000, dan TP pribadi 600.`:'Semua syarat CED terpenuhi bulan ini. Jaga sampai tutup bulan.'}</span></div>
+    <div class="hstats"><div><span>TP pribadi</span><b class="num">${pt(myTP)}</b></div><div><span>ED aktif ≥9.000</span><b class="num">${st.ed9}</b></div><div><span>Jalur lain</span><b class="num">${pt(st.rest(Math.min(st.ed9,target?target[1]:6)))}</b></div></div></div></section>
+  <section class="section"><div class="edgrid"><div class="card stack" style="gap:10px"><h3 style="margin:0">Syarat pangkat prestasi</h3>${prog('TP pribadi',myTP,600,'poin')}${prog('GED',st.ed9,2,'jalur ED')}${prog('DED',st.ed9,4,'jalur ED')}${prog('CED',st.ed9,6,'jalur ED')}${prog('LED Sapphire',st.ed24,7,'jalur ≥24.000')}<p class="small muted" style="margin:0">ED aktif = TP ≥200. Jalur ED tidak harus generasi 1. Jalur lain dihitung dari total TPG di luar jalur ED yang dipakai.</p></div>
+    <div class="card stack" style="gap:8px"><h3 style="margin:0">Fokus bantu bulan ini</h3>${myTP<600?`<div class="softrow"><span class="grow small"><b>TP pribadimu ${pt(myTP)}</b><br><span class="muted">Kurang ${pt(600-myTP)} poin ke 600. Syarat wajib GED/DED/CED.</span></span><button class="btn small" data-act="belanja">Catat</button></div>`:''}
+      ${near.map(({x,gap,tpGap})=>`<button class="softrow" data-ed="${x.j}"><span class="grow small"><b>${esc(x.nama)} · jalur ${x.j}</b><br><span class="muted">${tpGap?`TP ${pt(x.tp)}, perlu ${pt(tpGap)} poin lagi supaya aktif. `:''}${gap?`TPG kurang ${pt(gap)} ke 9.000.`:'TPG sudah ≥9.000.'}</span></span><span class="link">Bantu</span></button>`).join('')||'<p class="small muted" style="margin:0">Semua jalur ED sudah memenuhi.</p>'}</div></div></section>
+  <section class="section"><div class="row between"><h2>ED di jaringanmu</h2><span class="small muted">${eds.length} ED · geser untuk 3 bulan lalu →</span></div>
+    <div class="tblwrap gtbl"><table class="dtable gtable"><thead><tr><th class="stk">ED</th><th class="r">TP</th><th class="r hl">TPG jalur</th><th>Menuju 9.000</th>${MB.map(([y,m])=>`<th class="r">TPG ${BLN[m]}</th>`).join('')}</tr></thead><tbody>${eds.map(edRow).join('')}</tbody></table></div>
+    <p class="small muted">Jalur non-ED (TPG): ${L.filter(x=>!x.isEd).map(x=>`jalur ${x.j} ${pt(x.tpg)}`).join(' · ')||'-'}</p></section>`}
+function openEDDetail(j){const x=edData().L.find(e=>e.j===+j);if(!x)return;const MB=monthsBack(3);
+  sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Jalur ${x.j} · data contoh</span><h2 style="margin:0">${esc(x.nama)}</h2><span class="small muted num">ID ${x.id} · ${x.isEd?'Executive Director':'belum ED'} · G${x.gen}</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    <div class="kpis k3"><div class="kpi"><span>TP</span><b class="num">${pt(x.tp)}</b><small>${x.tp>=200?'ED aktif':'belum aktif'}</small></div><div class="kpi"><span>TPG jalur</span><b class="num">${pt(x.tpg)}</b><small>${x.tpg>=9000?'≥9.000':'kurang '+pt(9000-x.tpg)}</small></div><div class="kpi"><span>Ke 24.000</span><b class="num">${Math.min(100,Math.round(x.tpg/240))}%</b><small>syarat LED Sapphire+</small></div></div>
+    <div class="tblwrap"><table class="dtable"><thead><tr><th>Periode</th><th class="r">TPG jalur</th></tr></thead><tbody>${x.hist.map((v,i)=>`<tr><td>${BLNF[MB[i][1]]} ${MB[i][0]}</td><td class="r num">${pt(v)}</td></tr>`).join('')}</tbody></table></div>
+    <p class="note">Cara membantu: dampingi ${esc(x.nama.split(' ')[0])} menjaga TP ≥200, ajak tim di jalurnya rutin belanja kebutuhan sendiri, dan bantu cari pelanggan baru. Hindari menutup poin tanpa produk.</p>
+    <div class="row" style="gap:8px"><a class="btn grow wa" href="https://wa.me/62${x.wa.slice(1)}" target="_blank" rel="noopener">${ico('wa')} WhatsApp</a><button class="btn ghost grow" data-dm="${x.id}" data-dmnm="${esc(x.nama)}">${ico('chat')} Pesan</button></div></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet})}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-ed]');if(!t)return;openEDDetail(t.dataset.ed)});
+
+// ---------- Rekening & pilihan pencairan bonus ----------
+// Nomor rekening lengkap tidak disimpan di aplikasi: yang disimpan hanya bank, nama, dan 4 digit akhir.
+const BANKS=['BSI','BCA','BRI','Mandiri','BNI','BTN','Muamalat','CIMB Niaga','Permata','Bank lain'];
+function rekCur(){return S.rek||{bank:'BSI',nama:(S.nick||'Mitra').toUpperCase(),l4:String(S.idhni||'4821').slice(-4),d:''}}
+function rekTxt(){const r=rekCur();return `${r.bank} ••••${r.l4} a.n. ${r.nama}`}
+function payTxt(){return (S.payout||'rek')==='cash'?'saldo HNI Cash':'rekening '+rekTxt()}
+function payChip(){return `<button class="paychip" data-biz="rek">${ico('coin')}<span class="grow">Bonus dicairkan ke <b>${(S.payout||'rek')==='cash'?'HNI Cash':'Rekening'}</b></span><span class="link small">Ubah</span></button>`}
+function viewRekening(){const r=rekCur();const p=S.payout||'rek';
+  return `<section class="section"><h2>Pencairan bonus</h2><p class="small muted" style="margin:0 0 8px">Pilih tujuan pencairan bonus bulanan. Perubahan berlaku untuk bonus periode berikutnya.</p>
+    <div class="paysel" role="radiogroup" aria-label="Tujuan pencairan bonus">
+      <button role="radio" aria-checked="${p==='cash'}" data-payout="cash"><span class="pico">${ico('coin')}</span><span class="grow"><b>HNI Cash</b><span class="small muted">Masuk ke saldo HNI Cash. Bisa langsung dipakai belanja di stokis, tanpa biaya transfer.</span></span><span class="radio"></span></button>
+      <button role="radio" aria-checked="${p==='rek'}" data-payout="rek"><span class="pico">${ico('bank')}</span><span class="grow"><b>Transfer ke rekening</b><span class="small muted">${esc(rekTxt())} · biaya transfer Rp6.500.</span></span><span class="radio"></span></button></div></section>
+  <section class="section"><div class="row between"><h2>Rekening terdaftar</h2>${r.d?`<span class="small muted">diperbarui ${tglID(r.d)}</span>`:''}</div>
+    <div class="va"><span class="bank">${esc(r.bank)}</span><span class="grow"><span class="small muted">Nomor rekening</span><br><b class="num vano">•••• •••• ${esc(r.l4)}</b><br><span class="small">a.n. ${esc(r.nama)}</span></span></div></section>
+  <section class="section"><div class="card stack"><h3 style="margin:0">Update rekening</h3>
+    <div class="field"><label for="rk-b">Bank</label><select class="input" id="rk-b">${BANKS.map(b=>`<option ${b===r.bank?'selected':''}>${b}</option>`).join('')}</select></div>
+    <div class="field"><label for="rk-n">Nomor rekening</label><input class="input num" id="rk-n" inputmode="numeric" autocomplete="off" maxlength="20" placeholder="hanya angka"></div>
+    <div class="field"><label for="rk-a">Nama pemilik rekening</label><input class="input" id="rk-a" maxlength="60" value="${esc(r.nama)}"><span class="small muted">Wajib sama dengan nama di ID HNI. Rekening atas nama orang lain akan ditolak.</span></div>
+    <button class="btn block" id="rk-ok">Simpan, verifikasi dengan OTP</button>
+    <p class="note">Versi contoh: aplikasi hanya menyimpan bank, nama, dan 4 digit akhir. Saat tersambung ke HNI, perubahan rekening diverifikasi OTP lalu diproses tim HNI.</p></div></section>`}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-payout],#rk-ok');if(!t)return;
+  if(t.dataset.payout){S.payout=t.dataset.payout;save();render();toast(t.dataset.payout==='cash'?'Bonus berikutnya dicairkan ke HNI Cash':'Bonus berikutnya ditransfer ke rekening');return}
+  const n=($('#rk-n').value||'').replace(/\D/g,''),a=$('#rk-a').value.trim().toUpperCase();
+  if(n.length<8){toast('Nomor rekening minimal 8 angka');return}if(a.length<3){toast('Isi nama pemilik rekening');return}
+  S.rek={bank:$('#rk-b').value,nama:a,l4:n.slice(-4),d:dkey()};save();render();toast('Rekening diperbarui (contoh)')});
 
 // ===== js/events.js =====
 // ---------- events ----------
@@ -4296,7 +4449,7 @@ document.addEventListener('click',e=>{
     case 'grow':openGrow();break;
     case 'login':claimLogin();break;
     case 'showmore':document.body.classList.toggle('showmore');render();break;
-    case 'avatar':openAvatar();break;case 'about':openAbout();break;case 'usulmateri':openUsulMateri();break;
+    case 'avatar':openAvatar();break;case 'about':openAbout();break;case 'usulmateri':openUsulMateri();break;case 'dminbox':openDMInbox();break;
     case 'mentor':openMentor();break;
     case 'rankreq':if(needUpSetup()){openUpSetup(false);break}openRankReq(d.rqTo||'');break;
     case 'upsetup':openUpSetup(false);break;
