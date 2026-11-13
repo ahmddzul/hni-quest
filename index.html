@@ -1074,7 +1074,7 @@ div.hk{cursor:default}button.hk:hover{border-color:var(--brand)}
   .side-tg:hover{color:var(--brand-text);border-color:var(--brand)}.side-tg svg{width:18px;height:18px}
   .side-prof{display:flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--surface-2);font:inherit;color:var(--ink);cursor:pointer;margin-bottom:4px}
   .side-prof:hover{border-color:var(--brand)}
-  .side-prof .avatar{flex:none;box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--brand)}
+  .side-prof .avatar{flex:none;box-shadow:none!important}
   .sp-t{display:flex;flex-direction:column;gap:0;min-width:0;flex:1}.sp-t b{font-size:.88rem;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .sp-id{font-size:.72rem;color:var(--muted);font-weight:600}
   .sp-rk{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:700;color:var(--brand-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp-rk img{width:16px;height:16px;object-fit:contain;flex:none}
@@ -1109,7 +1109,7 @@ div.hk{cursor:default}button.hk:hover{border-color:var(--brand)}
 }
 @media (min-width:1024px) and (max-height:740px){
   .side nav button{min-height:26px;padding:3px 12px;font-size:.8rem}.side-h{padding:4px 12px 0;font-size:.62rem}
-  .side-prof .avatar{width:30px!important;height:30px!important}
+  .side-prof .avatar{width:30px!important;height:30px!important}.side-prof .avatar img{width:100%;height:100%}
   body.side-min .side nav button{min-height:26px;padding:3px 0}body.side-min .side-tg{width:30px;height:30px}body.side-min .side-mark{width:26px;height:26px}
 }
 
@@ -1118,12 +1118,13 @@ div.hk{cursor:default}button.hk:hover{border-color:var(--brand)}
 .mdl:hover{background:var(--brand-soft);color:var(--brand-text)}.mdl b{color:var(--ink);font-weight:700}.mdl .num{font-size:.7rem}
 .mdl-l{font-weight:700;color:var(--muted)}.mdl.empty span:last-child{font-style:italic}
 
-.sp-av{position:relative;display:inline-flex;flex:none}
+.sp-av{position:relative;display:grid;place-items:center;flex:none;padding:2px;border:2px solid var(--brand);border-radius:50%;background:var(--surface);line-height:0}
 .sp-badge{display:none}
 @media (min-width:1024px){
   body.side-min .side-prof{justify-content:center;align-items:center;padding:4px 0 12px;width:100%}
-  body.side-min .sp-badge{display:grid;place-items:center;position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;background:var(--surface);box-shadow:0 0 0 1.5px var(--line)}
-  body.side-min .sp-badge img{width:16px;height:16px;object-fit:contain}
+  body.side-min .sp-badge{display:block;position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);line-height:0;background:none;border:0;padding:0}
+  body.side-min .sp-badge .rimg{margin:0!important;width:22px;height:17px}
+  body.side-min .sp-badge .rkimg,body.side-min .sp-badge>*{background:none!important;box-shadow:none!important;border:0!important;padding:0!important}
 }
 </style>
 
