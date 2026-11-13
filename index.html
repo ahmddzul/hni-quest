@@ -1112,6 +1112,19 @@ div.hk{cursor:default}button.hk:hover{border-color:var(--brand)}
   .side-prof .avatar{width:30px!important;height:30px!important}
   body.side-min .side nav button{min-height:26px;padding:3px 0}body.side-min .side-tg{width:30px;height:30px}body.side-min .side-mark{width:26px;height:26px}
 }
+
+.mdline{display:flex;flex-wrap:wrap;gap:4px 6px;margin-top:4px}
+.mdl{display:inline-flex;align-items:baseline;gap:5px;border:0;background:var(--surface-2);border-radius:999px;padding:3px 10px;font:inherit;font-size:.74rem;color:var(--muted);cursor:pointer;min-height:26px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mdl:hover{background:var(--brand-soft);color:var(--brand-text)}.mdl b{color:var(--ink);font-weight:700}.mdl .num{font-size:.7rem}
+.mdl-l{font-weight:700;color:var(--muted)}.mdl.empty span:last-child{font-style:italic}
+
+.sp-av{position:relative;display:inline-flex;flex:none}
+.sp-badge{display:none}
+@media (min-width:1024px){
+  body.side-min .side-prof{justify-content:center;align-items:center;padding:4px 0 12px;width:100%}
+  body.side-min .sp-badge{display:grid;place-items:center;position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;background:var(--surface);box-shadow:0 0 0 1.5px var(--line)}
+  body.side-min .sp-badge img{width:16px;height:16px;object-fit:contain}
+}
 </style>
 
 <div class="splash" id="splash" aria-label="HNIF">
@@ -2278,7 +2291,7 @@ function paintNav(){const g=SUB==='mentor'?'mentor':SUB==='admin'?'admin':navGro
   const side=document.getElementById('side');if(!side)return;const cur=SUB==='mentor'?'mentor':SUB==='admin'?'admin':TAB==='team'?(TEAM_TAB==='prospek'&&PROS_VIEW==='rfm'?'team:rfm':'team:'+TEAM_TAB):TAB==='bisnis'?'bisnis:'+BIZ_TAB:TAB;
   const it=(k,t,ic,sub)=>`<button data-nav="${k}" class="${sub?'sub':''}" title="${esc(t)}" ${cur===k?'aria-current="page"':''}>${ico(ic)}<span>${t}</span></button>`;const mini=sideMin();document.body.classList.toggle('side-min',mini);
   side.innerHTML=`<div class="side-top"><div class="side-logo">${mini?`<img src="${IMG.mark}" alt="HNIF" class="side-mark">`:document.querySelector('header.top .logo').outerHTML}</div><button class="side-tg" data-sidetg aria-label="${mini?'Lebarkan menu':'Kecilkan menu'}" title="${mini?'Lebarkan menu':'Kecilkan menu'}" aria-expanded="${!mini}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/>${mini?'<path d="M13 10l2 2-2 2"/>':'<path d="M16 10l-2 2 2 2"/>'}</svg></button></div>
-    <button class="side-prof" data-act="profile" title="Profil ${esc(S.nick||'Mitra')} · ${esc(RANKS[rankIdx(dispRank())].n)}">${avatar(S.nick||'Mitra',36,S.av)}<span class="sp-t"><b>${esc(S.nick||'Mitra')}</b><span class="sp-id num">ID ${esc(S.idhni||'-')}</span><span class="sp-rk">${rankImg(dispRank(),'xs')}${esc(RANKS[rankIdx(dispRank())].n)}</span></span></button>
+    <button class="side-prof" data-act="profile" title="Profil ${esc(S.nick||'Mitra')} · ${esc(RANKS[rankIdx(dispRank())].n)}"><span class="sp-av">${avatar(S.nick||'Mitra',36,S.av)}<span class="sp-badge">${rankImg(dispRank(),'xs')}</span></span><span class="sp-t"><b>${esc(S.nick||'Mitra')}</b><span class="sp-id num">ID ${esc(S.idhni||'-')}</span><span class="sp-rk">${rankImg(dispRank(),'xs')}${esc(RANKS[rankIdx(dispRank())].n)}</span></span></button>
     <nav aria-label="Menu utama">
     <span class="side-h">Utama</span>${it('home','Beranda','compass')}${it('journey','Journey','mountain')}${it('academy','Akademi','cap')}
     <span class="side-h">Jaringan</span>${it('team:gen','Genealogi','users',1)}${it('team:ed','Monitor ED','crown',1)}${it('team:prospek','Prospek & Pelanggan','userplus',1)}${it('team:rfm','Peta RFM pelanggan','heart',1)}${it('feed','Kabar','chat',1)}${it('rank','Rangking','trophy',1)}
@@ -2321,8 +2334,7 @@ function viewHome(){
   const sqPos=mySq()?(squadsTable(boardRows()).findIndex(x=>x.sq===mySq())+1):0;
   return `<h1 class="vh">Beranda HNIF</h1>
   <section class="hhead" style="margin-top:6px">
-    <div class="hgreet">${avatar(S.nick||'Mitra',52,S.av)}<div class="grow"><span class="small muted">${esc(hello)},</span><h2 class="hname"><button class="nickbtn" data-act="nick" aria-label="Ganti nama panggilan">${esc(honor())}<span class="ii">${ico('edit')}</span></button></h2><span class="rkline">${rankImg(r.c,'xs')}${esc(r.n)}${mySq()?` · <button class="link small" data-nav="rank">Squad #${sqPos||'-'}</button>`:` · <button class="link small" data-act="profile">Gabung squad</button>`}</span></div></div>
-    ${mentorDataCard()}
+    <div class="hgreet">${avatar(S.nick||'Mitra',52,S.av)}<div class="grow"><span class="small muted">${esc(hello)},</span><h2 class="hname"><button class="nickbtn" data-act="nick" aria-label="Ganti nama panggilan">${esc(honor())}<span class="ii">${ico('edit')}</span></button></h2><span class="rkline">${rankImg(r.c,'xs')}${esc(r.n)}${mySq()?` · <button class="link small" data-nav="rank">Squad #${sqPos||'-'}</button>`:` · <button class="link small" data-act="profile">Gabung squad</button>`}</span>${mentorDataCard()}</div></div>
     ${tpHero()}
     <div class="hk3">
       <button class="hk" data-act="wallet"><span class="hki c1">${ico('coin')}</span><span class="hkt"><b class="num" id="coinNum">${fmtCoin(coinBal())}</b><span>Koin</span></span></button>
@@ -4939,11 +4951,19 @@ function tutHomeCard(){if(!S.onboarded||S.tutHide)return '';const n=tutDone();if
     <div class="bar light" style="margin-top:10px"><i style="width:${Math.round(n/TUT.length*100)}%"></i></div><div class="row between" style="margin-top:6px"><button class="link small" data-help="tut">Lihat semua langkah</button><button class="link small muted" data-help="hide">Sembunyikan</button></div></div></section>`}
 
 // ---------- Kartu data Mentor di Beranda ----------
-function mentorDataCard(){if(!S.onboarded)return '';const row=(lbl,nm,id,sub)=>`<div class="mdc-r"><span class="mdc-l">${lbl}</span>${id?`<b>${esc(nm||'-')}</b><span class="num small muted">ID ${esc(id)}</span>`:`<span class="small muted">Belum diisi</span>`}${sub?`<span class="small muted">${sub}</span>`:''}</div>`;
-  const avo=typeof AVO_LINKED!=='undefined'&&AVO_LINKED;
-  return `<div class="mdc"><div class="mdc-g">${row('Mentor (upline)',S.upName,S.upId)}${row('Mentor LED',S.mentorName,S.mentorId,S.mentorId&&squadName&&MYSQD?esc(squadName()):'')}</div>
-    <div class="mdc-f"><span class="mdc-st ${avo?'ok':''}">${avo?'Tersambung AVO':'Diisi manual · menunggu sambungan AVO'}</span>${!S.upId||!S.mentorId?`<button class="link small" data-act="profile">Lengkapi</button>`:''}</div></div>`}
-
+function mentorDataCard(){if(!S.onboarded)return '';
+  const it=(k,lbl,nm,id)=>id?`<button class="mdl" data-mcon="${k}" title="Hubungi ${esc(nm||lbl)}"><span class="mdl-l">${lbl}</span><b>${esc((nm||'-').split(' ').slice(0,2).join(' '))}</b><span class="num">${esc(id)}</span></button>`:`<button class="mdl empty" data-act="profile"><span class="mdl-l">${lbl}</span><span>Belum diisi</span></button>`;
+  return `<div class="mdline">${it('up','Mentor',S.upName,S.upId)}${it('led','Mentor LED',S.mentorName,S.mentorId)}</div>`}
+function openMentorContact(k){const isUp=k==='up';const nm=isUp?S.upName:S.mentorName,id=isUp?S.upId:S.mentorId;const hpK=isUp?'upHp':'ledHp';const hp=S[hpK]||'';
+  const avo=typeof AVO_LINKED!=='undefined'&&AVO_LINKED;const waNum=hp.replace(/\D/g,'').replace(/^0/,'62');
+  sheet(`<div class="stack"><div class="row" style="gap:12px">${avatar(nm||'M',48)}<div class="grow"><span class="eyebrow">${isUp?'Mentor':'Mentor LED'}</span><h2 style="margin:0">${esc(nm||'-')}</h2><span class="small muted num">ID ${esc(id||'-')}</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    <div class="row" style="gap:8px"><a class="btn grow wa" ${waNum.length>=10?`href="https://wa.me/${waNum}?text=${encodeURIComponent('Assalamu\'alaikum '+(nm||'')+', saya '+(S.nick||'')+' dari tim Anda.')}" target="_blank" rel="noopener"`:'href="#" id="mc-nowa"'}>${ico('wa')} WhatsApp</a><button class="btn ghost grow" id="mc-dm">${ico('chat')} Pesan di aplikasi</button></div>
+    <div class="field"><label for="mc-hp">Nomor WhatsApp ${isUp?'mentor':'Mentor LED'}</label><div class="row" style="gap:8px"><input class="input num grow" id="mc-hp" inputmode="tel" maxlength="15" placeholder="08xxxxxxxxxx" value="${esc(hp)}"><button class="btn ghost small" id="mc-save">Simpan</button></div><span class="small muted">${avo?'Diambil dari AVO.':'Isi sekali, tersimpan di HP ini. Setelah tersambung AVO, nomor terisi otomatis.'}</span></div>
+    <p class="note">Pesan di aplikasi masuk ke Kotak pesan ${esc((nm||'mentor').split(' ')[0])} di HNIF (menu Jaringan → Kotak pesan).</p></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;
+    $('#mc-dm').onclick=()=>openDM(id,idKey(id),nm);
+    $('#mc-save').onclick=()=>{const v=$('#mc-hp').value.replace(/[\s-]/g,'');if(!/^(08|\+?628)\d{7,12}$/.test(v)){toast('Nomor WA belum benar');return}S[hpK]=v.replace(/^\+?62/,'0');save();toast('Nomor tersimpan');openMentorContact(k)};
+    const nw=$('#mc-nowa');if(nw)nw.onclick=e=>{e.preventDefault();toast('Isi dulu nomor WhatsApp-nya di bawah');$('#mc-hp').focus()}})}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-mcon]');if(t)openMentorContact(t.dataset.mcon)});
 // ---------- event ----------
 document.addEventListener('click',e=>{const t=e.target.closest('[data-help],[data-tut],[data-subback]');if(!t)return;const d=t.dataset;
   if(d.subback!=null){SUB=null;render();return}
