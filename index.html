@@ -994,6 +994,8 @@ div.hk{cursor:default}button.hk:hover{border-color:var(--brand)}
 .rfmrow .gnm b{text-decoration:none;color:var(--ink)}.rfmrow .gnm{flex:1;min-width:0}.rfmrow .gnm .small{white-space:normal}
 .pillsep{font-size:.75rem;font-weight:700;color:var(--muted);align-self:center;margin-left:6px}
 .rf-setia[aria-pressed="true"]{border-color:#00843F}.rf-sapa[aria-pressed="true"]{border-color:#D89614;background:#FFF4D6;color:#7A4E00}.rf-hilang[aria-pressed="true"]{border-color:#D6452A;background:#FFE9E2;color:#9A2E16}
+
+.gid{font-size:.76rem;font-weight:700;color:var(--ink);letter-spacing:.01em;white-space:nowrap}
 </style>
 
 <div class="splash" id="splash" aria-label="HNIF">
@@ -3218,7 +3220,7 @@ function applyRedeemAns(){const C=coinState();let ch=false;C.gift=C.gift||[];
 function writeRedeem(){if(MODE!=='db'||!DB||!UID)return;const C=coinState();const body={nick:S.nick,idhni:S.idhni,sqn:S.mentorName||'',reqs:C.req.slice(-30).map(r=>({id:r.id,ts:r.ts,koin:r.koin,rp:r.rp}))};writeChain=writeChain.then(()=>DB.doc('redeem/'+UID).set(body)).catch(()=>{})}
 function openWallet(){const cf=coinCfg();const C=coinState();coinExpire();const bal=coinBal();const ex=expiringSoon();const used=redeemedThisMonth();const room=Math.max(0,cf.maxBulan-used);
   const opts=[cf.min,cf.min*2,cf.min*4].filter(v=>v<=cf.maxBulan);
-  const E=cf.earn;const ways=[['Absen harian',`${E.absen[0]}–${E.absen[6]} koin`],['Combo 3 misi',E.combo+' koin'],['Tantangan mingguan',E.mingguan+' koin'],['Naik liga',E.liga+' koin'],['Tuntas level game 5–10 (pertama kali)',E.game+' koin'],['Lengkapi profil',E.profil+' koin'],['Event musiman',E.event+' koin']].concat(rankIdx(S.rank)>=PERM_MAX?[['Cek jalur bulanan (ED+)',E.jalur+' koin']]:[]);
+  const E=cf.earn;const ways=[['Belanja produk',E.belanjaPoin+' koin per poin'],['TP bulan ini tembus 200 / 600',E.tp200+' / '+E.tp600+' koin'],['Closing mitra baru',E.closing+' koin'],['Misi harian','5–10 koin'],['Absen harian',`${E.absen[0]}–${E.absen[6]} koin`],['Combo 3 misi',E.combo+' koin'],['Tantangan mingguan',E.mingguan+' koin'],['Tuntas level game 5–10 (pertama kali)',E.game+' koin'],['Lengkapi profil',E.profil+' koin'],['Event musiman',E.event+' koin']].concat(rankIdx(S.rank)>=PERM_MAX?[['Cek jalur bulanan (ED+)',E.jalur+' koin']]:[]);
   sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Dompet</span><h2>Koin HNI</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
     <div class="wallet"><span class="wcoin">${ico('coin')}</span><div><b class="num">${fmtCoin(bal)}</b><span>koin · senilai Rp${fmtCoin(bal*cf.rp)}</span></div></div>
     ${ex.n>0&&cf.tukar?`<p class="small warnt" style="margin:0">${fmtCoin(ex.n)} koin kedaluwarsa ${ex.t}. Tukarkan sebelum hangus!</p>`:''}
@@ -4243,7 +4245,7 @@ function monthsBack(n){const d=new Date();return Array.from({length:n},(_,i)=>{c
 function genData(){const key=bizSeed();if(GEN_CACHE&&GEN_CACHE.key===key)return GEN_CACHE;const r=seedRng(key);
   const myId=(S.idhni||'110200001').replace(/\D/g,'').slice(0,9)||'110200001';
   const rankFor=g=>{const x=r();if(g===1)return x<.25?'SM':x<.6?'M':x<.8?'MB17':'MB14';if(g===2)return x<.3?'M':x<.55?'MB17':x<.8?'MB14':'MB10';return x<.12?'M':x<.35?'MB14':'MB10'};
-  const L=[];let n=0;const mk=(gen,mentor)=>{const id=String(1102e5+Math.floor(r()*899999)).slice(0,9);const pk=rankFor(gen);const pi=RANKS.findIndex(x=>x.c===pk);
+  const L=[];let n=0;const mk=(gen,mentor)=>{const id=String(Math.floor(r()*8999999)+1000000).padStart(8,'0');const pk=rankFor(gen);const pi=RANKS.findIndex(x=>x.c===pk);
     const base=pk==='SM'?2600:pk==='M'?1300:pk==='MB17'?520:pk==='MB14'?260:90;
     const tp=r()<.18?0:Math.round((r()<.35?600:200)*(.4+r()*.9)/10)*10;
     const hist=Array.from({length:4},()=>{const t=r()<.2?0:Math.round((r()<.3?600:200)*(.4+r()*.9)/10)*10;return{tp:t,tpg:Math.round(base*(.55+r()*.9))+t}});
@@ -4272,7 +4274,7 @@ function viewGenealogi(){const G=genData();const q=GEN_Q.trim().toLowerCase();co
   const chev=o=>o.kids.length&&!flat?`<button class="tw" data-gen-tg="${o.id}" aria-expanded="${!!GEN_OPEN[o.id]}" aria-label="${GEN_OPEN[o.id]?'Tutup':'Buka'} jaringan ${esc(o.nama)}">${GEN_OPEN[o.id]?'−':'+'}</button>`:'<span class="tw sp"></span>';
   const ind=o=>flat?0:Math.min((o.gen-1)*10,30);
   const tbl=`<div class="tblwrap gtbl"><table class="dtable gtable"><thead><tr><th class="stk">Mitra <span class="muted">(ketuk nama)</span></th><th class="r hl">TP ${BLN[now.getMonth()]}</th><th class="r hl">TPG ${BLN[now.getMonth()]}</th><th class="hl">Prediksi</th>${MB.map(([y,m])=>`<th class="r">TPG ${BLN[m]}</th>`).join('')}<th class="r">Akumulasi TPG<br><span class="muted">s.d. ${BLN[MB[0][1]]} ${MB[0][0]}</span></th></tr></thead><tbody>
-    ${rows.map(o=>`<tr><td class="stk"><div class="gname" style="padding-left:${ind(o)}px">${chev(o)}<button class="gnm" data-gen-open="${o.id}"><b>${esc(o.nama)}</b><span class="small muted num">G${o.gen} · ${o.niaga}/${pkCode(o.pk)}${o.down?` · ${o.down}↓`:''}</span></button></div></td>
+    ${rows.map(o=>`<tr><td class="stk"><div class="gname" style="padding-left:${ind(o)}px">${chev(o)}<button class="gnm" data-gen-open="${o.id}"><b>${esc(o.nama)}</b><span class="gid num">ID ${o.id}</span><span class="small muted num">G${o.gen} · ${o.niaga}/${pkCode(o.pk)}${o.down?` · ${o.down}↓`:''}</span></button></div></td>
       <td class="r num hl ${o.tp?'':'muted'}"><b>${pt(o.tp)}</b></td><td class="r num hl"><b>${pt(o.tpg)}</b></td><td class="hl">${o.pred!==o.pk?`<span class="rkc up">↑ ${rkS(o.pred)}</span>`:`<span class="small muted">${rkS(o.pred)}</span>`}</td>${o.hist.map(h=>`<td class="r num">${pt(h.tpg)}</td>`).join('')}<td class="r num">${pt(o.akm)}</td></tr>`).join('')}</tbody></table></div>`;
   return `${SAMPLE_NOTE}
   <section class="section"><div class="kpis"><div class="kpi"><span>Mitra di jaringan</span><b class="num">${G.all.length}</b><small>${G.g1.length} di generasi 1</small></div><div class="kpi"><span>Aktif belanja bulan ini</span><b class="num">${aktif}</b><small>${Math.round(aktif/G.all.length*100)}% dari jaringan</small></div><div class="kpi"><span>TPG generasi 1</span><b class="num">${pt(tpgAll)}</b><small>bulan ${BLN[now.getMonth()]}</small></div><div class="kpi"><span>Diprediksi naik</span><b class="num">${naik}</b><small>bulan ini</small></div></div></section>
@@ -4432,7 +4434,7 @@ let ED_CACHE=null;
 function edData(){const key=bizSeed()+'ed';if(ED_CACHE&&ED_CACHE.key===key)return ED_CACHE;const r=seedRng(key);const MB=monthsBack(3);
   const L=Array.from({length:8},(_,i)=>{const isEd=i<5||r()<.3;const nm=NAMA_CONTOH[(i*5+3)%NAMA_CONTOH.length];
     const tpg=isEd?Math.round((5000+r()*(i<2?22000:9000))/50)*50:Math.round((1200+r()*5000)/50)*50;const tp=isEd?(r()<.75?(r()<.4?600:200)+Math.round(r()*8)*10:Math.round(r()*15)*10):Math.round(r()*30)*10;
-    return{j:i+1,nama:nm,id:String(1103e5+Math.floor(r()*899999)).slice(0,9),gen:isEd?1+Math.floor(r()*3):1,isEd,tp,tpg,hist:MB.map(()=>Math.round(tpg*(.75+r()*.4)/50)*50),wa:'08'+String(Math.floor(r()*9e9)+1e9).slice(0,10)}});
+    return{j:i+1,nama:nm,id:String(Math.floor(r()*8999999)+1000000).padStart(8,'0'),gen:isEd?1+Math.floor(r()*3):1,isEd,tp,tpg,hist:MB.map(()=>Math.round(tpg*(.75+r()*.4)/50)*50),wa:'08'+String(Math.floor(r()*9e9)+1e9).slice(0,10)}});
   L.forEach(x=>{x.ed=x.isEd&&x.tp>=200});ED_CACHE={key,L};return ED_CACHE}
 function viewEDMonitor(){const D=edData();const L=D.L;const MB=monthsBack(3);const myTP=Math.max(monthTP(),advOf().tp||0);const st=jalurStats(L);const got=jalurVerdict(L,myTP).got;
   const isED=rankIdx(S.rank)>=PERM_MAX;const eds=L.filter(x=>x.isEd).sort((a,b)=>b.tpg-a.tpg);
@@ -4440,7 +4442,7 @@ function viewEDMonitor(){const D=edData();const L=D.L;const MB=monthsBack(3);con
   // saran: jalur ED yang paling dekat ke 9.000
   const near=L.filter(x=>x.isEd&&!(x.ed&&x.tpg>=9000)).map(x=>({x,gap:Math.max(0,9000-x.tpg),tpGap:x.tp<200?200-x.tp:0})).sort((a,b)=>(a.gap+a.tpGap*10)-(b.gap+b.tpGap*10)).slice(0,3);
   const prog=(n,have,need,unit)=>{const p=Math.min(1,have/need);return `<div class="edm"><div class="row between small"><b>${n}</b><span class="num ${have>=need?'okt':''}">${fmtN(have)}/${fmtN(need)} ${unit}</span></div><div class="bar light"><i style="width:${Math.round(p*100)}%"></i></div></div>`};
-  const edRow=x=>{const ok9=x.ed&&x.tpg>=9000;return `<tr><td class="stk"><button class="gnm" data-ed="${x.j}"><b>${esc(x.nama)}</b><span class="small muted">Jalur ${x.j} · G${x.gen}</span></button></td>
+  const edRow=x=>{const ok9=x.ed&&x.tpg>=9000;return `<tr><td class="stk"><button class="gnm" data-ed="${x.j}"><b>${esc(x.nama)}</b><span class="gid num">ID ${x.id}</span><span class="small muted">Jalur ${x.j} · G${x.gen}</span></button></td>
     <td class="r num ${x.tp>=200?'':'neg'}"><b>${pt(x.tp)}</b>${x.tp>=600?' <span class="rkc up">600</span>':''}</td><td class="r num hl"><b>${pt(x.tpg)}</b></td>
     <td><div class="minibar"><i style="width:${Math.min(100,x.tpg/9000*100)}%" class="${ok9?'ok':''}"></i></div><span class="small ${ok9?'pos':'muted'}">${ok9?'Memenuhi':x.tp<200?'Belum aktif (TP<200)':'Kurang '+pt(9000-x.tpg)}</span></td>
     ${x.hist.map(v=>`<td class="r num">${pt(v)}</td>`).join('')}</tr>`};
