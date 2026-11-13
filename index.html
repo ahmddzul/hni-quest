@@ -902,30 +902,34 @@ button.kpi{cursor:pointer}button.kpi:hover{border-color:var(--brand)}
   .top{padding-block:16px 8px}
   .hgrid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:0 28px;align-items:start}
   .hside{position:sticky;top:72px}
-  .hk{grid-template-columns:repeat(4,minmax(0,1fr))}
+  
   .hhead{flex-direction:row;align-items:center;gap:24px}.hhead .hgreet{flex:0 0 auto;min-width:260px}.hhead .kpis{flex:1}
   .sheet{max-width:560px}
   .mlist{gap:8px}
 }
 
 /* v36: TP hero, genealogi ringkas, label journey, monitor ED, rekening */
-.tphero{position:relative;overflow:hidden;background:#0F5C34;color:#fff;border-radius:14px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;border-left:6px solid var(--lime)}
-.tphero::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:22px solid rgba(166,206,57,.16);pointer-events:none}
-.tph-top{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.tph-l{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
-.tph-n{font-family:var(--display);font-size:2.6rem;font-weight:800;line-height:1.05;letter-spacing:-.03em}
-.tph-n span{font-size:1rem;font-weight:600;color:#CFE6D6;letter-spacing:0}
-.tphero .btn.sun{background:var(--sun);color:#1B2B22;position:relative;z-index:1}
-.tph-bar{position:relative;height:12px;border-radius:6px;background:rgba(255,255,255,.18)}
-.tph-bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--lime),#D6EE7A);min-width:6px;transition:width .6s}
-.tph-bar em{position:absolute;top:-3px;bottom:-3px;width:2px;background:rgba(255,255,255,.7)}
-.tph-msg{margin:0;font-size:.88rem;color:#E4F1E8}.tph-msg b{color:#fff}
-.tph-goals{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:1}
-.tph-goals button{display:flex;flex-direction:column;align-items:flex-start;gap:0;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:10px;padding:6px 10px;font:inherit;font-weight:800;min-height:44px;cursor:pointer}
-.tph-goals button span{font-size:.68rem;font-weight:600;color:#CFE6D6}
-.tph-goals button[aria-pressed="true"]{background:#fff;color:#0F5C34;border-color:#fff}.tph-goals button[aria-pressed="true"] span{color:#56645B}
-.hk{grid-template-columns:repeat(3,minmax(0,1fr))!important}
-@media (max-width:519px){.hk .kpi{padding:10px}.hk .kpi>span{font-size:.7rem}.hk .kpi small{display:none}}
+.tphero{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.tph-wm{position:absolute;right:-14px;bottom:-22px;width:120px;height:auto;opacity:.07;pointer-events:none}
+.tph-top{display:flex;align-items:center;gap:10px;position:relative}
+.tph-l{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-text)}
+.tph-n{font-family:var(--display);font-size:1.7rem;font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+.tph-n span{font-size:.85rem;font-weight:600;color:var(--muted);letter-spacing:0}
+.tph-bar{position:relative;height:8px;border-radius:4px;background:var(--surface-2)}
+.tph-bar i{display:block;height:100%;border-radius:4px;background:var(--brand);min-width:4px;transition:width .6s}
+.tph-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative}
+.tph-msg{margin:0;font-size:.8rem;color:var(--muted);flex:1 1 180px}.tph-msg b{color:var(--ink)}
+.tph-goals{display:flex;gap:4px}
+.tph-goals button{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:8px;padding:4px 10px;font:inherit;font-size:.78rem;font-weight:800;min-height:32px;cursor:pointer}
+.tph-goals button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand-text);border-color:var(--brand)}
+.hk3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.hk{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);text-align:left;min-width:0;cursor:pointer}
+div.hk{cursor:default}button.hk:hover{border-color:var(--brand)}
+.hk.warn{border-color:var(--sun);background:color-mix(in srgb,var(--sun) 8%,var(--surface))}
+.hki{flex:none;width:36px;height:36px;border-radius:10px;display:grid;place-items:center}.hki svg{width:20px;height:20px}
+.hki.c1{background:#FFF4D6;color:#A86B00}.hki.c2{background:var(--brand-soft);color:var(--brand-text)}.hki.c3{background:#FFE9E2;color:#C2410C}
+.hkt{display:flex;flex-direction:column;min-width:0}.hkt b{font-size:1.2rem;font-weight:800;line-height:1.15}.hkt span{font-size:.74rem;font-weight:600;color:var(--muted);line-height:1.25}
+@media (max-width:519px){.hk{flex-direction:column;align-items:flex-start;gap:6px;padding:10px}.hki{width:32px;height:32px}}
 @media (min-width:1024px){.hhead{flex-direction:column;align-items:stretch}.hhead .hgreet{min-width:0}}
 
 .gtbl{max-width:100%}
@@ -963,6 +967,33 @@ button.kpi{cursor:pointer}button.kpi:hover{border-color:var(--brand)}
 .paysel .radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:none}
 .paysel button[aria-checked="true"]{border-color:var(--brand);background:var(--brand-soft)}
 .paysel button[aria-checked="true"] .radio{border:6px solid var(--brand)}
+
+.rules{background:color-mix(in srgb,var(--sun) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--sun) 40%,var(--line));border-radius:10px;padding:12px 14px;font-size:.85rem}
+.rules ul{margin:6px 0 0;padding-left:18px;line-height:1.6}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;cursor:pointer}.agree input{width:20px;height:20px;margin-top:2px;accent-color:var(--brand);flex:none}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.acrow{display:flex;align-items:center;gap:12px;border:0;border-top:1px solid var(--line);background:none;padding:10px 0;font:inherit;color:var(--ink);text-align:left;cursor:pointer;min-height:52px}
+.acrow:first-of-type{border-top:0}.acrow svg{width:20px;height:20px;color:var(--brand)}.acrow .grow{display:flex;flex-direction:column}
+
+.pins{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.pin{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font:inherit;color:var(--ink);text-align:left;cursor:pointer;min-width:0}
+.pin:hover{border-color:var(--brand)}
+.pin b{font-size:.88rem;line-height:1.2}.pin>span:last-child{font-size:.72rem;color:var(--muted);line-height:1.3;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.pin-ic{position:relative;width:36px;height:36px;border-radius:10px;display:grid;place-items:center}.pin-ic svg{width:20px;height:20px}.pin-ic .dotn{position:absolute;top:-6px;right:-10px;margin:0}
+.p1 .pin-ic{background:#E6F0FF;color:#1D5FD1}.p2 .pin-ic{background:#FFF4D6;color:#A86B00}.p3 .pin-ic{background:#FFE9E2;color:#C2410C}.p4 .pin-ic{background:var(--brand-soft);color:var(--brand-text)}
+@media (max-width:519px){.pins{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.rfm3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.rfm3 div{background:var(--surface-2);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:2px}.rfm3 b{font-size:1.1rem;color:var(--brand-text)}.rfm3 span{font-size:.74rem;color:var(--muted);line-height:1.3}
+.rfmgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+@media (max-width:519px){.rfmgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.rfmseg{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font:inherit;color:var(--ink);cursor:pointer;text-align:left;border-top:4px solid var(--rc)}
+.rfmseg b{font-size:1.3rem;line-height:1.1}.rs-n{font-size:.74rem;font-weight:700;color:var(--muted);line-height:1.25}.rs-ic svg{width:18px;height:18px;color:var(--rc)}
+.rfmseg.on{background:color-mix(in srgb,var(--rc) 10%,var(--surface));border-color:var(--rc)}
+.s1{--rc:#00843F}.s2{--rc:#1D5FD1}.s3{--rc:#D89614}.s4{--rc:#D6452A}.s5{--rc:#7A8A80}
+.rfmact{border-left:4px solid var(--rc)}.rfmact .todo{background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.rfmlist{display:flex;flex-direction:column}.rfmrow{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line)}.rfmrow:first-child{border-top:0}
+.rfmrow .gnm b{text-decoration:none;color:var(--ink)}.rfmrow .gnm{flex:1;min-width:0}.rfmrow .gnm .small{white-space:normal}
+.pillsep{font-size:.75rem;font-weight:700;color:var(--muted);align-self:center;margin-left:6px}
+.rf-setia[aria-pressed="true"]{border-color:#00843F}.rf-sapa[aria-pressed="true"]{border-color:#D89614;background:#FFF4D6;color:#7A4E00}.rf-hilang[aria-pressed="true"]{border-color:#D6452A;background:#FFE9E2;color:#9A2E16}
 </style>
 
 <div class="splash" id="splash" aria-label="HNIF">
@@ -985,7 +1016,7 @@ button.kpi{cursor:pointer}button.kpi:hover{border-color:var(--brand)}
   <header class="top">
     <div class="logo"><img src="data:image/webp;base64,UklGRiIwAABXRUJQVlA4WAoAAAAQAAAApgAAxwAAQUxQSHoVAAABoIf9n2G3+s3MpkmDukFtXrvWtW3bvu21bdu9rnVt266tJHVwdmZ+z7O7Z+f3m3OSvyMCFmwrYSMLNTGu5RmjgJr9h7z7KOj4RidQ0Nx9FHT4Bn+oANXscfkv2Ih/RofNHHf6HcPo+++uoJo17vZ3lIJR+txeEDRbIYDe8xKMqHHRAAiaLR68JCoPs2jFdhA0U7zz6phTqHooBM0Sj1oXcypt2h0Kmp1QAPvWORjRYMPBzc5hAEeHaBBdZM2JzQuJAM5CG7GbDF4AgWg+WMGE6JYh5WM1XgdKNBcs4U7UEVPpAZCyWQhSwFMYUjkxEL4goDkgBS3eSgx5HJreElQzwK0/iJlJn7Zt8hRA1Q8xs+nXrhA0ce73X8weaP4gCJo077giZi+0ekgTJglj16NGPx+Nm/YC2WRLOzwe3zx9YgGPbaqFSbHrH8k0T0n/DBNNNRLQegaG3vjtdiCacGcNDzuHZ/pQ/aRs0l22lHAVGuuDbwApm7zqyCdr8PxmQI0M4ARrLJdPhaBZMGuOjoh39cTYFGsW6LioMA6f0jRZKhKdQVd0bYjnkVipJjAwgxQUGk/ut0O8lsIiFj7vH9Q9jgdQFHHux5DIj0JA6uVP3heCPOf96vHF9hBQfnQyhiSeSTEUA+j4CmYiz0Fe8+EZzODcUQTQUrb8kaCkafytVEiC9Tt2AWasOQaCPObjrTUYormU0KgldF/j9BAYW9MHFOGRGm9jyS2eBgV5y6cnBro434uFbuABjDOhdZW+DwTuMoomJvwdcb5zIchTPg+NzUb+WbkbXOAsPMTrKKJVfYWhze7IL4EgL/li1DZVbe1LAT/T4bB8x61ABDDg/0QNZtN4CET+8WWJIS6Nlm3jJCk7LLMmJdOqSmcJAWy/Mr7PqXRVRPnGVzgHYo1rd3CSgj1SRsEQ9wPldg9Xo3YOjddElGecGIadtA0o8uii8TFC3W1fE3eVFMqvqwllwU3L+7hIqKK/ME4y+H+xEi7utzK2fgl0NQR5VxqF/isH6aqEISaS0Go7ylVxEirnxTY6iSbkDRXAeWQFMcSvCqUgJFFUCCFbfhsrRTTKmx8N4LSEGkulV13PnpClC2xol7SSwqVqvIEhQxE+Fwry4vgYltGaifsyV9L+2IiHutICuDaSEBl0ch4cBnCQ4ZkuIe4JykWTcIZblH1i/zCLjoAg5zy2wfIMQWNXVTmGDyl6rxrolKRzpA0xjclwrxyTgp02oGE7z95xQxvo1oE/YDvijN0yBIKcct9VqUwv4CJnrw3OnvoyD54jg2sHgcqhvVUxF7UPj0/dAEev7RZicIMPv5HGhZ1B5szTV/Idhn58pp8Lzh1Q8ivUfoT/uUzkhoQSM335+UI8G+ik4Hx/wr+rlMhN6U9gBv0Ea2qrpCS3hE7rjUVf9BwEOeHxWeynpbxAjhRM9OghzsRmRi6M13go8EdmV1BEHmI1egs2xGO9k4Qdt5iIPUafEYMUX6JGj6QbdvP8e0JUzI87aq90IChSfIhXxgjp4k5+f0+qDzDjOdjfFMGnJWTwh/UcMvhF4DUIOWRKjNlvdBQhCuA4v3FckzNH+P+FvX9Er+CM/T1wRkIU/GWN1wrGXw/MyaRDwaXrvCbqWLl1xkei9pq64crCXExgxFh7x3/k8fK3QjpL+d7j9fiv+kdYczU7Aies9phocLQDXuTyQ+Oxp645FSAQOXScd5uJ3kCGOM0ZvKkisUfsnV45nrCKEi9p9IXS2sa+qZ2thP4Za31lCydECHM/f7fbv/50qztTQQZwjz9x543Ii7m/ANpO9lSEwWUlIFJMh9LlaDz1LDM75CBVULuaGzwVkW6ZBnA0aj9VirdROxbBZCWI67COrkPtpeA5IFOuvGu9SIqNJxKzCcWkIiAeBDDEy2ISi/XdQWZxzwa0Pnj1KAgE7QiKWVrjtv/f0AFA0ajPnz4oxEshyPZw+hHzvwEQEFt3+c0LdqLraEp8jrj80qLo9pOo49ceAGv8LquNCPEDag/8QyWFY9DF41cifiup2o+CUzET1cAfB9F6TwWl73sgqwcl6l7CVtp64E9ag6KNEIf+HUmVwXOoGr5st9qYeMDEN7uTJkQlFM7mU5jlcQvgWh8ivl8MitRL9JqCsVllTHW5lLT4oWT7MBqrT4uKpFABf9jV+E3iVMD3qPl2dtSoSWWeVYvaJDE8SYqkGNRobIqe9FY5JZcUBXO4ZDHTB2T03S9Ey+UPSBxA5dQUXdDqcFsKKZiOOnVMWjgOlCBQ0cdcCvFcEUAgLuCL90UJgYWCPRejtunOO0ngEWgcAMzlAJJwsRW359A4K/H1Nlu6X9qQMMEEi6FDvLGUudZPXYiMIU2IRnJU/I+ad1rTNsLQfh1arj+NhKjlRDTGJd/XQhJmvAxBR/68koSi31qeXmFwb2gB+zFFs7WDSGZl1ZekKa/93BMxn6MmjU79ISDgGNHI6otDvAeKyGskUh7JsSQ0g+bGsrqDy2BSMBoNDevKnUhIjseQQRq/Byl+Qs0yZE4lYdl1Da1GjWNGgfGsaVw3nIClAG7BkHOhrhv0qOdcCfFuKKDsI9lAxv0hyNR4W2Poy1JHuUkEMI1DGo+IVVwOz4FAuHnMZrKkxu4EKi08E+Gl0zA3SdnqP9QM/A/DY4zaMzi/rZCEp2wzGjqKl1OCgIoN1jIArdsBlLvwbeu0ZYzT8QjN8PVFd8XrLI21mzuDTJ2yZfWuK/tSFpScyphUxDWDqtFy3O6Bm/uvZqFOnfIV8jc0yKL/OoJ000uMBhXeqhkIXic0XKiYxxunDP4dCJGsx6FouCP/l84JZpCq9D+GsKsY48mC1k6dUMiib2K1g0dZc+0q8ahx6VVKG9lNMxya9Ex2JKXVvu4B8zMJzAKKlxLNav4ioRsYeejC30YR/ka+2m5xZRmI+H7sicaHD+wg5w0QSn3n2VOu8ecCJZxN4VAMfci7fww5gMetBxmNWd/XWYCEraLZRa9pme1BOSXvv8HHvoLQPhulCGgxD42Xe/BjoXKvurrGa6TxJmeaUEW/oPYzX1EUq+o7eXLYhfgYAV7ws0cy+EcLQvU+6ckJZ3EIqAAm+PPYHQbKXaDx6cQeQZD6SH+Ar4NAwru+boUx1Z0JSvyjaR5eH92Z057rWmuMr2b6cWxVrUXrrVW/4y5QtlnhCaIxqztId9W+562lWqxtC7Abif1pAgpO9IRR4+kQODOdhyGiNxoBfsU0m3q5k8RXqL3w91I503pv1j5vyyUAzyeCt6R3Cc/fLsZYH2G4W97E8hiPYSLAt2jQp6AnEZJextADv0ngU/zOHOJPst2qrGRfBa7pKKWr1XTf7GFnTV1v4RJWVlQbnzfFYnX5Dho9KwTPEaYa7/CgW91HiF9Ez3DtLofTzi1reBjmwipkO+5aMWNrojvvdECx2NJOjx2P3qMflDu6nO2ousb9HAU/+Qd73eO0UMPset1R6RJWZOyK1kK44rN4vJ4Wnp1BCQaf38CD28a9pPV8pqV5qSsWsu0qVnVuepWSZPCdqCySc5Q1mRTiHe6oeBEDr7HLyqQzvpvnBPnoIgwp4ef/0VLCGcex3D5mcw8h/UUaL3PFUvSsMyyX0annUoLF+ctp4eqSOmRBeMEZidKl5Mjala2E8DgOWaxvdT0tVK+jhYfgTVYnbMKthSJsGqDv+nLFSmwbGuZagIdpiLdsoQn5vBiDPBBT3VG7tdYS49qOQtCnFogOSvECLWQaaO14CqgfLAuFiTxQhCGQPPAFLt6VVaK2vyb2vZAkaqSFTyBWYJkTEMppAmwhRdbW9xTSFeYw8ZwB8Bkx1BPNOiGKFzPHip1dpCBqI0QvjfIZG7u8DORfRH/5JtpzvqJEMIdejdOdQexgDAnvrsIZZjG9fteAKCVqig3VaCmhoRvItmt4Fa63c+qE8DEBuMYvQDIqkdQ0azoI6NFICxuXoiVFu0ALuJZZ4a+5Mx9KCkc7czP71xBvidDuRqyH1f+iJa4HLBBtV1vDW0XkiIQonI/G7SZp6ShZinitETMugGMxJIX/v0FDHQwixZAZPZoaEefEQ7zZHT/BjK8BRfUvGvxpJhpqUxKyZBEvWl/h2koB3eqsdUjW0BukI67aGMVM3ShqjsTw7tOoabUGIqr0E5jR1e57NMWBLMRZ4NSMrsOQrT8L8SsakkwvXEcKFtd3iEl+yyGDi4uFcHQf+6BxYDpIBI6npjhS21leVyUjHOUbic/orSfRenETG/Ts9d3auZ5biNjzyckdJBoFJ4xMIB2JhniHR1Jb0sUxdAVRU+QM/F87G5NjcjLEu9wK7rdWc/ilpCv6Ulp7tLh7j81oKSHpeJCy/SpjOEmuRfYSBoY2VWvfGlyzxkOQA8GsTax7UTCZ2Pbr+xbSfNQGF7ZIzgcchSFLLSfNsqdO8kmPaniIJ8QQBBQtJtbComJ4n9aerI0d9IlqZYCyuKECpOP0LAxTAF/gOJdQySlZ48wslDvSZNP4KcCDNPzZ2xmlKOeYnyFe5MoMlZvQZs+Td3FW3WUYchzLnYRMuhqolfA4wCm0oPG9JDoFBzBgafzNbaxOs2GWSHNc50L9gZrvppfwIWpaOBNgR7S0hrQxqyEF8W1mZHY58gNxNOqscKIIiMsuqDcpSHLVZmol7ApQupraRR6fxCdUwTeo6cCedwQB7WrRJh+XjiDSA2cKWONPWVNIgTiJ+HxiTWuQ1IwhzkhZAtqjmm5WY217Zy28mTgN7TRnvXWgLzUydl2fFISzMaTmlOQ5T4ubqkBmLzqy2pLvwCkQOE6PRJ3dBpyve9D06c39QGVx5y20OgzxVgjorTWM30qUDS65ho1qVErKqcWN5SAp65aI8C5Lg3cREZ7BPSBqjWWr0RJnHYVMuQkPYIaqRmb6Oce4qRFEjbMp4yKRM6lzhkL+TL1S3QZEApEmVt4woVJ3Ymf43pS0py/EM0TgZzI9EztERLZmN4LWnBJ1LZPtNWSbWUIWvEtuCL9nz4CmtWuTWILt6Kz/JDfojwulYBtoIZ4HQeK9KvXEXtLWpfkgpCj+DENi0i6gnJZto9OSVeSpuRC/LoM0ZL3rLRF+JjI+shc5EqV/IA25hLIvMEN2+zgH43q8yinLA9Sx95vUZZkKHsGQeP5V9vh2PvkGbYiG+DQq/YhEBue1ECL9axtjrGPFlIDCBaTzDH7eOuKUuMsmS73Vl2aPjV3r0PIjkFA0HUNLoZGOuhDqL/yvAET6+RiiOTqnxLHu7mHqPcKGninjxkxLFM1siTxkqSQiI8JSFrm5W5Z9zCUJaUWQ1fhiEHFa3Ivqu9b2XZDpnhJae3S5yKKqujYShqC5F7ru2b54UHoQULTI/aURbwYh06V9Iws6x2MjoDhS1r1MkgkFR27AkHsKlSu6gmAqZSFuPh6UQ7aRVDa4vDQCkR3diiFVup+Ucpml2/wa5XI+OU5HwTUFLgvyIQyd2f7a0aXHq+BXNPRVpkFaa+8R9ZXUe32FC3sApc+gA67B/x3LVd2bYhIrglzZXmrtBjMBtZcNbwpew9Djmw6OXoXGuPyGyrX/kjOmGI1rTwS3iTmoXltqPDkSMTXsxFiG+7Vzh4tQ0OX1WJVluNKcc3+3YZiqLuLkHlEZhHVphmyWDHGOre+gZng7A/eNgUP/STvQ+JMQrG3MUXNPO5p7FFAW6N3O0E8/clvvw9EgmfaGwA0ZSq+tSTsI+4NkbNEaqG3K0fqbWoGUbt4PQyTHY5zNWDLW+Rhb3SNCT0js+tAmxNAQfAFu8BcnwJsoX93jPaMyCfXXq8Ya1sIn95oWaxi2XLGUpB2/fR6oiZ9Fq/Ed1tf7GEmmoxyPDQDaLpiSqGelx8mlDW5/vGZt1xW0/Xidr/o3lkuv6wjUywLKN+j4a9713SNskiT8TI6pG9ubhOrsU28snZ6AQBDfrVl44Ju1iPGwTD4/BBE3TDm0OHlEaQtP09maxgGCIqqKH3Tefl1B3ewNlSe8sSZyN5J769dqJ5/aOa4oSRT7HpYv514aGCHLogk9Bt2avEhpLTGEdtsLevLOHeP7TZaZtdrH2GWtpQAgv6+CQXfT9zEL9jtRFXW/ewzjXgzZL4Eg0hQePQWMsZj1Mh0pGKO3eJbHs+gopexUYwyHZpTl2TvxWs/isDHruwnJEDleW8KhX/pDIPLnddADf2NiPCVWoxj0GlPm6kOiXPnyEvDDa1kINU7hNRgp20TGJ0tqvLdFlJgPqUUPJKwkRolL20vJrN5hvL0T1uD3u0SJuU/d7Udkvm3OjAbl4T2KGeayxcwtxSBlbl8CUXp7yMqG6Od9iwF7vapB/PPgeMTN3as/4LB/IumZ/IaPnkyoIur25nTNf/YQAOm/mGSdDnsnNuG4W2lL6J28y5m3lEkJA+z1nQF4DzFZ79jtrYTYzFaysjtIT4/WDhut4b+axk7bI5ZRERI4A7nYexai9fBiwF29dQ0B7K2NRf4Bfndep4SqwG4aQgYx3i4X/hTLy99/Yw6Mh1hvdDTyV8MnBKt9/dC2CUEDJch3L3ENOhzx1oaE1c1nPAEKvA70p3qgLLSr3jq1v8jSwAKlpJRCCClVJEUyL6hBZ0xZG9enQQ+c3LHolc6MO34PeBKQM789c8bO7Ynydxxy9gt/mjhF+0ERz9rk4BWv1njazZVsQTW/Tr33wsNHb9+3a1VlVfdBu4w5+pKHZv6xPtkDe0lJ9Dzn5ED1C+BojdrbHpEwzfeiG7Zsrmu0ab17aKy3PQo28W/ZckD7bEySt6w6DLVximG9LlbfkvihnNBOizFE7x+b/PgXN8TliRep5oi6foOhxabwsSH+2BOCHKp6LV+Kim8CwVh8rSSnaqkEuERjmPchRDs+wpjr/+83ci7q/MzlesWKFLm3PNtNxLxO1IhvlEOQH2bdiatR52ORtNf/5DpX1zejRJufHQtO7Zn815B5YyfPRdT5+FcLj8lRKsfp0+q2zWjz60BbrL+7bd79kysFMGCijQ7y6Qjf3CofUmlO6SEzE8Dyou+ziO+OBH6ZOTSaR82IgIW57m1M3Ku+PQ74f5VbFwTs8uJmhnLtTy2ue3WYZ8M9RxZ+rxvnYiIhVym48LZ+7qN8LablIVM2JhJMDlK2zDiiNNtXk/cHQWxGn/nOpnhg8KVyG50YlOo+PK9HYpai6fzD4Rhg1xNfW5Ts1OKsLGMi2Xkue+u0Hs5ZiqaRPU4oHjp++sK0xqSNMTb5iSTQaY1x6eyrR5YlpW2S/xku8fgVDjz8lqm/rdXUuPavmXccs3Vxwn/QNFKYzhQQ5dsfeN4dL8768ve5i5etWrN8/p/fvzfx/osO37lKQfJartsYAFZQOCCCGgAA0GIAnQEqpwDIAD4xFolDIiEhFUoNaCADBLYTgWwMwhgXiG5pv/D/jB2y4M/J/jt+U3zrWh+0fcz94P8B1EJ6esL8P/evxn+in+1/yX5AfJDzAP4R/Gv8j/b/yI7g39b/6XqA/nH9v/9H+n95n/e/sz7lf65/l/2b/unyAfyf+2f/j2mf+L7Av9z/5XsB/zP/N/+j2Z/+B/7v758C/7Y/+//Nfv/9A38v/tP/m/P//8fQB6AH77+4v/AP3l7UP8J/0880/79+Rf7R9x7649r/2q0w/5P+H/3frh/q+9XgBfi/863XfUv8x6AXrj9P/1niK6inhT2Av5J/Wf9563/7TwG/tH+w9gD+Q/0z/Y/5b8nfkb/4f9h+VXtH/P/8x/8fcD/kf9G/3v96/e//L//////ej6/v2/9i79W/vnapTEAhc/DDnBgw1pXOUt+PV3Qy1hZu5fHbplbHd1lJxMQRDswn7scst20DZau4uOdhqh8M4jsyEEAC1uq4TxIxRR0g9CYKnRc6DYX0w2CsrkekuJ2qFXddaadf9myZRyWYfBjjQrstQjgtp/p7ZuzPDeW/HbgNYdXzF/bZq0q2MN55FuOxHFdJ+yNNn4/RWpkuXuEVZn9ZKSvInpqUl9lNV2LQ0CPws5+zLNJLMmWcLr8iROk3VZ1sotX2S5QPE8lktD//TCCMVmQmvBM5s5n+QI5pt2ZCIXQ0b6WDXdX2iqAfr6/qXgGURpfZ2wcUiGhBndpaNAuOs/XlnYm2hrS0AU9Ua8ErLqzMJRcV+v9fx0wPn557NJZVfN4bOxHHFbWwOpgQAS/N3SU6d7IoWV4enihDyDDLlO0sRyVQe1HshZWIau7qF2UB2w0sqEYOYRVt4DQ9uO9KTpyGCb2I25X/rTT5NyvFNWtZTIreI496QHgS/lSasl93MhjUxdZihkTTYJ1WOF/E+r00n58K8YNJBqEA5GTcvkJhkj+JpAWpYFQ20VE0ewhjPYX3/3ap/yZvKOYchLzSZKPasDTfNxwWzz+ZpDGrEjE+ejWd9FvtacbnmGrbg6AmOmjYn16tq7uNAAD+/2AYBL9WnvUI8NwsRCROm5jlwAy7Sy3//CvtOFFIZm0LkxWZT8m/ftaAY+rCfPlGydzx5An0EPDpN/twhzJb6CEtLDFUaCWKU17EyVjyyhcacIV5K9m1INxY6QyQm0Zm6Vi/zQOwkBxbqnGU2gyw8LOLsGrcAk04aOvI0VTLao1sQd6ZB+5pRPRuC8cURRXkm8b8txyTo2IO9WB43DcGk/teQGy5u4pwMum2ECiJB02DppNEpxaAAAMn/Ii6d/XRIiiEraP9ciaHi8V5r2i79a5hysNjPcnVS8iZHvyugvWHCmFH1X0s/0DkRrSQHzKZ5jMJ13Y8r51f3+ncM+a7tjT+tht9W2T3hc57+wZkPBztr1ZBsrZQLAPGy7SNbpggYeqyzRqXmoWyQVr8NsaU37u9huXN1dW+oyb/RJcdHNscrOs4v/sLF2Mhfv08iDnNM2UbqQzbqetuSsbPfxLdIu8lny076f5j9iNcJ6jp4MRKlon1j/g6dU0MZpyFNTGjrgxqZZTIJaCA7/gzsR9f1dWbdp1CQ/yRl/5YQA2/5mMwT0aluolrAN/UI+u+l3UrZ62+fBgIoE+T9n+YqcKxHWdZ5+PidSsAMIMifbqN2A+QBqldBT3Tuz1gMcgAgCmqhCWc1geeYU8/ZOhtvftHIdF8l/pwJIlOJO5rYjylS0606ApMS885ZM7mBQEkLxa4ijF+YlK3GCv2ySY9gLksWlBlU6T6cv0C/tWjwzyBR01B8j9AH0Ak4GdFV3JX08cBNkMSqNq/Oo0htVwSasXooyvH3wkR53ItbzfLq3Qz5huVaniHaAVc7VGqHuHEWglcVkyWpb88h3udsvcO11AzQuwaaNGmSx8W/x4t0zU8G72M2zGzKKVR24GsVKalIwek4KNU3PAD21ZLtbPvFHF0RQhSr/DVataKNMQGdImGiH4j8OYVD79HarTJP/VNSpolgMpIQNiBugYtaJEvIZH2JQf+mppaQ+kk3hBYnmmIZ2fsr0l2nrbXgpViFioKrEqY2RSeHvTFjis9PKhvMoro2OEp5JzEvBh8MeJz8mS3x5qseUYlHInL7hmf8anCJtGbKtyyhdVC8oDgDyxXCEQWVRMqDNlCd27eIYhOoripvNaLfQyffEfZAHFGI+TVVRHrLxIziG82Y8priqikWHTP/o7frIhhdrSgVqi3ICR8vpLgTwPOBt0LfNQRvDrqQQf1aYVuB/x3ScDd+X2UKB1LZkT3SkSV0SjiR2s6xFV3azhGkAwxkqv4VbpIWsMs0i3tpsI/zN/52PPwM4Xo1STL9iJh8LqxJQNJgqAskbO4aAkq1B3FZWuaIqh8LqdKfssYz04X8FhJDGIOHC7wQiLgs/pw2oG/iA0eDn6cXW//hyzWmzuR8I4YbZfBX4AjyZV7Hik8BvtzznYkjLwPKqsOucwTbosvpqL5qco7NG9XQW7Qs33V0czWBZyQ2Jcoybn2Qvmb/jup2SHcH7rc89HvxZBh31OT0qQyON+pzcLmvirPya7XVytbUDvhD/iKFvtiX5xA9LAxLKHcMMwqrh1FlH/7JBhHFwj506/udzJA2KFJNWzUF0XkSQwMwNfexb1SECf2DP8twyfE/RVCcvWbasNTXKfrAu1kV3bobIG6o0JGFa+0U6xArtUbvOkVcfAMcGJQyGVZ2GdpChkTqrII3c+0u8UogewQNIUEVqwPWPKXE5CeyIZmtCC2fn/n63fUL3xryC8uicCT/bso03kxEoIRB0QM1RcAWbGT1muaUygZ0BiaplN1+bvq2WzDJpSwkUYmZIyT8Exe5gQMoE7oO2MLG0li1aH0vnARSQmTiXE7WJMZOvKougjqR416UP+PCHZR6QWAPx9u3QHnVEQuP8G5EjWCxrrXrdyeWgIZ7HrHMlg07fgbRoeO1BWnyOcMbqGkf4hZFpxLkTg25uyHVPpTWCeYePK3Xy46jf1i9NQskhwGunSo2CxVyfkKJR3M8oRHYFlyojh42VAzqMFZXZC8CHOBhYMhCCPkdMm80SPlJol66YC8Y+tsN+AWZxgHCvMiaGk8O0x5h7XdKz1he2ClhRGL7art3cnG3hUwmOJfX1dlDU5Xn0r+QsuSmzUEXU9+HSwIMGtM1/e0ZAUR9QQot98dCKTBJ7bjQ0ek+H1cqjdZvru/KToueIwjkDjCUg4+2f6V+97b5sVGqTpUsPu6zh88S0chrgLHyQR4yfy7ba4SgDaiCueaAqarzIOjOONp1kTdap4VngfyLQVSwayXh75kHhJ8g+Xv4853m2Zva/PwgDOPVHnJlws2HaialBMIHs/s97wem5+h+ORe/uFL59kH1UIOs2oqeHXmLqCmRL7vXNySOQ2W/LV0A8W7/6u1EQwYTUEKve2nk2V0s/qmf9Z1DglJco6nGbMAvnvO6VYitxCDdMrEqmp6+d9MQISawdRaHlM6um4k9DnadGLPbJhhwWag4QPkqYTMxgG9SPlwcq9drN/IihKsvgSglUnzLYDIkbAukq3P7VAHlvgQ5RsPQ/Gv8OAguoDHRo+EhHkgI8gACxliZ0rWMF1J71hsGz8Grm+q4tdAEMqi7IhSwRaF7DUZIk/ZIt371cqgZEmFMEnuG7gpP3SsuijPhKewKeLDpMql6vomjkHlS5Hcz1JtzZnLJjcaiyF84/bZ3z25RdFmBF/Q4HczAdgIbbn6I4A2fgskZxbnJEJ0gLy2CKO3m/hRfNjO3BwdcqUzg21YKWrJGvnh9pFGoT87aczzpW5g7dYbTZcXwKwU86Sv5Jwd75hlV2efepwOpiab3N0cn/5UZZwnScHlD/yTc9zPj8NvXftq8S+ptVCWj1GiNiOnZ1HSt54o3oeigpb00uHqRTxc1pdiFWU9HeLps28ykRokJsNHDCYMzUeBCkGJ3mmKEVGQjHSuVSe3xUVFQFhnObWZ3JwxVE3Dq89iau9H3DEY19vjB39i79riFOhA8oaD/AEgFWT38AQhSYxNQVtNuXvktWabNDs45nZJEMV+D2e1MV0j9NkyxoR2K5g9bhvWjvo0hx/7DD+9a/1U/4TCzlWCyD6VEeey23wQrK1AxzxZwuzuF4JiRaoyOctu7II2LeMeZoFtbIhmF7SfgOSRpST19tmHK5Xjx1oRcBgwOzRUWQgYiV9qSnp8cEEo7T+S8XTtMKyy4e9F4BncC+GbWEDJe/Pf5nnmCqS689C73i6uFtoHxyeZdpqwqopukp1h1jWDADvP5NM69fDvJxc9XdhsH4slRwHL/u+wwxCSK41JG4kxxEoj2QCD3aHHrx3gjjuosDAsUS3l0steH395gUTnr99crnAvQOWOFtChJu2Fo5xhaFwYRp4aflla4gyVh68kDUvHte2VfPg5EeZqNT72HdO3xut5SHbggsdnUqpzLkftK+FwvEtQf436I2xf/yanzSgFZ14cVpoR4eLX9LbXq3JIZCazKwHtB4B1GJeU3y6S0eHpu+zMRC7u+Sw+sX0xdhv+8jKO4xiUBCR/cDzONOznI5p1vIWo4+yWHmgxGT+/Ub/Uvwijw4J7UlD24QbYh1RcyN6mdVbNtLdZUeG3WOv88y+SD5tGyOW+hqeljkheRA9bG1uHY+TJLk+wIm/GsgnJhMMhDxhj82blpbRrIemC3IJ3dU65E58PqFZpR/EHiRKxNpFbzhOZRGZkan6YIX9nusOezKjabBcg+Hn3Z21zawyXwq90nK8TEvsTGzjIv70G3/oA6rjFsAwp33LYm7mWA+ItwSBvM9Tsc3vGYd76ZT+KXQiisGHDWuuti8fp73Uv+hyIgOhVi6tFUsL7ogN2fCs/st35MvXdvoK4LXsWPCohGz22woolhZvJ9vXcm7PDLk7Jd5IO2B5zpbKlPjI0Hsq92ENXqz90eIht8gx5W3HWquvuVQLeIo0nU3JvjlPKP0S1kY0KMJoyxIr7GTovVQLxqm3qJM3HZPO5B/DqYo+0vv7BTqNAnQvNjRjbPR/p/kz21FZiTcNU9oB6oDzJE91nriXtPBU9cVHc9Egco7HFVwGe1BN/yQB3/P37kEio2+ODmFuF0JGMKKqAbY/7xq9jAslIX8ly2E/nqWrfEurLwQRtT4eX2QxMTdFj9eeFIW2KvXn/aeUOWlTCf8lcV112Gpn/mrd8Ke4FCOIV9tS+fRKAae+IhPT7PS8pFwsit4aAQEqxS9mm3WPSKvZGBlJ9T4Z5NKsdYI6ZFMTzYX9gq0x4fi454P/MZ8XeZWRkcHjEGnkVfuMEbqEFfd4+x5pfQvcsdRU6oePQyUcXprORJZHA7nlMmnEtSZsF6/YD/iqkCKFCseUuJZLx+D8BeyhP9elckNu54tMzmshl+DSUelJMhIATnM4uc7owmkwpbZlhSc7ody9aw8VxBFZxAHAmzmfWwNQ4gdTAawro63yoFCD7VEaJKlFq33CIYuy3jFf9CNbwivRAdzDr7/nfW/WvqNyie5uxJJksC5cIFgiFQl/lf6rr6P0r79qkwtG6vLVMkg3PmIRgkJ+QnE53E7NIXQOtp7y1igR0A8QtEVL0g8skK0GZtBJeHBfhRtGW1QYzqlV9OvdIVzcugzjTH8eGbCWb24oZYDRkrlIWXl57i62xWGPaXh/M/NALVv6uQUGlzx5Sbc7VWZRXfPGWxq63Ij0V3+GusAaAynouzgv0RMeuCkAasDXFVNMd/M6dG+Z9wXZLcjCbhFu2thu6h9j47lovCiJ3sNg14U+xKkEobUEoMJHTY2chiSG+jM/ddcQRttsbreZ7tJ0surE8Lqb/B8xRVY/5Az+/zjvjflmvvYEClNw55UZ96bh1FVe4wSey9+Qe7sBvp8wGbK1VlEmtKPEls90oHazUSIE5f0iicRLycE9zWoJL41M+eD9mOAWehOcBeHzoKVvm16CojTmHbxX/jTr+HFqjZwy1ydh0KCG8bbNecoOSs7j68rPqxcsHIy5uo+PynjoXGWeRuBhbbI6L4gHQvAZuuq3mirJ+BaYTlgDASuGn1YjI6xEgYSgZ0I6VqJIROTnyV93y+HdTfXgmSVZBgHk+1hM7ll1jUntSYGeD9Z/nnD16MxGY5S6EBJYopMMm/dmzW1lK9pY8Zu7a2Hn4mytidYRL0wG99WRsKKiMi/6cuecldLBawgBUv/rnI3mr7pPPPn71F45q5YSX9qPpaTYecsCzAKlF9W0RlYJriOI3WC8jcvZ36PK8DAUOGZTldgXx8EpZ1G2ROowv+vwSevfOkamjEtMxMeAhx+2z/TmTxB609LCFCkddkLHkY2dsS3/p494RYt0Ddna5fU8gBvR77fUFtyOA3mouJ43rkxAIjvtl+ryyL4imoq5fanuRvkwJ80Bn2VUO/1jNMNJy0xY3ZfNan5CFvreCB1WnjS6hAwCi56SNTiUuWfD/ZMjq/alyUyAOQVfjS1+qeD97S3MtiJJ312HvTHHcQbVzuSqGr8o2BE6C0rtw9XS8zJc9h5XCxdyyikhTpum88O9K+G0asU8EsF2e9RgWLctPyZpVoCttg21L8GobCjrrrl1iIEL6DC5syGO762Z2CiO39+G2PeEPjNLpesyoFnebZgV+RpPicWCFg5GBVPR0RCA5MOsJxeHpvNIvIxiIRSJ19sgcdz835BY6bbUdZ0xDhosh76cswjd31l88o7e6IxSkqMAYUKXy3NDntuHhiwwhZWxepIBXqSG2wRVigkXGsttTCmtMyMHU6wlWjn0rMA+1PHc3V1V6rreJZs4OGP0LlM5M4P1BgFfaU0Mn/udoY9J+nncXgO/97z5cV876dm4NKgCzKCsqwPq8b7tN7qpEPtec2a2i1pBVr+XqPr+LR/njGdKc1S0+jG2ARPbPrFtIpfzs27TeiFtylv0umJ2/Qpn/oViwDmhyW6I+Ae/BWNiZ8+w4TDdffupwQPG/5+vtD/52SxgUgWASdYoxiftKFLre8mYEb9jEETg0v/Ozw21gG6YNSluSjYUiVjajKcJpAtgWWrOw6/g8V46hlFCgQpaY1mOZc6SE082uRQNyLdaHkHrG8zufswM4BXN5o5tzVorYIkIiL/KeBI0roTpMAUkNV/1ll/6BBEPKzgiyecR+HXBIEmtiQtIgpo6shZZdX/3V9xSwqZfFVkvjzJlMCWy2EQtXGhCfVEuUNES8EoqWCpwLJvi9kAQ9KNlTvb2pcmfZNzmy3M/PKDr8GIgstHaz+/tVwQXwtJ/FJuD9n77PUkffkvyeWg0jAgGQZCImxQloHNZNrK/mgjTEdD+rguNdCmyWO2HElg++Lv3fVo0sv43EMlUqe8BD/JCnyICtnb/JpZaxCbQNUSnTUXq7vztDAbrYnOPdU49z1Bfd/TvNvylVa/iHbJXn2T1ze6m9d/4nVW4TGP8uzRVPSXWjWFNQiQNHOPSZOL+3Kb6GF//9Zyd2htp5yfwwFi0Q+MaUAfNNZOjrshjMQkMKZTxWNkKaNPrt0Icy/FFP07HdyD/YIq0C03gdiH4lkcpJxaINt2eBz6q+q5C3MUWAT01GRdohMAkvShRgFz8DusA/4sGibuO7XxUsAdVSMup2f1ricBtuOBvV6kgdFo6yDvkyxUertcfVvJDPTMSqbSb81RrTNTWd0Eowaz25vXpAvySmZzK4CgwRXn30NxQTXL0r7Qq3NLSHEAGscLFFrwxRgfoue97tzEAczey6VWwEksUUQntBK7by44iLIZvhn8MWhppYVZiVUf2l7akN17MOkVNXGyLnwhdBRXtVbjGuSVvzmYrr93wXK8VHYhGuQcJJJBjKFNOfZ6W/AkFioM/KR0XaglkqQcNI0K8xEOmdra0XHzVQ+mTATnFXvsQ/OykObGMsnK9qPnKa6WGyZmSp0WHtrv+kWy8En4wRhyEeaPoVpSSt1jeZ+3pgUku4ogYuHdpwqqpnTvZ/9LevKiKGPn7WhT9svZUpaildtCpV+sfdU1FCz2CtB7N1OYsc2gAzchlOlEnwmIOMb26bK1qzUyev5tZ3nOT+JBpY4LIeSlTrssHyikYg7E5QTMZ7Ztx3hP4e8v7EQQBTJb6Qu9z9qDve2GyKFEnLrHzgGx0SBnkMlRRMioK3iqs+hLbbGPxHowR3WbuGAsDneClU5aDKxBg3bIqsHHRo4PtR596vUPIU/3dlnhEZR54Ck74KE2KY06B/f+vCYQFqzhxvfJxFXahdJFZuRKSSLoW/8SZjiEwJLVA4/uMlMzWwRN+4NEJ+qDWwv2pneJOLpSpmF8ScHdXjanxMcfExar3rGxZSmudVlk4OBJfEn/1xeBYp4aiDNx/QSS9HKI7WJ3xtQ716+SXI8jnZa9f+fJHiy4Hd9sFeUuAiy/xX2KmmfZRctssyugRh9ZXMp2nDoHtTMYslvQl4LRKWD0ATg4Vq74oqSOPi0IhDUdxILA34OyC5K4VUlkmo03vdxNOIf5+GXen6dvoyD7InAd+rhFKH+o02B6lntU+wLndQDI7UE3pv0xH4CIDBWgc0iLjjBvI4UsAOfFbtlcw4uYGq66pn7xim1RO3zOWvmef06Z45bKxcmwqrMnRNJ038q3AvNWKnvcoyl9X0MFef/HaA610+A6k8kqsHOElkuYs5gqY33mpdF85GT163wtwojIHH1yKG+oP/ydZ5+Z+IAAAwyGjdrGsImH3SSdDktAjNNYJp3vsI2okiVmuux31yG74JvFb7GeX9dO55i6EY9PoR5/Rvo7eD1rkxNkp2iUxsmUvTLA6/hkDpzSy2HLZ/16gZ7otY80Zi3pZd/nMKBjEwS5PLie3vX0pEROOnwMDZ32EY76GA/ghwMddDdJwh8SnY9nSm7qumhBLHAiQu/4siVI9SBppTIoyU54Gsjn+NvXycuEgpzxMG6LQbu4DAnvl1ixLlmjgLBoDm59fwLIz5kpcIVb4rEbiM0sKyiOcAj5ZasyCXNJllNLpCInWRD8T+AOvSSYVCHWArp5RaKUQseWxGhvtNvk4VYmkp//iRlwkAAAAA" alt="" style="height:25px;width:auto;flex:none"><div class="wordmark" role="img" aria-label="HNIF"><img src="data:image/webp;base64,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" alt=""><img class="wf" src="data:image/webp;base64,UklGRlwCAABXRUJQVlA4TE8CAAAvZ4AUEE0oatuIufENf8S9iSCi/xPgbVq4RJQDCR0yFbPmh4WCtA2Y+hfeHQUDMuD9nwAEHYTkuIUuxxdAiiTJkeT8QS212j3dNZmnH2TSNpl/u/tLIGnj0j/2oVjbtky5PxmfpUzGJbl1qyOd6CzDZR1DcodIJHFo7t/3/e/rwG3bSHLQOTUze7rxF24foKIgsHieUCEogGB+oELIkEcdCA1CQhH7SMg1LCDI4wb7cPhvgGDxiiaABQUIMnjUATwCGCiAsA7g8QfyEWRwOMQQPBIA8QsIPB7RgRcAbTAGGPTgAg4ZACAdQYY8WtiARwIgfgcJRewhvBpACDcGHMBBXkED8cYAKbgD5KUxgAsWkO07IId1rD1Br8XZFCxYLrQxAvfWACMWP38YLOAeDtmqcId3GOhbmmFTOEVABjoKVfwuL14+8BrkWn/kgJaaRY0GagQ+p8WniMxQI6Fn8RkhMKuNz5UIBBaDOOpYQGAxjRNYyNKEAkEZr/i7FMEXIsyOg8MiooI2WghQaIE/wOMBiwAGvFnr/Sl0LZfgBS0Ah5TvQxDk8IoZAIeQ76sQWLxgBsDjP9+HoFAYTAB4/AGQvoBC4Uc1MKJgnoACeDQ+9kbi8hAUghwaB+9jIC0CI9cwHyGhhC08weMP5C+QUMQWrmERC/oFJBSxjauX7hOAQM5cDiVcYBf2aICBmDyEK6zDQqFnfUlIHoLCwhxH04GcPASD7LRvjMlDEAh4UgoC/RT7beHryQ8/nnw3i18DZIovB5nwbUOEnsW/HQS0CAAA" alt=""></div></div>
     <div class="grow"></div>
-    <span class="chip streak" title="Streak harian"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.4 1.2-3.9 2.3-5 .2 1.7 1 2.7 2 3.2C11 8.6 11.3 5 12 2z"/></svg><span id="chipStreak" class="num">0</span></span>
+    <span class="chip streak" title="Rajin harian: hari berturut-turut kamu menyelesaikan misi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.4 1.2-3.9 2.3-5 .2 1.7 1 2.7 2 3.2C11 8.6 11.3 5 12 2z"/></svg><span id="chipStreak" class="num">0</span></span>
     <button class="chip xp num" id="chipXpWrap" data-act="wallet" title="Saldo koin" aria-label="Saldo koin, buka dompet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5c.4-1 1.4-1.5 2.5-1.5 1.5 0 2.5.8 2.5 2s-1.2 1.6-2.5 2-2.5.8-2.5 2 1 2 2.5 2c1.1 0 2.1-.5 2.5-1.5M12 6.5v1.5M12 16v1.5"/></svg><span id="chipXp">0</span></button>
     <button class="iconbtn" data-act="theme" aria-label="Ganti mode terang/gelap"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
     <button class="iconbtn" data-act="profile" aria-label="Profil dan pengaturan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></button>
@@ -1167,7 +1198,7 @@ const MODULES=[
  {id:'tolak',cat:'Softskill',t:'Hadapi Penolakan',ic:'heart',col:'k-sapa',cards:[
   {h:'Penolakan itu data, bukan drama',b:'<p>Rata-rata orang butuh beberapa kali kontak sebelum mau mencoba. Setiap "tidak" mendekatkanmu ke "ya".</p>'},
   {h:'Jawaban untuk keberatan umum',b:'<ul><li><b>"MLM ya?"</b> "Iya, HNI itu direct selling (penjualan langsung). Sistemnya bersertifikat syariah DSN-MUI, diawasi Dewan Syariah, dan HNI anggota APLI. Mau aku ceritain cara kerjanya?"</li><li><b>"Mahal."</b> "Bisa mulai dari produk harian yang memang kamu pakai, misalnya pasta gigi atau kopi."</li><li><b>"Nggak ada waktu."</b> "Justru bisa disambi. Aku juga mulai dari cerita di Story."</li></ul>'},
-  {h:'Jaga mental',b:'<ul><li>Ukur usahamu (jumlah cerita dan ajakan), bukan hanya hasil.</li><li>Rayakan progres kecil, misalnya streak dan misi harian di aplikasi ini.</li><li>Cerita ke mentor atau teman satu squad saat down.</li></ul>'}
+  {h:'Jaga mental',b:'<ul><li>Ukur usahamu (jumlah cerita dan ajakan), bukan hanya hasil.</li><li>Rayakan progres kecil, misalnya rajin harian dan misi harian di aplikasi ini.</li><li>Cerita ke mentor atau teman satu squad saat down.</li></ul>'}
  ],quiz:[
   {q:'Cara pandang yang sehat terhadap penolakan adalah…',o:['Penolakan itu data, bukan drama','Tanda harus berhenti','Salah orangnya','Harus dibalas dengan debat'],a:0},
   {q:'Prospek bilang "Mahal". Respons terbaik adalah…',o:['Tawarkan mulai dari produk harian yang memang dipakai','Kasih diskon di bawah harga resmi','Bilang dia pelit','Paksa beli paket besar'],a:0},
@@ -1196,7 +1227,7 @@ const MODULES=[
   {h:'Poin = Cashback',b:'<p>Anggap setiap produk punya "poin cashback". Rumusnya simpel:</p><p><b>Bonus Pribadi = poin × level kamu × Rp1.000</b></p><p>Contoh: kamu borong 100 Minyak Herba Sinergi buat keluarga dan pelanggan (10 poin per botol = 1.000 poin). Kalau kamu ED (35%), cashback-mu <b>Rp350.000</b>.</p><p>Makin tinggi level, makin gede persennya.</p>'},
   {h:'Bonus Grup: selisih level',b:'<p>Ini bagian paling seru. Kamu dapat <b>selisih persen</b> antara level-mu dan level timmu.</p><p>Contoh: kamu SM (23%), temanmu Manager (20%) dengan poin grup 2.000 → selisih 3% × 2.000 × Rp1.000 = <b>Rp60.000</b>.</p><p>Artinya: naik level bukan cuma soal gengsi, tapi bikin bagianmu makin besar.</p>'},
   {h:'Bonus Generasi: squad goals',b:'<p>Kalau orang yang kamu ajak sudah jadi Manager, kamu dapat bonus dari poin mereka: <b>Generasi 1 = 6%, Generasi 2 = 4%, Generasi 3 = 3%</b>, dan seterusnya.</p><p>Contoh: 6 teman Manager dengan poin grup 2.000 → 6 × 6% × 2.000 × Rp1.000 = <b>Rp720.000</b>.</p><p>Bantu temanmu sukses, kamu ikut naik. Win-win.</p>'},
-  {h:'Bonus rajin belanja (RSB)',b:'<ul><li>Buat level Agen Biasa sampai Manager.</li><li>Belanja kebutuhan rutin sekitar Rp600 ribu sebulan (TP 200) selama <b>3 bulan berturut-turut</b> → bonus mulai bulan ke-3.</li><li>Atau langsung TP 600 (sekitar Rp1,8 juta) dalam sebulan → bonus di bulan itu juga.</li><li>Kalau satu bulan bolong (misal TP 100), hitungan 3 bulannya ulang dari awal. Jaga streak-nya!</li></ul>'},
+  {h:'Bonus rajin belanja (RSB)',b:'<ul><li>Buat level Agen Biasa sampai Manager.</li><li>Belanja kebutuhan rutin sekitar Rp600 ribu sebulan (TP 200) selama <b>3 bulan berturut-turut</b> → bonus mulai bulan ke-3.</li><li>Atau langsung TP 600 (sekitar Rp1,8 juta) dalam sebulan → bonus di bulan itu juga.</li><li>Kalau satu bulan bolong (misal TP 100), hitungan 3 bulannya ulang dari awal. Jaga rajin hariannya!</li></ul>'},
   {h:'Bonus jaringan global (RKJ)',b:'<ul><li>Buat level SM sampai ED.</li><li>HNI menyisihkan 9% dari total poin seluruh Indonesia dan luar negeri, lalu dibagi sesuai "indeks" jaringanmu.</li><li>Contoh: 6 jalur aktif → indeks 16 → sekitar <b>Rp840.000</b> (dengan asumsi poin nasional 14 juta).</li><li>Jaga TP pribadi 600 → bonusnya <b>3×</b> lipat jadi Rp2.520.000.</li></ul>'},
   {h:'Main story mode-nya!',b:'<p>Lihat gimana bonus tumbuh dari Manager sampai ED dalam 6 bulan, plus bedanya TP 200 vs TP 600.</p><p><button class="btn" data-act="sim">Buka Simulator Bonus</button></p><p class="note warn">Ini simulasi dari materi pelatihan, dengan asumsi semua tim aktif. Hasil nyata tergantung usaha masing-masing. Bukan janji penghasilan.</p>'}
  ],quiz:[
@@ -1222,9 +1253,9 @@ const MODULES=[
 
 const BADGES=[
  {id:'start',n:'Langkah Pertama',d:'Selesaikan onboarding',ic:'sprout',bc:'green'},
- {id:'streak3',n:'Panas 3 Hari',d:'Streak 3 hari',ic:'flame',bc:'coral'},
- {id:'streak7',n:'Seminggu Full',d:'Streak 7 hari',ic:'rocket',bc:'coral'},
- {id:'streak30',n:'Istiqomah',d:'Streak 30 hari',ic:'mountain',bc:'coral'},
+ {id:'streak3',n:'Panas 3 Hari',d:'Rajin 3 hari berturut-turut',ic:'flame',bc:'coral'},
+ {id:'streak7',n:'Seminggu Full',d:'Rajin 7 hari berturut-turut',ic:'rocket',bc:'coral'},
+ {id:'streak30',n:'Istiqomah',d:'Rajin 30 hari berturut-turut',ic:'mountain',bc:'coral'},
  {id:'pakai10',n:'Bukti Hidup',d:'10× misi Pakai',ic:'leaf',bc:'green'},
  {id:'cerita10',n:'Pencerita',d:'10× misi Cerita',ic:'chat',bc:'amber'},
  {id:'ajak10',n:'Pengajak',d:'10× ajak / follow-up',ic:'userplus',bc:'red'},
@@ -1320,7 +1351,7 @@ const PERSONA={
 };
 // kalimat misi yang mengajak (bukan menyuruh), per usia
 const PCOPY={
- pakai:{muda:'Self-care itu keren. Pilih satu produk yang nemenin harimu, check-in biar streak-mu jalan.',dewasa:'Ritual kecil sebelum sibuk: pakai satu produk HNI dan rasakan bedanya.',matang:'Jadi contoh sehat untuk keluarga: pakai satu produk hari ini dan catat manfaatnya.',senior:'Menjaga amanah tubuh juga ibadah. Pakai satu produk hari ini, catat yang dirasakan.'},
+ pakai:{muda:'Self-care itu keren. Pilih satu produk yang nemenin harimu, check-in biar rajin harianmu jalan.',dewasa:'Ritual kecil sebelum sibuk: pakai satu produk HNI dan rasakan bedanya.',matang:'Jadi contoh sehat untuk keluarga: pakai satu produk hari ini dan catat manfaatnya.',senior:'Menjaga amanah tubuh juga ibadah. Pakai satu produk hari ini, catat yang dirasakan.'},
  cerita:{muda:'Ada momen kecil hari ini yang bisa jadi konten? Satu story jujur, atau obrolan langsung, bisa bikin temanmu penasaran.',dewasa:'Satu cerita jujur lebih kuat dari seribu iklan. Bagikan pengalamanmu, singkat saja.',matang:'Kesaksianmu dipercaya karena kamu sudah membuktikan. Ceritakan di status WA, Facebook, atau langsung ke teman.',senior:'Berbagi pengalaman baik itu sedekah informasi. Ceritakan lewat status WA, saat majelis, arisan, atau silaturahim.'},
  ajak:{muda:'Siapa temanmu yang lagi butuh hidup lebih sehat atau cari cuan halal? Mulai dari ngobrol santai.',dewasa:'Ada rekan atau teman yang butuh solusi? Catat satu nama dan buka obrolan ringan.',matang:'Kenalkan kebaikan ke satu orang di lingkunganmu: tetangga, rekan, atau komunitas.',senior:'Setiap ajakan baik bisa jadi amal jariyah. Siapa satu orang yang ingin dikenalkan pada HNI?'},
  belajar:{muda:'Upgrade otak 5 menit. Selesaikan satu kuis atau modul, lalu pamerkan badge-nya.',dewasa:'Investasi 5 menit untuk skill-mu. Selesaikan satu modul atau kuis.',matang:'Ilmu yang dibagikan makin berkah. Pelajari satu modul, lalu ajarkan ke tim.',senior:'Menuntut ilmu tak mengenal usia. Satu kartu belajar hari ini sudah cukup.'},
@@ -1367,7 +1398,7 @@ const PRODUCT_MODULES=[
   {h:'Komisi dihitung dari poin',b:'<p>Rumus Komisi Prestasi Pribadi (KPP): <b>poin × persen peringkat × Rp1.000</b>.</p><p>Contoh: Manager (20%) dengan TP 1.000 poin → 1.000 × 20% × Rp1.000 = <b>Rp200.000</b>.</p><p>Koin sebanyak apa pun tidak menambah komisi. Yang menambah komisi adalah belanja produk yang nyata.</p>'},
   {h:'Di aplikasi ini',b:'<ul><li>Kartu <b>TP bulan ini</b> di Beranda dihitung dari belanja yang kamu catat. Pilih target 100, 200, atau 600 poin.</li><li>Misi kecil memberi sedikit koin. Aktivitas yang menumbuhkan omset (belanja, TP tembus 200 atau 600, closing mitra baru) memberi koin paling besar.</li><li>Poin naik saat ada belanja produk.</li></ul><p>Keduanya saling bantu: misi harian membuatmu konsisten, dan konsisten memakai serta menawarkan produk membuat poinmu tumbuh.</p>'}
  ],quiz:[
-  {q:'Angka yang dipakai HNI untuk menghitung komisi adalah…',o:['Poin belanja produk','Koin aplikasi','Jumlah misi','Jumlah streak'],a:0},
+  {q:'Angka yang dipakai HNI untuk menghitung komisi adalah…',o:['Poin belanja produk','Koin aplikasi','Jumlah misi','Jumlah hari rajin'],a:0},
   {q:'Koin di aplikasi HNIF didapat dari…',o:['Misi, modul, kuis, game, dan belanja yang dicatat','Transfer ke admin','Jumlah follower','Membeli koin'],a:0},
   {q:'TP adalah…',o:['Poin belanja pribadimu bulan ini','Total koin minggu ini','Jumlah mitra di timmu','Poin seumur hidup'],a:0},
   {q:'Bisakah koin aplikasi ditukar menjadi poin HNI?',o:['Tidak bisa','Bisa, 1 koin = 1 poin','Bisa lewat admin','Bisa di akhir bulan'],a:0},
@@ -1721,6 +1752,7 @@ function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{l
 setTheme(getTheme());
 // ---------- icons ----------
 const ICONS={
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/>',
   bank:'<path d="M3 9.5L12 4l9 5.5"/><path d="M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3.5 20h17"/>',
   wa:'<path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"/>',
   search:'<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>',
@@ -1793,7 +1825,7 @@ function shuffle(a,seed){a=a.slice();let s=seed??Math.random()*1e9;const r=()=>{
 const uid=()=>Math.random().toString(36).slice(2,10);
 function hue(s){let h=0;for(const c of String(s))h=(h*31+c.charCodeAt(0))%360;return h}
 const AV_COLORS=['','#467419','#F5A70F','#2C7BE5','#E8395A','#8B5CF6','#0E9FA6','#2A1A00'];
-const AV_FRAMES={'':{n:'Tanpa bingkai'},bronze:{n:'Perunggu',c:'#B87333',need:'5 badge',ok:()=>S.badges.length>=5},gold:{n:'Emas',c:'#F5A70F',need:'10 badge',ok:()=>S.badges.length>=10},flame:{n:'Api',c:'#F2554A',need:'streak 30 hari',ok:()=>(S.best||0)>=30},legend:{n:'Legenda',c:'#8B5CF6',need:'tuntas Level 10 di satu game',ok:()=>GAMES.some(g=>gstate(g.id).top>=10)},leader:{n:'Leader',c:'#467419',need:'pangkat ED',ok:()=>rankIdx(S.rank)>=PERM_MAX}};
+const AV_FRAMES={'':{n:'Tanpa bingkai'},bronze:{n:'Perunggu',c:'#B87333',need:'5 badge',ok:()=>S.badges.length>=5},gold:{n:'Emas',c:'#F5A70F',need:'10 badge',ok:()=>S.badges.length>=10},flame:{n:'Api',c:'#F2554A',need:'rajin 30 hari berturut-turut',ok:()=>(S.best||0)>=30},legend:{n:'Legenda',c:'#8B5CF6',need:'tuntas Level 10 di satu game',ok:()=>GAMES.some(g=>gstate(g.id).top>=10)},leader:{n:'Leader',c:'#467419',need:'pangkat ED',ok:()=>rankIdx(S.rank)>=PERM_MAX}};
 function avatar(name,size=46,av){av=av||{};const ini=(String(name||'?').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2)||'?').toUpperCase();const bg=av.c||`hsl(${hue(name)} 70% 72%)`;const fr=AV_FRAMES[av.f]&&av.f?AV_FRAMES[av.f].c:'';const ph=typeof av.p==='string'&&/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(av.p)?av.p:'';return `<span class="avatar ${fr?'framed':''} ${ph?'photo':''}" style="width:${size}px;height:${size}px;background:${bg};${av.c?'color:#fff;':''}${fr?`box-shadow:0 0 0 2px var(--surface),0 0 0 ${size>40?4:3}px ${fr};`:''}">${ph?`<img src="${ph}" alt="">`:esc(ini)}</span>`}
 const rkKey=c=>({MB10:'MB',MB14:'MB',MB17:'MB',LEDP:'LED',PLT:'PLA'})[c]||c;
 const rankImg=(c,cls)=>{const r=RANKS.find(x=>x.c===c);return `<span class="rimg ${cls||''}"><img src="${RKIMG[rkKey(c)]||''}" alt="${esc(r?r.n:c)}">${r&&r.s==='MB'?`<em>${r.p}%</em>`:c==='LEDP'?'<em>Prime</em>':''}</span>`};
@@ -2073,7 +2105,7 @@ function monthTP(){const m=mkey();return S.buys.filter(b=>b.d.slice(0,7)===m).re
 let TAB='home',SUB=null,SUBARG=null,AC_TAB='modul',LB_MODE='month',LB_SCOPE='squad',TEAM_TAB='gen',AC_FILTER='Semua',BIZ_TAB='bonus',BONUS_TAB='harian',CASH_TAB='va';
 function setTab(t){stopGame();TAB=t;SUB=null;ENTER=true;render();window.scrollTo({top:0})}
 function toast(html){const box=$('#toasts');const el=document.createElement('div');el.className='toast';el.innerHTML=html;box.appendChild(el);while(box.children.length>3)box.firstChild.remove();setTimeout(()=>el.remove(),2600)}
-function levelUp(L){sfx('level');const lv=levelOf(S.xp);const el=document.createElement('div');el.className='levelup';el.innerHTML=`<div class="box stack"><img class="mk" src="${IMG.mark}" alt=""><div class="eyebrow" style="color:#A9C7B5">Level up</div><div class="big">${L}</div><h2>${esc(lv.title)}</h2><p style="color:#C9DDD0">Mantap! Terus jaga streak-mu.</p><button class="btn sun block" data-close>Lanjut</button><button class="btn ghost block" data-close data-act="share-level" style="color:#fff;border-color:rgba(255,255,255,.3)">Bagikan ke Kabar</button></div>`;el.addEventListener('click',e=>{if(e.target===el||e.target.closest('[data-close]'))el.remove()});document.body.appendChild(el);confetti(innerWidth/2,innerHeight/2,40)}
+function levelUp(L){sfx('level');const lv=levelOf(S.xp);const el=document.createElement('div');el.className='levelup';el.innerHTML=`<div class="box stack"><img class="mk" src="${IMG.mark}" alt=""><div class="eyebrow" style="color:#A9C7B5">Level up</div><div class="big">${L}</div><h2>${esc(lv.title)}</h2><p style="color:#C9DDD0">Mantap! Terus jaga rajin harianmu.</p><button class="btn sun block" data-close>Lanjut</button><button class="btn ghost block" data-close data-act="share-level" style="color:#fff;border-color:rgba(255,255,255,.3)">Bagikan ke Kabar</button></div>`;el.addEventListener('click',e=>{if(e.target===el||e.target.closest('[data-close]'))el.remove()});document.body.appendChild(el);confetti(innerWidth/2,innerHeight/2,40)}
 function renderBanner(){
   const b=$('#banner');let h='';
 
@@ -2120,14 +2152,14 @@ function openSyncWhy(){sheet(`<div class="stack"><h2>Kenapa belum tersinkron?</h
 const NAV_MAIN=[['home','Beranda'],['journey','Journey'],['academy','Akademi'],['team','Jaringan'],['bisnis','Bisnis']];
 function navGroup(){return ['team','feed','rank'].includes(TAB)?'team':TAB}
 function goNav(k){const [t,sub]=k.split(':');if(t==='mentor'){openMentor();return}if(t==='admin'){openAdmin();return}
-  if(!isOpen(t)){lockedSheet(t);return}if(t==='team'&&sub)TEAM_TAB=sub;if(t==='bisnis'&&sub)BIZ_TAB=sub;setTab(t);closeSideMenu()}
+  if(!isOpen(t)){lockedSheet(t);return}if(t==='team'&&sub==='rfm'){TEAM_TAB='prospek';PROS_VIEW='rfm'}else if(t==='team'&&sub){TEAM_TAB=sub;if(sub==='prospek'&&PROS_VIEW==='rfm')PROS_VIEW='list'}if(t==='bisnis'&&sub)BIZ_TAB=sub;setTab(t);closeSideMenu()}
 function paintNav(){const g=SUB==='mentor'?'mentor':SUB==='admin'?'admin':navGroup();
   document.querySelectorAll('#tabs button').forEach(b=>{if(!SUB&&b.dataset.tab===g)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
-  const side=document.getElementById('side');if(!side)return;const cur=SUB==='mentor'?'mentor':SUB==='admin'?'admin':TAB==='team'?'team:'+TEAM_TAB:TAB==='bisnis'?'bisnis:'+BIZ_TAB:TAB;
+  const side=document.getElementById('side');if(!side)return;const cur=SUB==='mentor'?'mentor':SUB==='admin'?'admin':TAB==='team'?(TEAM_TAB==='prospek'&&PROS_VIEW==='rfm'?'team:rfm':'team:'+TEAM_TAB):TAB==='bisnis'?'bisnis:'+BIZ_TAB:TAB;
   const it=(k,t,ic,sub)=>{const lk=!isOpen(k.split(':')[0]);return `<button data-nav="${k}" class="${sub?'sub':''} ${lk?'locked':''}" ${cur===k?'aria-current="page"':''}>${ico(lk?'lock':ic)}<span>${t}</span></button>`};
   side.innerHTML=`<div class="side-logo">${document.querySelector('header.top .logo').outerHTML}</div><nav aria-label="Menu utama">
     <span class="side-h">Utama</span>${it('home','Beranda','compass')}${it('journey','Journey','mountain')}${it('academy','Akademi','cap')}
-    <span class="side-h">Jaringan</span>${it('team:gen','Genealogi','users',1)}${it('team:ed','Monitor ED','crown',1)}${it('team:prospek','Prospek & Pelanggan','userplus',1)}${it('feed','Kabar','chat',1)}${it('rank','Rangking','trophy',1)}
+    <span class="side-h">Jaringan</span>${it('team:gen','Genealogi','users',1)}${it('team:ed','Monitor ED','crown',1)}${it('team:prospek','Prospek & Pelanggan','userplus',1)}${it('team:rfm','Peta RFM pelanggan','heart',1)}${it('feed','Kabar','chat',1)}${it('rank','Rangking','trophy',1)}
     <span class="side-h">Bisnis</span>${it('bisnis:bonus','Bonus','chart',1)}${it('bisnis:cash','HNI Cash','coin',1)}${it('bisnis:rek','Rekening & pencairan','bank',1)}
     ${canMentor()||(typeof CAN_ADMIN!=='undefined'&&CAN_ADMIN)?`<span class="side-h">Kelola</span>${canMentor()?it('mentor','Ruang Mentor LED','crown'):''}${typeof CAN_ADMIN!=='undefined'&&CAN_ADMIN?it('admin','Dasbor Admin','shield'):''}`:''}</nav>
     <button class="side-me" data-act="profile">${avatar(S.nick||'Mitra',36,S.av)}<span class="grow"><b>${esc(S.nick||'Mitra')}</b><span class="small muted">${esc(rkS(S.rank))} · ${fmtCoin(coinBal())} koin</span></span></button>`}
@@ -2142,7 +2174,7 @@ function loginCard(){const {L,claimed,next}=loginState();
   if(claimed)return `<section class="section"><div class="login done"><div class="row between"><div><span class="eyebrow">Absen harian</span><h3>Hari ${L.day} beres! Besok buka hadiah hari ${L.day%7+1}.</h3></div><span class="lstreak num">${L.day}/7</span></div><div class="lstrip">${days}</div></div></section>`;
   return `<section class="section"><div class="login"><div class="row between" style="position:relative"><div><span class="eyebrow">Absen harian</span><h3 style="margin:2px 0 0">Hadiah hari ${next} menunggumu</h3><p class="small">${next===7?'Hari ke-7: kotak hadiah besar + badge Setia 7 Hari!':'Absen 7 hari berturut-turut, hadiahnya makin besar.'}</p></div><span class="lgift" aria-hidden="true">${ico('trophy')}</span></div><div class="lstrip" style="position:relative">${days}</div><button class="btn block lclaim" data-act="login">Buka hadiah hari ${next} · +${(K().absen||[])[next-1]||0} koin</button></div></section>`}
 function claimLogin(){const {L,claimed,next}=loginState();if(claimed)return;S.login={last:dkey(),day:next,total:(L.total||0)+1};const xp=(K().absen||[])[next-1]||0;if(next===7){giveBadge('login7');S.shield=Math.min(2,(S.shield||0)+1)}
-  sfx('gift');const el=document.createElement('div');el.className='levelup';el.innerHTML=`<div class="box stack giftbox"><div class="gift">${ico('trophy')}</div><div class="eyebrow" style="color:#A9C7B5">Absen hari ${next}</div><div class="big">+${xp}</div><h2>Koin masuk!</h2>${next===7?`<p style="color:#FFE08A">${ico('shield')} +1 Perisai streak! Melindungi streak-mu kalau absen 1 hari.</p>`:''}<div class="factbox dark"><span class="eyebrow">Tahukah kamu?</span><p>${esc(factOfDay(next))}</p></div><button class="btn sun block" data-close>Lanjut</button></div>`;
+  sfx('gift');const el=document.createElement('div');el.className='levelup';el.innerHTML=`<div class="box stack giftbox"><div class="gift">${ico('trophy')}</div><div class="eyebrow" style="color:#A9C7B5">Absen hari ${next}</div><div class="big">+${xp}</div><h2>Koin masuk!</h2>${next===7?`<p style="color:#FFE08A">${ico('shield')} +1 Perisai streak! Melindungi rajin harianmu kalau absen 1 hari.</p>`:''}<div class="factbox dark"><span class="eyebrow">Tahukah kamu?</span><p>${esc(factOfDay(next))}</p></div><button class="btn sun block" data-close>Lanjut</button></div>`;
   el.addEventListener('click',e=>{if(e.target===el||e.target.closest('[data-close]'))el.remove()});document.body.appendChild(el);confetti(innerWidth/2,innerHeight/2,50);
   award(xp,'Absen hari '+next,{t:'login',n:next})}
 function playTiles(){const quizDone=S.quiz.d===dkey();const G=GROW[band()];const it=G.items[dayIndex()%G.items.length];
@@ -2167,12 +2199,13 @@ function viewHome(){
   <section class="hhead" style="margin-top:6px">
     <div class="hgreet">${avatar(S.nick||'Mitra',52,S.av)}<div class="grow"><span class="small muted">${esc(hello)},</span><h2 class="hname"><button class="nickbtn" data-act="nick" aria-label="Ganti nama panggilan">${esc(honor())}<span class="ii">${ico('edit')}</span></button></h2><span class="rkline">${rankImg(r.c,'xs')}${esc(r.n)}${mySq()?` · <button class="link small" data-nav="rank">Squad #${sqPos||'-'}</button>`:` · <button class="link small" data-act="profile">Gabung squad</button>`}</span></div></div>
     ${tpHero()}
-    <div class="kpis hk">
-      <button class="kpi" data-act="wallet"><span>${ico('coin')} Koin</span><b class="num" id="coinNum">${fmtCoin(coinBal())}</b><small>+${fmtCoin(S.wk===wkey()?S.wxp:0)} minggu ini</small></button>
-      <button class="kpi" data-nav="rank"><span>${ico('check')} Misi minggu ini</span><b class="num">${S.wk===wkey()?S.wmc||0:0}</b><small>${S.mtot||0} total</small></button>
-      <div class="kpi ${streakRisk?'warn':''}"><span>${ico('flame')} Streak</span><b class="num">${S.streak} <small>hari</small></b><small>${streakRisk?'belum misi hari ini':'terjaga'}</small></div>
+    <div class="hk3">
+      <button class="hk" data-act="wallet"><span class="hki c1">${ico('coin')}</span><span class="hkt"><b class="num" id="coinNum">${fmtCoin(coinBal())}</b><span>Koin</span></span></button>
+      <button class="hk" data-nav="rank"><span class="hki c2">${ico('check')}</span><span class="hkt"><b class="num">${S.wk===wkey()?S.wmc||0:0}</b><span>Misi minggu ini</span></span></button>
+      <div class="hk ${streakRisk?'warn':''}"><span class="hki c3">${ico('flame')}</span><span class="hkt"><b class="num">${S.streak} hari</b><span>Rajin berturut-turut</span></span></div>
     </div>
-    ${streakRisk?`<p class="pwarn small">Streak ${S.streak} hari-mu menunggu. Satu misi saja cukup biar nggak putus.${S.shield?` Kamu punya ${S.shield} perisai streak.`:''}</p>`:''}
+    ${pintasan()}
+    ${streakRisk?`<p class="pwarn small">Kamu sudah rajin ${S.streak} hari berturut-turut. Kerjakan 1 misi hari ini supaya tidak putus.${S.shield?` Kamu punya ${S.shield} perisai rajin harian.`:''}</p>`:''}
   </section>
   <div class="hgrid"><div class="hmain">
   ${sharePromptCard()}
@@ -2222,12 +2255,22 @@ function viewHome(){
 // TP bulan ini di Beranda: TP = poin dari belanja produk bulan ini (bukan koin aplikasi)
 const TP_GOALS=[[100,'buka KPG'],[200,'Manager aktif'],[600,'BRKJ ×3, syarat GED/LED']];
 function tpGoal(){const g=+S.tpGoal;if([100,200,600].includes(g))return g;return rankIdx(S.rank)>=PERM_MAX?600:200}
+// Pintasan 4 jalur kerja mitra: belajar, promosi, rawat pelanggan, bina tim
+function pintasan(){if(!S.onboarded)return '';const isDone=m=>!!(S.learned[m.id]&&S.learned[m.id].pass);const nx=MODULES.find(m=>!isDone(m));
+  const cs=rfmCustomers().map(rfmOf).filter(r=>r&&(r.seg==='hilang'||r.seg==='isi')).length;const tm=genData().all.filter(o=>['sapa','hilang'].includes(rfmTeam(o))).length;
+  const it=(attrs,ic,c,t,s,n)=>`<button class="pin ${c}" ${attrs}><span class="pin-ic">${ico(ic)}${n?`<span class="dotn">${n}</span>`:''}</span><b>${t}</b><span>${s}</span></button>`;
+  return `<nav class="pins" aria-label="Pintasan kerja">
+    ${it(nx?`data-mod="${nx.id}"`:'data-tab="academy"','cap','p1','Belajar',nx?esc(nx.t):'Semua modul lulus')}
+    ${it('data-pin="promo"','mega','p2','Promosi','Skrip & katalog')}
+    ${it('data-pin="rfm"','heart','p3','Rawat pelanggan',cs?cs+' perlu disapa':'Peta RFM',cs)}
+    ${it('data-pin="tim"','users','p4','Bina tim',tm?tm+' perlu disapa':'Genealogi',tm)}</nav>`}
 function tpHero(){if(!S.onboarded)return '';const tp=monthTP();const g=tpGoal();const pct=Math.min(1,tp/g);const left=Math.max(0,g-tp);
   const d=new Date();const end=new Date(d.getFullYear(),d.getMonth()+1,0);const days=end.getDate()-d.getDate();const next=[200,600].find(n=>tp<n);
-  return `<div class="tphero"><div class="tph-top"><div class="grow"><span class="tph-l">TP bulan ${BLNF[d.getMonth()]}</span><div class="tph-n num">${fmtPt(tp)}<span> / ${g} poin</span></div></div><button class="btn sun" data-act="belanja">${ico('cart')} Catat belanja</button></div>
-    <div class="tph-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${g}" aria-valuenow="${tp}" aria-label="Progres TP"><i style="width:${Math.round(pct*100)}%"></i>${[200,600].filter(n=>n<g).map(n=>`<em style="left:${n/g*100}%" title="${n} poin"></em>`).join('')}</div>
-    <p class="tph-msg">${left?`Kurang <b>${fmtPt(left)} poin</b> lagi · ${days} hari tersisa`:`Target ${g} poin tercapai. Mantap!`}${next?` · tembus ${next} poin = bonus +${fmtCoin(K()[next===200?'tp200':'tp600'])} koin`:''}</p>
-    <div class="tph-goals" role="group" aria-label="Target TP">${TP_GOALS.map(([n,t])=>`<button data-tpgoal="${n}" aria-pressed="${g===n}">${n}<span>${t}</span></button>`).join('')}</div></div>`}
+  return `<div class="tphero"><img class="tph-wm" src="${IMG.mark}" alt="" aria-hidden="true">
+    <div class="tph-top"><div class="grow"><span class="tph-l">TP bulan ${BLNF[d.getMonth()]}</span><div class="tph-n num">${fmtPt(tp)}<span> / ${g} poin</span></div></div><button class="btn small" data-act="belanja">${ico('cart')} Catat belanja</button></div>
+    <div class="tph-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${g}" aria-valuenow="${tp}" aria-label="Progres TP"><i style="width:${Math.round(pct*100)}%"></i></div>
+    <div class="tph-foot"><p class="tph-msg">${left?`Kurang <b>${fmtPt(left)} poin</b> · ${days} hari lagi`:`Target ${g} poin tercapai`}${next?` · tembus ${next} = +${fmtCoin(K()[next===200?'tp200':'tp600'])} koin`:''}</p>
+    <div class="tph-goals" role="group" aria-label="Target TP">${TP_GOALS.map(([n,t])=>`<button data-tpgoal="${n}" aria-pressed="${g===n}" title="${esc(t)}">${n}</button>`).join('')}</div></div></div>`}
 function tpHomeCard(){if(!S.onboarded)return '';const tp=monthTP();const g=tpGoal();const pct=Math.min(1,tp/g);const left=Math.max(0,g-tp);
   const d=new Date();const end=new Date(d.getFullYear(),d.getMonth()+1,0);const days=end.getDate()-d.getDate();
   return `<section class="section"><div class="card stack tpcard"><div class="row between"><div><span class="eyebrow">TP bulan ${BLN[d.getMonth()]}</span><div class="tpnum num">${fmtPt(tp)} <span class="small muted">/ ${g} poin</span></div></div><button class="btn small" data-act="belanja">Catat belanja</button></div>
@@ -2350,6 +2393,7 @@ function viewTeam(){
   let body='';if(TEAM_TAB==='mentor'||TEAM_TAB==='ringkas')TEAM_TAB=TEAM_TAB==='ringkas'?'prospek':'gen';if(TEAM_TAB==='prospek'&&TEAM_TAB_TIPE==='mitra')TEAM_TAB_TIPE='all';
   if(TEAM_TAB==='gen'){body=viewGenealogi()}
   else if(TEAM_TAB==='ed'){body=viewEDMonitor()}
+  else if(TEAM_TAB==='prospek'&&PROS_VIEW==='rfm'){body=viewRFM()}
   else if(TEAM_TAB==='prospek'&&PROS_VIEW==='list'){
     const tipe=TEAM_TAB_TIPE;
     const list=S.prospects.filter(p=>tipe==='all'||p.tipe===tipe).sort((a,b)=>(a.next||'9')<(b.next||'9')?-1:1);
@@ -2361,7 +2405,7 @@ function viewTeam(){
     body=`<section class="section"><div class="card stack"><h3>Corong prospekmu</h3>${STAGES.map((s,i)=>`<div class="row"><span class="small grow">${s}</span><b class="num">${byStage[i]}</b></div><div class="bar light"><i style="width:${pr.length?byStage[i]/Math.max(1,pr.filter(p=>p.tipe==='prospek').length)*100:0}%"></i></div>`).join('')}</div>
     <div class="card"><dl class="kv"><dt>Total orang dicatat</dt><dd class="num">${pr.length}</dd><dt>Pelanggan</dt><dd class="num">${pr.filter(p=>p.tipe==='pelanggan').length}</dd><dt>Mitra di timmu</dt><dd class="num">${pr.filter(p=>p.tipe==='mitra').length}</dd></dl></div><div class="card stack"><div class="row between"><h3>Generasi 1-mu</h3><button class="link" data-act="profile">Ubah</button></div>${g1Total(g1Of(S))?G1_RANKS.filter(([k])=>g1Of(S)[k]).map(([k,n])=>`<div class="row"><span class="g1tag r-${k}">${k}</span><span class="grow small">${n}</span><b class="num">${g1Of(S)[k]}</b></div>`).join(''):'<p class="small muted">Belum diisi. Isi di Profil supaya progres peringkatmu terukur.</p>'}</div></section>`;
   }
-  const pv=TEAM_TAB==='prospek'?`<div class="seg sm" role="group" aria-label="Tampilan prospek">${[['list','Daftar orang'],['sum','Ringkasan']].map(([k,t])=>`<button data-prosv="${k}" aria-pressed="${PROS_VIEW===k}">${t}</button>`).join('')}</div>`:'';
+  const pv=TEAM_TAB==='prospek'?`<div class="seg sm" role="group" aria-label="Tampilan prospek">${[['list','Daftar orang'],['rfm','Peta RFM'],['sum','Ringkasan']].map(([k,t])=>`<button data-prosv="${k}" aria-pressed="${PROS_VIEW===k}">${t}</button>`).join('')}</div>`:'';
   return `<div class="stack" style="margin-top:6px">${jarHead()}
   ${TEAM_TAB==='gen'?(canMentor()?mentorEntryCard():rankIdx(S.rank)>=PERM_MAX?`<button class="softrow" data-act="mentor">${ico('lock')}<span class="grow small"><b>Ruang Mentor LED</b><br><span class="muted">Terbuka untuk LED periode ini. Pantau dan gerakkan squad binaanmu.</span></span></button>`:''):''}
   ${pv}</div>${body}`;
@@ -2577,7 +2621,8 @@ function openPQ(k){
 }
 
 function openProfile(){
-  sheet(`<div class="stack"><div class="row">${avatar(S.nick||'Mitra',56,S.av)}<div class="grow"><h2 style="display:flex;align-items:center;gap:8px">${esc(S.nick||'Mitra')}<button class="link small" data-act="nick"><span class="ii">${ico('edit')}</span> Ganti nama</button></h2><span class="small muted">ID ${esc(S.idhni||'-')} · ${fmtCoin(S.mtot||0)} misi selesai · streak terbaik ${S.best} hari</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+  sheet(`<div class="stack"><div class="row">${avatar(S.nick||'Mitra',56,S.av)}<div class="grow"><h2 style="display:flex;align-items:center;gap:8px">${esc(S.nick||'Mitra')}<button class="link small" data-act="nick"><span class="ii">${ico('edit')}</span> Ganti nama</button></h2><span class="small muted">ID ${esc(S.idhni||'-')} · ${fmtCoin(S.mtot||0)} misi selesai · rekor aktif ${S.best} hari berturut-turut</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+  ${accountCard()}
   <button class="softrow" data-act="about">${ico('compass')}<span class="grow small"><b>Tentang HNIF</b><br><span class="muted">Arti nama dan cara kerja aplikasi</span></span></button>
   <div class="row"><button class="btn ghost grow" data-act="wallet">${ico('coin')} Dompet Koin</button><button class="btn ghost grow" data-act="remind">${ico('bell')} Pengingat</button></div>
   ${CAN_ADMIN?`<button class="btn block" data-act="admin" style="background:#2A1A00;color:#FFE08A">${ico('shield')} Dasbor Admin</button>`:''}
@@ -2857,6 +2902,39 @@ function selectEl(el){try{if(el.select){el.select();return}const r=document.crea
 // bonus koin saat TP bulan ini menembus 200 dan 600 poin (sekali per bulan per ambang)
 function tpBonusCheck(){S.tpb=S.tpb||{};const tp=monthTP();[[200,'tp200'],[600,'tp600']].forEach(([t,k])=>{if(tp>=t&&!S.tpb[t]){S.tpb[t]=1;setTimeout(()=>award(K()[k],`TP bulan ini tembus ${t} poin`,{t:'tpbonus',v:t}),900)}})}
 
+// ---------- Akun: password (PIN), nomor HP, email ----------
+const maskHp=h=>h?h.slice(0,4)+'•••• '+h.slice(-3):'';
+const maskMail=m=>{if(!m)return '';const [a,b]=m.split('@');return a.slice(0,2)+'•••@'+b};
+function accountCard(){return `<div class="card stack acct" style="gap:4px"><span class="eyebrow">Akun & keamanan</span>
+  <button class="acrow" data-acc="pin">${ico('lock')}<span class="grow"><b>Ubah password</b><span class="small muted">${API_URL?'PIN 6 angka untuk masuk HNIF':'Aktif di versi pilot (login ID HNI + PIN)'}</span></span><span class="link small">Ubah</span></button>
+  <button class="acrow" data-acc="hp">${ico('wa')}<span class="grow"><b>Nomor HP</b><span class="small ${S.hp?'':'muted'}">${S.hp?esc(maskHp(S.hp))+' · terverifikasi':'Belum diisi'}</span></span><span class="link small">${S.hp?'Ubah':'Isi'}</span></button>
+  <button class="acrow" data-acc="mail">${ico('mail')}<span class="grow"><b>Email</b><span class="small ${S.email?'':'muted'}">${S.email?esc(maskMail(S.email)):'Belum diisi'}</span></span><span class="link small">${S.email?'Ubah':'Isi'}</span></button></div>`}
+function openAcc(k){const back=()=>openProfile();
+  const head=t=>`<div class="row"><button class="iconbtn" data-back aria-label="Kembali">←</button><h2 class="grow" style="margin:0">${t}</h2><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>`;
+  const wire=L=>{L.querySelector('[data-close]').onclick=closeSheet;L.querySelector('[data-back]').onclick=back};
+  if(k==='pin'){sheet(`<div class="stack">${head('Ubah password')}
+    <div class="field"><label for="ac-old">PIN lama</label><input class="input num" id="ac-old" type="password" inputmode="numeric" maxlength="6" autocomplete="current-password"></div>
+    <div class="field"><label for="ac-new">PIN baru (6 angka)</label><input class="input num" id="ac-new" type="password" inputmode="numeric" maxlength="6" autocomplete="new-password"></div>
+    <div class="field"><label for="ac-new2">Ulangi PIN baru</label><input class="input num" id="ac-new2" type="password" inputmode="numeric" maxlength="6" autocomplete="new-password"></div>
+    <button class="btn block" id="ac-ok">Simpan PIN baru</button><p class="note">Jangan pakai tanggal lahir atau 123456. Lupa PIN? Minta reset ke admin HNIF.</p></div>`,L=>{wire(L);
+    $('#ac-ok').onclick=async()=>{const o=$('#ac-old').value,n=$('#ac-new').value,n2=$('#ac-new2').value;
+      if(!/^\d{6}$/.test(n)){toast('PIN baru harus 6 angka');return}if(n!==n2){toast('Ulangi PIN baru belum sama');return}if(/^(\d)\1{5}$|^123456$|^654321$/.test(n)){toast('PIN terlalu mudah ditebak');return}
+      if(!API_URL){toast('Versi contoh: ubah PIN aktif di versi pilot');return}
+      let r;try{r=await apiCall({a:'changePin',token:APIS.token,old:o,pin:n})}catch(e){r={ok:false,msg:'Tidak bisa terhubung ke server.'}}
+      if(r&&r.ok){closeSheet();toast('PIN berhasil diganti')}else toast((r&&r.msg)||'Gagal mengganti PIN')}});return}
+  const isHp=k==='hp';
+  sheet(`<div class="stack">${head(isHp?'Update nomor HP':'Update email')}
+    ${(isHp?S.hp:S.email)?`<div class="va"><span class="grow"><span class="small muted">${isHp?'Nomor saat ini':'Email saat ini'}</span><br><b class="num">${esc(isHp?maskHp(S.hp):maskMail(S.email))}</b></span></div>`:''}
+    <div class="field"><label for="ac-v">${isHp?'Nomor HP baru (WhatsApp aktif)':'Email baru'}</label><input class="input ${isHp?'num':''}" id="ac-v" ${isHp?'inputmode="tel" maxlength="15" placeholder="08xxxxxxxxxx" autocomplete="tel"':'type="email" maxlength="80" placeholder="nama@email.com" autocomplete="email"'}></div>
+    <div id="ac-otpw" hidden><div class="field"><label for="ac-otp">Kode OTP</label><input class="input num otpin" id="ac-otp" inputmode="numeric" maxlength="6" placeholder="••••••"></div><p class="small muted" style="margin:0">Versi contoh: ketik 6 angka apa saja.</p></div>
+    <button class="btn block" id="ac-ok">Kirim kode OTP</button><p class="note">${isHp?'Nomor ini dipakai untuk OTP dan pengingat. Tidak ditampilkan ke mitra lain.':'Email dipakai untuk bukti potong dan info akun. Tidak ditampilkan ke mitra lain.'}</p></div>`,L=>{wire(L);let step=0;
+    $('#ac-ok').onclick=()=>{const v=$('#ac-v').value.trim();
+      if(step===0){if(isHp?!/^(08|\+?628)\d{7,12}$/.test(v.replace(/[\s-]/g,'')):!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){toast(isHp?'Nomor HP belum benar':'Email belum benar');return}
+        step=1;$('#ac-otpw').hidden=false;$('#ac-ok').textContent='Verifikasi & simpan';toast(isHp?'Kode OTP dikirim lewat WhatsApp (contoh)':'Kode OTP dikirim ke email (contoh)');return}
+      if(!/^\d{6}$/.test($('#ac-otp').value)){toast('Masukkan 6 angka OTP');return}
+      if(isHp)S.hp=v.replace(/[\s-]/g,'').replace(/^\+?62/,'0');else S.email=v.toLowerCase();save();toast(isHp?'Nomor HP diperbarui':'Email diperbarui');openProfile()}})}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-acc]');if(t)openAcc(t.dataset.acc)});
+
 // ===== js/jalur.js =====
 // ---------- cek jalur ED ke atas ----------
 function edCheckCard(){
@@ -2942,8 +3020,8 @@ function heroCard(){const a=nextAction();const attr=a.mission?`data-mission="${a
   return `<section class="section"><button class="hero" ${attr}><span class="hico">${ico(a.ic)}</span><span class="grow"><span class="eyebrow">Langkah berikutnya</span><b>${esc(a.t)}</b><span class="small">${esc(a.s)}</span></span>${a.xp?`<span class="hxp num">+${a.xp}</span>`:`<span class="harr">${ico('chevrons')}</span>`}</button></section>`}
 
 // ===== js/social.js =====
-// ---------- perisai streak ----------
-// Didapat dari absen hari ke-7 (maks. 2). Otomatis dipakai bila absen 1–2 hari, supaya streak tidak putus.
+// ---------- perisai rajin harian ----------
+// Didapat dari absen hari ke-7 (maks. 2). Otomatis dipakai bila absen 1–2 hari, supaya rajin harian tidak putus.
 let SHIELD_USED=0;
 function daysBetween(a,b){return Math.round((parseD(b)-parseD(a))/864e5)}
 function useShield(){const t=dkey();if(!S.last||S.streak<1)return;const gap=daysBetween(S.last,t)-1;if(gap<1||gap>2||(S.shield||0)<gap)return;
@@ -3027,7 +3105,7 @@ function openAvatar(){let c=S.av.c||'',f=S.av.f||'',p=S.av.p||'';
 const EVENTS_DEFAULT=[
   {id:'nov26',n:'Gebrakan November',from:'2026-10-28',to:'2026-11-16',d:'Rayakan Hari Pahlawan dengan jadi pahlawan kebaikan: tuntaskan 12 misi Cerita atau Ajak.',goal:12,types:['cerita','ajak'],ic:'flag',col:'#E8262B',xp:150},
   {id:'harbolnas26',n:'Harbolnas Sehat',from:'2026-12-01',to:'2026-12-12',d:'Sapa 8 pelanggan lama dengan tulus selama Harbolnas.',goal:8,types:['sapa'],ic:'bag',col:'#F28A1A',xp:120},
-  {id:'akhir26',n:'Tutup Tahun Kuat',from:'2026-12-20',to:'2026-12-31',d:'Capai streak 10 hari menjelang tahun baru.',goal:10,types:['streak'],ic:'flame',col:'#8B5CF6',xp:150},
+  {id:'akhir26',n:'Tutup Tahun Kuat',from:'2026-12-20',to:'2026-12-31',d:'Capai rajin 10 hari berturut-turut menjelang tahun baru.',goal:10,types:['streak'],ic:'flame',col:'#8B5CF6',xp:150},
   {id:'ramadhan27',n:'Ramadhan Berkah 1448 H',from:'2027-02-08',to:'2027-03-09',d:'Selama Ramadhan, tuntaskan 20 misi apa pun. Tanggal menyesuaikan pengumuman resmi.',goal:20,types:['any'],ic:'heart',col:'#467419',xp:250}
 ];
 function evList(){return (CONFIG.events&&CONFIG.events.length?CONFIG.events:EVENTS_DEFAULT)}
@@ -3060,14 +3138,14 @@ async function makeCard(hl){const W=1080,H=1920;const c=document.createElement('
   x.fillStyle='rgba(255,255,255,.1)';x.beginPath();x.roundRect?x.roundRect(100,1130,W-200,220,40):x.rect(100,1130,W-200,220);x.fill();
   x.fillStyle=K.hl;x.font='800 64px system-ui,sans-serif';wrapText(x,hl,W/2,1225,W-260,72);
   // statistik
-  const st=[[S.streak,'hari streak'],[S.mtot||0,'misi selesai'],[S.badges.length,'badge']];
+  const st=[[S.streak,'hari rajin'],[S.mtot||0,'misi selesai'],[S.badges.length,'badge']];
   st.forEach(([v,l],i)=>{const cx=W/2+(i-1)*300;x.fillStyle='#fff';x.font='800 72px system-ui,sans-serif';x.fillText(String(v),cx,1500);x.fillStyle='#A9C7B5';x.font='600 34px system-ui,sans-serif';x.fillText(l,cx,1550)});
   x.fillStyle=K.acc;x.font='700 40px system-ui,sans-serif';x.fillText(K.tag1,W/2,1720);
   x.fillStyle='#A9C7B5';x.font='500 30px system-ui,sans-serif';x.fillText(K.tag2,W/2,1775);
   return c}
 function wrapText(x,t,cx,y,max,lh){const words=String(t).split(' ');let line='',lines=[];words.forEach(w=>{const tst=line?line+' '+w:w;if(x.measureText(tst).width>max&&line){lines.push(line);line=w}else line=tst});lines.push(line);lines=lines.slice(0,2);const y0=y-(lines.length-1)*lh/2;lines.forEach((l,i)=>x.fillText(l,cx,y0+i*lh))}
 function cardHighlights(){const out=[];
-  if(S.streak>=3)out.push(`Streak ${S.streak} hari!`);if(S.mtot)out.push(`${S.mtot} misi selesai`);if(monthTP()>=200)out.push(`TP ${BLN[new Date().getMonth()]} tembus ${fmtPt(monthTP())} poin`);GAMES.forEach(g=>{const t=gstate(g.id).top;if(t>=3)out.push(`${g.t} Level ${t}`)});
+  if(S.streak>=3)out.push(`Rajin ${S.streak} hari berturut-turut!`);if(S.mtot)out.push(`${S.mtot} misi selesai`);if(monthTP()>=200)out.push(`TP ${BLN[new Date().getMonth()]} tembus ${fmtPt(monthTP())} poin`);GAMES.forEach(g=>{const t=gstate(g.id).top;if(t>=3)out.push(`${g.t} Level ${t}`)});
   if(S.badges.length){const b=BADGES.find(x=>x.id===S.badges[S.badges.length-1]);if(b)out.push(`Badge: ${b.n}`)}
   if(rankIdx(S.rank)>=3)out.push(RANKS[rankIdx(dispRank())].n);return out}
 function openShareCard(pre){const H=cardHighlights();let hl=pre||H[0];
@@ -3165,12 +3243,12 @@ function openWallet(){const cf=coinCfg();const C=coinState();coinExpire();const 
 function remindTime(){return (S.remind&&S.remind.t)||'19:00'}
 function gcalLink(t){const [h,m]=t.split(':');const d=new Date();const ymd=d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate());const st=`${ymd}T${pad(+h)}${m}00`,en=`${ymd}T${pad(+h)}${pad(Math.min(59,+m+15))}00`;
   const url=window.HNI_PWA?location.href.split('#')[0]:'';
-  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('HNIF: 1 misi hari ini 🔥')+'&details='+encodeURIComponent('Buka HNIF, ambil absen, dan selesaikan minimal 1 misi supaya streak tidak putus.'+(url?'\n'+url:''))+'&dates='+st+'/'+en+'&ctz=Asia/Jakarta&recur='+encodeURIComponent('RRULE:FREQ=DAILY')}
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('HNIF: 1 misi hari ini 🔥')+'&details='+encodeURIComponent('Buka HNIF, ambil absen, dan selesaikan minimal 1 misi supaya rajin harian tidak putus.'+(url?'\n'+url:''))+'&dates='+st+'/'+en+'&ctz=Asia/Jakarta&recur='+encodeURIComponent('RRULE:FREQ=DAILY')}
 function notifSupport(){return !!(window.HNI_PWA&&'Notification' in window&&'serviceWorker' in navigator)}
 async function enableNotif(){if(!notifSupport()){toast('Notifikasi aktif di versi aplikasi (PWA) yang dipasang di HP.');return false}
   const p=await Notification.requestPermission();if(p!=='granted'){toast('Izin notifikasi belum diberikan.');return false}
   try{const reg=await navigator.serviceWorker.ready;if('periodicSync' in reg){const st=await navigator.permissions.query({name:'periodic-background-sync'}).catch(()=>({state:'granted'}));if(st.state==='granted')await reg.periodicSync.register('hq-daily',{minInterval:12*36e5})}
-    reg.showNotification('Pengingat aktif ✅',{body:'Kami akan mengingatkan kalau streak-mu belum aman di sore hari.',icon:'icon-192.png'})}catch(e){}
+    reg.showNotification('Pengingat aktif ✅',{body:'Kami akan mengingatkan kalau rajin harianmu belum aman di sore hari.',icon:'icon-192.png'})}catch(e){}
   S.remind=Object.assign({},S.remind,{n:true});save();return true}
 function pushStateToSW(){if(!window.HNI_PWA||!('serviceWorker' in navigator)||!navigator.serviceWorker.controller)return;try{navigator.serviceWorker.controller.postMessage({type:'state',state:{streak:S.streak,doneToday:S.day.done.length>0&&S.day.d===dkey()}})}catch(e){}}
 function openReminder(){let t=remindTime();
@@ -3220,7 +3298,7 @@ function viewAdmin(){const D=ADM.data;const tabs=[['ringkas','Ringkasan'],['pang
 function admSummary(D){const t=dkey();const M=D.metrics;const B=D.board;const days=k=>dkey(addDays(new Date(),-k));
   const active=n=>M.filter(m=>(m.act||[]).some(d=>d>days(n))).length;const dau=M.filter(m=>(m.act||[]).includes(t)).length;
   const ret=n=>{const c=M.filter(m=>m.j&&m.j<=days(n));if(!c.length)return null;const ok=c.filter(m=>{const d=dkey(addDays(parseD(m.j),n));const d2=dkey(addDays(parseD(m.j),n+1));return (m.act||[]).some(x=>x===d||x===d2)}).length;return{p:Math.round(ok/c.length*100),n:c.length}};
-  const fn=[['onb','Selesai onboarding'],['up','Isi mentor'],['m1','Misi pertama'],['sq','Gabung squad'],['pq','Profil lengkap'],['st7','Streak 7 hari']].map(([k,l])=>[l,M.filter(m=>m.f&&m.f[k]).length]);const f0=Math.max(1,fn[0][1]);
+  const fn=[['onb','Selesai onboarding'],['up','Isi mentor'],['m1','Misi pertama'],['sq','Gabung squad'],['pq','Profil lengkap'],['st7','Rajin 7 hari berturut-turut']].map(([k,l])=>[l,M.filter(m=>m.f&&m.f[k]).length]);const f0=Math.max(1,fn[0][1]);
   const ev={};M.forEach(m=>Object.entries(m.evc||{}).forEach(([k,v])=>{ev[k]=(ev[k]||0)+v}));
   const mis=Object.keys(MISSION_DEF).map(k=>[MISSION_DEF[k].t,ev[k]||0]).sort((a,b)=>b[1]-a[1]);const mx=Math.max(1,...mis.map(x=>x[1]));
   const gen={};M.forEach(m=>{gen[m.gen||'?']=(gen[m.gen||'?']||0)+1});
@@ -3270,7 +3348,7 @@ function admCoins(D){const cf=coinCfg();const rows=[];(D.redeem||[]).forEach(r=>
   const B=Object.fromEntries((D.board||[]).map(b=>[b.id,b]));
   return admGiftSection(D)+`${!cf.tukar?'<section class="section"><div class="banner" style="background:var(--sun-soft)">Mode simulasi: penukaran koin masih ditutup untuk pengguna. Buka di Pengaturan → Koin setelah integrasi dengan sistem HNI siap.</div></section>':''}<section class="section"><p class="small muted">Cek ID HNI di AVO dan keaktifan pemain sebelum menyetujui. Kode voucher dibuat oleh tim e-commerce hni.id, lalu ditempel di sini. 1 koin = Rp${cf.rp}.</p><div class="stack" style="gap:8px">${rows.map(q=>{const b=B[q.u]||{};
     return `<div class="admpost"><div class="row"><b class="small grow">${esc(q.nick||'?')} · ID ${esc(q.idhni||'-')}</b><span class="tag ${q.a?(q.a.st==='disetujui'?'soft':'bad'):''}">${q.a?q.a.st:'menunggu'}</span></div>
-    <span class="small">${fmtCoin(q.koin)} koin → <b>Rp${fmtCoin(q.rp)}</b> · ${new Date(q.ts).toLocaleDateString('id-ID')}${q.sqn?' · squad '+esc(q.sqn):''}</span><span class="small muted">${b.mt||0} misi · streak ${b.st||0}</span>
+    <span class="small">${fmtCoin(q.koin)} koin → <b>Rp${fmtCoin(q.rp)}</b> · ${new Date(q.ts).toLocaleDateString('id-ID')}${q.sqn?' · squad '+esc(q.sqn):''}</span><span class="small muted">${b.mt||0} misi · rajin ${b.st||0} hari</span>
     ${q.a?(q.a.code?`<code class="vcode">${esc(q.a.code)}</code>`:'')+(q.a.note?`<span class="small muted">${esc(q.a.note)}</span>`:''):`<div class="row"><input class="input" id="vc-${q.u}-${q.id}" placeholder="Kode voucher hni.id"><button class="btn small" data-rdok="${q.u}|${q.id}">Setujui</button></div><div class="row"><input class="input" id="vn-${q.u}-${q.id}" placeholder="Alasan bila ditolak"><button class="btn small ghost" data-rdno="${q.u}|${q.id}" style="color:var(--coral-text)">Tolak</button></div>`}</div>`}).join('')||'<div class="empty">Belum ada penukaran.</div>'}</div></section>`}
 async function admAnswer(u,id,st,code,note){const cur=Object.assign({},ADM.data.ans[u]||{});cur[id]={st,code:code||'',note:note||'',ts:Date.now()};try{await DB.doc('redeemAns/'+u).set({ans:cur});ADM.data.ans[u]=cur;toast(st==='disetujui'?'Disetujui, kode terkirim':'Ditolak, koin dikembalikan ke pemain')}catch(e){toast('Gagal: '+(e.code||'cek akses'))}render()}
 // --- pengaturan (no. 7: konten tanpa developer)
@@ -3357,7 +3435,7 @@ function viewFeed(){const A=feedAll();const sq=mySq();S.feedSeen=Date.now();save
   <section class="section stack" style="gap:10px">${list.map(p=>postCard(p,A)).join('')||`<div class="empty">Belum ada kabar di sini. Jadilah yang pertama berbagi semangat!</div>`}</section>
   <p class="note warn">Bagikan pengalaman jujur. Jangan menjanjikan kesembuhan atau penghasilan. Kabar yang melanggar bisa dihapus admin.</p>`}
 function achIdeas(){const r=RANKS[rankIdx(dispRank())];const out=[];
-  if(S.streak>=3)out.push(`Streak ${S.streak} hari berturut-turut di HNIF! Konsisten itu kunci.`);
+  if(S.streak>=3)out.push(`Rajin ${S.streak} hari berturut-turut di HNIF! Konsisten itu kunci.`);
   if(S.mtot)out.push(`Sudah ${S.mtot} misi kuselesaikan di HNIF. Satu langkah kecil tiap hari.`);
   if(S.badges.length){const b=BADGES.find(x=>x.id===S.badges[S.badges.length-1]);if(b)out.push(`Baru dapat badge "${b.n}": ${b.d}.`)}
   if(rankIdx(S.rank)>=3)out.push(`Alhamdulillah, posisiku sekarang ${r.n}. Terima kasih untuk tim dan mentor!`);
@@ -3422,9 +3500,9 @@ const FOCUS_PRESETS=[
   ['cerita','Bagikan 3 cerita jujur pemakaian produk minggu ini'],
   ['fu','Follow-up 3 prospek yang sudah kamu catat di Jaringan'],
   ['belajar','Selesaikan 2 modul Akademi minggu ini'],
-  ['streak','Jaga streak 7 hari tanpa putus']
+  ['streak','Jaga rajin 7 hari berturut-turut tanpa putus']
 ];
-const CH_TYPES={xp:{n:'Total misi squad',u:'misi',d:'Jumlah misi semua anggota minggu ini'},aktif:{n:'Anggota aktif',u:'orang',d:'Anggota yang menyelesaikan misi minggu ini'},streak:{n:'Streak 3+ hari',u:'orang',d:'Anggota dengan streak minimal 3 hari'}};
+const CH_TYPES={xp:{n:'Total misi squad',u:'misi',d:'Jumlah misi semua anggota minggu ini'},aktif:{n:'Anggota aktif',u:'orang',d:'Anggota yang menyelesaikan misi minggu ini'},streak:{n:'Rajin 3+ hari berturut-turut',u:'orang',d:'Anggota yang rajin minimal 3 hari'}};
 
 // --- langganan data
 function squadListen(){if(!DB)return;
@@ -3487,7 +3565,7 @@ function mtPantau(d,st){
   const health=Math.round((st.week/Math.max(1,st.all))*100);const ch=chProgress(d.ch,st);const w=wkey();
   const acts=[];
   if(st.sepi.length)acts.push({ic:'chat',t:`Sapa ${st.sepi.length} anggota yang sudah 3 hari lebih tidak aktif`,s:st.sepi.slice(0,3).map(r=>r.nick).join(', '),a:'data-mf2="sepi"'});
-  if(st.risk.length)acts.push({ic:'flame',t:`Ingatkan ${st.risk.length} anggota yang streak-nya terancam putus hari ini`,s:st.risk.slice(0,3).map(r=>`${r.nick} (${r.st} hari)`).join(', '),a:'data-mf2="risk"'});
+  if(st.risk.length)acts.push({ic:'flame',t:`Ingatkan ${st.risk.length} anggota yang rajin hariannya terancam putus hari ini`,s:st.risk.slice(0,3).map(r=>`${r.nick} (${r.st} hari)`).join(', '),a:'data-mf2="risk"'});
   if(st.naik.length)acts.push({ic:'rocket',t:`Dorong ${st.naik[0].nick}, sudah ${st.naik[0].np}% menuju ${st.naik[0].nx}`,s:st.naik.length>1?`dan ${st.naik.length-1} anggota lain yang hampir naik`:'Sedikit lagi, bantu cek syaratnya di AVO',a:`data-mem="${esc(st.naik[0].id)}"`});
   if(st.baru.length)acts.push({ic:'userplus',t:`Sambut ${st.baru.length} anggota baru minggu ini`,s:st.baru.slice(0,3).map(r=>r.nick).join(', '),a:'data-mf2="baru"'});
   if(!ch)acts.push({ic:'target',t:'Pasang tantangan squad minggu ini',s:'Target bersama bikin semua ikut gerak',a:'data-mttab="gas"'});
@@ -3496,11 +3574,11 @@ function mtPantau(d,st){
   const delta=st.prev?Math.round((st.xp-st.prev)/st.prev*100):null;
   return `<section class="section"><div class="card stack"><div class="row between"><h3 style="margin:0">Kesehatan squad</h3><b class="num" style="font-family:var(--display);font-size:1.4rem;color:${health>=60?'var(--brand)':health>=30?'var(--sun)':'var(--coral)'}">${health}%</b></div>
     <div class="bar light"><i style="width:${health}%"></i></div><p class="small muted" style="margin:0">${st.week} dari ${st.all} anggota dapat misi minggu ini.${delta!=null?` Misi squad ${delta>=0?'naik':'turun'} ${Math.abs(delta)}% dibanding minggu lalu.`:''}</p>
-    <div class="gstats lite"><div><b class="num" style="color:var(--coral-text)">${st.sepi.length}</b><span>Perlu disapa</span></div><div><b class="num" style="color:var(--sun-text)">${st.risk.length}</b><span>Streak terancam</span></div><div><b class="num" style="color:var(--brand)">${st.naik.length}</b><span>Hampir naik</span></div></div></div></section>
+    <div class="gstats lite"><div><b class="num" style="color:var(--coral-text)">${st.sepi.length}</b><span>Perlu disapa</span></div><div><b class="num" style="color:var(--sun-text)">${st.risk.length}</b><span>Hampir putus</span></div><div><b class="num" style="color:var(--brand)">${st.naik.length}</b><span>Hampir naik</span></div></div></div></section>
   <section class="section"><div class="row"><h2>Lakukan hari ini</h2><span class="small muted">${acts.length?Math.min(acts.length,4)+' saran':''}</span></div><div class="stack" style="gap:8px">
     ${acts.slice(0,4).map(x=>`<button class="softrow" ${x.a}>${ico(x.ic)}<span class="grow small"><b>${esc(x.t)}</b><br><span class="muted">${esc(x.s)}</span></span><span class="harr">${ico('chevrons')}</span></button>`).join('')||'<div class="empty">Squad-mu sedang on fire. Pertahankan dengan apresiasi!</div>'}</div></section>
   ${ch?`<section class="section">${chCard(d.ch,st,true)}</section>`:''}
-  <section class="section"><div class="row"><h2>Bintang minggu ini</h2><span class="small muted">${w}</span></div>${st.top.length?`<div class="stack" style="gap:8px">${st.top.slice(0,5).map((r,i)=>`<button class="lb" data-mem="${esc(r.id)}"><span class="pos num">${i+1}</span>${avatar(r.nick,38,r.av)}<span class="grow" style="text-align:left"><b>${esc(r.nick)}</b><br><span class="small muted">streak ${r.st||0} · Lv ${r.lvl||1}</span></span><b class="num" style="color:var(--sun-text)">${fmtN(r.wx)}</b></button>`).join('')}</div>`:'<div class="empty">Belum ada yang dapat misi minggu ini. Kirim semangat di grup squad!</div>'}</section>`}
+  <section class="section"><div class="row"><h2>Bintang minggu ini</h2><span class="small muted">${w}</span></div>${st.top.length?`<div class="stack" style="gap:8px">${st.top.slice(0,5).map((r,i)=>`<button class="lb" data-mem="${esc(r.id)}"><span class="pos num">${i+1}</span>${avatar(r.nick,38,r.av)}<span class="grow" style="text-align:left"><b>${esc(r.nick)}</b><br><span class="small muted">rajin ${r.st||0} hari</span></span><b class="num" style="color:var(--sun-text)">${fmtN(r.wx)}</b></button>`).join('')}</div>`:'<div class="empty">Belum ada yang dapat misi minggu ini. Kirim semangat di grup squad!</div>'}</section>`}
 function mtEmpty(){const t=`Assalamu'alaikum tim! Yuk gabung squad kita di HNIF: buka aplikasinya, masuk ke Profil, lalu isi ID Mentor LED dengan ID HNI saya: ${S.idhni}. Nanti kita bisa saling semangati, ikut tantangan squad, dan saya bisa bantu pantau progres kalian.`;
   return `<section class="section"><div class="card stack"><span class="tico gold">${ico('userplus')}</span><h3 style="margin:0">Belum ada anggota squad</h3><p class="small muted" style="margin:0">Anggota masuk ke squad-mu saat mereka mengisi <b>ID HNI-mu</b> sebagai ID Mentor LED di Profil. Bagikan ajakan ini ke grup WhatsApp timmu.</p>
     <p class="quote small" id="mt-inv">${esc(t)}</p><div class="row" style="gap:8px"><button class="btn ghost grow" data-copy="mt-inv">Salin</button><a class="btn grow" href="${waLink(t)}" target="_blank" rel="noopener">Kirim ke WA</a></div>
@@ -3508,11 +3586,11 @@ function mtEmpty(){const t=`Assalamu'alaikum tim! Yuk gabung squad kita di HNIF:
 
 // 2) Anggota: daftar + filter, ketuk untuk detail
 function mtAnggota(d,st){if(!st.all)return mtEmpty();
-  let L=st.L.slice();const F={all:'Semua',sepi:'Perlu disapa',risk:'Streak terancam',naik:'Hampir naik',baru:'Baru',fokus:'Punya fokus'};
+  let L=st.L.slice();const F={all:'Semua',sepi:'Perlu disapa',risk:'Hampir putus',naik:'Hampir naik',baru:'Baru',fokus:'Punya fokus'};
   if(MT_F==='sepi')L=st.sepi;if(MT_F==='risk')L=st.risk;if(MT_F==='naik')L=st.naik;if(MT_F==='baru')L=st.baru;if(MT_F==='fokus')L=L.filter(r=>d.fc[r.id]);
   if(MT_F==='all')L.sort((a,b)=>b.wx-a.wx||a.off-b.off);
   const row=r=>{const f=d.fc[r.id];const fd=f&&r.fd===f.id;const ks=(d.kd[r.id]||[]).length;
-    return `<button class="mrow" data-mem="${esc(r.id)}" style="text-align:left;width:100%"><div class="row">${avatar(r.nick,40,r.av)}<div class="grow"><b>${esc(r.nick)}</b> ${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${ks?` <span class="tag soft"><span class="ii">${ico('star')}</span>${ks}</span>`:''}<br><span class="small ${r.off>=3?'warnt':'muted'}">${r.off===0?`Aktif hari ini · ${r.dn||0} misi`:r.off>=99?'Belum pernah aktif':`${r.off} hari tidak aktif`} · streak ${r.st||0} · ${fmtN(r.wx)} misi minggu ini</span>
+    return `<button class="mrow" data-mem="${esc(r.id)}" style="text-align:left;width:100%"><div class="row">${avatar(r.nick,40,r.av)}<div class="grow"><b>${esc(r.nick)}</b> ${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${ks?` <span class="tag soft"><span class="ii">${ico('star')}</span>${ks}</span>`:''}<br><span class="small ${r.off>=3?'warnt':'muted'}">${r.off===0?`Aktif hari ini · ${r.dn||0} misi`:r.off>=99?'Belum pernah aktif':`${r.off} hari tidak aktif`} · rajin ${r.st||0} hari · ${fmtN(r.wx)} misi minggu ini</span>
       ${f?`<br><span class="small" style="color:${fd?'var(--brand)':'var(--muted)'}"><span class="ii">${ico(fd?'check':'target')}</span> Fokus: ${esc(f.t.slice(0,60))}${fd?' (selesai)':''}</span>`:''}</div><span class="harr">${ico('chevrons')}</span></div>
       ${r.nx?`<div class="row" style="gap:8px"><span class="small muted" style="min-width:110px">Menuju ${esc(r.nx)}</span><div class="bar light grow"><i style="width:${r.np}%"></i></div><b class="small num">${r.np}%</b></div>`:''}</button>`};
   return `<section class="section"><div class="pills">${Object.entries(F).map(([k,t])=>`<button class="pill" data-mf2="${k}" aria-pressed="${MT_F===k}">${t}</button>`).join('')}</div>
@@ -3523,13 +3601,13 @@ function mtAnggota(d,st){if(!st.all)return mtEmpty();
 function openMember(id){const st=sqStats(squadRows(mentorSq()));const r=st.L.find(x=>x.id===id);if(!r){toast('Data anggota belum tersedia');return}const d=squadDoc();const f=d.fc[id];const fd=f&&r.fd===f.id;const ks=d.kd[id]||[];
   const tpl=[
     ['Sapa kabar',`Assalamu'alaikum ${r.nick}, apa kabar? ${r.off>=3&&r.off<99?`Sudah ${r.off} hari nggak kelihatan di HNIF. `:''}Yuk lanjut misi bareng, satu misi kecil hari ini juga cukup. Ada yang bisa aku bantu?`],
-    ['Apresiasi',`Mantap ${r.nick}! ${r.wx?`${fmtN(r.wx)} misi minggu ini`:'Semangatmu'}${r.st?` dan streak ${r.st} hari`:''} itu keren. Terus jaga ritmenya ya, aku bangga sama progresmu.`],
+    ['Apresiasi',`Mantap ${r.nick}! ${r.wx?`${fmtN(r.wx)} misi minggu ini`:'Semangatmu'}${r.st?` dan rajin ${r.st} hari berturut-turut`:''} itu keren. Terus jaga ritmenya ya, aku bangga sama progresmu.`],
     ['Dorong naik pangkat',`${r.nick}, progresmu menuju ${r.nx||'pangkat berikutnya'} sudah ${r.np}%. Yuk kita cek bareng syarat yang kurang di AVO, aku siap bantu susun langkahnya minggu ini.`],
     ['Ajak pertemuan',d.ag&&agUpcoming(d.ag)?`${r.nick}, jangan lupa ${d.ag.t} tanggal ${agDate(d.ag)}${d.ag.loc?' di '+d.ag.loc:''}. Ditunggu ya, kita belajar bareng!`:`${r.nick}, minggu ini kita ngobrol sebentar yuk, bahas target dan rencanamu. Kapan kamu luang?`],
-    ['Jaga streak',`${r.nick}, streak ${r.st||0} hari-mu tinggal dijaga hari ini. Satu misi saja cukup biar nggak putus. Semangat!`]
+    ['Jaga rajin harian',`${r.nick}, rajin ${r.st||0} hari-mu tinggal dijaga hari ini. Satu misi saja cukup biar nggak putus. Semangat!`]
   ];
   sheet(`<div class="stack"><div class="row">${avatar(r.nick,54,r.av)}<div class="grow"><span class="eyebrow">Anggota squad</span><h2 style="margin:0">${esc(r.nick)}</h2><span class="small muted prank">${rankImg((RANKS.find(x=>x.c===r.rank)||RANKS[0]).c,'xs')}${esc((RANKS.find(x=>x.c===r.rank)||RANKS[0]).n)} · Level ${r.lvl||1}</span></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
-    <div class="gstats lite"><div><b class="num">${r.off===0?'Hari ini':r.off>=99?'-':r.off+' hr'}</b><span>Terakhir aktif</span></div><div><b class="num">${r.st||0}</b><span>Streak</span></div><div><b class="num">${fmtN(r.wx)}</b><span>Misi minggu ini</span></div></div>
+    <div class="gstats lite"><div><b class="num">${r.off===0?'Hari ini':r.off>=99?'-':r.off+' hr'}</b><span>Terakhir aktif</span></div><div><b class="num">${r.st||0}</b><span>Rajin harian</span></div><div><b class="num">${fmtN(r.wx)}</b><span>Misi minggu ini</span></div></div>
     ${r.nx?`<div class="stack" style="gap:4px"><div class="row between small"><span>Menuju ${esc(r.nx)}</span><b class="num">${r.np}%</b></div><div class="bar light"><i style="width:${r.np}%"></i></div></div>`:''}
     <dl class="kv"><dt>Badge</dt><dd class="num">${r.b||0}</dd><dt>Bintang Mentor</dt><dd class="num">${ks.length}</dd>${r.jn?`<dt>Bergabung</dt><dd>${esc(r.jn)}</dd>`:''}</dl>
     <div class="card stack" style="gap:8px"><div class="row between"><b class="small"><span class="ii">${ico('target')}</span> Fokus pribadi</b>${f?`<span class="tag soft">${fd?'Selesai':'Berjalan'}</span>`:''}</div><p class="small ${f?'':'muted'}" style="margin:0">${f?esc(f.t):'Belum ada fokus. Beri satu target kecil yang jelas untuk minggu ini.'}</p>
@@ -3541,7 +3619,7 @@ function openMember(id){const st=sqStats(squadRows(mentorSq()));const r=st.L.fin
 // bintang mentor (apresiasi personal): +${K().kudos} koin untuk anggota, maks. 5 bintang per minggu
 function openKudos(id){const st=sqStats(squadRows(mentorSq()));const r=st.L.find(x=>x.id===id);if(!r)return;const d=squadDoc();const used=kudosThisWeek(d);
   if(used>=KUDOS_WEEK){toast(`Jatah ${KUDOS_WEEK} bintang minggu ini sudah habis. Berikan lewat WA dulu ya.`);return}
-  const ideas=[`Konsisten jaga streak ${r.st||0} hari`,`Misi terbanyak minggu ini`,'Berani cerita pengalaman produk','Rajin menyapa dan follow-up','Semangat belajar di Akademi'];
+  const ideas=[`Konsisten jaga rajin harian ${r.st||0} hari`,`Misi terbanyak minggu ini`,'Berani cerita pengalaman produk','Rajin menyapa dan follow-up','Semangat belajar di Akademi'];
   sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Bintang Mentor · sisa ${KUDOS_WEEK-used} minggu ini</span><h2>Apresiasi ${esc(r.nick)}</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
     <p class="small muted">${esc(r.nick)} akan menerima bintang di Beranda beserta pesanmu dan bonus +${K().kudos} koin.</p>
     <div class="stack" style="gap:6px">${ideas.map(t=>`<button class="softrow small" data-kidea="${esc(t)}">${ico('star')}<span class="grow">${esc(t)}</span></button>`).join('')}</div>
@@ -3569,10 +3647,10 @@ function mtGas(d,st){const p=chProgress(d.ch,st);const sugg={xp:Math.max(15,Math
     <div class="field"><label for="ch-ty">Jenis tantangan</label><select class="input" id="ch-ty">${Object.entries(CH_TYPES).map(([k,v])=>`<option value="${k}" ${(d.ch&&d.ch.ty===k&&p)?'selected':''}>${v.n} (${v.d.toLowerCase()})</option>`).join('')}</select></div>
     <div class="row" style="gap:10px"><div class="field grow"><label for="ch-tg">Target</label><input class="input num" id="ch-tg" type="number" inputmode="numeric" min="1" value="${p?d.ch.tg:sugg.xp}"></div>
     <div class="field grow"><label for="ch-bn">Hadiah koin / anggota</label><select class="input" id="ch-bn">${[10,20,30].map(n=>`<option ${(p&&d.ch.bn===n)||(!p&&n===20)?'selected':''}>${n}</option>`).join('')}</select></div></div>
-    <p class="small muted" id="ch-hint" style="margin:0">Saran untuk ${st.all} anggota: ${fmtN(sugg.xp)} misi, ${sugg.aktif} anggota aktif, atau ${sugg.streak} anggota dengan streak 3+ hari.</p>
+    <p class="small muted" id="ch-hint" style="margin:0">Saran untuk ${st.all} anggota: ${fmtN(sugg.xp)} misi, ${sugg.aktif} anggota aktif, atau ${sugg.streak} anggota dengan rajin 3+ hari berturut-turut.</p>
     <button class="btn block" data-mt-act="chsave">Simpan tantangan</button>
     <p class="note">Tantangan berlaku Senin–Minggu ini dan otomatis berakhir di akhir minggu. Hadiah koin hanya untuk anggota yang dapat misi minggu ini.</p></div></section>
-  <section class="section"><div class="card stack"><h3 style="margin:0"><span class="ii">${ico('gift')}</span> Ide tantangan yang terbukti seru</h3><ul class="small" style="margin:0;padding-left:18px;line-height:1.6"><li><b>Minggu Cerita</b>: 70% anggota aktif, semua bagikan 1 cerita produk di Kabar.</li><li><b>Streak Bareng</b>: separuh squad jaga streak 3+ hari.</li><li><b>Gas misi</b>: rata-rata 15 misi per anggota seminggu, cocok menjelang tutup bulan.</li></ul></div></section>`}
+  <section class="section"><div class="card stack"><h3 style="margin:0"><span class="ii">${ico('gift')}</span> Ide tantangan yang terbukti seru</h3><ul class="small" style="margin:0;padding-left:18px;line-height:1.6"><li><b>Minggu Cerita</b>: 70% anggota aktif, semua bagikan 1 cerita produk di Kabar.</li><li><b>Rajin Bareng</b>: separuh squad jaga rajin 3+ hari berturut-turut.</li><li><b>Gas misi</b>: rata-rata 15 misi per anggota seminggu, cocok menjelang tutup bulan.</li></ul></div></section>`}
 
 // 4) Pesan & agenda
 function mtInfo(d,st){const a=d.ag;const goers=a?st.L.filter(r=>r.rv===a.id):[];
@@ -4030,7 +4108,7 @@ document.addEventListener('click',async e=>{if(SUB!=='admin')return;const t=e.ta
   if(a==='modnew'){openModEditor(null);return}
   if(a==='scrsave'){const G=textToScripts($('#kus-scr').value);if(!G.length){$('#kus-scr-err').textContent='Format belum benar: perlu minimal satu "# kode | Nama" dan satu "## Judul".';return}saveCfg({skrip:{groups:G}},`${G.reduce((n,g)=>n+g.items.length,0)} skrip tersimpan`);return}
   if(a==='scrreset'){saveCfg({skrip:{}},'Skrip kembali ke bawaan');return}
-  if(a==='cprev'){const keep=CONFIG.card;CONFIG.card=kusReadCard();try{const c=await makeCard('Contoh sorotan: Streak 7 hari!');$('#kus-prev').innerHTML=`<img src="${c.toDataURL('image/jpeg',.7)}" alt="Contoh kartu" style="width:100%;max-width:240px;border-radius:12px;display:block;margin:0 auto">`}finally{CONFIG.card=keep}return}
+  if(a==='cprev'){const keep=CONFIG.card;CONFIG.card=kusReadCard();try{const c=await makeCard('Contoh sorotan: Rajin 7 hari berturut-turut!');$('#kus-prev').innerHTML=`<img src="${c.toDataURL('image/jpeg',.7)}" alt="Contoh kartu" style="width:100%;max-width:240px;border-radius:12px;display:block;margin:0 auto">`}finally{CONFIG.card=keep}return}
   if(a==='csave'){saveCfg({card:kusReadCard()},'Desain kartu tersimpan');return}
   if(a==='creset'){saveCfg({card:{}},'Desain kartu kembali ke bawaan');return}},true);
 applyCustom();
@@ -4156,8 +4234,10 @@ function bizSeed(){return (S.idhni||S.nick||'hnif')+'·v1'}
 
 // ---------- data contoh: genealogi ----------
 const NAMA_CONTOH=['Rara Anindya','Dodi Saputra','Elinur Hasanah','Fajar Ramadhan','Gita Lestari','Hafiz Maulana','Indah Permata','Joko Susilo','Kartika Sari','Lukman Hakim','Maya Kusuma','Nanda Pratama','Okta Wulandari','Putri Amalia','Qori Aisyah','Rizky Firmansyah','Sinta Dewi','Taufik Hidayat','Umi Kalsum','Vina Melati','Wahyu Nugroho','Yusuf Abdullah','Zahra Nabila','Agus Salim','Bella Safitri','Cahya Purnama','Dian Puspita','Eko Prasetyo','Farah Azzahra','Galih Wicaksono','Hana Marlina','Irfan Maulidi','Jihan Fadilah','Kevin Ardiansyah','Laila Rahmah','Mira Handayani','Nur Aini','Oki Setiawan','Prita Ayu','Rahmat Hidayat','Salsa Bilqis','Tegar Pamungkas'];
-// kode niaga seperti di AVO (Pangkat/Niaga, mis. "A/AB": A = status aktif, AB = Agen Biasa)
-const NIAGA={MB10:'AB',MB14:'AB',MB17:'AB',M:'M',SM:'SM',EM:'EM',D:'D',SD:'SD',ED:'ED'};
+// Pangkat/Niaga seperti di AVO, mis. "A/MB" = Agen biasa, pangkat Mitra Baru; "SC/SM" = Stockist Center, pangkat Senior Manager.
+// Niaga: A = Agen biasa, SC = Stock Center, DC = Distribution Center (min. Manager), AC = Agency Center (min. ED)
+const NIAGA_N={A:'Agen biasa',SC:'Stock Center',DC:'Distribution Center',AC:'Agency Center'};
+const pkCode=c=>{const x=RANKS.find(k=>k.c===c);return x?(x.s==='MB'?'MB':x.s):c};
 let GEN_CACHE=null;
 function monthsBack(n){const d=new Date();return Array.from({length:n},(_,i)=>{const x=new Date(d.getFullYear(),d.getMonth()-1-i,1);return [x.getFullYear(),x.getMonth()]})}
 function genData(){const key=bizSeed();if(GEN_CACHE&&GEN_CACHE.key===key)return GEN_CACHE;const r=seedRng(key);
@@ -4168,7 +4248,8 @@ function genData(){const key=bizSeed();if(GEN_CACHE&&GEN_CACHE.key===key)return 
     const tp=r()<.18?0:Math.round((r()<.35?600:200)*(.4+r()*.9)/10)*10;
     const hist=Array.from({length:4},()=>{const t=r()<.2?0:Math.round((r()<.3?600:200)*(.4+r()*.9)/10)*10;return{tp:t,tpg:Math.round(base*(.55+r()*.9))+t}});
     const y=2018+Math.floor(r()*8),jm=Math.floor(r()*12),jd=1+Math.floor(r()*28);
-    const o={id,nama:NAMA_CONTOH[n++%NAMA_CONTOH.length],gen,mentor,pk,niaga:NIAGA[pk]||'AB',pred:r()<.2&&pi<5?RANKS[pi+1].c:pk,
+    const nx=r();const niaga=pi>=8&&nx<.2?'AC':pi>=3&&nx<.12?'DC':nx<(pi>=3?.3:.06)?'SC':'A';
+    const o={id,nama:NAMA_CONTOH[n++%NAMA_CONTOH.length],gen,mentor,pk,niaga,pred:r()<.2&&pi<5?RANKS[pi+1].c:pk,
       join:`${y}-${String(jm+1).padStart(2,'0')}-${String(jd).padStart(2,'0')}`,tp,tpg:Math.round(base*(.4+r()*.7))+tp,hist,
       akm:Math.round(base*(8+r()*30)),wa:'08'+String(Math.floor(r()*9e9)+1e9).slice(0,10),kids:[]};o.st=o.tp>0||hist[0].tp>0?'A':'P';L.push(o);return o};
   const g1=Array.from({length:6},()=>mk(1,myId));
@@ -4183,27 +4264,27 @@ let GEN_OPEN={},GEN_Q='',GEN_F='all',GEN_SORT='tpg';
 const GEN_SORTS=[['tpg','TPG bulan ini'],['tp','TP bulan ini'],['akm','Akumulasi TPG'],['join','Tgl bergabung (terbaru)'],['joinold','Tgl bergabung (terlama)'],['down','Jumlah jaringan']];
 function genCmp(a,b){if(GEN_SORT==='join')return b.join.localeCompare(a.join);if(GEN_SORT==='joinold')return a.join.localeCompare(b.join);return b[GEN_SORT]-a[GEN_SORT]}
 function viewGenealogi(){const G=genData();const q=GEN_Q.trim().toLowerCase();const now=new Date();const MB=monthsBack(4);
-  const match=o=>(!q||o.nama.toLowerCase().includes(q)||o.id.includes(q))&&(GEN_F==='all'||(GEN_F==='aktif'?o.tp>0:GEN_F==='pasif'?o.tp===0:GEN_F==='naik'?o.pred!==o.pk:true));
+  const match=o=>(!q||o.nama.toLowerCase().includes(q)||o.id.includes(q))&&(GEN_F==='all'||(GEN_F==='aktif'?o.tp>0:GEN_F==='pasif'?o.tp===0:GEN_F==='naik'?o.pred!==o.pk:rfmTeam(o)===GEN_F));
   const aktif=G.all.filter(o=>o.tp>0).length,tpgAll=G.g1.reduce((a,o)=>a+o.tpg,0),naik=G.all.filter(o=>o.pred!==o.pk).length;
   const flat=q||GEN_F!=='all';
   const rows=[];const walk=o=>{rows.push(o);if(GEN_OPEN[o.id])o.kids.slice().sort(genCmp).forEach(walk)};
   if(flat)G.all.filter(match).sort(genCmp).forEach(o=>rows.push(o));else G.g1.slice().sort(genCmp).forEach(walk);
   const chev=o=>o.kids.length&&!flat?`<button class="tw" data-gen-tg="${o.id}" aria-expanded="${!!GEN_OPEN[o.id]}" aria-label="${GEN_OPEN[o.id]?'Tutup':'Buka'} jaringan ${esc(o.nama)}">${GEN_OPEN[o.id]?'−':'+'}</button>`:'<span class="tw sp"></span>';
   const ind=o=>flat?0:Math.min((o.gen-1)*10,30);
-  const tbl=`<div class="tblwrap gtbl"><table class="dtable gtable"><thead><tr><th class="stk">Mitra <span class="muted">(ketuk nama)</span></th><th class="r hl">TP ${BLN[now.getMonth()]}</th><th class="r hl">TPG ${BLN[now.getMonth()]}</th>${MB.map(([y,m])=>`<th class="r">TPG ${BLN[m]}</th>`).join('')}<th class="r">Akumulasi TPG<br><span class="muted">s.d. ${BLN[MB[0][1]]} ${MB[0][0]}</span></th></tr></thead><tbody>
-    ${rows.map(o=>`<tr><td class="stk"><div class="gname" style="padding-left:${ind(o)}px">${chev(o)}<button class="gnm" data-gen-open="${o.id}"><b>${esc(o.nama)}</b><span class="small muted num">G${o.gen} · ${rkS(o.pk)}${o.down?` · ${o.down}↓`:''}</span></button></div></td>
-      <td class="r num hl ${o.tp?'':'muted'}"><b>${pt(o.tp)}</b></td><td class="r num hl"><b>${pt(o.tpg)}</b></td>${o.hist.map(h=>`<td class="r num">${pt(h.tpg)}</td>`).join('')}<td class="r num">${pt(o.akm)}</td></tr>`).join('')}</tbody></table></div>`;
+  const tbl=`<div class="tblwrap gtbl"><table class="dtable gtable"><thead><tr><th class="stk">Mitra <span class="muted">(ketuk nama)</span></th><th class="r hl">TP ${BLN[now.getMonth()]}</th><th class="r hl">TPG ${BLN[now.getMonth()]}</th><th class="hl">Prediksi</th>${MB.map(([y,m])=>`<th class="r">TPG ${BLN[m]}</th>`).join('')}<th class="r">Akumulasi TPG<br><span class="muted">s.d. ${BLN[MB[0][1]]} ${MB[0][0]}</span></th></tr></thead><tbody>
+    ${rows.map(o=>`<tr><td class="stk"><div class="gname" style="padding-left:${ind(o)}px">${chev(o)}<button class="gnm" data-gen-open="${o.id}"><b>${esc(o.nama)}</b><span class="small muted num">G${o.gen} · ${o.niaga}/${pkCode(o.pk)}${o.down?` · ${o.down}↓`:''}</span></button></div></td>
+      <td class="r num hl ${o.tp?'':'muted'}"><b>${pt(o.tp)}</b></td><td class="r num hl"><b>${pt(o.tpg)}</b></td><td class="hl">${o.pred!==o.pk?`<span class="rkc up">↑ ${rkS(o.pred)}</span>`:`<span class="small muted">${rkS(o.pred)}</span>`}</td>${o.hist.map(h=>`<td class="r num">${pt(h.tpg)}</td>`).join('')}<td class="r num">${pt(o.akm)}</td></tr>`).join('')}</tbody></table></div>`;
   return `${SAMPLE_NOTE}
   <section class="section"><div class="kpis"><div class="kpi"><span>Mitra di jaringan</span><b class="num">${G.all.length}</b><small>${G.g1.length} di generasi 1</small></div><div class="kpi"><span>Aktif belanja bulan ini</span><b class="num">${aktif}</b><small>${Math.round(aktif/G.all.length*100)}% dari jaringan</small></div><div class="kpi"><span>TPG generasi 1</span><b class="num">${pt(tpgAll)}</b><small>bulan ${BLN[now.getMonth()]}</small></div><div class="kpi"><span>Diprediksi naik</span><b class="num">${naik}</b><small>bulan ini</small></div></div></section>
   <section class="section"><div class="gtools"><label class="srch"><span class="sr-only">Cari nama atau ID</span>${ico('search')}<input class="input" id="gen-q" type="search" placeholder="Cari nama atau ID agen" value="${esc(GEN_Q)}"></label>
     <label class="sortsel small">Urutkan <select class="input" id="gen-sort">${GEN_SORTS.map(([k,t])=>`<option value="${k}" ${GEN_SORT===k?'selected':''}>${t}</option>`).join('')}</select></label></div>
-    <div class="pills" role="group" aria-label="Saring" style="margin-top:8px">${[['all','Semua'],['aktif','Aktif'],['pasif','Belum belanja'],['naik','Diprediksi naik']].map(([k,t])=>`<button class="pill" data-gen-f="${k}" aria-pressed="${GEN_F===k}">${t}</button>`).join('')}</div>
+    <div class="pills" role="group" aria-label="Saring" style="margin-top:8px">${[['all','Semua'],['aktif','Aktif'],['pasif','Belum belanja'],['naik','Diprediksi naik']].map(([k,t])=>`<button class="pill" data-gen-f="${k}" aria-pressed="${GEN_F===k}">${t}</button>`).join('')}<span class="pillsep">RFM tim:</span>${['setia','sapa','hilang'].map(k=>`<button class="pill rf-${k}" data-gen-f="${k}" aria-pressed="${GEN_F===k}">${RFM_TEAM[k]} · ${genData().all.filter(o=>rfmTeam(o)===k).length}</button>`).join('')}</div>
     ${flat?`<p class="small muted" style="margin:8px 0 0">${rows.length} mitra cocok. Hapus pencarian untuk kembali ke tampilan pohon.</p>`:`<div class="row" style="gap:12px;margin-top:6px"><button class="link small" data-gen-all="1">Buka semua</button><button class="link small" data-gen-all="0">Tutup semua</button><span class="small muted grow" style="text-align:right">Geser tabel ke kanan untuk TPG 4 bulan lalu →</span></div>`}</section>
   <section class="section">${rows.length?tbl:'<div class="empty">Tidak ada mitra yang cocok.</div>'}</section>`}
 function openGenDetail(id){const G=genData();const o=G.all.find(x=>x.id===id);if(!o)return;const MB=monthsBack(4);const now=new Date();
   const waTxt=`Assalamu'alaikum ${o.nama.split(' ')[0]}, apa kabar?`;const wa='62'+o.wa.slice(1);
   sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Informasi mitra · data contoh</span><h2 style="margin:0">${esc(o.nama)}</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
-    <dl class="kv prof"><dt>ID Agen</dt><dd class="num">${o.id}</dd><dt>Nama Agen</dt><dd>${esc(o.nama.toUpperCase())}</dd><dt>Bergabung</dt><dd class="num">${tglID(o.join)}</dd><dt>Pangkat/Niaga</dt><dd><b>${o.st}/${o.niaga}</b> <span class="small muted">· ${o.st==='A'?'aktif':'pasif'} · ${esc((RANKS.find(k=>k.c===o.pk)||{}).n||o.pk)}</span></dd><dt>Generasi</dt><dd>G${o.gen}${o.down?` · ${o.down} mitra di bawahnya`:''}</dd></dl>
+    <dl class="kv prof"><dt>ID Agen</dt><dd class="num">${o.id}</dd><dt>Nama Agen</dt><dd>${esc(o.nama.toUpperCase())}</dd><dt>Bergabung</dt><dd class="num">${tglID(o.join)}</dd><dt>Pangkat/Niaga</dt><dd><b>${o.niaga}/${pkCode(o.pk)}</b> <span class="small muted">· ${NIAGA_N[o.niaga]} · ${esc((RANKS.find(k=>k.c===o.pk)||{}).n||o.pk)}</span></dd><dt>Prediksi bulan ini</dt><dd>${o.pred!==o.pk?`<span class="rkc up">↑ ${esc((RANKS.find(k=>k.c===o.pred)||{}).n||o.pred)}</span>`:esc((RANKS.find(k=>k.c===o.pred)||{}).n||o.pred)}</dd><dt>Status belanja</dt><dd>${o.tp>0?'Sudah belanja bulan ini':'<span class="neg">Belum belanja bulan ini</span>'}</dd><dt>Generasi</dt><dd>G${o.gen}${o.down?` · ${o.down} mitra di bawahnya`:''}</dd></dl>
     <div class="row" style="gap:8px"><a class="btn grow wa" href="https://wa.me/${wa}?text=${encodeURIComponent(waTxt)}" target="_blank" rel="noopener">${ico('wa')} WhatsApp</a><button class="btn ghost grow" data-dm="${o.id}">${ico('chat')} Pesan</button></div>
     <div><b class="small">Prestasi 4 bulan terakhir</b><div class="tblwrap" style="margin-top:6px"><table class="dtable"><thead><tr><th>Periode</th><th class="r">TP</th><th class="r">TPG</th></tr></thead><tbody>
       <tr class="cur"><td>${BLNF[now.getMonth()]} ${now.getFullYear()} <span class="small muted">(berjalan)</span></td><td class="r num">${pt(o.tp)}</td><td class="r num">${pt(o.tpg)}</td></tr>
@@ -4381,31 +4462,119 @@ function openEDDetail(j){const x=edData().L.find(e=>e.j===+j);if(!x)return;const
     <div class="row" style="gap:8px"><a class="btn grow wa" href="https://wa.me/62${x.wa.slice(1)}" target="_blank" rel="noopener">${ico('wa')} WhatsApp</a><button class="btn ghost grow" data-dm="${x.id}" data-dmnm="${esc(x.nama)}">${ico('chat')} Pesan</button></div></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet})}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-ed]');if(!t)return;openEDDetail(t.dataset.ed)});
 
-// ---------- Rekening & pilihan pencairan bonus ----------
+// ---------- Rekening & pilihan pencairan bonus (mengikuti alur Data Bank di AVO) ----------
 // Nomor rekening lengkap tidak disimpan di aplikasi: yang disimpan hanya bank, nama, dan 4 digit akhir.
-const BANKS=['BSI','BCA','BRI','Mandiri','BNI','BTN','Muamalat','CIMB Niaga','Permata','Bank lain'];
-function rekCur(){return S.rek||{bank:'BSI',nama:(S.nick||'Mitra').toUpperCase(),l4:String(S.idhni||'4821').slice(-4),d:''}}
-function rekTxt(){const r=rekCur();return `${r.bank} ••••${r.l4} a.n. ${r.nama}`}
+const BANKS=['BANK SYARIAH INDONESIA','BANK CENTRAL ASIA','BANK RAKYAT INDONESIA','BANK MANDIRI','BANK NEGARA INDONESIA','BANK TABUNGAN NEGARA','BANK MUAMALAT INDONESIA','BANK CIMB NIAGA','BANK PERMATA','BANK DANAMON','BANK MEGA SYARIAH','BANK BJB'];
+const BANK_S={'BANK SYARIAH INDONESIA':'BSI','BANK CENTRAL ASIA':'BCA','BANK RAKYAT INDONESIA':'BRI','BANK MANDIRI':'Mandiri','BANK NEGARA INDONESIA':'BNI','BANK TABUNGAN NEGARA':'BTN','BANK MUAMALAT INDONESIA':'Muamalat','BANK CIMB NIAGA':'CIMB','BANK PERMATA':'Permata','BANK DANAMON':'Danamon','BANK MEGA SYARIAH':'Mega Syariah','BANK BJB':'BJB'};
+function rekSettle(){if(S.rekP&&dkey()>S.rekP.d){S.rek=Object.assign({},S.rekP,{d:dkey()});S.rekP=null;save()}}
+function rekCur(){rekSettle();const r=S.rek||{bank:'BANK SYARIAH INDONESIA',l4:String(S.idhni||'4821').slice(-4),d:''};return Object.assign({nama:rekNama()},r)}
+function rekNama(){return (S.namaId||S.nick||'Mitra').toUpperCase()}
+function rekTxt(){const r=rekCur();return `${BANK_S[r.bank]||r.bank} ••••${r.l4} a.n. ${r.nama}`}
+function rekCount(){const m=mkey();return S.rekC&&S.rekC.m===m?S.rekC.n:0}
 function payTxt(){return (S.payout||'rek')==='cash'?'saldo HNI Cash':'rekening '+rekTxt()}
 function payChip(){return `<button class="paychip" data-biz="rek">${ico('coin')}<span class="grow">Bonus dicairkan ke <b>${(S.payout||'rek')==='cash'?'HNI Cash':'Rekening'}</b></span><span class="link small">Ubah</span></button>`}
-function viewRekening(){const r=rekCur();const p=S.payout||'rek';
+function viewRekening(){const r=rekCur();const p=S.payout||'rek';const used=rekCount();const left=Math.max(0,3-used);
   return `<section class="section"><h2>Pencairan bonus</h2><p class="small muted" style="margin:0 0 8px">Pilih tujuan pencairan bonus bulanan. Perubahan berlaku untuk bonus periode berikutnya.</p>
     <div class="paysel" role="radiogroup" aria-label="Tujuan pencairan bonus">
       <button role="radio" aria-checked="${p==='cash'}" data-payout="cash"><span class="pico">${ico('coin')}</span><span class="grow"><b>HNI Cash</b><span class="small muted">Masuk ke saldo HNI Cash. Bisa langsung dipakai belanja di stokis, tanpa biaya transfer.</span></span><span class="radio"></span></button>
       <button role="radio" aria-checked="${p==='rek'}" data-payout="rek"><span class="pico">${ico('bank')}</span><span class="grow"><b>Transfer ke rekening</b><span class="small muted">${esc(rekTxt())} · biaya transfer Rp6.500.</span></span><span class="radio"></span></button></div></section>
-  <section class="section"><div class="row between"><h2>Rekening terdaftar</h2>${r.d?`<span class="small muted">diperbarui ${tglID(r.d)}</span>`:''}</div>
-    <div class="va"><span class="bank">${esc(r.bank)}</span><span class="grow"><span class="small muted">Nomor rekening</span><br><b class="num vano">•••• •••• ${esc(r.l4)}</b><br><span class="small">a.n. ${esc(r.nama)}</span></span></div></section>
-  <section class="section"><div class="card stack"><h3 style="margin:0">Update rekening</h3>
-    <div class="field"><label for="rk-b">Bank</label><select class="input" id="rk-b">${BANKS.map(b=>`<option ${b===r.bank?'selected':''}>${b}</option>`).join('')}</select></div>
-    <div class="field"><label for="rk-n">Nomor rekening</label><input class="input num" id="rk-n" inputmode="numeric" autocomplete="off" maxlength="20" placeholder="hanya angka"></div>
-    <div class="field"><label for="rk-a">Nama pemilik rekening</label><input class="input" id="rk-a" maxlength="60" value="${esc(r.nama)}"><span class="small muted">Wajib sama dengan nama di ID HNI. Rekening atas nama orang lain akan ditolak.</span></div>
-    <button class="btn block" id="rk-ok">Simpan, verifikasi dengan OTP</button>
-    <p class="note">Versi contoh: aplikasi hanya menyimpan bank, nama, dan 4 digit akhir. Saat tersambung ke HNI, perubahan rekening diverifikasi OTP lalu diproses tim HNI.</p></div></section>`}
+  <section class="section"><div class="card stack"><h3 style="margin:0">Rekening saat ini</h3>
+    <dl class="kv prof"><dt>Nama bank</dt><dd>${esc(r.bank)}</dd><dt>No. rekening</dt><dd class="num">•••• •••• ${esc(r.l4)}</dd><dt>Atas nama</dt><dd>${esc(r.nama)}</dd></dl>
+    ${S.rekP?`<p class="pwarn small" style="margin:0">Rekening baru ${esc(BANK_S[S.rekP.bank]||S.rekP.bank)} ••••${esc(S.rekP.l4)} sedang diproses dan aktif besok (H+1).</p>`:''}</div></section>
+  <section class="section"><div class="card stack"><div class="row between"><h3 style="margin:0">Update rekening baru</h3><span class="small muted">sisa ${left}× bulan ini</span></div>
+    <div class="field"><label for="rk-b">Nama bank</label><select class="input" id="rk-b"><option value="">Pilih</option>${BANKS.map(b=>`<option>${b}</option>`).join('')}</select></div>
+    <div class="field"><label for="rk-n">No. rekening</label><input class="input num" id="rk-n" inputmode="numeric" autocomplete="off" maxlength="20" placeholder="hanya angka"></div>
+    <div class="field"><label for="rk-a">Atas nama</label><input class="input" id="rk-a" value="${esc(r.nama)}" disabled><span class="small muted">Mengikuti nama di data ID HNI, tidak bisa diubah di sini.</span></div>
+    <div class="rules"><b>Ketentuan</b><ul><li>Rekening baru harus rekening milik sendiri.</li><li>Tidak bisa memakai rekening bersama (Joint/QQ).</li><li>Data rekening baru aktif H+1 setelah update.</li><li>Maksimal update rekening 3× dalam sebulan.</li><li>Bila nama tidak sesuai, update data diri lewat email <b>crm@hni.net</b> dengan scan/foto KTP.</li></ul></div>
+    <label class="agree"><input type="checkbox" id="rk-ok-c"> <span>Saya menyatakan perubahan data di atas benar dan dapat dipertanggungjawabkan secara hukum.</span></label>
+    <button class="btn block" id="rk-ok" disabled>${left?'Simpan':'Batas 3× bulan ini sudah habis'}</button>
+    <p class="note">Versi contoh: aplikasi hanya menyimpan bank dan 4 digit akhir. Saat tersambung ke AVO, perubahan dikirim ke sistem HNI.</p></div></section>`}
+document.addEventListener('change',e=>{if(e.target.id==='rk-ok-c'){const b=$('#rk-ok');if(b)b.disabled=!e.target.checked||rekCount()>=3}});
 document.addEventListener('click',e=>{const t=e.target.closest('[data-payout],#rk-ok');if(!t)return;
   if(t.dataset.payout){S.payout=t.dataset.payout;save();render();toast(t.dataset.payout==='cash'?'Bonus berikutnya dicairkan ke HNI Cash':'Bonus berikutnya ditransfer ke rekening');return}
-  const n=($('#rk-n').value||'').replace(/\D/g,''),a=$('#rk-a').value.trim().toUpperCase();
-  if(n.length<8){toast('Nomor rekening minimal 8 angka');return}if(a.length<3){toast('Isi nama pemilik rekening');return}
-  S.rek={bank:$('#rk-b').value,nama:a,l4:n.slice(-4),d:dkey()};save();render();toast('Rekening diperbarui (contoh)')});
+  const b=$('#rk-b').value,n=($('#rk-n').value||'').replace(/\D/g,'');
+  if(!b){toast('Pilih nama bank');return}if(n.length<8){toast('No. rekening minimal 8 angka');return}if(rekCount()>=3){toast('Maksimal update rekening 3× sebulan');return}
+  S.rekP={bank:b,l4:n.slice(-4),d:dkey()};S.rekC={m:mkey(),n:rekCount()+1};save();render();toast('Tersimpan. Rekening baru aktif besok (H+1).')});
+
+// ===== js/rfm.js =====
+// ---------- Strategi RFM: Rawat pelanggan & tim dengan 3 pertanyaan sederhana ----------
+// R = Kapan terakhir beli? F = Seberapa sering beli? M = Berapa banyak belanjanya?
+const RFM_SEG={
+  setia:{n:'Pelanggan Setia',ic:'heart',c:'s1',d:'Baru beli dan sering beli.',act:'Ucapkan terima kasih. Minta cerita jujurnya. Tawarkan daftar jadi mitra supaya dapat harga mitra.',
+    wa:'Assalamu\'alaikum {nama}, terima kasih ya sudah setia pakai {produk}. Kalau berkenan, boleh cerita pengalamanmu? Oh ya, kalau rutin begini, daftar jadi mitra HNI lebih hemat karena dapat harga mitra. Mau aku jelaskan?'},
+  baru:{n:'Pelanggan Baru',ic:'userplus',c:'s2',d:'Baru sekali beli, belum lama.',act:'Kirim cara pakai yang benar. Tanya rasanya setelah seminggu. Jangan langsung tawarkan produk lain.',
+    wa:'Halo {nama}, gimana {produk}-nya, sudah dicoba? Biar hasilnya pas, cara pakainya begini ya: ... Kalau ada pertanyaan, kabari aku saja.'},
+  isi:{n:'Waktunya Isi Ulang',ic:'cart',c:'s3',d:'Terakhir beli 1–2 bulan lalu. Stoknya mungkin mau habis.',act:'Ingatkan stok dengan ramah. Tawarkan antar atau titip di stokis terdekat.',
+    wa:'Halo {nama}, biasanya {produk} habis sekitar sebulan. Mau aku siapkan lagi? Bisa aku antar atau titip di stokis dekat rumahmu.'},
+  hilang:{n:'Hampir Hilang',ic:'bell',c:'s4',d:'Dulu sering beli, sudah lebih dari 2 bulan tidak beli.',act:'Sapa sebagai teman, tanya kabar. Jangan langsung jualan. Cari tahu kenapa berhenti.',
+    wa:'Assalamu\'alaikum {nama}, lama nggak ngobrol, apa kabar? Semoga sehat sekeluarga. Ngomong-ngomong, dulu {produk} cocok nggak? Kalau ada yang kurang pas, aku pengin tahu.'},
+  tidur:{n:'Tidur',ic:'clock',c:'s5',d:'Pernah beli sekali, sudah lama tidak beli.',act:'Sapa ringan sebulan sekali. Bagikan info produk atau promo resmi yang mungkin cocok.',
+    wa:'Halo {nama}, apa kabar? Ada info produk HNI yang mungkin cocok buat keluarga: ... Kalau tertarik, kabari ya.'}
+};
+const RFM_ORDER=['setia','baru','isi','hilang','tidur'];
+function custBuys(p){return (p.beli||[]).slice().sort((a,b)=>b.d.localeCompare(a.d))}
+function rfmOf(p){const B=custBuys(p);if(!B.length)return null;const now=new Date();const days=Math.round((now-new Date(B[0].d))/864e5);
+  const six=dkey(addDays(now,-183));const B6=B.filter(b=>b.d>=six);const f=B6.length,m=B6.reduce((a,b)=>a+(+b.rp||0),0);
+  const R=days<=30?3:days<=60?2:1,F=f>=4?3:f>=2?2:1,M=m>=1e6?3:m>=3e5?2:1;
+  const seg=R===3?(F>=2?'setia':'baru'):R===2?'isi':(F>=2||M>=2?'hilang':'tidur');return{days,f,m,R,F,M,seg,last:B[0]}}
+function rfmCustomers(){return S.prospects.filter(p=>p.tipe==='pelanggan')}
+let RFM_SEL=null;
+function viewRFM(){const C=rfmCustomers();const sc=C.map(p=>({p,r:rfmOf(p)}));const by=k=>sc.filter(x=>x.r&&x.r.seg===k);const none=sc.filter(x=>!x.r);
+  const hasDemo=C.some(p=>p.demo);
+  const head=`<section class="section"><div class="card stack rfmintro"><div class="row"><span class="hki c2">${ico('chart')}</span><div class="grow"><b>Peta Pelanggan (RFM)</b><br><span class="small muted">3 pertanyaan untuk tahu siapa yang perlu disapa hari ini.</span></div><button class="link small" data-mod="rfm">Pelajari</button></div>
+    <div class="rfm3"><div><b>R</b><span>Kapan terakhir beli?</span></div><div><b>F</b><span>Seberapa sering beli?</span></div><div><b>M</b><span>Berapa banyak belanjanya?</span></div></div></div></section>`;
+  if(!C.length)return head+`<section class="section"><div class="empty stack"><p style="margin:0">Belum ada pelanggan. Tambahkan pelanggan, lalu catat setiap kali mereka beli.</p><div class="row" style="gap:8px;justify-content:center;flex-wrap:wrap"><button class="btn small" data-rfm-add="1">${ico('userplus')} Tambah pelanggan</button><button class="btn small ghost" data-rfm-demo="1">Coba dengan data contoh</button></div></div></section>`;
+  const cards=RFM_ORDER.map(k=>{const L=by(k);const s=RFM_SEG[k];return `<button class="rfmseg ${s.c} ${RFM_SEL===k?'on':''}" data-rfm-seg="${k}" aria-pressed="${RFM_SEL===k}"><span class="rs-ic">${ico(s.ic)}</span><b class="num">${L.length}</b><span class="rs-n">${s.n}</span></button>`}).join('');
+  const sel=RFM_SEL||RFM_ORDER.find(k=>by(k).length&&['hilang','isi'].includes(k))||RFM_ORDER.find(k=>by(k).length);const L=sel?by(sel):[];const s=sel?RFM_SEG[sel]:null;
+  const rowP=({p,r})=>`<div class="rfmrow"><button class="grow gnm" data-pros="${p.id}"><b>${esc(p.name)}${p.demo?' <span class="tag soft">contoh</span>':''}</b><span class="small muted">Terakhir beli ${r.days===0?'hari ini':r.days+' hari lalu'} · ${r.f}× dalam 6 bulan · ${rp(r.m)}</span></button>
+    <a class="btn small wa" href="${waHref(rfmMsg(sel,p),p.kontak)}" target="_blank" rel="noopener" data-rfm-wa="${p.id}" aria-label="Sapa ${esc(p.name)} lewat WhatsApp">${ico('wa')}</a><button class="btn small ghost" data-rfm-buy="${p.id}" aria-label="Catat pembelian ${esc(p.name)}">${ico('cart')}</button></div>`;
+  return head+`<section class="section"><div class="rfmgrid">${cards}</div></section>
+  ${s?`<section class="section"><div class="card stack rfmact ${s.c}"><div><span class="eyebrow">${esc(s.n)} · ${L.length} orang</span><p class="small" style="margin:4px 0 0">${esc(s.d)}</p></div><div class="todo"><b class="small">Yang sebaiknya kamu lakukan</b><p class="small" style="margin:2px 0 0">${esc(s.act)}</p></div>
+    <div class="rfmlist">${L.map(rowP).join('')||'<p class="small muted" style="margin:0">Belum ada pelanggan di kelompok ini.</p>'}</div></div></section>`:''}
+  ${none.length?`<section class="section"><p class="small muted" style="margin:0 0 6px">${none.length} pelanggan belum punya catatan pembelian:</p><div class="row wrap" style="gap:6px">${none.map(({p})=>`<button class="pill" data-rfm-buy="${p.id}">${ico('cart')} ${esc(p.name)}</button>`).join('')}</div></section>`:''}
+  <section class="section"><div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn small ghost" data-rfm-add="1">${ico('userplus')} Tambah pelanggan</button>${hasDemo?`<button class="btn small ghost" data-rfm-demo="0">Hapus data contoh</button>`:''}</div>
+  <p class="note">Sapa pelanggan sebagai teman. Pakai cerita pengalaman, bukan janji sembuh. Catatan pelanggan hanya terlihat olehmu.</p></section>`}
+function rfmMsg(k,p){const prod=(custBuys(p)[0]||{}).item||'produk HNI';return RFM_SEG[k].wa.replace(/\{nama\}/g,(p.name||'').split(' ')[0]).replace(/\{produk\}/g,prod)}
+function openBuy(id){const p=S.prospects.find(x=>x.id===id);if(!p)return;const B=custBuys(p);
+  sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Catat pembelian</span><h2 style="margin:0">${esc(p.name)}</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
+    <div class="row" style="gap:8px"><div class="field grow"><label for="by-d">Tanggal</label><input class="input" id="by-d" type="date" value="${dkey()}" max="${dkey()}"></div><div class="field grow"><label for="by-rp">Total belanja (Rp)</label><input class="input num" id="by-rp" type="number" inputmode="numeric" min="0" step="1000" placeholder="mis. 85000"></div></div>
+    <div class="field"><label for="by-i">Produk</label><input class="input" id="by-i" maxlength="60" list="by-list" placeholder="mis. Etta Goat Milk" value="${esc((B[0]||{}).item||'')}"><datalist id="by-list">${(typeof PRODUCTS!=='undefined'?PRODUCTS:[]).map(x=>`<option value="${esc(x[0])}">`).join('')}</datalist></div>
+    <button class="btn block" id="by-ok">Simpan</button>
+    ${B.length?`<div><b class="small">Riwayat (${B.length})</b><div class="stack" style="gap:4px;margin-top:6px">${B.slice(0,8).map(b=>`<div class="row between small"><span>${tglID(b.d)} · ${esc(b.item||'-')}</span><b class="num">${rp(b.rp)}</b></div>`).join('')}</div></div>`:''}
+    <p class="note">Ini catatan belanja pelangganmu (bukan poin belanjamu). Dipakai untuk Peta Pelanggan.</p></div>`,L=>{L.querySelector('[data-close]').onclick=closeSheet;
+    $('#by-ok').onclick=()=>{const d=$('#by-d').value,v=Math.max(0,+$('#by-rp').value||0),it=$('#by-i').value.trim();if(!d||!v){toast('Isi tanggal dan total belanja');return}
+      p.beli=(p.beli||[]).concat([{d,rp:v,item:it}]).slice(-40);save();closeSheet();render();toast('Pembelian tercatat')}})}
+function rfmDemo(on){if(!on){S.prospects=S.prospects.filter(p=>!p.demo);save();render();return}
+  const now=new Date();const mk=(name,item,arr)=>({id:uid(),demo:1,name,kontak:'',tipe:'pelanggan',stage:0,minat:item,next:dkey(addDays(now,3)),notes:'',beli:arr.map(([dd,rpv])=>({d:dkey(addDays(now,-dd)),rp:rpv,item}))});
+  S.prospects=S.prospects.concat([mk('Bu Ratna','Etta Goat Milk',[[5,170000],[36,170000],[70,85000],[100,85000]]),mk('Pak Hendra','Sevel Stamina',[[12,120000]]),mk('Mbak Dewi','Pasta Gigi Herbal',[[45,60000],[80,60000]]),mk('Bu Siska','Minyak Herba Sinergi',[[95,240000],[125,240000],[160,120000]]),mk('Mas Andi','Habbatussauda',[[150,50000]]),mk('Teh Lina','Etta Goat Milk',[[20,255000],[52,170000],[85,170000]]),mk('Pak Joko','Kapsul Gamat',[[58,130000]])]);
+  save();render();toast('Data contoh dimuat. Hapus kapan saja.')}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-rfm-seg],[data-rfm-buy],[data-rfm-demo],[data-rfm-add],[data-rfm-wa]');if(!t)return;const d=t.dataset;
+  if(d.rfmSeg){RFM_SEL=RFM_SEL===d.rfmSeg?null:d.rfmSeg;render();return}
+  if(d.rfmBuy){e.preventDefault();openBuy(d.rfmBuy);return}
+  if(d.rfmDemo!=null){rfmDemo(d.rfmDemo==='1');return}
+  if(d.rfmAdd){openPerson(null,'sapa');return}
+  if(d.rfmWa){const p=S.prospects.find(x=>x.id===d.rfmWa);if(p&&!p.kontak){e.preventDefault();toast('Nomor WA belum diisi. Buka detail orang untuk menambahkan.');openPerson(p.id)}}});
+
+// RFM untuk tim (Genealogi): Kapan terakhir belanja? Berapa bulan aktif dari 5 bulan? Rata-rata TP?
+function rfmTeam(o){const months=[o.tp].concat(o.hist.map(h=>h.tp));const lastIdx=months.findIndex(v=>v>0);const act=months.filter(v=>v>0).length;
+  if(lastIdx===0&&act>=4)return 'setia';if(lastIdx===0)return 'aktif';if(lastIdx===1)return 'sapa';return 'hilang'}
+const RFM_TEAM={setia:'Setia aktif',aktif:'Aktif bulan ini',sapa:'Perlu disapa',hilang:'Hampir hilang'};
+
+// modul Akademi
+MODULES.push({id:'rfm',cat:'PCA',t:'Strategi RFM: Rawat Pelanggan',ic:'chart',col:'k-sapa',cards:[
+  {h:'Pelanggan lama lebih berharga',b:'<p>Mencari pelanggan baru itu capek. Menjaga pelanggan yang sudah percaya jauh lebih ringan, dan omsetnya datang setiap bulan.</p><p>RFM adalah cara sederhana untuk tahu <b>siapa yang perlu disapa hari ini</b>, cukup dari catatan belanja pelangganmu.</p>'},
+  {h:'Tiga pertanyaan saja',b:'<ul><li><b>R (Recency)</b>: kapan terakhir dia beli? Makin baru, makin hangat.</li><li><b>F (Frequency)</b>: seberapa sering dia beli dalam 6 bulan?</li><li><b>M (Monetary)</b>: berapa banyak total belanjanya?</li></ul><p>Tidak perlu hitung rumit. Catat saja setiap pelanggan beli: tanggal, produk, dan totalnya. HNIF yang mengelompokkan.</p>'},
+  {h:'Lima kelompok pelanggan',b:'<ul><li><b>Pelanggan Setia</b>: baru beli dan sering. Ucapkan terima kasih, minta cerita jujurnya, tawarkan jadi mitra.</li><li><b>Pelanggan Baru</b>: baru sekali beli. Kirim cara pakai, tanya rasanya setelah seminggu.</li><li><b>Waktunya Isi Ulang</b>: terakhir beli 1–2 bulan lalu. Ingatkan stok dengan ramah.</li><li><b>Hampir Hilang</b>: dulu sering, sudah 2 bulan lebih tidak beli. Sapa sebagai teman, tanya kabar.</li><li><b>Tidur</b>: sekali beli, sudah lama. Sapa ringan sebulan sekali.</li></ul>'},
+  {h:'Contoh: Bu Ratna dan Pak Hendra',b:'<p><b>Bu Ratna</b> beli Etta Goat Milk 4 kali dalam 4 bulan, terakhir 5 hari lalu. Dia <b>Pelanggan Setia</b>. Langkahmu: terima kasih, lalu jelaskan bahwa jadi mitra membuatnya dapat harga mitra.</p><p><b>Pak Hendra</b> beli Sevel Stamina sekali, 12 hari lalu. Dia <b>Pelanggan Baru</b>. Langkahmu: tanya apakah sudah dicoba dan bagikan cara pakai yang benar.</p>'},
+  {h:'Rutinitas 10 menit seminggu',b:'<ol><li>Buka <b>Jaringan → Prospek & Pelanggan → Peta RFM</b>.</li><li>Mulai dari kelompok <b>Hampir Hilang</b> dan <b>Waktunya Isi Ulang</b>.</li><li>Ketuk tombol WhatsApp. Pesan sudah disiapkan, ubah sedikit supaya terasa pribadi.</li><li>Setiap ada yang beli, ketuk ikon keranjang untuk mencatat.</li></ol><p class="note warn">Sapa sebagai teman. Pakai cerita pengalaman, bukan janji sembuh atau janji penghasilan.</p>'},
+  {h:'RFM juga untuk timmu',b:'<p>Di <b>Genealogi</b>, saring tim dengan <b>Perlu disapa</b> atau <b>Hampir hilang</b>. Mereka mitra yang bulan ini belum belanja padahal sebelumnya aktif.</p><p>Hubungi lewat tombol Pesan atau WhatsApp. Tanyakan kabarnya dan kebutuhannya, bukan target poinnya.</p>'}
+ ],quiz:[
+  {q:'Huruf R dalam RFM artinya…',o:['Kapan terakhir pelanggan beli','Rupiah keuntunganmu','Rekrut mitra baru','Rangking squad'],a:0},
+  {q:'Pelanggan yang dulu sering beli tetapi sudah 2 bulan lebih tidak beli masuk kelompok…',o:['Hampir Hilang','Pelanggan Setia','Pelanggan Baru','Tidur'],a:0},
+  {q:'Langkah terbaik untuk Pelanggan Baru adalah…',o:['Kirim cara pakai dan tanya rasanya setelah seminggu','Langsung tawarkan 5 produk lain','Diam saja sampai dia beli lagi','Kasih diskon di bawah harga resmi'],a:0},
+  {q:'Data apa yang perlu kamu catat supaya Peta RFM bekerja?',o:['Tanggal, produk, dan total belanja pelanggan','Password pelanggan','Jumlah follower pelanggan','Alamat kantor pelanggan'],a:0},
+  {q:'Pelanggan Setia sebaiknya…',o:['Diucapkan terima kasih dan ditawari jadi mitra','Diabaikan karena sudah pasti beli','Diberi janji sembuh','Diminta beli dalam jumlah besar'],a:0}
+ ]});
 
 // ===== js/events.js =====
 // ---------- events ----------
@@ -4433,6 +4602,7 @@ document.addEventListener('click',e=>{
   if(d.actab){AC_TAB=d.actab;render();return}
   if(d.teamtab){TEAM_TAB=d.teamtab;render();return}
   if(d.prosv){PROS_VIEW=d.prosv;render();return}
+  if(d.pin){if(d.pin==='promo'){AC_TAB='skrip';setTab('academy')}else if(d.pin==='rfm'){goNav('team:rfm')}else if(d.pin==='tim'){GEN_F='sapa';goNav('team:gen')}return}
   if(d.nav){goNav(d.nav);return}
   if(d.tipe){TEAM_TAB_TIPE=d.tipe;render();return}
   if(d.lb){LB_MODE=d.lb;render();return}
@@ -4492,7 +4662,7 @@ const SPLASH=new Promise(res=>{
   let seen='';try{seen=localStorage.getItem('hniquest:splash')||''}catch(e){}
   if(seen===dkey()&&!/[?&]bumper/.test(location.search)){sp.remove();res();return}
   try{localStorage.setItem('hniquest:splash',dkey())}catch(e){}
-  try{const c=JSON.parse(localStorage.getItem(LS_KEY)||'null');if(c&&c.nick)document.getElementById('spHello').textContent=`Siap lanjut, ${c.nick}?`+(c.streak>1?` Streak ${c.streak} hari menunggumu.`:'')}catch(e){}
+  try{const c=JSON.parse(localStorage.getItem(LS_KEY)||'null');if(c&&c.nick)document.getElementById('spHello').textContent=`Siap lanjut, ${c.nick}?`+(c.streak>1?` Rajin ${c.streak} hari berturut-turut menunggumu.`:'')}catch(e){}
   let done=false,started=false;
   const close=()=>{if(done)return;done=true;sp.classList.add('out');setTimeout(()=>{sp.remove();res()},RM()?0:520)};
   const start=()=>{if(started){close();return}started=true;ac();jingle();document.getElementById('spPre').hidden=true;document.getElementById('spRun').hidden=false;setTimeout(close,RM()?900:2600)};
