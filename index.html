@@ -1126,6 +1126,16 @@ div.hk{cursor:default}button.hk:hover{border-color:var(--brand)}
   body.side-min .sp-badge .rimg{margin:0!important;width:22px;height:17px}
   body.side-min .sp-badge .rkimg,body.side-min .sp-badge>*{background:none!important;box-shadow:none!important;border:0!important;padding:0!important}
 }
+
+.gtable tr.g0 td{background:color-mix(in srgb,var(--sun) 10%,var(--surface));border-bottom:2px solid color-mix(in srgb,var(--sun) 45%,var(--line))}
+.gtable tr.g0 td.stk{background:color-mix(in srgb,var(--sun) 10%,var(--surface))}
+.g0tag{width:auto!important;padding:0 5px;border-radius:6px;background:var(--sun)!important;color:#1B2B22;font-size:.68rem;font-weight:800;display:grid;place-items:center;height:22px}
+.g0you{font-weight:600;color:var(--muted);font-size:.78rem}
+@media (min-width:1024px){
+  .sp-rk{white-space:normal;align-items:flex-start;line-height:1.2;overflow:visible}
+  .sp-rk .rimg{margin-top:-1px}
+  .sp-t b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+}
 </style>
 
 <div class="splash" id="splash" aria-label="HNIF">
@@ -4417,7 +4427,7 @@ function viewGenealogi(){const G=genData();const q=GEN_Q.trim().toLowerCase();co
   const chev=o=>o.kids.length&&!flat?`<button class="tw" data-gen-tg="${o.id}" aria-expanded="${!!GEN_OPEN[o.id]}" aria-label="${GEN_OPEN[o.id]?'Tutup':'Buka'} jaringan ${esc(o.nama)}">${GEN_OPEN[o.id]?'−':'+'}</button>`:'<span class="tw sp"></span>';
   const ind=o=>flat?0:Math.min((o.gen-1)*10,30);
   const tbl=`<div class="tblwrap gtbl"><table class="dtable gtable"><thead><tr><th class="stk">Mitra <span class="muted">(ketuk nama)</span></th><th class="r hl">TP ${BLN[now.getMonth()]}</th><th class="r hl">TPG ${BLN[now.getMonth()]}</th><th class="hl">Prediksi</th>${MB.map(([y,m])=>`<th class="r">TPG ${BLN[m]}</th>`).join('')}<th class="r">Akumulasi TPG<br><span class="muted">s.d. ${BLN[MB[0][1]]} ${MB[0][0]}</span></th></tr></thead><tbody>
-    ${rows.map(o=>`<tr><td class="stk"><div class="gname" style="padding-left:${ind(o)}px">${chev(o)}<button class="gnm" data-gen-open="${o.id}"><b>${esc(o.nama)}</b><span class="gid num">ID ${o.id}</span><span class="small muted num">G${o.gen} · ${o.niaga}/${pkCode(o.pk)}${o.down?` · ${o.down}↓`:''}</span></button></div></td>
+    ${flat?'':g0Row(G)}${rows.map(o=>`<tr><td class="stk"><div class="gname" style="padding-left:${ind(o)}px">${chev(o)}<button class="gnm" data-gen-open="${o.id}"><b>${esc(o.nama)}</b><span class="gid num">ID ${o.id}</span><span class="small muted num">G${o.gen} · ${o.niaga}/${pkCode(o.pk)}${o.down?` · ${o.down}↓`:''}</span></button></div></td>
       <td class="r num hl ${o.tp?'':'muted'}"><b>${pt(o.tp)}</b></td><td class="r num hl"><b>${pt(o.tpg)}</b></td><td class="hl">${o.pred!==o.pk?`<span class="rkc up">↑ ${rkS(o.pred)}</span>`:`<span class="small muted">${rkS(o.pred)}</span>`}</td>${o.hist.map(h=>`<td class="r num">${pt(h.tpg)}</td>`).join('')}<td class="r num">${pt(o.akm)}</td></tr>`).join('')}</tbody></table></div>`;
   return `${SAMPLE_NOTE}
   <section class="section"><div class="kpis"><div class="kpi"><span>Mitra di jaringan</span><b class="num">${G.all.length}</b><small>${G.g1.length} di generasi 1</small></div><div class="kpi"><span>Aktif belanja bulan ini</span><b class="num">${aktif}</b><small>${Math.round(aktif/G.all.length*100)}% dari jaringan</small></div><div class="kpi"><span>TPG generasi 1</span><b class="num">${pt(tpgAll)}</b><small>bulan ${BLN[now.getMonth()]}</small></div><div class="kpi"><span>Diprediksi naik</span><b class="num">${naik}</b><small>bulan ini</small></div></div></section>
@@ -4426,6 +4436,12 @@ function viewGenealogi(){const G=genData();const q=GEN_Q.trim().toLowerCase();co
     <div class="pills" role="group" aria-label="Saring" style="margin-top:8px">${[['all','Semua'],['aktif','Aktif'],['pasif','Belum belanja'],['naik','Diprediksi naik']].map(([k,t])=>`<button class="pill" data-gen-f="${k}" aria-pressed="${GEN_F===k}">${t}</button>`).join('')}<span class="pillsep">RFM tim:</span>${['setia','sapa','hilang'].map(k=>`<button class="pill rf-${k}" data-gen-f="${k}" aria-pressed="${GEN_F===k}">${RFM_TEAM[k]} · ${genData().all.filter(o=>rfmTeam(o)===k).length}</button>`).join('')}</div>
     ${flat?`<p class="small muted" style="margin:8px 0 0">${rows.length} mitra cocok. Hapus pencarian untuk kembali ke tampilan pohon.</p>`:`<div class="row" style="gap:12px;margin-top:6px"><button class="link small" data-gen-all="1">Buka semua</button><button class="link small" data-gen-all="0">Tutup semua</button><span class="small muted grow" style="text-align:right">Geser tabel ke kanan untuk TPG 4 bulan lalu →</span></div>`}</section>
   <section class="section">${rows.length?tbl:'<div class="empty">Tidak ada mitra yang cocok.</div>'}</section>`}
+// G0 = pemilik akun: TP pribadi, TPG = seluruh jaringan (generasi 1 sudah membawa grup di bawahnya) + TP pribadi
+function g0Data(G){const r=seedRng(bizSeed()+'g0');const myTp=Math.max(monthTP(),0);const hTp=[0,1,2,3].map(()=>Math.round((r()<.4?600:200)*(.6+r()*.6)/10)*10);
+  return{tp:myTp,tpg:G.g1.reduce((a,o)=>a+o.tpg,0)+myTp,hist:[0,1,2,3].map(i=>({tp:hTp[i],tpg:G.g1.reduce((a,o)=>a+o.hist[i].tpg,0)+hTp[i]})),akm:G.g1.reduce((a,o)=>a+o.akm,0)+(+S.akum||0)}}
+function g0Row(G){const d=g0Data(G);const pk=dispRank();const pkc=RANKS[rankIdx(pk)];
+  return `<tr class="g0"><td class="stk"><div class="gname"><span class="tw sp g0tag">G0</span><button class="gnm" data-act="profile"><b>${esc(S.nick||'Kamu')} <span class="g0you">(kamu)</span></b><span class="gid num">ID ${esc(S.idhni||'-')}</span><span class="small muted num">G0 · A/${pkc.s==='MB'?'MB':pkc.s} · ${G.all.length}↓</span></button></div></td>
+    <td class="r num hl"><b>${pt(d.tp)}</b></td><td class="r num hl"><b>${pt(d.tpg)}</b></td><td class="hl"><span class="small muted">${esc(rkS(rankIdx(pk)<=PERM_MAX?pk:'ED'))}</span></td>${d.hist.map(h=>`<td class="r num"><b>${pt(h.tpg)}</b></td>`).join('')}<td class="r num"><b>${pt(d.akm)}</b></td></tr>`}
 function openGenDetail(id){const G=genData();const o=G.all.find(x=>x.id===id);if(!o)return;const MB=monthsBack(4);const now=new Date();
   const waTxt=`Assalamu'alaikum ${o.nama.split(' ')[0]}, apa kabar?`;const wa='62'+o.wa.slice(1);
   sheet(`<div class="stack"><div class="row"><div class="grow"><span class="eyebrow">Informasi mitra · data contoh</span><h2 style="margin:0">${esc(o.nama)}</h2></div><button class="iconbtn" data-close aria-label="Tutup">✕</button></div>
