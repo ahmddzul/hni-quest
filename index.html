@@ -4440,7 +4440,7 @@ function viewGenealogi(){const G=genData();const q=GEN_Q.trim().toLowerCase();co
 function g0Data(G){const r=seedRng(bizSeed()+'g0');const myTp=Math.max(monthTP(),0);const hTp=[0,1,2,3].map(()=>Math.round((r()<.4?600:200)*(.6+r()*.6)/10)*10);
   return{tp:myTp,tpg:G.g1.reduce((a,o)=>a+o.tpg,0)+myTp,hist:[0,1,2,3].map(i=>({tp:hTp[i],tpg:G.g1.reduce((a,o)=>a+o.hist[i].tpg,0)+hTp[i]})),akm:G.g1.reduce((a,o)=>a+o.akm,0)+(+S.akum||0)}}
 function g0Row(G){const d=g0Data(G);const pk=dispRank();const pkc=RANKS[rankIdx(pk)];
-  return `<tr class="g0"><td class="stk"><div class="gname"><span class="tw sp g0tag">G0</span><button class="gnm" data-act="profile"><b>${esc(S.nick||'Kamu')} <span class="g0you">(kamu)</span></b><span class="gid num">ID ${esc(S.idhni||'-')}</span><span class="small muted num">G0 · A/${pkc.s==='MB'?'MB':pkc.s} · ${G.all.length}↓</span></button></div></td>
+  return `<tr class="g0"><td class="stk"><div class="gname"><span class="tw sp"></span><button class="gnm" data-act="profile"><b>${esc(S.nick||'Kamu')}</b><span class="gid num">ID ${esc(S.idhni||'-')}</span><span class="small muted num">G0 · A/${pkc.s==='MB'?'MB':pkc.s} · ${G.all.length}↓</span></button></div></td>
     <td class="r num hl"><b>${pt(d.tp)}</b></td><td class="r num hl"><b>${pt(d.tpg)}</b></td><td class="hl"><span class="small muted">${esc(rkS(rankIdx(pk)<=PERM_MAX?pk:'ED'))}</span></td>${d.hist.map(h=>`<td class="r num"><b>${pt(h.tpg)}</b></td>`).join('')}<td class="r num"><b>${pt(d.akm)}</b></td></tr>`}
 function openGenDetail(id){const G=genData();const o=G.all.find(x=>x.id===id);if(!o)return;const MB=monthsBack(4);const now=new Date();
   const waTxt=`Assalamu'alaikum ${o.nama.split(' ')[0]}, apa kabar?`;const wa='62'+o.wa.slice(1);
